@@ -5,7 +5,7 @@ locale: en_US
 description: Describe your website here.
 logo: site-logo.png
 search: true
-url: https://tiven.wang
+url: http://tiven.wang
 
 # Jekyll configuration
 
