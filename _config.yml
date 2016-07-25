@@ -1,11 +1,12 @@
 # Site wide configuration
 
-title: Site Title
+title: Tiven's Blog
 locale: en_US
-description: Describe your website here.
+description: Personal technical blog of SAP.
 logo: site-logo.png
 search: true
 url: http://tiven.wang
+#http://127.0.0.1:4000 
 
 # Jekyll configuration
 
@@ -33,13 +34,15 @@ mathjax: true
 include: [".htaccess"]
 exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", ".less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md", "vendor"]
 
+# site disqus comments enable
+comments: true
 
 # Site owner
 owner:
-  name: Your Name
+  name: Wang Tiven
   avatar: bio-photo.jpg
-  email: you@email.com
-  disqus-shortname:
+  email: anypossible.w@gmail.com
+  disqus-shortname: tiven-wang
   twitter: #username
   facebook: #username
   github: #username
