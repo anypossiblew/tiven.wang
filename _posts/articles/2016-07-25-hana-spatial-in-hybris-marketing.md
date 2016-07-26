@@ -1,8 +1,8 @@
 ---
 layout: post
 title: HANA Spatial in Hybris Marketing
-excerpt: "SAP HANA内存数据库提供Spatial库并PAL库对基于地理空间信息（Geospatial）的大数据分析的原始支持。基于地理空间信息的大数据分析（Big Data Analytic）在例如精准营销（CEI）、智慧城市、定位应急响应、无人机应用、优化农业生产等很多场景中得到广泛应用。"
-modified: 2016-07-25T13:55:25-04:00
+excerpt: "SAP HANA内存数据库提供Spatial库并PAL库对基于地理空间信息（Geospatial）的大数据分析的原生支持。基于地理空间信息的大数据分析（Big Data Analytic）在例如精准营销（CEI）、智慧城市、定位应急响应、无人机应用、优化农业生产等很多场景中得到广泛应用。"
+modified: 2016-07-26T15:49:25-04:00
 categories: articles
 tags: [HANA, 内存数据库, geospatial, 地理空间, Big data, 大数据, Hybris Marketing]
 image:
