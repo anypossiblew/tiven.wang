@@ -43,6 +43,14 @@
       </footer>
       <div class="entry-content">
         {{ content }}
+        {% if page.external_links %}
+          <h2>External links</h2>
+          <ul>
+          {% for link in page.external_links %}
+            <li><a target="_blank" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+          </ul>
+        {% endif %}
         {% if (site.owner.disqus-shortname and page.comments) or site.comments %}
           <div id="disqus_thread"></div><!-- /#disqus_thread -->
           {% include disqus-comments.html %}
