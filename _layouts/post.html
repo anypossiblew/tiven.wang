@@ -43,11 +43,11 @@
       </footer>
       <div class="entry-content">
         {{ content }}
-        {% if page.external_links %}
-          <h2>External links</h2>
+        {% if page.references %}
+          <h2>References</h2>
           <ul>
-          {% for link in page.external_links %}
-            <li><a target="_blank" href="{{ link.url }}">{{ link.title }}</a></li>
+          {% for reference in page.references %}
+            <li>[{{ forloop.index }}] {{ reference.title }} <a target="_blank" href="{{ reference.url }}">{{ reference.url }}</a></li>
           {% endfor %}
           </ul>
         {% endif %}

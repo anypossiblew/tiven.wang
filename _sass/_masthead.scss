@@ -67,6 +67,7 @@
    ========================================================================== */
 
 .site-description {
+  border-bottom: 0;
   margin-top: 0;
   font-family: $alt-font;
   @include font-size(16);

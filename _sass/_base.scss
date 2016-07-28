@@ -61,6 +61,7 @@ h1 {
 }
 h2 {
 	@include font-size(28);
+        border-bottom: 1px solid #aaa;
 }
 h3 {
 	@include font-size(24);
