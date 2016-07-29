@@ -196,6 +196,7 @@ span + .entry-title {
   p > a,
 	li > a {
 		border-bottom: 1px dotted lighten($link-color, 50);
+                word-wrap: break-word;
 		&:hover {
 			border-bottom-style: solid;
 		}
