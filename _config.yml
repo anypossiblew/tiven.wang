@@ -6,7 +6,7 @@ description: Personal technical blog of SAP.
 logo: site-logo.png
 search: true
 url: http://tiven.wang
-#http://127.0.0.1:4000 
+#http://127.0.0.1:4000
 
 # Jekyll configuration
 
@@ -20,6 +20,7 @@ gems:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
+  - jemoji
 
 kramdown:
   input: GFM
