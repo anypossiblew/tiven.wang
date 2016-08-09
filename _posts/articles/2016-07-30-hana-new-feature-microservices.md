@@ -24,7 +24,9 @@ references:
     url: "https://www.benefitfocus.com/blogs/design-engineering/architecture-cubed"
   - title: "SAP HANA XS Advanced, Creating an HDI Module"
     url: "http://go.sap.com/developer/tutorials/xsa-hdi-module.html"
-    
+  - title: "SAP HANA SPS 11: New Developer Features"
+    url: "http://scn.sap.com/community/developer-center/hana/blog/2015/12/08/sap-hana-sps-11-new-developer-features"
+        
 ---
 
 过去的几年来，“微服务”这个术语逐渐得到关注，它描述的是由一系列更小的服务所组成的架构，在众多互联网公司得到广泛应用。作为传统老牌企业管理软件供应商SAP在新技术应用方面总是慢一步。面对日益增长的企业数据量和业务系统复杂度，SAP受到了来自竞争对手的压力意欲改变自己传统的应用系统架构。HANA作为SAP未来一段时间下一代系统的基石，也在不断改变和完善自身功能，以适应新兴的系统设计模式和架构理念，其中一项即是对Microservices设计思想的支持。本篇将介绍SAP HANA增加了哪些支持Microservices的开发功能，并不涉及太多Microservices和SOA的理论(关于这些知识读者可以参考References中的链接)。
@@ -64,12 +66,22 @@ SAP HANA开发平台在HANA内存数据库之上增加了应用层开发能力�
 ![HANA Architecture Main](/images/hana/sap-hana-architecture-xsa.png)
 
 ## HANA New Features
+从HANA SPS 11版本起，新增了很多功能来支持microservices的开发，老的开发功能依然存在。
 
-### HDI
+* XS引擎改成XS Advanced，但老的XS引擎仍然作为XSA的一部分存在（XS Classic）。
+* XSA的代码版本管理迁移到了Git/GitHub上，原有的HANA Repository功能仍存在。
+* 新增HDI(HANA Deployment Infrastructure)，提供独立的声明式的可持续部署的数据库对象管理容器。
+* Node.js开发能力。
+
+详情请参考SAP SCN系列文章:<a target="_blank" href="{{ page.references[8].url }}">{{ page.references[8].title }}</a>
 
 ### XSA
 
+### HDI
+
 ### Nodejs
+
+## 如何发挥HANA高效分析能力
 
 
 ## 总结
