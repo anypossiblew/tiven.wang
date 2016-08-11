@@ -18,7 +18,8 @@ references:
     url: "https://help.sap.com/saphelp_hanaplatform/helpdata/en/25/302d6a87c141b7afe11a12094dc0c9/content.htm?frameset=/en/5e/593196ba9f49dea67fa63b475c941e/frameset.htm&current_toc=/en/00/0ca1e3486640ef8b884cdf1a050fbb/plain.htm"
   - title: "Identifying the Language Code / Locale"
     url: "https://sapui5.hana.ondemand.com/1.28.36/docs/guide/91f21f176f4d1014b6dd926db0e91070.html"
-  
+  - title: "BCP 47 Validator"
+    url: "http://schneegans.de/lv/"
 ---
 
 SAP HANA platform有多种方式维护多种开发对象Object的多语言Multiple Languages及翻译Translation问题，本文介绍HANA多语言功能和翻译工具及在各种场景中的应用方式。
@@ -65,6 +66,7 @@ UI5还可以使用Resource Bundles方式翻译文本，即使用添加不同国�
 HANA中的翻译工作有多种方式：
 
 ### HANA Studio
+//TODO
 
 ### Online Translation Tool
 //TODO

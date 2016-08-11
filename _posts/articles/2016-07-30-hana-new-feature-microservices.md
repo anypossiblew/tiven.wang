@@ -76,13 +76,16 @@ SAP HANA开发平台在HANA内存数据库之上增加了应用层开发能力�
 详情请参考SAP SCN系列文章:<a target="_blank" href="{{ page.references[8].url }}">{{ page.references[8].title }}</a>
 
 ### XSA
+//TODO
 
 ### HDI
+//TODO
 
 ### Nodejs
+//TODO
 
 ## 如何发挥HANA高效分析能力
-
+//TODO
 
 ## 总结
 
