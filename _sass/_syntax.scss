@@ -226,3 +226,17 @@ ol.CodeRay li { white-space: pre }
 	.change .change { color: #66f; }
 	.head .head { color: #f4f; }
 }
+
+.highlighter-rouge {
+    font-size: 14px;
+    font-size: .875rem;
+    line-height: 1.71429;
+    margin-bottom: 24px;
+    margin-bottom: 1.5rem;
+    font-family: "source-code-pro",monospace;
+    white-space: nowrap;
+    margin: 0 2px;
+    padding: 0 5px;
+    background-color: #f2f2f2;
+    border-radius: 3px;
+}
