@@ -13,6 +13,9 @@
   a {
     color: lighten($text-color,20);
   }
+  @include media($medium) {
+    margin: 240px auto;
+  }
 }
 
 /*

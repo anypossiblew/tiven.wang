@@ -45,6 +45,18 @@
 
 .entry-header {
 	@include fill-parent;
+	
+	@include media($medium) {
+		color: white;
+		text-shadow: 1px 0 lightgrey, 0 1px lightgrey, 1px 0 lightgrey, 0 1px lightgrey;
+		.entry-tags {a {color: white;}}
+		margin-bottom: 100px;
+	}
+	
+}
+
+.entry-page-header {
+    @include fill-parent;
 }
 
 /* tag listing in page header */
@@ -105,6 +117,17 @@ span + .entry-title {
 
 .entry-wrapper {
 	@include outer-container;
+	margin-top: 0;
+	margin-bottom: 3em;
+	padding-right: $gutter;
+	padding-left: $gutter;
+	@include media($medium) {
+		margin-top: -200px;
+	}
+}
+
+.entry-page-wrapper {
+    @include outer-container;
 	margin-top: 0;
 	margin-bottom: 3em;
 	padding-right: $gutter;
