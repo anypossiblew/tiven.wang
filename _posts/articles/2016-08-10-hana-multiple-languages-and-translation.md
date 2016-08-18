@@ -4,7 +4,7 @@ title: HANA Multiple Languages and Translation
 excerpt: "SAP HANA platform有多种方式维护多种开发对象Object的多语言Multiple Languages即翻译Translation问题，本文介绍HANA多语言功能和翻译工具及在各种场景中的应用方式。"
 modified: 2016-08-11T17:52:25-04:00
 categories: articles
-tags: [HANA, Languages, Translation, ABAP]
+tags: [HANA, Languages, Translation, ABAP, CDS, UI5]
 image:
   feature: hana/masthead-languages.jpg
 comments: true
