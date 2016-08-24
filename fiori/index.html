@@ -7,11 +7,13 @@
 
 		<title>Tiven Wang</title>
 
-		<script id="sap-ui-bootstrap"
-			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-			data-sap-ui-libs="sap.m, sap.ui.layout, sap.ui.demokit"
+		<script id="util-coreloader"  
+			src="controller/CoreLoader.js"
+			data-loader-src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m"
 			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-compatVersion="edge"
+			data-sap-ui-preload="async"
 			data-sap-ui-resourceroots='{"QuickStartApplication": "",
 				"sap.uxap.sample": "./resources/sap/uxap/sample/"
 			}'>
@@ -20,6 +22,7 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 
 		<script>
+		   CoreLoader.onReadyState(function() {  
 			sap.ui.getCore().attachInit(function() {
 				new sap.m.Shell({
 					app: new sap.ui.core.ComponentContainer({
@@ -28,6 +31,7 @@
 					})
 				}).placeAt("content");
 			});
+		  });  
 		</script>
 	</head>
 

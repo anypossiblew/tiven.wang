@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HANA Multiple Languages and Translation
-excerpt: "SAP HANA platform有多种方式维护多种开发对象Object的多语言Multiple Languages即翻译Translation问题，本文介绍HANA多语言功能和翻译工具及在各种场景中的应用方式。"
+excerpt: "SAP HANA platform及相关的产品如SAPUI5、ABAP有多种开发对象Object的多语言Multiple Languages及翻译Translation问题，本文介绍HANA涉及到的多语言功能和翻译工具，及SAPUI5和ABAP的多语言的使用，并且介绍实际场景中需要注意的一些问题。最后特别说明对中文不同标识的处理方式。"
 modified: 2016-08-11T17:52:25-04:00
 categories: articles
 tags: [HANA, Languages, Translation, ABAP, CDS, UI5]
@@ -20,12 +20,15 @@ references:
     url: "https://sapui5.hana.ondemand.com/1.28.36/docs/guide/91f21f176f4d1014b6dd926db0e91070.html"
   - title: "BCP 47 Validator"
     url: "http://schneegans.de/lv/"
+  - title: "W3C - Web application APIs"
+    url: "http://w3c.github.io/html/webappapis.html#dom-navigator-languages"
+
 ---
 
-SAP HANA platform有多种方式维护多种开发对象Object的多语言Multiple Languages及翻译Translation问题，本文介绍HANA多语言功能和翻译工具及在各种场景中的应用方式。
+SAP HANA platform及相关的产品如`SAPUI5`、`ABAP`有多种开发对象Object的多语言Multiple Languages及翻译Translation问题，本文介绍HANA涉及到的多语言功能和翻译工具，及SAPUI5和ABAP的多语言的使用，并且介绍实际场景中需要注意的一些问题。最后特别说明对中文不同标识的处理方式。
 
 ## HANA Multiple Languages
-HANA多语言有Modeler Object Labels与Text Bundles file for SAPUI5 Applications及通用的Resource Bundles。
+HANA多语言情景有Modeler Object Labels与Text Bundles file for SAPUI5 Applications及通用的Resource Bundles。
 
 1. [Modeler Object Labels](#modeler-object-labels)
 2. [Text Bundles](#text-bundles)
@@ -76,8 +79,15 @@ HANA中的翻译工作有多种方式：
 
 ## Language codes
 
+### Browser
+大部分浏览器的语言编码所使用的标准是BCP-47，如`de`， `en-US`， `zh-Hans-CN`。
+
+
 ### HANA Platform
-HANA平台使用的语言编码标准和JAVA [Locale](http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html) class使用的标准一样，都是与[BCP-47]({{ page.references[0].url }})标准通用的，大部分表现形式为 `<lang>_<country> (e.g. en_US)`。
+HANA平台使用的语言编码标准和JAVA [Locale](http://docs.oracle.com/javase/7/docs/api/java/util/Locale.html) class使用的标准一样，是ISO 639 alpha-2 or alpha-3的小写字母语言编码加上ISO 3166 alpha-2的国家编码，用下划线分开，还可以再加第三个变量标识。
+如`de`，`en_US`，`zh_TW_Traditional`。
+
+> 从JDK 1.7开始也支持`BCP-47`标准了。
 
 #### HANA Session Locale
 使用下面的SQL可以查看当前会话的语言代码：
@@ -91,10 +101,10 @@ from dummy;
 
 #### Change HANA Session Locale
 Right-clicking onto the system/logon-entry in the 'Navigator' -> [Properties] -> [Database User Logon] -> [Additional Properties].
-![Change HANA Studio Locale](/images/hana/studio-locale.png)
+![Change HANA Studio Locale](/images/hana/studio-locale.png "Change HANA Studio Locale")
 
 ### ABAP-based
-为了兼容性，ABAP-based SAP application servers使用的是`SAP专有Language codes`（参见SAP系统表`T002`），其**基本**符合`ISO 639 alpha-2 language code`。如果SAPUI5应用程序连接ABAP-based SAP应用服务器，默认URL参数sap-language的值为`SAP专有Language codes`，会被自动转成`BCP-47 language tag`，如
+为了兼容性，ABAP-based SAP application servers使用的是`SAP专有Language codes`（参见SAP系统表`T002`），其**基本**符合`ISO 639 alpha-2 language code`。如果SAPUI5应用程序连接ABAP-based SAP应用服务器，默认URL参数**sap-language**的值为`SAP专有Language codes`，会被自动转成`BCP-47 language tag`，如
 
 | SAP Language Code | BCP47 Language Tag | Description      |
 | ----------------- |:------------------:|:---------------- |
@@ -136,11 +146,35 @@ where
 
 ```
 
-### with ABAP
+### ABAP on HANA
 通常ABAP中的语言是登录GUI时给定的，存储在系统变量`SY-LANGU`中，但有时需要在ABAP程序中指定语言，可以使用ABAP语句`set locale language <language code>.`指定。这样在ABAP中使用sql查询HANA DB时会话就是相应的语言代码了。
 
 >例如：ABAP中指定`set locale language '1'.`，ABAP调用HANA时结果`SELECT SESSION_CONTEXT('LOCALE') FROM "DUMMY"`为'zh'。
 
+### SAPUI5
+对于SAPUI5 app来说，如何判断当前语言及应该加载哪个语言版本的Resource Bundle有一系列判定条件(序号越大的优先级越高)：
+
+1. Hard-coded UI5 default locale ('en')
+2. 有的可能配置了浏览器语言(window.navigator.browserLanguage)，对于Internet Explorer这个是操作系统的语言
+3. 有的可能配置了用户语言(window.navigator.userLanguage)，对于Internet Explorer这个是地区语言
+4. 浏览器通用语言配置(window.navigator.language)
+5. Android手机浏览器(window.navigator.userAgent)
+6. 新的标准([window.navigator.languages]({{ page.references[5].url }}))，这是数组取第一个
+7. 配置在the application coding (jsdoc:symbols/sap.ui.core.Configuration)
+8. 配置URL parameters (?sap-language=zh)
+
+> 可以通过Configuration API获取当前语言<br/>
+> __var sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();__
+
+> 对于Chrome浏览器变量`window.navigator.language`与`window.navigator.languages`的设置是在
+> Settings -> Show advanced settings -> Languages -> Languages and input settings<br/>
+> 被设为Displayed的语言代码即是**window.navigator.language**<br/>
+> 添加在这里的Languages从上至下按顺序即是**window.navigator.languages**
+
+#### UI5 with ABAP
+Cookie `sap-usercontext=sap-language=EN`
+
+//TODO
 
 ## 中文
 //TODO

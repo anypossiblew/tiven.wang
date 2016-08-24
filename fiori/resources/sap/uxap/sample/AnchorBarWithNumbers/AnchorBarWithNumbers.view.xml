@@ -24,8 +24,9 @@
 							  isActionAreaAlwaysVisible="true"
 							  showPlaceholder="true">
 				<actions>
-					<m:Link height="24px" text="{i18n>profileLanguage}" href="?sap-language={i18n>profileLanguageCode}"/>
-					<ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized"/>
+					<m:Link class="sapUiSmallMargin" text="{i18n>profileLanguage}" href="?sap-language={i18n>profileLanguageCode}"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized" press="onPressPrint"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://add-favorite" text="{i18n>addBookmark}" type="Emphasized" press="onPressBookmark"/>
 				</actions>
 			</ObjectPageHeader>
 		</headerTitle>
@@ -35,8 +36,8 @@
 				<m:Link text="{i18n>userMobilePhone}" href="tel:{i18n>userMobilePhone}"/>
 				<m:Link text="{i18n>userEmail}" href="mailto:{i18n>userEmail}"/>
 				<layout:HorizontalLayout>
-					<m:Image height="24px" width="24px" src="./resources/sap/uxap/images/linkedinIcon.png"></m:Image>
-					<m:Image height="24px" width="24px" src="./resources/sap/uxap/images/TwitterIcon.png"></m:Image>
+					<m:Image height="24px" width="24px" src="./resources/sap/uxap/images/linkedInIcon.png"></m:Image>
+					<m:Image height="24px" width="24px" src="./resources/sap/uxap/images/twitterIcon.png"></m:Image>
 				</layout:HorizontalLayout>
 			</layout:VerticalLayout>
 
@@ -45,22 +46,22 @@
 				<m:VBox height="63px">
 					<m:Label text="Achieved goals"/>
 					<m:ProgressIndicator
-							percentValue="30"
-							displayValue="30%"
+							percentValue="90"
+							displayValue="90%"
 							showValue="true"
 							state="None"/>
 				</m:VBox>
 			</layout:VerticalLayout>
 
 			<layout:VerticalLayout>
-				<m:Label text="San Jose, USA"/>
+				<m:Label text="Shanghai, China"/>
 			</layout:VerticalLayout>
 		</headerContent>
 
 		<sections>
 			<ObjectPageSection title="2015-2016 SAP Labs">
 				<subSections>
-					<ObjectPageSubSection title="Goal summary">
+					<ObjectPageSubSection title="Hybris Marketing Localization">
 						<blocks>
 							<goals:GoalsBlock id="goalsblock"/>
 						</blocks>
@@ -70,14 +71,14 @@
 
 			<ObjectPageSection title="2012-2015 Accenture (8)">
 				<subSections>
-					<ObjectPageSubSection title="Connect">
+					<ObjectPageSubSection title="SGCC Hubei">
 						<personal:BlockAdresses id="adresses"/>
 						<personal:BlockPhoneNumber id="phone"/>
 						<personal:BlockSocial id="social"/>
 						<personal:BlockMailing id="mailing"/>
 					</ObjectPageSubSection>
 
-					<ObjectPageSubSection title="Payment information">
+					<ObjectPageSubSection title="Sinopec">
 						<blocks>
 							<personal:PersonalBlockPart1 id="part1"/>
 						</blocks>
