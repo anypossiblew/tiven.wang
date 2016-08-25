@@ -2,6 +2,7 @@
 		   xmlns="sap.uxap"
 		   xmlns:layout="sap.ui.layout"
 		   xmlns:m="sap.m"
+		   xmlns:leaflet="sap.leaflet"
 		   xmlns:goals="sap.uxap.sample.SharedBlocks.goals"
 		   xmlns:personal="sap.uxap.sample.SharedBlocks.personal"
 		   xmlns:employment="sap.uxap.sample.SharedBlocks.employment"
@@ -59,7 +60,7 @@
 		</headerContent>
 
 		<sections>
-			<ObjectPageSection title="2015-2016 SAP Labs">
+			<ObjectPageSection title="2015-2016 {i18n>sapLabs}">
 				<subSections>
 					<ObjectPageSubSection title="Hybris Marketing Localization">
 						<blocks>
@@ -69,16 +70,16 @@
 				</subSections>
 			</ObjectPageSection>
 
-			<ObjectPageSection title="2012-2015 Accenture (8)">
+			<ObjectPageSection title="2012-2015 {i18n>accenture} (8)">
 				<subSections>
-					<ObjectPageSubSection title="SGCC Hubei">
+					<ObjectPageSubSection title="{i18n>SGCCHubei}">
 						<personal:BlockAdresses id="adresses"/>
 						<personal:BlockPhoneNumber id="phone"/>
 						<personal:BlockSocial id="social"/>
 						<personal:BlockMailing id="mailing"/>
 					</ObjectPageSubSection>
 
-					<ObjectPageSubSection title="Sinopec">
+					<ObjectPageSubSection title="{i18n>Sinopec}">
 						<blocks>
 							<personal:PersonalBlockPart1 id="part1"/>
 						</blocks>
@@ -86,30 +87,8 @@
 							<personal:PersonalBlockPart2 id="part2"/>
 						</moreBlocks>
 					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-
-			<ObjectPageSection title="2011 IBM (2)">
-				<subSections>
-					<ObjectPageSubSection title="Job information">
-						<blocks>
-							<employment:BlockJobInfoPart1 id="jobinfopart1"/>
-							<employment:BlockJobInfoPart2 id="jobinfopart2"/>
-							<employment:BlockJobInfoPart3 id="jobinfopart3"/>
-						</blocks>
-					</ObjectPageSubSection>
-
-					<ObjectPageSubSection title="Employee Details" mode="Collapsed">
-						<blocks>
-							<employment:BlockEmpDetailPart1 id="empdetailpart1" columnLayout="1"/>
-						</blocks>
-						<moreBlocks>
-							<employment:BlockEmpDetailPart2 id="empdetailpart2" columnLayout="1"/>
-							<employment:BlockEmpDetailPart3 id="empdetailpart3" columnLayout="1"/>
-						</moreBlocks>
-					</ObjectPageSubSection>
-
-					<ObjectPageSubSection title="Job Relationship" mode="Collapsed">
+					
+					<ObjectPageSubSection title="{i18n>PacificTextiles}" mode="Collapsed">
 						<blocks>
 							<employment:EmploymentBlockJob id="employmentblockjob" showSubSectionMore="true">
 								<employment:mappings>
@@ -127,6 +106,54 @@
 												  externalPath="/Employee/5"/>
 								</employment:mappings>
 							</employment:EmploymentBlockJob>
+						</blocks>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection title="{i18n>YunnanCopper}" >
+						<blocks>
+							<personal:PersonalBlockPart1 />
+						</blocks>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection title="{i18n>ShenhuaGroup}">
+						<blocks>
+							<personal:PersonalBlockPart1 />
+						</blocks>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection title="{i18n>AlcatelSbell}">
+						<blocks>
+							<personal:PersonalBlockPart1 />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="2011 {i18n>ibm} (2)">
+				<subSections>
+					<ObjectPageSubSection title="{i18n>GeneralMotors}">
+						<blocks>
+							<employment:BlockJobInfoPart1 id="jobinfopart1"/>
+							<employment:BlockJobInfoPart2 id="jobinfopart2"/>
+							<employment:BlockJobInfoPart3 id="jobinfopart3"/>
+						</blocks>
+					</ObjectPageSubSection>
+
+					<ObjectPageSubSection title="{i18n>BeijingEnergy}" mode="Collapsed">
+						<blocks>
+							<employment:BlockEmpDetailPart1 id="empdetailpart1" columnLayout="1"/>
+						</blocks>
+						<moreBlocks>
+							<employment:BlockEmpDetailPart2 id="empdetailpart2" columnLayout="1"/>
+							<employment:BlockEmpDetailPart3 id="empdetailpart3" columnLayout="1"/>
+						</moreBlocks>
+					</ObjectPageSubSection>
+
+					
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>locations}">
+				<subSections>
+					<ObjectPageSubSection title="My Maps">
+						<blocks>
+							<leaflet:LGeoMap crs="BEPSG3857" centerLat="31.207391" centerLng="121.608203" zoom="16"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
