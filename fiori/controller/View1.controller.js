@@ -13,6 +13,10 @@ sap.ui.define([
 //			});
 //			
 //			this.getView().setModel(userProfileModel);
+		},
+		
+		onHomePress: function(oEvent) {
+			window.location.replace("/");
 		}
 		
 	});
