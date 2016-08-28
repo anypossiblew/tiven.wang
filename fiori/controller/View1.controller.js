@@ -8,11 +8,14 @@ sap.ui.define([
 	return Controller.extend("QuickStartApplication.controller.View1", {
 		onInit: function() {
 					
-//			var userProfileModel = new JSONModel({
-//				userName: "Wang Tiven"
-//			});
-//			
-//			this.getView().setModel(userProfileModel);
+			var partitionModel = new JSONModel();
+			partitionModel.loadData('./d3/flare.json');
+			
+			var that = this;
+			partitionModel.attachRequestCompleted(function() {
+				that.getView().setModel(this, 'partition');
+			});
+			
 		},
 		
 		onHomePress: function(oEvent) {

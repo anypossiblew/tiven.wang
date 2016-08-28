@@ -3,6 +3,7 @@
 		   xmlns:layout="sap.ui.layout"
 		   xmlns:m="sap.m"
 		   xmlns:leaflet="sap.leaflet"
+		   xmlns:d3="sap.d3"
 		   xmlns:goals="sap.uxap.sample.SharedBlocks.goals"
 		   xmlns:personal="sap.uxap.sample.SharedBlocks.personal"
 		   xmlns:employment="sap.uxap.sample.SharedBlocks.employment"
@@ -10,7 +11,7 @@
 		   height="100%"
 		>
 
-	<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="true" subSectionLayout="TitleOnLeft"
+	<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" subSectionLayout="TitleOnLeft"
 					  showTitleInHeaderContent="true" showHeaderContent="true">
 		<headerTitle>
 			<ObjectPageHeader objectImageURI=""
@@ -149,6 +150,16 @@
 					
 				</subSections>
 			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>skills}">
+				<subSections>
+					<ObjectPageSubSection title="Skill">
+						<blocks>
+							<d3:BilevelPartition partitionData="{partition>/}" height="500px"></d3:BilevelPartition>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			
 			<ObjectPageSection title="{i18n>locations}">
 				<subSections>
 					<ObjectPageSubSection title="My Maps">
