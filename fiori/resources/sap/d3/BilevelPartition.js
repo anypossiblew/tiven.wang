@@ -53,14 +53,9 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 			.sort(function(a, b) { return d3.ascending(a.name, b.name); })
 			.size([2 * Math.PI, radius]);
 
-		var arc = this.arc = d3.svg.arc()
-			.startAngle(function(d) { return d.x; })
-			.endAngle(function(d) { return d.x + d.dx ; })
-			//.padAngle(.01)
-			//.padRadius(radius / 3)
-			.innerRadius(function(d) { return radius / 3 * d.depth; })
-			.outerRadius(function(d) { return radius / 3 * (d.depth + 1) - 1; });
-		
+		// Add the mouseleave handler to the bounding circle.
+  		//d3.select("#"+containerId+" #container").on("mouseleave", this._mouseleave.bind(this));
+
 		if (this.getPartitionData()) {
 			this.createPartition();
 		}
@@ -106,6 +101,13 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 			.domain([0, 1e6])
 			.clamp(true)
 			.range([90, 20]);
+		var arc = d3.svg.arc()
+			.startAngle(function(d) { return d.x; })
+			.endAngle(function(d) { return d.x + d.dx ; })
+			//.padAngle(.01)
+			//.padRadius(radius / 3)
+			.innerRadius(function(d) { return radius / 3 * d.depth; })
+			.outerRadius(function(d) { return radius / 3 * (d.depth + 1) - 1; });
 
 		this._initializeBreadcrumbTrail();
 
@@ -137,9 +139,7 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 			.style("fill", function(d) { return d.fill; })
 			.each(function(d) { this._current = updateArc(d); })
 			.on("click", zoomIn)
-			.on("mouseover", function(d) {
-				that._mouseover(d);
-			});
+			.on("mouseover", that._mouseover.bind(that));
 
 		function key(d) {
 			var k = [], p = d;
@@ -220,7 +220,7 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 		    	.style("fill-opacity", function(d) { return d.depth === 2 - (root === p) ? 1 : 0; })
 		    	.style("fill", function(d) { return d.fill; })
 		    	.on("click", zoomIn)
-		    	.on("mouseover", function(d) { that._mouseover(d); })
+		    	.on("mouseover", that._mouseover.bind(that))
 		    	.each(function(d) { this._current = enterArc(d); });
 
 		    	path.transition()
@@ -232,10 +232,10 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 
 	bilevelPartition.prototype._mouseover = function(d) {
 
-		d3.select("#explanation")
+		d3.select(".partition-chart #explanation")
 		.text(d.name);
 
-		d3.select("#explanation")
+		d3.select(".partition-chart #explanation")
 		.style("visibility", "");
 
 		var sequenceArray = getAncestors(d);
@@ -256,10 +256,33 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 
 	};
 
+	// Restore everything to full opacity when moving off the visualization.
+	bilevelPartition.prototype._mouseleave = function (d) {
+		var that = this;
+	  // Hide the breadcrumb trail
+	  d3.select(".partition-chart #trail")
+	      .style("visibility", "hidden");
+
+	  // Deactivate all segments during transition.
+	  //d3.selectAll(".partition-chart path").on("mouseover", null);
+
+	  // Transition each segment to full opacity and then reactivate it.
+	  d3.selectAll(".partition-chart path")
+	      .transition()
+	      .duration(1000)
+	      .style("opacity", 1);
+	      //.each("end", function() {
+	        //      d3.select(this).on("mouseover", that._mouseover.bind(that));
+	          //  });
+
+	  d3.select(".partition-chart #explanation")
+	      .style("visibility", "hidden");
+	};
+
 	bilevelPartition.prototype._initializeBreadcrumbTrail = function () {
 		var margin = this.getPartitionMargin();
 	  // Add the svg area.
-	  var trail = d3.select("#sequence").append("svg:svg")
+	  var trail = d3.select(this._getCompSelector("#sequence")).append("svg:svg")
 	      .attr("width", margin.left + margin.right)
 	      .attr("height", 50)
 	      .attr("id", "trail");
@@ -288,7 +311,7 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 
 
 	  // Data join; key function combines name and depth (= position in sequence).
-	  var g = d3.select("#trail")
+	  var g = d3.select(this._getCompSelector("#trail"))
 	      .selectAll("g")
 	      .data(nodeArray, function(d) { return d.name + d.depth; });
 
@@ -315,7 +338,7 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 	  g.exit().remove();
 
 	  // Now move and update the percentage at the end.
-	  d3.select("#trail").select("#endlabel")
+	  d3.select(this._getCompSelector("#trail")).select("#endlabel")
 	      .attr("x", (nodeArray.length + 0.5) * (b.w + b.s))
 	      .attr("y", b.h / 2)
 	      .attr("dy", "0.35em")
@@ -323,9 +346,13 @@ jQuery.sap.require("sap/ui/thirdparty/d3");
 	      .text(percentageString);
 
 	  // Make the breadcrumb trail visible, if it's hidden.
-	  d3.select("#trail")
+	  d3.select(this._getCompSelector("#trail"))
 	      .style("visibility", "");
 
+	};
+
+	bilevelPartition.prototype._getCompSelector = function(sel) {
+		return "#"+this.getId()+" "+sel;
 	};
 
 	return bilevelPartition;
