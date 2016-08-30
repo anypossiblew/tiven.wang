@@ -58,6 +58,10 @@
 			<layout:VerticalLayout>
 				<m:Label text="Shanghai, China"/>
 			</layout:VerticalLayout>
+
+			<layout:VerticalLayout>
+				<m:ObjectStatus title="{i18n>userStatusLabel}" text="Available" state="Success"/>
+			</layout:VerticalLayout>
 		</headerContent>
 
 		<sections>
@@ -152,7 +156,7 @@
 			</ObjectPageSection>
 			<ObjectPageSection title="{i18n>skills}">
 				<subSections>
-					<ObjectPageSubSection title="Skill">
+					<ObjectPageSubSection title="{i18n>mySkills}">
 						<blocks>
 							<d3:BilevelPartition partitionData="{partition>/}" height="500px"></d3:BilevelPartition>
 						</blocks>
@@ -162,7 +166,7 @@
 			
 			<ObjectPageSection title="{i18n>locations}">
 				<subSections>
-					<ObjectPageSubSection title="My Maps">
+					<ObjectPageSubSection title="{i18n>myLocations}">
 						<blocks>
 							<leaflet:LGeoMap crs="BEPSG3857" centerLat="31.207391" centerLng="121.608203" zoom="16"/>
 						</blocks>
