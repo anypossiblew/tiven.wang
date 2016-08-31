@@ -14,7 +14,7 @@
 	<ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" subSectionLayout="TitleOnLeft"
 					  showTitleInHeaderContent="true" showHeaderContent="true">
 		<headerTitle>
-			<ObjectPageHeader objectImageURI=""
+			<ObjectPageHeader objectImageURI="/images/tiven.jpg"
 							  objectImageShape="Circle"
 							  objectTitle="{i18n>userName}"
 							  objectSubtitle="{i18n>userSubTitle}"

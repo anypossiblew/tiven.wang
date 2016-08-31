@@ -1,7 +1,7 @@
 # Site wide configuration
 
 title: Tiven's Blog
-locale: en_US
+locale: zh
 description: Personal technical blog of SAP.
 logo: site-logo.png
 search: true
@@ -40,17 +40,17 @@ comments: true
 # Site owner
 owner:
   name: Wang Tiven
-  avatar: bio-photo.jpg
+  avatar: tiven.jpg
   email: anypossible.w@gmail.com
   disqus-shortname: tiven-wang
   twitter: #username
-  facebook: #username
+  facebook: tiwen.wang
   github: #username
   stackexchange: #http://stackoverflow.com/users/123456/username
   linkedin: #username
   instagram: #username
   flickr: #username
-  tumblr: #username
+  tumblr: wangtiven
   pinterest: #username
   weibo: #userid
   google:
