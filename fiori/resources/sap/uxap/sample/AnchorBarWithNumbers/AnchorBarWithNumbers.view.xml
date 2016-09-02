@@ -161,6 +161,12 @@
 							<d3:BilevelPartition partitionData="{partition>/}" height="500px"></d3:BilevelPartition>
 						</blocks>
 					</ObjectPageSubSection>
+
+					<ObjectPageSubSection title="{i18n>mySkills}">
+						<blocks>
+							<d3:WordCloud words="{words>/}" height="500"></d3:WordCloud>
+						</blocks>
+					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
 			
