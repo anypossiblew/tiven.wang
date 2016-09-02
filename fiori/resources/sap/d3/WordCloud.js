@@ -28,7 +28,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control'], function(q, C) {
 
  		var fill = d3.scale.category20b();
 
-		var width = this.getWidth(),
+		var width = this.getDomRef().offsetWidth,
 		    height = this.getHeight();
 
 		var max, fontSize;
@@ -50,10 +50,11 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control'], function(q, C) {
 
 		var vis = svg.append("g").attr("transform", "translate(" + [width >> 1, height >> 1] + ")");
 
-		update(this.getWords());
+		var words = this.getWords();
+		update(words);
 
 		window.onresize = function(event) {
-		    update();
+		    update(words);
 		};
 
 		function draw(data, bounds) {
@@ -108,7 +109,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control'], function(q, C) {
 		                    .transition()
 		                    .duration(300)
 		                    .attr("transform", function(d) {
-		                        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")scale(2)";
+		                        return "translate(" + [d.x, d.y] + ")rotate(" + 0 + ")scale(2)";
 		                    })
 		                    .style("opacity", 1);
 		                    
@@ -130,7 +131,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/core/Control'], function(q, C) {
 		    layout.font('impact').spiral('archimedean');
 		    fontSize = d3.scale['sqrt']().range([10, 100]);
 		    if (tags.length){
-		        fontSize.domain([+tags[tags.length - 1].value || 1, +tags[0].value]);
+		        fontSize.domain([+1000, +9999]);
 		    }
 		    layout.stop().words(tags).start();
 		}

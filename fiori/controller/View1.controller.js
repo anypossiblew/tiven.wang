@@ -26,8 +26,8 @@ sap.ui.define([
 				for(var i in data.children) {
 					size = size + extChildren(data.children[i]);
 				}
-				if(!data.size) {
-					data.size = size;
+				if(!data.size && data.children) {
+					data.size = size / data.children.length;
 				}
 				words.push({key: data.name, value: data.size});
 				return data.size;

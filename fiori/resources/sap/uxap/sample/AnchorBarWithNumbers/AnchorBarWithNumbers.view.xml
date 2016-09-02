@@ -162,7 +162,7 @@
 						</blocks>
 					</ObjectPageSubSection>
 
-					<ObjectPageSubSection title="{i18n>mySkills}">
+					<ObjectPageSubSection title="{i18n>myWordCloud}">
 						<blocks>
 							<d3:WordCloud words="{words>/}" height="500"></d3:WordCloud>
 						</blocks>

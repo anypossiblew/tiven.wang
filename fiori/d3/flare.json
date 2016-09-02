@@ -10,7 +10,7 @@
       {"name": "AgglomerativeCluster", "size": 3938},
       {"name": "CommunityStructure", "size": 3812},
       {"name": "HierarchicalCluster", "size": 6714},
-      {"name": "MergeEdge", "size": 743}
+      {"name": "MergeEdge", "size": 3743}
      ]
     },
     {
@@ -34,7 +34,7 @@
   {
    "name": "animate",
    "children": [
-    {"name": "Easing", "size": 17010},
+    {"name": "Easing", "size": 1010},
     {"name": "FunctionSequence", "size": 5842},
     {
      "name": "interpolate",
@@ -56,7 +56,7 @@
     {"name": "Scheduler", "size": 5593},
     {"name": "Sequence", "size": 5534},
     {"name": "Transition", "size": 9201},
-    {"name": "Transitioner", "size": 19975},
+    {"name": "Transitioner", "size": 1975},
     {"name": "TransitionEvent", "size": 1116},
     {"name": "Tween", "size": 6006}
    ]
@@ -76,7 +76,7 @@
     },
     {"name": "DataField", "size": 1759},
     {"name": "DataSchema", "size": 2165},
-    {"name": "DataSet", "size": 586},
+    {"name": "DataSet", "size": 5816},
     {"name": "DataSource", "size": 3331},
     {"name": "DataTable", "size": 772},
     {"name": "DataUtil", "size": 3322}
@@ -88,7 +88,7 @@
     {"name": "DirtySprite", "size": 8833},
     {"name": "LineSprite", "size": 1732},
     {"name": "RectSprite", "size": 3623},
-    {"name": "TextSprite", "size": 10066}
+    {"name": "TextSprite", "size": 1006}
    ]
   },
   {
@@ -102,8 +102,8 @@
    "children": [
     {"name": "DragForce", "size": 1082},
     {"name": "GravityForce", "size": 1336},
-    {"name": "IForce", "size": 319},
-    {"name": "NBodyForce", "size": 10498},
+    {"name": "IForce", "size": 1319},
+    {"name": "NBodyForce", "size": 1048},
     {"name": "Particle", "size": 2822},
     {"name": "Simulation", "size": 9983},
     {"name": "Spring", "size": 2213},
@@ -130,48 +130,48 @@
     {"name": "IsA", "size": 2039},
     {"name": "Literal", "size": 1214},
     {"name": "Match", "size": 3748},
-    {"name": "Maximum", "size": 843},
+    {"name": "Maximum", "size": 1843},
     {
      "name": "methods",
      "children": [
-      {"name": "add", "size": 593},
-      {"name": "and", "size": 330},
-      {"name": "average", "size": 287},
-      {"name": "count", "size": 277},
-      {"name": "distinct", "size": 292},
-      {"name": "div", "size": 595},
-      {"name": "eq", "size": 594},
-      {"name": "fn", "size": 460},
-      {"name": "gt", "size": 603},
-      {"name": "gte", "size": 625},
-      {"name": "iff", "size": 748},
-      {"name": "isa", "size": 461},
-      {"name": "lt", "size": 597},
-      {"name": "lte", "size": 619},
-      {"name": "max", "size": 283},
-      {"name": "min", "size": 283},
-      {"name": "mod", "size": 591},
-      {"name": "mul", "size": 603},
-      {"name": "neq", "size": 599},
-      {"name": "not", "size": 386},
-      {"name": "or", "size": 323},
-      {"name": "orderby", "size": 307},
-      {"name": "range", "size": 772},
-      {"name": "select", "size": 296},
-      {"name": "stddev", "size": 363},
-      {"name": "sub", "size": 600},
-      {"name": "sum", "size": 280},
-      {"name": "update", "size": 307},
-      {"name": "variance", "size": 335},
-      {"name": "where", "size": 299},
-      {"name": "xor", "size": 354},
-      {"name": "_", "size": 264}
+      {"name": "add", "size": 1593},
+      {"name": "and", "size": 1330},
+      {"name": "average", "size": 1287},
+      {"name": "count", "size": 1277},
+      {"name": "distinct", "size": 1292},
+      {"name": "div", "size": 1595},
+      {"name": "eq", "size": 1594},
+      {"name": "fn", "size": 1460},
+      {"name": "gt", "size": 1603},
+      {"name": "gte", "size": 1625},
+      {"name": "iff", "size": 7148},
+      {"name": "isa", "size": 1461},
+      {"name": "lt", "size": 1597},
+      {"name": "lte", "size": 1619},
+      {"name": "max", "size": 2183},
+      {"name": "min", "size": 1283},
+      {"name": "mod", "size": 1591},
+      {"name": "mul", "size": 1603},
+      {"name": "neq", "size": 1599},
+      {"name": "not", "size": 1386},
+      {"name": "or", "size": 1323},
+      {"name": "orderby", "size": 1307},
+      {"name": "range", "size": 1772},
+      {"name": "select", "size": 1296},
+      {"name": "stddev", "size": 1363},
+      {"name": "sub", "size": 1600},
+      {"name": "sum", "size": 1280},
+      {"name": "update", "size": 1307},
+      {"name": "variance", "size": 1335},
+      {"name": "where", "size": 1299},
+      {"name": "xor", "size": 1354},
+      {"name": "_", "size": 1264}
      ]
     },
     {"name": "Minimum", "size": 843},
     {"name": "Not", "size": 1554},
     {"name": "Or", "size": 970},
-    {"name": "Query", "size": 13896},
+    {"name": "Query", "size": 3896},
     {"name": "Range", "size": 1594},
     {"name": "StringUtil", "size": 4130},
     {"name": "Sum", "size": 791},
@@ -199,15 +199,15 @@
    "name": "util",
    "children": [
     {"name": "Arrays", "size": 8258},
-    {"name": "Colors", "size": 10001},
+    {"name": "Colors", "size": 1001},
     {"name": "Dates", "size": 8217},
-    {"name": "Displays", "size": 12555},
+    {"name": "Displays", "size": 1255},
     {"name": "Filter", "size": 2324},
-    {"name": "Geometry", "size": 10993},
+    {"name": "Geometry", "size": 1093},
     {
      "name": "heap",
      "children": [
-      {"name": "FibonacciHeap", "size": 9354},
+      {"name": "FibonacciHeap", "size": 1354},
       {"name": "HeapNode", "size": 1233}
      ]
     },
@@ -222,7 +222,7 @@
       {"name": "SparseMatrix", "size": 3366}
      ]
     },
-    {"name": "Maths", "size": 17705},
+    {"name": "Maths", "size": 1705},
     {"name": "Orientation", "size": 1486},
     {
      "name": "palette",
@@ -234,10 +234,10 @@
      ]
     },
     {"name": "Property", "size": 5559},
-    {"name": "Shapes", "size": 19118},
+    {"name": "Shapes", "size": 1918},
     {"name": "Sort", "size": 6887},
     {"name": "Stats", "size": 6557},
-    {"name": "Strings", "size": 22026}
+    {"name": "Strings", "size": 2226}
    ]
   },
   {
@@ -247,7 +247,7 @@
      "name": "axis",
      "children": [
       {"name": "Axes", "size": 1302},
-      {"name": "Axis", "size": 24593},
+      {"name": "Axis", "size": 2453},
       {"name": "AxisGridLine", "size": 652},
       {"name": "AxisLabel", "size": 636},
       {"name": "CartesianAxes", "size": 6703}
@@ -272,11 +272,11 @@
     {
      "name": "data",
      "children": [
-      {"name": "Data", "size": 20544},
-      {"name": "DataList", "size": 19788},
-      {"name": "DataSprite", "size": 10349},
+      {"name": "Data", "size": 2054},
+      {"name": "DataList", "size": 1788},
+      {"name": "DataSprite", "size": 1049},
       {"name": "EdgeSprite", "size": 3301},
-      {"name": "NodeSprite", "size": 19382},
+      {"name": "NodeSprite", "size": 1932},
       {
        "name": "render",
        "children": [
@@ -286,7 +286,7 @@
         {"name": "ShapeRenderer", "size": 2247}
        ]
       },
-      {"name": "ScaleBinding", "size": 11275},
+      {"name": "ScaleBinding", "size": 1275},
       {"name": "Tree", "size": 7147},
       {"name": "TreeBuilder", "size": 9930}
      ]
@@ -303,9 +303,9 @@
     {
      "name": "legend",
      "children": [
-      {"name": "Legend", "size": 20859},
+      {"name": "Legend", "size": 2059},
       {"name": "LegendItem", "size": 4614},
-      {"name": "LegendRange", "size": 10530}
+      {"name": "LegendRange", "size": 1030}
      ]
     },
     {
@@ -352,15 +352,15 @@
         {"name": "AxisLayout", "size": 6725},
         {"name": "BundledEdgeRouter", "size": 3727},
         {"name": "CircleLayout", "size": 9317},
-        {"name": "CirclePackingLayout", "size": 12003},
+        {"name": "CirclePackingLayout", "size": 1203},
         {"name": "DendrogramLayout", "size": 4853},
         {"name": "ForceDirectedLayout", "size": 8411},
         {"name": "IcicleTreeLayout", "size": 4864},
         {"name": "IndentedTreeLayout", "size": 3174},
         {"name": "Layout", "size": 7881},
-        {"name": "NodeLinkTreeLayout", "size": 12870},
+        {"name": "NodeLinkTreeLayout", "size": 1287},
         {"name": "PieLayout", "size": 2728},
-        {"name": "RadialTreeLayout", "size": 12348},
+        {"name": "RadialTreeLayout", "size": 1348},
         {"name": "RandomLayout", "size": 870},
         {"name": "StackedAreaLayout", "size": 9121},
         {"name": "TreeMapLayout", "size": 9191}
@@ -373,7 +373,7 @@
       {"name": "SortOperator", "size": 2023}
      ]
     },
-    {"name": "Visualization", "size": 16540}
+    {"name": "Visualization", "size": 1650}
    ]
   }
  ]
