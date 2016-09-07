@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="content-language" content="zh">
+<meta name=viewport content="width=device-width, initial-scale=1">
+<title>(AQI) Real-time Air Quality Index via Voronoi Diagram on Map</title>
+<meta name="description" content="中国区域通过Voronoi图形化工具在地图上展示空气质量指数即雾霾实时大数据可视化">
+<meta name="keywords" content="中国, 北京, 上海, 雾霾, 空气质量指数, 地图, 大数据, 可视化, Real-time, Air Quality Index, AQI, BigData, Voronoi, Map">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"/>
+
+<style>
+html, body{
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+#map {
+  width:100%;
+  height: 100%;
+}
+
+.aqiLegendContainer {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 150px;
+	background: rgba(255,255,255,.6);
+}
+
+.legendLinear .label {
+	white-space: pre;
+	font-weight: bold;
+	font-family: 'Cambria','Palatino Linotype','Book Antiqua','URW Palladio L',serif, "微软雅黑";
+}
+
+div.tooltip {
+  position: absolute;	
+  padding: 2px;	
+  font-family: 'Cambria','Palatino Linotype','Book Antiqua','URW Palladio L',serif, "微软雅黑";
+  background: lightsteelblue;	
+  border: 0px;					
+  border-radius: 4px;
+}
+
+div.tooltip:hover {
+	display: block;
+}
+
+div.tooltip .name {
+	font-weight: bold;
+}
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet-src.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.min.js"></script>
+
+<script>
+
+var colors = ["White", "green", "yellow", "orange", "red", "Purple", "Maroon"];
+var aqiColour = d3.scaleThreshold()
+					.domain([0, 51, 101, 151, 201, 301])
+					.range(colors);
+
+var aqiData = [];
+
+//leaflet地图初始化
+var map = L.map('map');  
+map.setView([34, 119], 5);
+map.on("viewreset moveend", onMapChanged);
+
+var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+var aqicnLink = '<a href="http://aqicn.org/">http://aqicn.org</a>'
+
+L.tileLayer(
+	'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+	{
+		attribution: 'Map data &copy; ' + mapLink + ' | AQI data &copy; ' + aqicnLink,
+		maxZoom: 18
+	}
+).addTo(map); 
+
+//追加
+map._initPathRoot();
+var svg = d3.select("#map").select("svg");
+var g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+// Create tooltips for AQI
+// Define 'div' for tooltips
+var tooltips = d3.select("body")
+	.append("div")  // declare the tooltip div 
+	.attr("class", "tooltip")              // apply the 'tooltip' class
+	.style("opacity", 0);                  // set the opacity to nil
+
+var aqiPopup = L.popup({keepInView: true});
+
+var pSize = map.getPixelBounds().getSize();
+	
+// voronoi工具
+var voronoi = d3.voronoi()
+	.extent([[-pSize.x, -pSize.y], [pSize.x + 1, pSize.y + 1]])
+	.x(function(d) { return d.x; })
+	.y(function(d) { return d.y; });
+
+legend(svg);
+
+onMapChanged();
+
+function getInBounds(bounds, data) {
+	var inBounds = [];
+	for (var i = data.length - 1; i >= 0; i--) {
+		if(bounds.contains(new L.LatLng(data[i].lat, data[i].lon))) {
+			inBounds.push(data[i]);
+		}
+	}
+	return inBounds;
+}
+
+// requesting aqi data
+var request = false;
+
+function onMapChanged() {
+	updateMap(getInBounds(map.getBounds(), aqiData));
+	if(!request) { getAqiByBounds(map.getBounds()); }
+}
+
+function getAqiByBounds(bounds) {
+	request = true;
+	var url = "https://wind.waqi.info/mapq/bounds/?bounds=((" + bounds.getSouthWest().lat + "," + bounds.getSouthWest().lng + "),(" + bounds.getNorthEast().lat + "," + bounds.getNorthEast().lng + "))&inc=placeholders&k=_2Y2EnEh9mCVkcHT8OSCJWXmpNfEU+PSdRFWgdZg==";
+
+	jQuery.ajax(url).done(function( data ) {
+		request = false;
+
+		var updated = false;
+		for (var i = data.length - 1; i >= 0; i--) {
+			var exist = false;
+			for (var j = aqiData.length - 1; j >= 0; j--) {
+				if(data[i].x === aqiData[j].x) {
+					if(data[i].stamp > aqiData[j].stamp) {
+						aqiData[j] = data[i];
+						updated = true;
+					}
+					exist = true;
+					break;
+				}
+			}
+			if(!exist) {
+				aqiData.push(data[i]);
+				updated = true;
+			}
+		}
+
+		if(updated) {
+			updateMap(getInBounds(map.getBounds(), aqiData));
+		}
+	},function(err) {
+		request = false;
+	});
+}
+
+function updateMap(pointdata) {
+	if(!pointdata || pointdata.length < 1) {
+		return;
+	}
+
+	var bounds = map.getBounds();
+	var sw = bounds.getSouthWest();
+	var ne = bounds.getNorthEast();
+	var topLeft = map.latLngToLayerPoint(new L.LatLng(ne.lat, sw.lng));
+	var bottomRight = map.latLngToLayerPoint(new L.LatLng(sw.lat, ne.lng));
+
+	voronoi.extent([[topLeft.x-1, topLeft.y-1], [bottomRight.x + 1, bottomRight.y + 1]])
+
+	var positions = [];
+	
+	pointdata.forEach(function(d) {        
+		var latlng = new L.LatLng(d.lat, d.lon);
+		positions.push({
+			x :map.latLngToLayerPoint(latlng).x,
+			y :map.latLngToLayerPoint(latlng).y
+		});
+	});
+    
+	//删除旧的circle
+	d3.selectAll('.AQIpoint').remove();
+	var circle = g.selectAll("circle")
+		.data(positions)
+		.enter()
+		.append("circle")
+		.attr("class", "AQIpoint")
+		.attr("cx", function(d, i) { return d.x; })
+		.attr("cy", function(d, i) { return d.y; })
+		.attr("r", 2)
+		.attr("fill", "red")
+		;
+
+	var diagram = voronoi(positions);
+  
+	//删除旧的path
+	svg.selectAll(".volonoi").remove();
+	//path追加
+	svg.selectAll("path")
+		.data(diagram.polygons())
+		.enter()
+		.append("svg:path")
+		.attr("class", "volonoi")
+		.attr("d", function(d) { 
+			return d ? "M" + d.join("L") + "Z" : null; 
+		})
+		.attr("stroke", "white")
+		.attr("opacity", .3)
+		.attr("fill", function(d,i) { 
+			return aqiColour(jQuery.isNumeric(pointdata[i].aqi) ? Number(pointdata[i].aqi) : -1);
+		})
+		.on("mouseenter", function (d, i) {
+		    d3.select(this).attr("stroke", "blue");
+		    closeTooltips(i);
+		})
+		.on("mouseleave", function () {
+		    d3.select(this).attr("stroke", "white");
+		})
+		.on("click", function (d, i) {
+			openTooltips(pointdata[i], positions[i], i);
+		});
+}
+
+function legend() {
+	var svg = d3.select("#map").insert("svg:svg", "h2")
+		.attr("class", "aqiLegendContainer")
+		;
+
+	svg.append("g")
+	  .attr("class", "legendLinear")
+	  .attr("transform", "translate(20,20)");
+
+	var legendLinear = d3.legendColor()
+	  .shapeWidth(30)
+	  .cells([-1, 1, 51, 101, 151, 201, 60])
+	  .labels([" -       无数据", "<50   优", ">50   良", ">100 轻度污染", ">150 中度污染", ">200 重度污染", ">300 严重污染"])
+	  .orient('vertical')
+	  .scale(aqiColour);
+
+	svg.select(".legendLinear")
+	  .call(legendLinear);
+}
+
+function openTooltips(d, aqiPoint, i) {
+
+	var position = map.layerPointToContainerPoint(L.point(aqiPoint.x, aqiPoint.y));
+
+	tooltips.aqiIndex = i;
+	tooltips.style("display", "block");
+	tooltips.transition()
+		.duration(500)	
+		.style("opacity", 0);
+	tooltips.transition()
+		.duration(200)	
+		.style("opacity", .9);	
+	var html = '<div>' +
+				'<span class="name">监测点:</span>' + 
+				'<span>'+d.city+'</span><br>' +
+				'<span class="name">AQI类型:</span>' + 
+				'<span>'+d.pol+'</span><br>' +
+				'<span class="name">AQI值:</span>' + 
+				'<span>'+d.aqi+'</span><br>' +
+				'<span class="name">更新时间:</span>' + 
+				'<span>'+d.utime+'</span>' +
+				'</div>'
+	tooltips.html(html)	 
+		.style("left", (position.x) + "px")			 
+		.style("top", (position.y - 28) + "px");
+}
+
+function closeTooltips(i) {
+	if(tooltips.aqiIndex !== i) {
+		tooltips.transition()
+				.style("display", "none");
+	}
+}
+</script>
+</body>
+</html>
