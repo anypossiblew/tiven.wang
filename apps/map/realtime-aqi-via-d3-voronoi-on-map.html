@@ -277,6 +277,9 @@ function openTooltips(d, aqiPoint, i) {
 	tooltips.html(html)	 
 		.style("left", (position.x) + "px")			 
 		.style("top", (position.y - 28) + "px");
+	tooltips.on("click", function () {
+			closeTooltips(0);
+		});
 }
 
 function closeTooltips(i) {
