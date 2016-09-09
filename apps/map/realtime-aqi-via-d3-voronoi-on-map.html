@@ -8,7 +8,7 @@
 <meta name="description" content="中国区域通过Voronoi图形化工具在地图上展示空气质量指数即雾霾实时大数据可视化">
 <meta name="keywords" content="中国, 北京, 上海, 雾霾, 空气质量指数, 地图, 大数据, 可视化, Real-time, Air Quality Index, AQI, BigData, Voronoi, Map">
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css"/>
 
 <style>
 html, body{
@@ -60,7 +60,7 @@ div.tooltip .name {
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script> -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet-src.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet-src.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.9.0/d3-legend.min.js"></script>
 
 <script>
@@ -185,7 +185,8 @@ function updateMap(pointdata) {
 		var latlng = new L.LatLng(d.lat, d.lon);
 		positions.push({
 			x :map.latLngToLayerPoint(latlng).x,
-			y :map.latLngToLayerPoint(latlng).y
+			y :map.latLngToLayerPoint(latlng).y,
+			aqi: d.aqi
 		});
 	});
     
@@ -199,7 +200,9 @@ function updateMap(pointdata) {
 		.attr("cx", function(d, i) { return d.x; })
 		.attr("cy", function(d, i) { return d.y; })
 		.attr("r", 2)
-		.attr("fill", "red")
+		.attr("fill", function(d,i) { 
+			return aqiColour(jQuery.isNumeric(d.aqi) ? Number(d.aqi) : -1);
+		})
 		;
 
 	var diagram = voronoi(positions);
