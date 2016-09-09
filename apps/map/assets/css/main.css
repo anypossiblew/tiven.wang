@@ -1994,7 +1994,7 @@
 			-webkit-transition: opacity 0.2s ease-in-out;
 			-ms-transition: opacity 0.2s ease-in-out;
 			transition: opacity 0.2s ease-in-out;
-			background: url("images/overlay.png");
+			border: lightblue 5px solid;
 			border-radius: 0.35em;
 			content: '';
 			display: block;
