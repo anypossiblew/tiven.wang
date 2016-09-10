@@ -1,6 +1,7 @@
 function AqiTin(options) {
 	this.options = options;
 	this.aqiData = [];
+	this.aqiFeatures = [];
 };
 
 AqiTin.prototype.setAqiData = function(data) {
@@ -19,13 +20,16 @@ AqiTin.prototype.getAqiData = function(data) {
  */
 AqiTin.prototype.updateAqiData = function(data) {
 	
+	var features = [];
+
 	var updated = false;
 	for (var i = data.length - 1; i >= 0; i--) {
 		var exist = false;
+		var city = data[i];
 		for (var j = this.aqiData.length - 1; j >= 0; j--) {
 			if(data[i].x === this.aqiData[j].x) {
-				if(data[i].stamp > this.aqiData[j].stamp) {
-					this.aqiData[j] = data[i];
+				if(city.stamp > this.aqiData[j].stamp) {
+					this.aqiData[j] = city;
 					updated = true;
 				}
 				exist = true;
@@ -33,11 +37,26 @@ AqiTin.prototype.updateAqiData = function(data) {
 			}
 		}
 		if(!exist) {
+			city.aqi = Number(city.aqi) ? Number(city.aqi) : '-';
 			this.aqiData.push(data[i]);
+			features.push(turf.point([parseFloat(city.lon), parseFloat(city.lat)], 
+				{city: city, fillColor: this.options.legend.classify(city.aqi) }));
 			updated = true;
 		}
 	}
-	return updated;
+
+	if(features.length) {
+		var fc = turf.featureCollection(features);
+		Array.prototype.push.apply(this.aqiFeatures, features);
+		return fc;
+	}else {
+		return null;
+	}
+};
+
+
+AqiTin.prototype.getAQIFeatureCollection = function() {
+	return turf.featureCollection(this.aqiFeatures);
 };
 
 AqiTin.prototype.toFeatureCollection = function() {
@@ -46,14 +65,14 @@ AqiTin.prototype.toFeatureCollection = function() {
 		var city = this.aqiData[i];
 		city.aqi = Number(city.aqi) ? Number(city.aqi) : '-';
 		features.push(turf.point([parseFloat(city.lon), parseFloat(city.lat)], 
-			{city: city, fillColor: this.legend(city.aqi) }));
+			{city: city, fillColor: this.options.legend.classify(city.aqi) }));
 	}
 	this.featureCollection = turf.featureCollection(features);
 	return this.featureCollection;
 };
 
 AqiTin.prototype.toGeoJSON = function() {
-	var featureCollection = this.toFeatureCollection();
+	var featureCollection = this.getAQIFeatureCollection();
 
 	var tinGeoJSON = turf.tin(featureCollection, 'city');
 	for (var i = 0; i < tinGeoJSON.features.length; i++) {
@@ -70,31 +89,11 @@ AqiTin.prototype.toGeoJSON = function() {
         }
         properties.aqi = citys.reduce(function(a,b){return a+b;}, 0) / (citys.length || 1);
 
-        properties['fillColor'] = this.legend(properties.aqi);
+        properties['fillColor'] = this.options.legend.classify(properties.aqi);
         
         properties['fillOpacity'] = .3;
     }
 
-    Array.prototype.push.apply(tinGeoJSON.features, featureCollection.features);
+    // Array.prototype.push.apply(tinGeoJSON.features, featureCollection.features);
     return tinGeoJSON;
-};
-
-AqiTin.prototype.legend = function(aqi) {
-	var color = "White";
-	if(aqi === 0) {
-		return color;
-	}else if(aqi <= 50) {
-		color = "Green";
-	}else if(aqi <= 100) {
-		color = "Yellow";
-	}else if(aqi <= 150) {
-		color = "Orange";
-	}else if(aqi <= 200) {
-		color = "red";
-	}else if(aqi <= 300) {
-		color = "Purple";
-	}else if(aqi > 300) {
-		color = "Maroon";
-	}
-	return color;
 };

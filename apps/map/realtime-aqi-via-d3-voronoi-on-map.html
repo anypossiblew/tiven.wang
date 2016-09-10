@@ -21,20 +21,6 @@ html, body{
   height: 100%;
 }
 
-.aqiLegendContainer {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	width: 150px;
-	background: rgba(255,255,255,.6);
-}
-
-.legendLinear .label {
-	white-space: pre;
-	font-weight: bold;
-	font-family: 'Cambria','Palatino Linotype','Book Antiqua','URW Palladio L',serif, "微软雅黑";
-}
-
 div.tooltip {
   position: absolute;	
   padding: 2px;	
@@ -52,6 +38,19 @@ div.tooltip .name {
 	font-weight: bold;
 }
 
+.leaflet-control-legend {
+	font-family: 'Cambria','Palatino Linotype','Book Antiqua','URW Palladio L',serif, "微软雅黑";
+	cursor: pointer;
+}
+
+.legend-item {
+	margin: 2px 10px;
+}
+
+.legend-label {
+	margin-left: 5px;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -60,13 +59,16 @@ div.tooltip .name {
 <script type="text/javascript" src="/libs/jquery/1.7.1/jquery.min.js"></script>
 <script type="text/javascript" src="/libs/d3/4.2.2/d3.min.js"></script>
 <script type="text/javascript" src="/libs/leaflet/0.7.7/leaflet.js"></script>
-<script type="text/javascript" src="/libs/d3-legend/2.9.0/d3-legend.min.js"></script>
+<script type="text/javascript" src="./AQILegend.js"></script>
+<script type="text/javascript" src="./leaflet-LegendControl.js"></script>
 
 <script>
 
-var colors = ["White", "green", "yellow", "orange", "red", "Purple", "Maroon"];
+var aqiLegend = new AQILegend();
+
+var colors = aqiLegend.colors; //["White", "green", "yellow", "orange", "red", "Purple", "Maroon"];
 var aqiColour = d3.scaleThreshold()
-					.domain([0, 51, 101, 151, 201, 301])
+					.domain(aqiLegend.thresholds)
 					.range(colors);
 
 var aqiData = [];
@@ -76,16 +78,34 @@ var map = L.map('map');
 map.setView([34, 119], 5);
 map.on("viewreset moveend", onMapChanged);
 
+map.addControl(new L.control.LegendControl({
+    colors: aqiLegend.colors,
+    labels: aqiLegend.labels
+}));
+
 var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 var aqicnLink = '<a href="http://aqicn.org/">http://aqicn.org</a>'
 
-L.tileLayer(
+var openStreetMap = L.tileLayer(
 	'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 	{
 		attribution: 'Map data &copy; ' + mapLink + ' | AQI data &copy; ' + aqicnLink,
 		maxZoom: 18
 	}
 ).addTo(map); 
+
+var cartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    subdomains: 'abcd',
+    maxZoom: 19
+});
+
+var baseMaps = {
+    "OpenStreetMap": openStreetMap,
+    "CartoDB DarkMatter": cartoDB_DarkMatter
+};
+
+L.control.layers(baseMaps, {}).addTo(map);
 
 //追加
 map._initPathRoot();
@@ -108,8 +128,6 @@ var voronoi = d3.voronoi()
 	.extent([[-pSize.x, -pSize.y], [pSize.x + 1, pSize.y + 1]])
 	.x(function(d) { return d.x; })
 	.y(function(d) { return d.y; });
-
-legend(svg);
 
 onMapChanged();
 
@@ -160,9 +178,9 @@ function getAqiByBounds(bounds) {
 		if(updated) {
 			updateMap(getInBounds(map.getBounds(), aqiData));
 		}
-	},function(err) {
-		request = false;
-	});
+	}).always(function() {
+        request = false;
+    });
 }
 
 function updateMap(pointdata) {
@@ -246,7 +264,7 @@ function legend() {
 	var legendLinear = d3.legendColor()
 	  .shapeWidth(30)
 	  .cells([-1, 1, 51, 101, 151, 201, 60])
-	  .labels([" -       无数据", "<50   优", ">50   良", ">100 轻度污染", ">150 中度污染", ">200 重度污染", ">300 严重污染"])
+	  .labels(aqiLegend.labels)
 	  .orient('vertical')
 	  .scale(aqiColour);
 

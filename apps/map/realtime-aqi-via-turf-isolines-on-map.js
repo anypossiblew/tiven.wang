@@ -1,6 +1,8 @@
 var aqiLegend = new AQILegend();
-var aqiTin = new AqiTin({
+
+var aqiHex = new AQIIsolines({
     legend: aqiLegend,
+    resolution: 50
 });
 
 var map = L.map('map');
@@ -16,11 +18,11 @@ var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 var aqicnLink = '<a href="http://aqicn.org/">http://aqicn.org</a>'
 
 var openStreetMap = L.tileLayer(
-	'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-	{
-		attribution: 'Map data &copy; ' + mapLink + ' | AQI data &copy; ' + aqicnLink,
-		maxZoom: 18
-	}
+    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+        attribution: 'Map data &copy; ' + mapLink + ' | AQI data &copy; ' + aqicnLink,
+        maxZoom: 18
+    }
 ); 
 
 var cartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
@@ -35,35 +37,29 @@ var baseMaps = {
 };
 
 var geojson = L.geoJson({"type":"FeatureCollection",
-						 "features":[
-						 	{"type":"Feature",
-						 	 "geometry":{
-						 	 		"type":"Point",
-						 	 		"coordinates":[1,1]
-						 	 	},
-						 	 	"properties": {city:{}, a:{},b:{},c:{}}}]},
-	{
-		style: function (feature) {
-        	return {
-        		opacity: 0,
-        		weight: 1,
-        		color: 'white',
-        		fillColor: feature.properties.fillColor, 
-        		fillOpacity: feature.properties.fillOpacity || 1
-        	};
-    	},
-    	onEachFeature: function(feature, layer) {
-    		layer.bindPopup("<div><span>监测点： "+feature.properties.a.city+"</span><br>"+
-                                "<span>AQI值： </span>"+feature.properties.a.aqi+
-                                "<span style='color:"+aqiLegend.classify(feature.properties.a.aqi)+";'>▆</span><br>"+
-                                "<span>监测点： "+feature.properties.b.city+"</span><br>"+
-                                "<span>AQI值： </span>"+feature.properties.b.aqi+
-                                "<span style='color:"+aqiLegend.classify(feature.properties.b.aqi)+";'>▆</span><br>"+
-                                "<span>监测点： "+feature.properties.c.city+"</span><br>"+
-                                "<span>AQI值： </span>"+feature.properties.c.aqi+
-                                "<span style='color:"+aqiLegend.classify(feature.properties.c.aqi)+";'>▆</span><br>"+
-                             "</div>", 
-                             {autoPan: false});
+                         "features":[
+                            {"type":"Feature",
+                             "geometry":{
+                                    "type":"Point",
+                                    "coordinates":[1,1]
+                                },
+                                "properties": {citys:[],city:{}}}]},
+    {
+        style: function (feature) {
+            return {
+                opacity: .8,//feature.properties.opacity === undefined ? 0.3 : feature.properties.opacity,
+                weight: 1,
+                color: feature.properties.color,
+                fillColor: feature.properties.fillColor, 
+                fillOpacity: feature.properties.fillOpacity || 0
+            };
+        },
+        onEachFeature: function(feature, layer) {
+            var content = "<div>";
+            
+            content = content +"</div>";
+
+            layer.bindPopup(content, {autoPan: false, keepInView: true});
         }
     }).addTo(map);
 
@@ -83,7 +79,7 @@ var pointLayer = L.geoJson({"type":"FeatureCollection",
                         weight: 1,
                         color: 'white',
                         fillColor: feature.properties.fillColor, 
-                        fillOpacity: 1
+                        fillOpacity: feature.properties.fillOpacity || 0
                     });
         },
         onEachFeature: function(feature, layer) {
@@ -104,27 +100,42 @@ var overlayMaps = {
 L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 onMapChanged({
-	target: map
+    target: map
 });
 
-var request = false;
+var updating = false, request = false;
 function onMapChanged(event) {
-	var bounds = event.target.getBounds();
 
-	var url = "https://wind.waqi.info/mapq/bounds/?bounds=((" + bounds.getSouthWest().lat + "," + bounds.getSouthWest().lng + "),(" + bounds.getNorthEast().lat + "," + bounds.getNorthEast().lng + "))&inc=placeholders&k=_2Y2EnEh9mCVkcHT8OSCJWXmpNfEU+PSdRFWgdZg==";
+    var bounds = event.target.getBounds();
 
-	request = true;
-	jQuery.ajax(url).done(function( data ) {
-		request = false;
+    var url = "https://wind.waqi.info/mapq/bounds/?bounds=((" + bounds.getSouthWest().lat + "," + bounds.getSouthWest().lng + "),(" + bounds.getNorthEast().lat + "," + bounds.getNorthEast().lng + "))&inc=placeholders&k=_2Y2EnEh9mCVkcHT8OSCJWXmpNfEU+PSdRFWgdZg==";
 
-        var points = aqiTin.updateAqiData(data);
-		if(points) {
-            pointLayer.addData(points);
-			var geoJSON = aqiTin.toGeoJSON();
-			geojson.clearLayers();
-			geojson.addData(geoJSON);
-		}
-	}).always(function() {
+    function sendRequest() {
+        request = true;
+        jQuery.ajax(url).done(function( data ) {
+                request = false;
+
+                var points = aqiHex.updateAqiData(data);
+
+                if(points) {
+                    pointLayer.addData(points);
+                    updateHexagon();
+                }
+                
+            }).always(function() {
                 request = false;
             });
+    }
+
+    function updateHexagon() {
+        updating = true;
+        var geoJSON = aqiHex.toGeoJSON();
+        geojson.clearLayers();
+        geojson.addData(geoJSON);
+        updating = false;
+    }
+
+    if(!request) {
+        sendRequest();
+    }
 }
