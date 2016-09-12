@@ -1,12 +1,25 @@
+(function ( root, factory ) {
+    if ( typeof exports === 'object' ) {
+        // CommonJS
+        exports = factory( root, require('turf'), require('AQITurf') );
+    } else if ( typeof define === 'function' && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( ['exports', 'turf', 'AQITurf'], factory);
+    } else {
+        // Browser globals
+        factory( root, root.turf, root.AQITurf );
+    }
+}(this, function ( module, turf, AQITurf ) {
+
 function AQIHex(options) {
-	this.options = options;
-	this.aqiData = [];
-	this.aqiFeatures = [];
+	this.setOptions(options);
 }
 
-AQIHex.prototype.setAqiData = function(data) {
-	this.aqiData = data;
-};
+AQIHex.prototype = new AQITurf();
+
+// AQIHex.prototype.setAqiData = function(data) {
+// 	this.aqiData = data;
+// };
 
 /**
  * update the aqi data
@@ -14,44 +27,44 @@ AQIHex.prototype.setAqiData = function(data) {
  * @param data aqi data
  * @return is the aqi data updated
  */
-AQIHex.prototype.updateAqiData = function(data) {
+// AQIHex.prototype.updateAqiData = function(data) {
 	
-	var features = [];
+// 	var features = [];
 
-	var updated = false;
-	for (var i = data.length - 1; i >= 0; i--) {
-		var exist = false;
-		var city = data[i];
-		for (var j = this.aqiData.length - 1; j >= 0; j--) {
-			if(data[i].x === this.aqiData[j].x) {
-				if(city.stamp > this.aqiData[j].stamp) {
-					this.aqiData[j] = city;
-					updated = true;
-				}
-				exist = true;
-				break;
-			}
-		}
-		if(!exist) {
+// 	var updated = false;
+// 	for (var i = data.length - 1; i >= 0; i--) {
+// 		var exist = false;
+// 		var city = data[i];
+// 		for (var j = this.aqiData.length - 1; j >= 0; j--) {
+// 			if(data[i].x === this.aqiData[j].x) {
+// 				if(city.stamp > this.aqiData[j].stamp) {
+// 					this.aqiData[j] = city;
+// 					updated = true;
+// 				}
+// 				exist = true;
+// 				break;
+// 			}
+// 		}
+// 		if(!exist) {
 			
-			if(Number(city.aqi)) {
-				city.aqi = Number(city.aqi);
-				features.push(turf.point([parseFloat(city.lon), parseFloat(city.lat)], 
-					{city: city, aqi: city.aqi, fillColor: this.options.legend.classify(city.aqi), fillOpacity: 1}));
-				this.aqiData.push(city);
-			}	
-			updated = true;
-		}
-	}
+// 			if(Number(city.aqi)) {
+// 				city.aqi = Number(city.aqi);
+// 				features.push(turf.point([parseFloat(city.lon), parseFloat(city.lat)], 
+// 					{city: city, aqi: city.aqi, fillColor: this.options.legend.classify(city.aqi), fillOpacity: 1}));
+// 				this.aqiData.push(city);
+// 			}	
+// 			updated = true;
+// 		}
+// 	}
 
-	if(features.length) {
-		var fc = turf.featureCollection(features);
-		Array.prototype.push.apply(this.aqiFeatures, features);
-		return fc;
-	}else {
-		return null;
-	}
-};
+// 	if(features.length) {
+// 		var fc = turf.featureCollection(features);
+// 		Array.prototype.push.apply(this.aqiFeatures, features);
+// 		return fc;
+// 	}else {
+// 		return null;
+// 	}
+// };
 
 AQIHex.prototype.toGeoJSON = function(options) {
 	options = options || this.options;
@@ -80,20 +93,24 @@ AQIHex.prototype.toGeoJSON = function(options) {
 	return geoJSON;
 };
 
-AQIHex.prototype.getAQIFeatureCollection = function() {
-	return turf.featureCollection(this.aqiFeatures);
-};
+// AQIHex.prototype.getAQIFeatureCollection = function() {
+// 	return turf.featureCollection(this.aqiFeatures);
+// };
 
-AQIHex.prototype.toFeatureCollection = function() {
-	var features = [];
-	for (var i = this.aqiData.length - 1; i >= 0; i--) {
-		var city = this.aqiData[i];
-		if(Number(city.aqi)) {
-			city.aqi = Number(city.aqi);
-			features.push(turf.point([parseFloat(city.lon), parseFloat(city.lat)], 
-				{city: city, aqi: city.aqi, fillColor: this.options.legend.classify(city.aqi), fillOpacity: 1}));
-		}		
-	}
-	this.featureCollection = turf.featureCollection(features);
-	return this.featureCollection;
-};
+// AQIHex.prototype.toFeatureCollection = function() {
+// 	var features = [];
+// 	for (var i = this.aqiData.length - 1; i >= 0; i--) {
+// 		var city = this.aqiData[i];
+// 		if(Number(city.aqi)) {
+// 			city.aqi = Number(city.aqi);
+// 			features.push(turf.point([parseFloat(city.lon), parseFloat(city.lat)], 
+// 				{city: city, aqi: city.aqi, fillColor: this.options.legend.classify(city.aqi), fillOpacity: 1}));
+// 		}		
+// 	}
+// 	this.featureCollection = turf.featureCollection(features);
+// 	return this.featureCollection;
+// };
+
+	return module.AQIHex = AQIHex;
+
+}));

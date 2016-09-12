@@ -1,16 +1,21 @@
-function AqiTin(options) {
-	this.options = options;
-	this.aqiData = [];
-	this.aqiFeatures = [];
-};
+(function ( root, factory ) {
+    if ( typeof exports === 'object' ) {
+        // CommonJS
+        exports = factory( root, require('turf'), require('AQITurf') );
+    } else if ( typeof define === 'function' && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( ['exports', 'turf', 'AQITurf'], factory);
+    } else {
+        // Browser globals
+        factory( root, root.turf, root.AQITurf );
+    }
+}(this, function ( module, turf, AQITurf ) {
 
-AqiTin.prototype.setAqiData = function(data) {
-	this.aqiData = data;
-};
+function AQITin(options) {
+	this.setOptions(options);
+}
 
-AqiTin.prototype.getAqiData = function(data) {
-	return this.aqiData;
-};
+AQITin.prototype = new AQITurf();
 
 /**
  * update the aqi data
@@ -18,7 +23,7 @@ AqiTin.prototype.getAqiData = function(data) {
  * @param data aqi data
  * @return is the aqi data updated
  */
-AqiTin.prototype.updateAqiData = function(data) {
+AQITin.prototype.updateAqiData = function(data) {
 	
 	var features = [];
 
@@ -54,24 +59,7 @@ AqiTin.prototype.updateAqiData = function(data) {
 	}
 };
 
-
-AqiTin.prototype.getAQIFeatureCollection = function() {
-	return turf.featureCollection(this.aqiFeatures);
-};
-
-AqiTin.prototype.toFeatureCollection = function() {
-	var features = [];
-	for (var i = this.aqiData.length - 1; i >= 0; i--) {
-		var city = this.aqiData[i];
-		city.aqi = Number(city.aqi) ? Number(city.aqi) : '-';
-		features.push(turf.point([parseFloat(city.lon), parseFloat(city.lat)], 
-			{city: city, fillColor: this.options.legend.classify(city.aqi) }));
-	}
-	this.featureCollection = turf.featureCollection(features);
-	return this.featureCollection;
-};
-
-AqiTin.prototype.toGeoJSON = function() {
+AQITin.prototype.toGeoJSON = function() {
 	var featureCollection = this.getAQIFeatureCollection();
 
 	var tinGeoJSON = turf.tin(featureCollection, 'city');
@@ -97,3 +85,6 @@ AqiTin.prototype.toGeoJSON = function() {
     // Array.prototype.push.apply(tinGeoJSON.features, featureCollection.features);
     return tinGeoJSON;
 };
+
+    return module.AQITin = AQITin;
+}));

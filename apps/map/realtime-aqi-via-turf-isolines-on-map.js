@@ -1,3 +1,5 @@
+define(["require", "jquery", "leaflet", "LegendControl", "AQILegend", "AQIIsolines"], function(require, jqDumy, leaflet, LegendControl, AQILegend, AQIIsolines) {
+
 var aqiLegend = new AQILegend();
 
 var aqiHex = new AQIIsolines({
@@ -139,3 +141,5 @@ function onMapChanged(event) {
         sendRequest();
     }
 }
+
+});

@@ -1,5 +1,8 @@
+define(["require", "jquery", "leaflet", "LegendControl", "AQILegend", "AQITin"], 
+    function(require, jqDumy, leaflet, LegendControl, AQILegend, AQITin) {
+
 var aqiLegend = new AQILegend();
-var aqiTin = new AqiTin({
+var aqiTin = new AQITin({
     legend: aqiLegend,
 });
 
@@ -128,3 +131,5 @@ function onMapChanged(event) {
                 request = false;
             });
 }
+
+});

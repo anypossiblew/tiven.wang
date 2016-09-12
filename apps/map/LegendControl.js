@@ -1,4 +1,17 @@
-L.control.LegendControl = L.Control.extend({
+(function ( root, factory ) {
+    if ( typeof exports === 'object' ) {
+        // CommonJS
+        exports = factory( root, require('leaflet') );
+    } else if ( typeof define === 'function' && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( ['exports', 'leaflet'], factory);
+    } else {
+        // Browser globals
+        factory( root, root.L );
+    }
+}(this, function ( module, lfDumy ) {
+
+return module.LegendControl = L.control.LegendControl = L.Control.extend({
  
   options: {
     position: 'topleft',
@@ -49,3 +62,5 @@ L.control.LegendControl = L.Control.extend({
   },
  
 });
+
+}));

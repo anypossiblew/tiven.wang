@@ -1,0 +1,34 @@
+<html lang="zh">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="content-language" content="zh">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<title>D3.js Zoomable Sequence Sunburst</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="大数据, 可视化, BigData">
+
+	<style type="text/css">
+		#chart {
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="chart">
+		<div id="sequence"></div>
+	</div>
+
+<script type="text/javascript" src="/libs/require.js/2.3.1/require.min.js"></script>
+<script type="text/javascript">
+	requirejs.config({
+		baseUrl: './',
+		paths: {
+			jquery: '/libs/jquery/1.7.1/jquery.min',
+			d3: '/libs/d3/4.2.2/d3'
+		}
+	});
+
+	requirejs(['zoom-sequence-sunburst']);
+</script>
+</body>
+</html>

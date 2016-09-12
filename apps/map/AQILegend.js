@@ -1,3 +1,16 @@
+(function ( root, factory ) {
+    if ( typeof exports === 'object' ) {
+        // CommonJS
+        exports = factory( root );
+    } else if ( typeof define === 'function' && define.amd ) {
+        // AMD. Register as an anonymous module.
+        define( ['exports'], factory);
+    } else {
+        // Browser globals
+        factory( root );
+    }
+}(this, function ( window ) {
+
 function AQILegend(aqi) {
 	this.thresholds = [0, 51, 101, 151, 201, 301];
 	this.colors = ["White", "Green", "Yellow", "Orange", "Red", "Purple", "Maroon"];
@@ -23,3 +36,7 @@ AQILegend.prototype.classify = function(aqi) {
 	}
 	return color;
 };
+
+return window.AQILegend = AQILegend;
+
+}));

@@ -1,3 +1,5 @@
+define(["require", "jquery", "leaflet", "LegendControl", "AQILegend", "AQIHex"], function(require, jqDumy, leaflet, LegendControl, AQILegend, AQIHex) {
+
 var aqiLegend = new AQILegend();
 
 var aqiHex = new AQIHex({
@@ -10,7 +12,7 @@ var map = L.map('map');
 map.setView([34, 119], 5);
 map.on("viewreset moveend", onMapChanged);
 
-map.addControl(new L.control.LegendControl({
+map.addControl(new LegendControl({
     colors: aqiLegend.colors,
     labels: aqiLegend.labels
 }));
@@ -155,3 +157,5 @@ function onMapChanged(event) {
         updateHexagon();
     }
 }
+
+});
