@@ -1,0 +1,121 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+	<title>{{ page.title }}</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="/apps/assets/js/ie/html5shiv.js"></script><![endif]-->
+	<link rel="stylesheet" href="/assets/css/mainLab.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="/apps/assets/css/ie8.css" /><![endif]-->
+</head>
+
+<body id="top">
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<a href="/about" class="image avatar"><img src="/images/tiven.jpg" alt="tiven" /></a>
+			<h1><strong>I am tiven</strong>, a web based  <br />
+				big data analysis and visualization explorer<br />
+				All Rights Reserved @<a href="/about">Tiven</a>.</h1>
+			</div>
+		</header>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- One -->
+			<section id="one">
+				<header class="major">
+					<h2>{{ page.laboratory.title }}</h2>
+				</header>
+				<p>{{ page.laboratory.description }}</p>
+				<ul class="actions">
+					<li><a href="#two" class="button">Read More</a></li>
+				</ul>
+			</section>
+
+			<!-- Two -->
+			<section id="two">
+				<h2>Recent Work</h2>
+				<div class="row">
+				{% for project in page.projects %} 
+					<article class="6u 12u$(xsmall) work-item">
+						<a href="{{ project.page }}" class="image fit thumb"><img src="{{ project.previewImage }}" alt="" /></a>
+						<h3>{{ project.title }}</h3>
+						<p>{{ project.description }}</p>
+					</article>
+				{% endfor %}
+				</div>
+				<ul class="actions">
+					<li><a href="#three" class="button">Get In Touch</a></li>
+				</ul>
+			</section>
+
+			{{ content }}
+
+			<!-- Three -->
+			<section id="three">
+				<h2>Get In Touch</h2>
+				<p>If you are interesting in those web visualization, please send message to me.</p>
+				<div class="row">
+					<div class="8u 12u$(small)">
+						<form method="post" action="#">
+							<div class="row uniform 50%">
+								<div class="6u 12u$(xsmall)"><input type="text" name="name" id="name" placeholder="Name" /></div>
+								<div class="6u$ 12u$(xsmall)"><input type="email" name="email" id="email" placeholder="Email" /></div>
+								<div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
+							</div>
+						</form>
+						<ul class="actions">
+							<li><input type="submit" value="Send Message" /></li>
+						</ul>
+					</div>
+					<div class="4u$ 12u$(small)">
+						<ul class="labeled-icons">
+							<li>
+								<h3 class="icon fa-home"><span class="label">Address</span></h3>
+								1001 Chenhui Rd.<br />
+								Shanghai, Pudong<br />
+								China
+							</li>
+							<li>
+								<h3 class="icon fa-mobile"><span class="label">Phone</span></h3>
+								086-15618837600
+							</li>
+							<li>
+								<h3 class="icon fa-envelope-o"><span class="label">Email</span></h3>
+								<a href="#">anypossible.w@gmail.com</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+		</div>
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+					<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Tiven</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="/apps/assets/js/skel.min.js"></script>
+		<script src="/apps/assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="/apps/assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="/assets/js/mainLab.js"></script>
+
+	</body>
+</html>
