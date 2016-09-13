@@ -4,6 +4,7 @@
 
 pre.highlight {
   padding: 1em;
+  overflow-x: auto;
 }
 
 /*
@@ -233,7 +234,7 @@ ol.CodeRay li { white-space: pre }
     line-height: 1.71429;
     margin-bottom: 24px;
     margin-bottom: 1.5rem;
-    font-family: "source-code-pro",monospace;
+    font-family: $code-font;
     white-space: nowrap;
     margin: 0 2px;
     padding: 0 5px;

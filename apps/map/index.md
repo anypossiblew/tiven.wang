@@ -12,22 +12,17 @@ projects:
     previewImage: "images/thumbs/D3.js-Voronoi-on-Map.jpg"
   - title: "Triangulated Irregular Network on Map"
     description: "Visualize the AQI to triangulated irregular network on leaflet map by 'tin' function of Turj.js."
-    detailPage: "realtime-aqi-via-turf-tin-on-map-local.html"
+    page: "realtime-aqi-via-turf-tin-on-map-local.html"
     previewImage: "images/thumbs/Triangulated-Irregular-Network-on-Map.jpg"
   - title: "Visualization by Hexagon on Map"
     description: "Use hexagon to analysis the AQI on map by 'hexGrid' function of Turf.js."
-    detailPage: "realtime-aqi-via-turf-hex-on-map.html"
+    page: "realtime-aqi-via-turf-hex-on-map.html"
     previewImage: "images/thumbs/Hexagon-on-Map.jpg"
   - title: "Visualization by Isolines on Map"
     description: "Use isolines to analysis the AQI on map by 'isolines' function of Turf.js."
-    detailPage: "realtime-aqi-via-turf-isolines-on-map.html"
+    page: "realtime-aqi-via-turf-isolines-on-map.html"
     previewImage: "images/thumbs/AQI-Isolines-on-Map.jpg"
 ---
-
-<section id="four">
-  <h2>Elements</h2>
-
-  <section>
 
 ```javascript
 (function ( root, factory ) {
@@ -45,6 +40,13 @@ projects:
 
 }));
 ```
+
+<section id="four">
+  <h2>Elements</h2>
+
+
+
+  <section>
 
   </section>
   <section>

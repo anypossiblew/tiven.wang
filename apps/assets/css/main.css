@@ -1,5 +1,50 @@
 @import url(font-awesome.min.css);
 
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/open-sans/OpenSans-Regular-webfont.eot');
+    src: url('/assets/fonts/open-sans/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/open-sans/OpenSans-Regular-webfont.woff') format('woff'),
+         url('/assets/fonts/open-sans/OpenSans-Regular-webfont.ttf') format('truetype'),
+         url('/assets/fonts/open-sans/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/open-sans/OpenSans-Italic-webfont.eot');
+    src: url('/assets/fonts/open-sans/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/open-sans/OpenSans-Italic-webfont.woff') format('woff'),
+         url('/assets/fonts/open-sans/OpenSans-Italic-webfont.ttf') format('truetype'),
+         url('/assets/fonts/open-sans/OpenSans-Italic-webfont.svg#open_sansitalic') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('/assets/fonts/open-sans/OpenSans-Bold-webfont.eot');
+    src: url('/assets/fonts/open-sans/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/open-sans/OpenSans-Bold-webfont.woff') format('woff'),
+         url('/assets/fonts/open-sans/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('/assets/fonts/open-sans/OpenSans-Bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans light';
+    src: url('/assets/fonts/open-sans/OpenSans-Light-webfont.eot');
+    src: url('/assets/fonts/open-sans/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/assets/fonts/open-sans/OpenSans-Light-webfont.woff') format('woff'),
+         url('/assets/fonts/open-sans/OpenSans-Light-webfont.ttf') format('truetype'),
+         url('/assets/fonts/open-sans/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /*
 	Hyperspace by HTML5 UP
 	html5up.net | @ajlkn
@@ -1640,7 +1685,7 @@
 
 	body, input, select, textarea {
 		color: rgba(255, 255, 255, 0.55);
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 		font-size: 16.5pt;
 		font-weight: normal;
 		line-height: 1.75;
@@ -1700,7 +1745,7 @@
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #ffffff;
-		font-weight: bold;
+		/*font-weight: bold;*/
 		line-height: 1.5;
 		margin: 0 0 0.5em 0;
 	}
@@ -3892,6 +3937,7 @@
 
 		#intro p {
 			font-size: 1.25em;
+			font-family: 'Open Sans light', Arial, Helvetica, sans-serif;
 		}
 
 			@media screen and (max-width: 980px) {

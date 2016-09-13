@@ -7,8 +7,9 @@ sitemap: false
 @import 'libs/vars';
 @import 'libs/functions';
 @import 'libs/mixins';
-@import url('font-awesome.min.css');
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic");
+//@import url('font-awesome.min.css');
+//@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic");
+@import "fonts";
 
 @import "mixins";
 @import "syntax";
@@ -463,6 +464,7 @@ sitemap: false
 		&:before {
 			@include vendor('transition', 'opacity #{_duration(transition)} ease-in-out');
 			background: url('images/overlay.png');
+			border: lightblue 5px solid;
 			border-radius: _size(border-radius);
 			content: '';
 			display: block;
@@ -950,6 +952,7 @@ sitemap: false
 			font-size: 1.35em;
 			line-height: 1.75em;
 			margin: 0;
+			font-family: $header-font;
 		}
 
 		.image.avatar {
