@@ -2,6 +2,7 @@
 layout: laboratory
 title: Map Laboratory by Tiven
 excerpt: "A Laboratory for Map layer visualization by Tiven"
+tags: [Map, Visualization, D3.js, Leaflet.js, Turf.js]
 laboratory:
   title: "Map Laboratory"
   description: "In this laboratory there are many big data analysis application demos on web map. We used a lot of opensource tools, for example Leaflet.js Turf.js D3.js ..."
@@ -43,8 +44,6 @@ projects:
 
 <section id="four">
   <h2>Elements</h2>
-
-
 
   <section>
 

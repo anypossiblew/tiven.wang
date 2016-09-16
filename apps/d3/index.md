@@ -2,6 +2,7 @@
 layout: laboratory
 title: D3.js Laboratory by Tiven
 excerpt: "A Laboratory for D3.js usage by Tiven"
+tags: [D3.js, Sunburst]
 laboratory:
   title: "D3.js Laboratory"
   description: "D3.js Developer With 5 Years experience on web development.Mobile API,Mobile Payment,Create Payment API"

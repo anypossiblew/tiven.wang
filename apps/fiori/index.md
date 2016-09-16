@@ -2,17 +2,18 @@
 layout: laboratory
 title: SAP Fiori Laboratory by Tiven
 excerpt: "A Laboratory for Fiori usage by Tiven"
+tags: [SAP, Fiori, UI5, ERP]
 laboratory:
   title: "SAP Fiori Laboratory"
   description: "SAP Fiori Developer With 5 Years experience on web development.Mobile API,Mobile Payment,Create Payment API"
 projects:
-  - title: "Zoomable sequence sunburst of D3.js"
-    description: "Zoomable sequence sunburst of D3.js"
-    page: "zoom-sequence-sunburst.html"
+  - title: "My Fiori Resume"
+    description: "my resume developed using SAP Fiori"
+    page: "/fiori/"
     previewImage: "/apps/map/images/thumbs/01.jpg"
-  - title: "Zoomable sequence sunburst of D3.js"
-    description: "Zoomable sequence sunburst of D3.js"
-    page: "zoom-sequence-sunburst.html"
+  - title: "Fiori App"
+    description: "App developed using SAP Fiori 2"
+    page: "app/"
     previewImage: "/apps/map/images/thumbs/02.jpg"
 ---
 
