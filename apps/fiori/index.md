@@ -5,7 +5,7 @@ excerpt: "A Laboratory for Fiori usage by Tiven"
 tags: [SAP, Fiori, UI5, ERP]
 laboratory:
   title: "SAP Fiori Laboratory"
-  description: "SAP Fiori Developer With 5 Years experience on web development.Mobile API,Mobile Payment,Create Payment API"
+  description: "SAP Fiori Developer With 7 Years experience on web development."
 projects:
   - title: "My Fiori Resume"
     description: "my resume developed using SAP Fiori"

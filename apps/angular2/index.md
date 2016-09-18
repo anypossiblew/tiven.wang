@@ -13,3 +13,9 @@ projects:
     previewImage: "images/todo-app.png"
 ---
 
+## references
+
+* [Angular2中文](https://www.angular.cn)
+* [我为什么选择 Angular 2](http://web.jobbole.com/87138/)
+* [Angular 2最终版正式发布](http://blog.csdn.net/powertoolsteam/article/details/52575224)
+* [AngularJS and web workers](http://stackoverflow.com/questions/16713925/angularjs-and-web-workers)
