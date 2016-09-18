@@ -207,7 +207,7 @@ function updateMap(pointdata) {
 	var topLeft = map.latLngToLayerPoint(new L.LatLng(ne.lat, sw.lng));
 	var bottomRight = map.latLngToLayerPoint(new L.LatLng(sw.lat, ne.lng));
 
-	voronoi.extent([[topLeft.x-1, topLeft.y-1], [bottomRight.x + 1, bottomRight.y + 1]])
+	voronoi.extent([[topLeft.x-1, topLeft.y-1], [bottomRight.x + 1, bottomRight.y + 1]]);
 
 	var positions = [];
 	
