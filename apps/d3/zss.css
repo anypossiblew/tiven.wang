@@ -1,0 +1,8 @@
+circle,
+path {
+  cursor: pointer;
+}
+
+#sequence svg g {
+	fill: white;
+}

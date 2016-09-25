@@ -1,17 +1,35 @@
 define(["require", "d3", "ZoomSequenceSunburst"], 
 function(require, d3, ZoomSequenceSunburst) {
 	
+	var colors = {
+          "home": "#5687d1",
+          "product": "#7b615c",
+          "search": "#de783b",
+          "account": "#6ab975",
+          "other": "#a173d1",
+          "end": "#bbbbbb"
+        };
+
 	var zSeqSunburst = new ZoomSequenceSunburst("#chart", {
+		// depth: 3,
+		innerHeigh: 2,
 		width: 750,
 		height: 600,
 		breadCrumb: {
 			w: 75, h: 30, s: 3, t: 10
 		}
-	});
+	})
+	.fill(function(d) {
+		return colors[d.data.name];
+	})
+	// .breadcrumbText(function(d) {
+	// 	return d.value;
+	// })
+	;
 
 	// Use d3.text and d3.csv.parseRows so that we do not need to have a header
 	// row, and can receive the csv as an array of arrays.
-	d3.text("/fiori/d3/visit-sequences.csv", function(text) {
+	d3.text("visit-sequences.csv", function(text) {
 	  var csv = d3.csvParseRows(text);
 	  var json = buildHierarchy(csv);
 	  zSeqSunburst.create(json);

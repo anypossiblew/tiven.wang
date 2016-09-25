@@ -79,6 +79,7 @@ sitemap: false
 		border-bottom: dotted 1px;
 		color: _palette(accent1, bg);
 		text-decoration: none;
+		word-break: break-word;
 
 		&:hover {
 			border-bottom-color: transparent;
@@ -1307,7 +1308,7 @@ sitemap: false
 			#footer {
 				background-attachment:	scroll;
 				background-color:		_palette(accent2, bg);
-				background-image:		url('images/overlay.png'),		url('../../images/bg.jpg');
+				background-image:		url('images/overlay.png'),		url('../../images/bg-lab.jpg');
 				background-position:	top left,						bottom center;
 				background-repeat:		repeat,							no-repeat;
 				background-size:		auto,							cover;

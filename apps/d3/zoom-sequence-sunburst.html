@@ -7,7 +7,12 @@
 	<meta name="description" content="">
 	<meta name="keywords" content="大数据, 可视化, BigData">
 
+	<link rel="stylesheet" href="/assets/fonts/open-sans/stylesheet.css" />
+
 	<style type="text/css">
+	body {
+		font-family: 'Open Sans light', '微软雅黑', sans-serif;
+	}
 		#chart {
 			width: 100%;
 		}
@@ -25,7 +30,15 @@
 		paths: {
 			jquery: '/libs/jquery/1.7.1/jquery.min',
 			d3: '/libs/d3/4.2.2/d3'
-		}
+		},
+		map: {
+        	'*': {
+            	'css': '/libs/require-css/0.1.8/css.js'
+        	}
+    	},
+    	shim : {
+        	'ZoomSequenceSunburst': ['css!./zss.css']
+    	}
 	});
 
 	requirejs(['zoom-sequence-sunburst']);

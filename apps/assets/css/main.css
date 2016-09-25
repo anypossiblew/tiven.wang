@@ -3071,6 +3071,7 @@
 			display: block;
 			position: relative;
 			width: 25em;
+			margin: 15px 0;
 		}
 
 			.spotlights > section > .image img {

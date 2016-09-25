@@ -109,7 +109,6 @@ function getJSON(url, callback) {
     // ...
     callback(/*data*/);
 }
-
 ```
 
 这里使用5w个点进行模拟，最终地图效果[Super cluster on Baidu Map](./cluster/)
