@@ -131,10 +131,13 @@ and lang = 'zh';
 ```
 
 ### Automatic decide Language code in HANA
-在HANA如何根据会话自动选择语言，有两种方式：
+在HANA中如何根据会话Session自动选择语言，有三种情况：
 
-#### HANA View
-在HANA Modeler View中可以在语言列上使用`filter="$$language$$"`。
+#### HANA View Filter
+在HANA Modeler View中可以在语言列上使用`filter="$$language$$"`
+
+#### HANA View Text Join
+在HANA View中使用`Text Join`类型来关联join语言类数据表，然后可以选择决定语言的field
 
 #### HANA CDS or SQL
 在HANA CDS或者SQL中则可以使用
