@@ -26,7 +26,7 @@ $mfp-IE7support:                      true;                       // Very basic 
 // Iframe-type options
 $mfp-include-iframe-type:             true;                       // Enable Iframe-type popups
 $mfp-iframe-padding-top:              40px;                       // Iframe padding top
-$mfp-iframe-background:               #000;                       // Background color of iframes
+$mfp-iframe-background:               $white;                     // Background color of iframes
 $mfp-iframe-max-width:                900px;                      // Maximum width of iframes
 $mfp-iframe-ratio:                    9/16;                       // Ratio of iframe (9/16 = widescreen, 3/4 = standard, etc.)
 

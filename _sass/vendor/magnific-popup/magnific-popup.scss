@@ -50,7 +50,7 @@ $mfp-IE7support:                      true !default; // Very basic IE7 support
 // Iframe-type options
 $mfp-include-iframe-type:             true !default;
 $mfp-iframe-padding-top:              40px !default;
-$mfp-iframe-background:               #000 !default;
+$mfp-iframe-background:               #FFF !default;
 $mfp-iframe-max-width:                900px !default;
 $mfp-iframe-ratio:                    9/16 !default;
 
@@ -440,6 +440,7 @@ button {
     height: 0;
     overflow: hidden;
     padding-top: $mfp-iframe-ratio * 100%;
+    position: relative;
     iframe {
       position: absolute;
       display: block;

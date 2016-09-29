@@ -4,7 +4,7 @@ title: HANA New Features to support Microservices
 excerpt: "作为传统老牌企业管理软件供应商SAP在新技术应用方面总是慢一步。面对日益增长的企业数据量和业务系统复杂度，SAP受到了来自竞争对手的压力意欲改变自己传统的应用系统架构。HANA作为SAP未来一段时间下一代系统的基石，也在不断改变和完善自身功能，以适应新兴的系统设计模式和架构理念，其中一项即是对Microservices设计思想的支持。本篇将介绍SAP HANA增加了哪些支持Microservices的开发功能，并不涉及太多Microservices和SOA的理论。"
 modified: 2016-07-30T12:47:25-04:00
 categories: articles
-tags: [HANA, SOA, Microservices, Nodejs, XSA, HDI, OLAP]
+tags: [HANA, SOA, Microservices, Node.js, XSA, HDI, OLAP]
 image:
   feature: hana/masthead-microservices.jpg
 comments: true
