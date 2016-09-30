@@ -14,9 +14,11 @@ references:
     url: "https://www.cloudfoundry.org/"
   - title: "SCN - HCP Cloud Foundry - Playing around with Node.js, MongoDB and UI5"
     url: "http://scn.sap.com/community/developer-center/cloud-platform/blog/2016/09/05/hcp-cloud-foundry--playing-around-with-node-mongodb-and-ui5"
+  - title: "The Application Source code"
+    url: "https://github.com/anypossiblew/hcp-cf-digital-account/"
 ---
 
-上一篇[Getting Started with HCP Cloud Foundry](/articles/getting-started-with-hcp-cloud-foundry/)我们讲了如何在HCP Cloud Foundry上创建Project的基础知识，本篇进一步介绍如何创建[Node.js][2]项目，并且连接到HCP CF所提供的[MongoDB][3]服务。
+上一篇[Getting Started with HCP Cloud Foundry](/articles/getting-started-with-hcp-cloud-foundry/)我们讲了如何在HCP Cloud Foundry上创建Project的基础知识，本篇进一步介绍如何创建[Node.js][2]应用，并且连接到HCP CF所提供的[MongoDB][3]服务。
 
 ## Prerequisites
 
@@ -61,7 +63,7 @@ binary_buildpack       8          true      false    binary_buildpack-cached-v1.
 
 ## Create Node.js application code
 
-创建Node.js application的具体过程不在此叙述，有需要的请查看Node.js教程。本项目代码可以在这里下载[Github][]
+创建Node.js application的具体过程不在此叙述，有需要的请查看Node.js教程。本应用完整代码可以在这里下载[Github][7]
 
 ### Node.js dependencies
 添加程序中用到的一些依赖包
@@ -76,7 +78,7 @@ binary_buildpack       8          true      false    binary_buildpack-cached-v1.
 
 `npm install --save dev express body-parser mongoose cfenv path`
 
-最终package.json一些信息长这样
+最终**_package.json_**一些信息长这样
 
 ```javascript
 {
@@ -96,7 +98,7 @@ binary_buildpack       8          true      false    binary_buildpack-cached-v1.
 ```
 
 ### The application manifest
-application manifest file `manifest.yml` 描述了Node.js应用和Cloud Foundry配置信息，当`cf push`命令创建应用时会使用到这里的信息去设置一些环境配置。
+application manifest file **manifest.yml** 描述了Node.js应用和Cloud Foundry配置信息，当`cf push`命令创建应用时会使用到这里的信息去设置一些环境配置。
 后面我们会添加MongoDB service配置。
 
 ```
@@ -113,15 +115,15 @@ applications:
 每个参数的含义如下
 
 * name: The name of the application.
-* buildpack: The name of the Node.js buildpack determined before with command "cf buildpacks". It is also possible to reference the buildpack sources on GitHub. By default an auto determination of the buildpack is done if the buildpack information is missing in the application manifest. But from my point of view it is clearer to specify it in the application manifest.
-* command: Node.js applications needs a start command to start the application. In the example "node app.js" is called which executes the JS code in a file "app.js" which is described later. The command is executed automatically after the application is successfully deployed to the Cloud Foundry instance.
+* buildpack: The name of the Node.js buildpack determined before with command `cf buildpacks`. It is also possible to reference the buildpack sources on GitHub. By default an auto determination of the buildpack is done if the buildpack information is missing in the application manifest. But from my point of view it is clearer to specify it in the application manifest.
+* command: Node.js applications needs a start command to start the application. In the example "**node app.js**" is called which executes the JS code in a file "app.js" which is described later. The command is executed automatically after the application is successfully deployed to the Cloud Foundry instance.
 * memory: Definition of the RAM available for the application. For the demo 128 MB are used.
 * disk_quota: Definition of the disk space available for the application. For the demo 128 MB are used.
 * host: Host information for the application which is used in the URL which makes the application accessible.
 
 ### Application structure
-`.cfignore`文件是说明需要被`cf push`命令忽略的目录，比如需要将`/data`和`/node_modules`加到此文件中。
-_**/data**_是在运行local的mongodb server时生成的文件，后面我们会讲到。_**/node_modules**_是存放Node.js依赖包的文件夹，因为Cloud Foundry会为我们解决依赖问题，所以我们不需要将依赖包上传。
+**_.cfignore_**文件是说明需要被`cf push`命令忽略的目录，比如需要将**/data**和**/node_modules**加到此文件中。
+**_/data_**是在运行local的mongodb server时生成的文件，后面我们会讲到。**_/node_modules_**是存放Node.js依赖包的文件夹，因为Cloud Foundry会为我们解决依赖问题，所以我们不需要将依赖包上传。
 
 ![HCP CF Digital Account App structure](/images/cloud/hcp-cf-digital-account-app.jpg)
 
@@ -129,7 +131,7 @@ _**/data**_是在运行local的mongodb server时生成的文件，后面我们�
 部署到Cloud Foundry时测试是个麻烦事，所以我们要在本地进行测试过。
 
 #### Run local mongo server
-在本机安装mongodb，并用此命令运行mongo server
+在本机安装[MongoDB][5]，并用此命令运行mongo server
 
 `\digital-account>mongod --dbpath=./data`
 
@@ -146,7 +148,7 @@ Server listening at http://localhost:6001
 
 #### Test get info
 
-`get http://localhost:6001/api/info`
+**get** _http://localhost:6001/api/info_
 
 output
 
@@ -177,7 +179,7 @@ output
 
 #### Test post message
 
-使用下面body内容post到http://localhost:6001/api/message
+使用下面body内容**post** _http://localhost:6001/api/message_
 
 ```javascript
 {
@@ -196,8 +198,7 @@ output
 
 #### Test get message
 
-get
-`http://localhost:6001/api/message`
+**get** _http://localhost:6001/api/message_
 
 ```javascript
 [
@@ -210,12 +211,12 @@ get
 ]
 ```
 
-测试通过后我们将要push到HCP Cloud Foundry服务上去。
+测试通过后我们将要push到[HCP Cloud Foundry][6]服务上去。
 
 ## Create MongoDB service
 在install之前我们需要为application添加MongoDB service。
 
-执行此命令创建一个mongodb服务`mongodb-digacc-service`
+执行此命令创建一个mongodb服务**_mongodb-digacc-service_**
 
 `cf create-service mongodb v3.0-container mongodb-digacc-service`
 
@@ -248,7 +249,7 @@ applications:
 
 ## Install application
 
-`\digital-account>cf push`
+`cf push`
 
 成功后就可以使用了。
 
@@ -262,3 +263,6 @@ applications:
 [2]:https://nodejs.org/
 [3]:https://www.mongodb.com/
 [4]:https://www.rabbitmq.com/
+[5]:https://www.mongodb.com/download-center#community
+[6]:https://hcp-cockpit.cfapps.us10.hana.ondemand.com/cockpit
+[7]:https://github.com/anypossiblew/hcp-cf-digital-account/tree/master/nodejs-with-mongodb
