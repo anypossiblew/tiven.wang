@@ -114,12 +114,12 @@ applications:
 
 每个参数的含义如下
 
-* name: The name of the application.
-* buildpack: The name of the Node.js buildpack determined before with command `cf buildpacks`. It is also possible to reference the buildpack sources on GitHub. By default an auto determination of the buildpack is done if the buildpack information is missing in the application manifest. But from my point of view it is clearer to specify it in the application manifest.
-* command: Node.js applications needs a start command to start the application. In the example "**node app.js**" is called which executes the JS code in a file "app.js" which is described later. The command is executed automatically after the application is successfully deployed to the Cloud Foundry instance.
-* memory: Definition of the RAM available for the application. For the demo 128 MB are used.
-* disk_quota: Definition of the disk space available for the application. For the demo 128 MB are used.
-* host: Host information for the application which is used in the URL which makes the application accessible.
+* __name__: The name of the application.
+* __buildpack__: The name of the Node.js buildpack determined before with command `cf buildpacks`. It is also possible to reference the buildpack sources on GitHub. By default an auto determination of the buildpack is done if the buildpack information is missing in the application manifest. But from my point of view it is clearer to specify it in the application manifest.
+* __command__: Node.js applications needs a start command to start the application. In the example "**_node app.js_**" is called which executes the JS code in a file "app.js" which is described later. The command is executed automatically after the application is successfully deployed to the Cloud Foundry instance.
+* __memory__: Definition of the RAM available for the application. For the demo 128 MB are used.
+* __disk_quota__: Definition of the disk space available for the application. For the demo 128 MB are used.
+* __host__: Host information for the application which is used in the URL which makes the application accessible.
 
 ### Application structure
 **_.cfignore_**文件是说明需要被`cf push`命令忽略的目录，比如需要将**/data**和**/node_modules**加到此文件中。
