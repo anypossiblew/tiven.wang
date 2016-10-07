@@ -256,7 +256,7 @@ applications:
 ## 总结
 
 本文介绍了在HCP Cloud Foundry上创建Node.js应用程序，并使用[MongoDB][3] service数据库服务保存查询消息的功能。使用到了一些Cloud Foundry的基础命令。
-接下来我们在此基础上再增加[RabbitMQ][4]服务来增强应用的负载能力。
+接下来我们在此基础上再增加[RabbitMQ][4]服务来增强应用的负载能力[Node.js with RabbitMQ service on HCP Cloud Foundry](/articles/nodejs-with-rabbitmq-on-hcp-cloud-foundry/)。
 
 
 [1]:https://www.cloudfoundry.org/training/

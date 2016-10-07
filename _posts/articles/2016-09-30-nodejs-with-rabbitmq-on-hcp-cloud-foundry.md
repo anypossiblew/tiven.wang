@@ -16,11 +16,11 @@ references:
     url: "https://github.com/anypossiblew/hcp-cf-digital-account/"
 ---
 
-上一篇我们介绍了在[HCP Cloud Foundry][2]服务上如何创建Node.js Application，并且使用了MongoDB数据库服务存储数据。本篇介绍HCP CF的另外一项服务 - [RabbitMQ][4]，此功能可以让你搭建高性能可扩展的应用程序。本篇带你一步步创建RabbitMQ消息队列服务和其与Node.js应用程序的集成。
+上一篇[Node.js with MongoDB service on HCP Cloud Foundry](/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/)我们介绍了在[HCP Cloud Foundry][2]服务上如何创建Node.js Application，并且使用了MongoDB数据库服务存储数据。本篇介绍HCP CF的另外一项服务 - [RabbitMQ][4]，此功能可以让你搭建高性能可扩展的应用程序。本篇带你一步步创建RabbitMQ消息队列服务和其与Node.js应用程序的集成。
 
 ## Prerequisites
 
-[Message queue][6]提供了一种异步通讯机制，这对于网络时代大量请求并发的情况及其重要。例如服务器B在响应服务器A的每个请求时会消耗CPU比较长的时间，而服务器A有可能短时间内爆发出大量的请求，那么显然服务器B在短时间内处理不了这么大量请求，进而在一定时间内服务器A得不到B的响应则会出现异常。在服务器A并不需要得到B实质性的response的情况下（例如只需要得到`receive successful!`这样的答复），我们可以使用Message queue作为中间件应用程序，暂时接收下A的请求，再一个个发往B。
+[Message queue][6]提供了一种异步通讯机制，这对于网络时代大量请求并发的情况及其重要。例如服务器B在响应服务器A的每个请求时会消耗CPU比较长的时间，而服务器A有可能短时间内爆发出大量的请求，那么显然服务器B在短时间内处理不了这么大量请求，进而在一定时间内服务器A得不到B的响应则会出现异常。在服务器A并不需要得到B实质性的response的情况下（例如只需要得到**_"receive successful!"_**这样的答复），我们可以使用Message queue作为中间件应用程序，暂时接收下A的请求，再一个个发往B。
 
 > 像这种既不属于B方主要功能又不属于A方需要负责的功能，使用Cloud Foundry应用程序去实现最好不过了，既解耦了双方程序，又可以进行灵活扩展。
 
