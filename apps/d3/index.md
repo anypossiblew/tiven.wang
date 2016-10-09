@@ -11,11 +11,96 @@ projects:
     description: "Zoomable sequence sunburst of D3.js"
     page: "zoom-sequence-sunburst.html"
     previewImage: "./images/zoom-sequence-sunburst.jpg"
-  - title: "Zoomable sequence sunburst of D3.js"
-    description: "Zoomable sequence sunburst of D3.js"
-    page: "zoom-sequence-sunburst.html"
+  - title: "C3.js D3-based reusable chart library"
+    description: "C3 makes it easy to generate D3-based charts by wrapping the code required to construct the entire chart. We don't need to write D3 code any more."
+    page: "c3/index.html"
     previewImage: "/apps/map/images/thumbs/02.jpg"
 ---
+
+## [Chart used C3.js][3]
+
+We used C3.js that is a reusable chart library based [D3.js][1].
+
+Import two librarys
+
+```html
+<link href="/libs/c3/0.4.11/c3.css" rel="stylesheet" type="text/css">
+
+<script src="/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+<script src="/libs/c3/0.4.11/c3.js"></script>
+```
+
+The simple javascript code
+
+```javascript
+var chart = c3.generate({
+        data: {
+          columns: [
+            ['data1', 30, 200, 100, 400],
+            ['data2', 50, 20,  10,  40]
+          ],
+          type: 'bar',
+          selection: {
+            enabled: true
+          },
+          onclick: function (d, element) {
+            chart.transform('line');
+          }
+        },
+        axis: {
+          rotated: true,
+        },
+        zoom: {
+          enabled: true
+        }
+      });
+```
+
+<br/>
+
+## [Zoomable sequence sunburst used D3.js][2]
+
+We created a zoomable sequence sunburst used D3.js.
+
+```javascript
+var colors = {
+          "home": "#5687d1",
+          "product": "#7b615c",
+          "search": "#de783b",
+          "account": "#6ab975",
+          "other": "#a173d1",
+          "end": "#bbbbbb"
+        };
+        
+var zSeqSunburst = new ZoomSequenceSunburst("#chart", {
+//  depth: 3,
+    innerHeigh: 2,
+    width: 750,
+    height: 600,
+    breadCrumb: {
+      w: 75, h: 30, s: 3, t: 10
+    }
+  })
+  .fill(function(d) {
+    return colors[d.data.name];
+  })
+// .breadcrumbText(function(d) {
+//    return d.value;
+// })
+  ;
+
+  // Use d3.text and d3.csv.parseRows so that we do not need to have a header
+  // row, and can receive the csv as an array of arrays.
+  d3.text("visit-sequences.csv", function(text) {
+    var csv = d3.csvParseRows(text);
+    var json = buildHierarchy(csv);
+    zSeqSunburst.create(json);
+  });
+```
+
+[1]:https://d3js.org/
+[2]:zoom-sequence-sunburst.html
+[3]:c3/index.html
 
 <!--
 <section>

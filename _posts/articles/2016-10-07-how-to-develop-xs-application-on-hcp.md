@@ -93,15 +93,106 @@ Delivery Unit管理的详细教程可以参见[附录1][3]
 
 ### Create Application
 
+在package上右键 _Create Application_ ， 或者手动创建以下几个文件
+
+* __.xsaccess__ : 控制此application的即此package的访问属性
+
+* __.xsapp__ : //TODO
+
+
 #### Set Application
+
+这里我们需要更改.xsaccess一些属性。
+
+`"authentication" : null` 为了方便测试及之后的供数字账号事件调用，需要设置匿名访问权限，所以这里授权方式为空。
+
+`"anonymous_connection": "digital-account::DigAccMessage"` 在匿名用户访问系统的情况下这里需要提供一个[数据库连接设置](#create-xs-sql-connection)，以便授予匿名用户访问数据库的权限。
+
+`"cors" : {"enabled" : true}` 显然如果使数字账号可以调用此API的话，需要设置跨域访问。
+
+`"force_ssl" : true` 使用ssl连接更安全。
+
+`"prevent_xsrf" : false` //TODO
+
+#### Create XS SQL Connection
+
+// TODO
 
 #### Create Schema
 
+创建subpackage data
+创建文件 DigAcc.hdbschema
+
+```javascript
+schema_name = "DigAcc";
+```
+
 #### Create Data Models
 
-#### Create XS Odata service
+才创建文件 **_data/DigAccMessage.hdbdd_**
 
-### Create UI5
+```javascript
+namespace digital-account.data;
+
+@Schema: 'DigAcc'
+context DigAccMessage {
+
+	type Content : String(5000);
+	type MID : String(40);
+	type Channel : Integer;
+	type Created : String(1);
+	type EventID : String(20);
+      
+	entity Message {
+		key id : Integer;
+		createdTime: UTCTimestamp;
+		events : Association[*] to Event on events.message = id; //Association definition
+		status : Association[0..1] to Status on status.id = id;
+		created: Created; // 是否已经同步到SAP Hybris Marketing
+		content: Content;
+	};
+	
+	entity Event {
+		key message: Integer;
+		key id: EventID;
+		
+		createdTime: UTCTimestamp;
+    	eventType: String(20);
+      	fromMID: MID;
+      	fromChannel: Channel;
+      	to: MID;
+        toChannel: Channel;
+		content : Content;
+		opType: Integer;
+		revision: Integer;
+		text: String(1000);
+		subscribers: Association[*] to Subscriber on subscribers.event = id;
+	};
+	
+	entity Subscriber{
+		key event: EventID;
+		key mid: MID;
+		persons: Association to Person on persons.mid = mid;
+	}
+	
+	entity Person {
+		key mid: MID;
+		displayName: String(100);
+		pictureUrl: String(100);
+		statusMessage: String(100);
+	};
+	
+	entity Status {
+		key id: Integer;
+		created: Created; // 是否已经同步到SAP Hybris Marketing
+	};
+	
+};
+```
+
+#### How to create XS Odata service
+
+### How to create UI5 application
 
 
 
