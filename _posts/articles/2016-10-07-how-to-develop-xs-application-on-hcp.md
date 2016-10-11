@@ -432,9 +432,11 @@ function handleGet() {
 }
 ```
 
-## 总结
+## Next Steps
 
-本篇我们介绍了初学者如何一步步在HANA Cloud Platform上创建XS application的过程，及简单配置。接下来我们会介绍[How to develop an XS Odata Service by CDS on the HCP](/how-to-develop-xs-odata-by-cds-on-hcp/)
+本篇我们介绍了初学者如何一步步在HANA Cloud Platform上创建XS application的过程，及简单配置。接下来我们会介绍
+
+* [How to develop an XS Odata Service by CDS on the HCP](/articles/how-to-develop-xs-odata-by-cds-on-hcp/)
 
 
 

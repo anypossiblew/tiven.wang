@@ -116,8 +116,10 @@ applications:
 ![my static app](/images/cloud/my-static-app.jpg)
 
 
-## 总结
-本文介绍了如何在HCP Cloud Foundry service上创建接单的静态页面project，接下来我们将要介绍在HCP Cloud Foundry service上构建[Node.js][5]应用，并且如何使用Node.js连接[MongoDB][6]和[RabbitMQ][7]服务。
+## Next Steps
+本文介绍了如何在HCP Cloud Foundry service上创建接单的静态页面project，接下来我们将要介绍在HCP Cloud Foundry service上构建[Node.js][5]应用，并且如何使用Node.js连接[MongoDB][6]和[RabbitMQ][7]服务
+
+* [How to develop a Node.js application with MongoDB service on the HCP Cloud Foundry][11]。
 
 
 [1]:https://www.yaas.io/
@@ -130,3 +132,4 @@ applications:
 [8]:https://hcp.sap.com/
 [9]:https://hcp-cockpit.cfapps.us10.hana.ondemand.com/cockpit
 [10]:https://github.com/anypossiblew/hcp-cf-digital-account/tree/master/my-static-app
+[11]:/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/
