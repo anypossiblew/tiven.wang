@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to develop an XS Odata Service by CDS on the HCP
-excerpt: "SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地创建开发XS应用程序，并运行在HANA Cloud上。"
+excerpt: "本文介绍HANA CDS在实际中的应用及如何在SAP HANA Cloud Platform上利用CDS开发OData Service"
 modified: 2016-10-11T12:00:00-00:00
 categories: articles
 tags: [HCP, Odata, CDS, HANA, Cloud]
@@ -10,9 +10,9 @@ image:
 comments: true
 share: true
 references:
-  - title: "SAP HANA Doc - SAP_HANA_Core_Data_Services_CDS_Reference_en.pdf"
+  - title: "SAP HANA Doc - SAP HANA Core Data Services CDS Reference en.pdf"
     url: "http://help.sap.com/hana/SAP_HANA_Core_Data_Services_CDS_Reference_en.pdf"
-  - title: "SAP HANA Doc - SAP_HANA_Developer_Guide_for_SAP_HANA_Web_Workbench_en.pdf"
+  - title: "SAP HANA Doc - SAP HANA Developer Guide for SAP HANA Web Workbench en.pdf"
     url: "http://help.sap.com/hana/SAP_HANA_Developer_Guide_for_SAP_HANA_Web_Workbench_en.pdf"
 ---
 
@@ -145,7 +145,7 @@ function saveMessage(content) {
 	var conn = $.db.getConnection(conSQLConnection);
 	conn.prepareStatement("SET SCHEMA " + conSchema).execute(); // Setting the SCHEMA
 	
-	var pStmt = conn.prepareStatement('select max( \"id\" ) from "' + conMessageTable + '"');
+	var pStmt = conn.prepareStatement('select max( "id" ) from "' + conMessageTable + '"');
 	var rs = pStmt.executeQuery();
 	if (rs.next()) {
 		id = Number(rs.getNString(1)) + 1;
@@ -359,33 +359,33 @@ association "Message_Events" with referential constraint principal
 
 ```sql
 "digital-account.data::DigAccMessage.Message" as "Message" navigates ("Message_Events" as "events") delete forbidden
-	    create using "digital-account:message.xsjslib::createMessage";
+	create using "digital-account:message.xsjslib::createMessage";
 ```
 
 message.xsjslib文件内容为
 
 ```javascript
 
-let conSchema = "DigAcc",
+let	conSchema = "DigAcc",
 	conMessageTable = "digital-account.data::DigAccMessage.Message";
 	
 function createMessage(param) {
 
-    let before = param.beforeTableName;
-    let after = param.afterTableName;
-    
-    let content = "";
-    let pStmt = param.connection.prepareStatement('select "content" from "' + after +'"');
-    var rs = pStmt.executeQuery();
+	let before = param.beforeTableName;
+	let after = param.afterTableName;
+
+	let content = "";
+	let pStmt = param.connection.prepareStatement('select "content" from "' + after +'"');
+	var rs = pStmt.executeQuery();
 	if (rs.next()) {
 		content = rs.getNString(1);
 		$.trace.error(JSON.stringify(content));
 	}
 	rs.close();
-    pStmt.close();
-    
-    let id = 0;
-    pStmt = param.connection.prepareStatement('select max( "id" ) from "'+conSchema+'"."'+ conMessageTable + '"');
+	pStmt.close();
+
+	let id = 0;
+	pStmt = param.connection.prepareStatement('select max( "id" ) from "'+conSchema+'"."'+ conMessageTable + '"');
 	rs = pStmt.executeQuery();
 	if (rs.next()) {
 		id = Number(rs.getNString(1)) + 1;
@@ -393,11 +393,11 @@ function createMessage(param) {
 	rs.close();
 	pStmt.close();
 	
-    pStmt = param.connection.prepareStatement('insert into "'+conMessageTable+'"("id", "createdTime", "content") values(?, now(), ?)');
-    pStmt.setInteger(1, id);
-    pStmt.setNString(2, content);
-    pStmt.executeUpdate();
-    pStmt.close();
+	pStmt = param.connection.prepareStatement('insert into "'+conMessageTable+'"("id", "createdTime", "content") values(?, now(), ?)');
+	pStmt.setInteger(1, id);
+	pStmt.setNString(2, content);
+	pStmt.executeUpdate();
+	pStmt.close();
 }
 ```
 
@@ -405,7 +405,7 @@ function createMessage(param) {
 
 本篇我们简要介绍了CDS在HANA建模中的使用，及由CDS定义OData service的过程。接下来我们接着本篇往下介绍在XS application和Odata service的基础上，如何创建SAPUI5程序去展现服务端视图数据及管理
 
-* [How to Create UI5 app Using OData service on the HCP][6]。
+* [How to Create a Fiori app Using OData service on the HCP][6]。
 
 
 [1]:https://account.hanatrial.ondemand.com/cockpit
