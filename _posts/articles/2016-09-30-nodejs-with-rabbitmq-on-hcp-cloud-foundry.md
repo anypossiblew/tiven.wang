@@ -16,6 +16,9 @@ references:
     url: "https://github.com/anypossiblew/hcp-cf-digital-account/"
 ---
 
+* TOC
+{:toc}
+
 上一篇[Node.js with MongoDB service on HCP Cloud Foundry](/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/)我们介绍了在[HCP Cloud Foundry][2]服务上如何创建Node.js Application，并且使用了MongoDB数据库服务存储数据。本篇介绍HCP CF的另外一项服务 - [RabbitMQ][4]，此功能可以让你搭建高性能可扩展的应用程序。本篇带你一步步创建RabbitMQ消息队列服务和其与Node.js应用程序的集成。
 
 ## Prerequisites

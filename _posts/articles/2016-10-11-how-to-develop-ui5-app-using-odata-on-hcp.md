@@ -13,6 +13,9 @@ references:
 
 ---
 
+* TOC
+{:toc}
+
 前面我们创建了xs application和OData service，本篇我们接着介绍SAP Fiori application的开发，并在Fiori app中调用使用OData service用来展示和管理数据。本篇所用项目完整代码可以在[Github][2]下载
 
 SAP提供了在线开发工具webide供用户开发自定义的UI5和Fiori应用程序。

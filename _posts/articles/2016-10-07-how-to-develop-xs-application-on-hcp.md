@@ -14,6 +14,9 @@ references:
     url: "https://help.sap.com/saphelp_hanaplatform/helpdata/en/d5/ca92aba6b4445aba17ca3f8d671217/content.htm"
 ---
 
+* TOC
+{:toc}
+
 SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地创建开发XS应用程序，并运行在HANA Cloud上。
 本文项目完整代码可以参见[Github][2]
 

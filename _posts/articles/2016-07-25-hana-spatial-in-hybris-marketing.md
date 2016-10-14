@@ -9,11 +9,17 @@ image:
   feature: masthead-geospatial.jpg
 comments: true
 share: true
+references:
+  - title: "Predictive Analysis Library (PAL)"
+    url: "http://help.sap.com/saphelp_hanaplatform/helpdata/en/32/731a7719f14e488b1f4ab0afae995b/frameset.htm"
 ---
+
+* TOC
+{:toc}
 
 世界正变得越来越数字化，大数据正在以这种或那种方式影响着每个人的生活。 我们在日常生活中所做的一切都会留下数字痕迹(或者数据)，也就是大数据，我们可以利用和分析这些数据来让我们的生活更加美好。 其中一项是大数据分析在地理信息上的应用，两者相结合可以为人们的生活提供方便，为企业创造价值。 在这些技术各自的领域有着大大小小的企业和数据平台， SAP [HANA](/tags#HANA) 内存数据库作为大数据分析重要的平台同样也提供对地理空间信息（Geospatial infomation）的支持。在这篇文章中我们来介绍一下SAP HANA Spatial基础和在Hybris Marketing营销产品中的应用。
 
-# 基于地理空间的[大数据](/tags#大数据)分析
+## 基于地理空间的大数据分析
 
 ![Esri HANA Image]({{ site.url }}/images/hana-spatial/esri-hana.jpg)
 {: .pull-right}
@@ -26,7 +32,7 @@ share: true
 
 * 对于数据可视化展示SAP HANA就没有那么强大了，但HANA是一个开放的开发平台，支持大部分web页面展示技术，所以你可以使用第三方强大的数据可视化技术或地图可视化技术，与此同时SAP HANA已经寻求与著名的地理信息供应商[Esri](http://www.esri.com/landing-pages/sap-hana)的合作，通过双方的强大技术为客户提供地理空间数据的分析及可视化。
 
-# HANA Spatial介绍
+## HANA Spatial介绍
 空间数据（Spatial Data）是描述在一定的空间内物体的位置，形状和方向的数据。空间数据（Spatial Data）以点，线串和多边形的形式表示为二位几何。
 
 * 对于表示物体的点，线串和多边形SAP HANA提供了不同于一般数据库字段类型的spatial data type如ST_Point和ST_Polygon
@@ -56,7 +62,7 @@ SELECT NEW ST_Point('POINT (0 0)', 1000004326).ST_Distance( NEW ST_Point('POINT 
 	<figcaption>HANA Spatial应用-SAP HANA SHINE-SpatialScenario的Business Partners界面</figcaption>
 </figure>
 
-# 在精准营销中的应用
+## 在精准营销中的应用
 基于地理空间的大数据分析在现实世界中有很多应用场景，例如智慧城市、定位应急响应、无人机应用、优化农业生产以及零售精准营销。
 
 其中零售行业的客户精准营销，是通过利用
@@ -90,6 +96,6 @@ hybris 细分营销 通过利用HANA内存数据库的能力能够实时高效�
 	<figcaption>Hybris Marketing建立预测模型进行计算人群关键指标</figcaption>
 </figure>
 
-# 总结
+## 总结
 
 基于地理空间信息的大数据分析在现实世界中的应用越来越广泛，我们有理由相信地理空间信息化的大数据分析还在起步阶段，将来在人类的生产生活中将会发挥更重要的作用。而SAP HANA内存数据库提供对地理空间数据的优秀支持，并结合其强大的预测库PAL成为地理空间信息大数据分析重要的平台和工具。SAP HANA Spatial在SAP的产品中已经广泛应用，也将会更深入的应用在各个行业产品中。

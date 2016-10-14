@@ -25,6 +25,9 @@ references:
 
 ---
 
+* TOC
+{:toc}
+
 SAP HANA platform及相关的产品如`SAPUI5`、`ABAP`有多种开发对象Object的多语言Multiple Languages及翻译Translation问题，本文介绍HANA涉及到的多语言功能和翻译工具，及SAPUI5和ABAP的多语言的使用，并且介绍实际场景中需要注意的一些问题。最后特别说明对中文不同标识的处理方式。
 
 ## HANA Multiple Languages

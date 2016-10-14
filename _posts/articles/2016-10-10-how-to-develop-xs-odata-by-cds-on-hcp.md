@@ -16,6 +16,9 @@ references:
     url: "http://help.sap.com/hana/SAP_HANA_Developer_Guide_for_SAP_HANA_Web_Workbench_en.pdf"
 ---
 
+* TOC
+{:toc}
+
 上一篇[How to develop an XS application on the SAP HANA Cloud Platform][3]中介绍了如何在[HCP][1]上创建一个XS应用程序，本篇在之前的基础上接着介绍[Core Data Services (CDS)][4]在HANA建模中的使用及如何创建[XS Odata service][5]。
 
 理解和使用一项技术最好的方式是用到实际应用中去解决实际的问题，本文就是通过创建能够接受和处理数字账号(e.g. Line, Wechat)请求的程序来介绍这些技术知识。
