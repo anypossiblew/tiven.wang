@@ -396,6 +396,11 @@ function handleGet() {
 }
 ```
 
+### Using XS Destination
+
+在HANA中XS程序想要调用外部网络服务需要通过HTTP Destination ，关于如何创建和使用HTTP Destination请参考
+[How to use HTTP Destination in HANA and HANA Cloud][4]
+
 ## Local Test
 
 ### Test Post
@@ -446,3 +451,4 @@ function handleGet() {
 [1]:https://account.hanatrial.ondemand.com/cockpit
 [2]:https://github.com/anypossiblew/hcp-digital-account/tree/xs-app
 [3]:https://help.sap.com/saphelp_hanaplatform/helpdata/en/d5/ca92aba6b4445aba17ca3f8d671217/content.htm
+[4]:/articles/how-to-use-http-dest-in-hana-and-hcp/

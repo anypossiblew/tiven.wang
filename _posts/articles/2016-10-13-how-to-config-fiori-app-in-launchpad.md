@@ -20,6 +20,8 @@ references:
     url: "https://blogs.sap.com/2014/05/04/how-to-setup-the-sap-fiori-launchpad/"
   - title: "SAP Blogs - Understanding launchpad object relationship with screenshots"
     url: "https://blogs.sap.com/2014/06/16/understanding-launchpad-object-relationship-with-screenshots/"
+  - title: "SAP Community - Unable to load xsappsite"
+    url: "https://archive.sap.com/discussions/thread/3507049"
 ---
 
 * TOC
@@ -135,8 +137,9 @@ Webide中的Fiori App代码在配置到Launchpad之前需要部署到HCP。
 
 Fiori Launchpad在ABAP系统中的链接*/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html*
 
-/sap/bc/ui5_ui5/ui2/ushell/resources/sap-ui-core.js
+## Next Steps
 
+* [How to use HTTP Destination in HANA and HANA Cloud][9]
 
 [1]:https://account.hanatrial.ondemand.com/cockpit
 [2]:https://github.com/anypossiblew/hcp-digital-account/tree/fiori-flp
@@ -146,3 +149,4 @@ Fiori Launchpad在ABAP系统中的链接*/sap/bc/ui5_ui5/ui2/ushell/shells/abap/
 [6]:https://help.hana.ondemand.com/webide/frameset.htm?1170ef65b7b3490687021c3132387829.html
 [7]:https://blogs.sap.com/2014/05/04/how-to-setup-the-sap-fiori-launchpad/
 [8]:https://blogs.sap.com/2014/06/16/understanding-launchpad-object-relationship-with-screenshots/
+[9]:/articles/how-to-use-http-dest-in-hana-and-hcp/
