@@ -2,7 +2,7 @@
 layout: post
 title: How to use HTTP Destination in HANA and HANA Cloud
 excerpt: "如何在HANA或者HANA Cloud服务器上的XS应用程序里访问公网HTTP API或者On-Premise的API，本文介绍通过XS application里创建HTTP Destination来实现"
-modified: 2016-10-19T17:00:00-00:00
+modified: 2016-10-20T17:00:00-00:00
 categories: articles
 tags: [HCP, HANA, Cloud, XS, HTTP]
 image:
@@ -20,7 +20,7 @@ references:
 * TOC
 {:toc}
 
-本文我们在前面一篇[How to develop XS Application on the SAP HANA Cloud Platform][3]的基础上介绍在HANA和HANA Cloud上如何创建和使用HTTP Destination来访问Internet http api或者On-Premise系统的api。为了更贴近现实应用场景，我们仍然使用HANA XS Application与Line服务器的集成场景。
+本文我们在前面一篇[How to develop XS Application on the SAP HANA Cloud Platform][3]的基础上介绍在HANA和HANA Cloud上如何创建和使用HTTP Destination来访问Internet http api或者On-Premise系统的api。为了更贴近现实应用场景，我们仍然使用HANA XS Application与Line服务器的集成场景。本文完整项目代码可以在[Github][2]下载。
 
 ## HANA
 
@@ -115,17 +115,18 @@ function getUserProfiles( persons ) {
 |useSSL		|false		|false		|false		|	|
 {: .table}
 
+
 > trial账号应该是没有权限访问On-Premise连接
 
 关于Cloud访问Internet Connectivity和On-Premise Connectivity参见[SAP SAP HANA Cloud Documentation - Consuming the Connectivity Service (HANA XS)][4]
 
-### Schema of HANA (<shared>) DB
+### Schema of HANA (\<shared\>) DB
 
 // TODO
 
 ## Next Steps
 
-* [HANA Cloud Connector][5]
+* [How to use HANA Cloud Connector][5]
 
 [1]:https://account.hanatrial.ondemand.com/cockpit
 [2]:https://github.com/anypossiblew/hcp-digital-account/tree/xs-dest

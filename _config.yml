@@ -2,7 +2,7 @@
 
 title: Tiven's Blog
 locale: zh
-description: Personal technical blog of SAP.
+description: personal technical blog about SAP.
 logo: site-logo.png
 search: true
 url: http://tiven.wang #http://127.0.0.1:4000
@@ -20,6 +20,7 @@ gems:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+#  - jekyll-archives
 
 kramdown:
   input: GFM
@@ -45,9 +46,9 @@ owner:
   disqus-shortname: tiven-wang
   twitter: #username
   facebook: tiwen.wang
-  github: #username
+  github: anypossiblew
   stackexchange: #http://stackoverflow.com/users/123456/username
-  linkedin: #username
+  linkedin: tiven
   instagram: #username
   flickr: #username
   tumblr: wangtiven
