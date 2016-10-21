@@ -2,7 +2,7 @@
 layout: post
 title: ABAP Development for SAP HANA
 excerpt: "SAP HANA内存数据库作为SAP未来很长一段时间内新产品的基石被广泛应用在各种新产品中，ABAP作为SAP传统产品的技术基础有着其成熟的开发模式和应用架构，两者相结合（AMDP,CDS,ADBC）也成为SAP很多产品的技术架构。本文以循序渐进的方式介绍ABAP开发针对HANA数据库有哪些特性，以及各自在应用程序中扮演的角色。"
-modified: 2016-08-18T11:27:25-04:00
+modified: 2016-10-21T15:00:00-00:00
 categories: articles
 tags: [SAP, HANA, ABAP, ADBC, AMDP, CDS, OLTP, OLAP, BOPF]
 image:
@@ -20,7 +20,6 @@ references:
     url: "http://scn.sap.com/community/abap/hana/blog/2014/01/08/consuming-hana-views-procedures-external-views-in-abap-740-syntax--part-2"
   - title: "SCN SAP: Introduction to Business Object Processing Framework (BOPF)"
     url: "http://scn.sap.com/docs/DOC-45425"
-
 ---
 
 * TOC
@@ -167,9 +166,9 @@ ENDTRY.
 ```
 
 ### Core Data Service CDS
-相对于SQL提供语言级别的访问数据库的功能，CDS提供了一种统一的可持续的数据库建模能力。
 
-// TODO
+相对于SQL提供数据库语言级别的访问数据库的功能，CDS提供了一种统一的可持续的数据库建模能力。详细阅读[Introduction to CDS on HANA and ABAP][1]
+
 
 ## How to
 SAP HANA出现之后，为了应用HANA内存数据库强大的大数据集计算能力，SAP提倡Code Pushdown理念，程序逻辑从应用层下移至数据库层。这并不是说简单地把ABAP程序逻辑迁移到HANA数据库中，这需要划分ABAP和HANA各自的职责，HANA擅长modeling，ABAP擅长programing。得益于HANA高速的实时计算能力，以往需要在ABAP中大量的计算逻辑单元都可以转成HANA Model，而ABAP只需要负责查询聚合这些Model得到结果。
@@ -197,3 +196,4 @@ ABAP是通过灵活动态地组装SQL然后用ADBC调用HANA数据库获取数�
 AS ABAP作为SAP传统地成熟地开发工具，有很多理由全面适应SAP HANA的开发。SAP也会在很长一段时间内仍然把AS ABAP作为应用层开发的主要工具。但这并不代表SAP没有在发展更新的开发能力，让我们拭目以待。
 
 
+[1]:/articles/cds-on-hana-and-abap/
