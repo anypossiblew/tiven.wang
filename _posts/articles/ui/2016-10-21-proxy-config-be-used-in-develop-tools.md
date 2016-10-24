@@ -6,7 +6,7 @@ modified: 2016-10-21T17:00:00-00:00
 categories: articles
 tags: [PROXY, UI, TOOLS]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: web/masthead-web.jpg
 comments: true
 share: true
 ---
@@ -30,8 +30,8 @@ Edit your **_.bowerrc_** file ( should be next to your bower.json file ) and add
 
 ```
 {
-    "proxy":"http://<host>:<port>",
-    "https-proxy":"http://<host>:<port>"
+  "proxy":"http://<host>:<port>",
+  "https-proxy":"http://<host>:<port>"
 }
 ```
 
@@ -53,12 +53,12 @@ In file **_${MAVEN_HOME}\conf\settings.xml_** \<proxies\>节点添加如下代�
 
 ```
 <proxy>
-	<id>optional_id</id>
-	<active>true</active>
-	<protocol>http</protocol>
-	<host>server</host>
-	<port>port</port>
-	<nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+  <id>optional_id</id>
+  <active>true</active>
+  <protocol>http</protocol>
+  <host>server</host>
+  <port>port</port>
+  <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
 </proxy>
 ```
 
@@ -97,13 +97,13 @@ npm获取配置有6种方式，优先级由高到底。
 针对npm配置的命令行操作
 
 ```
-   npm config set <key> <value> [--global]
-   npm config get <key>
-   npm config delete <key>
-   npm config list
-   npm config edit
-   npm get <key>
-   npm set <key> <value> [--global]
+npm config set <key> <value> [--global]
+npm config get <key>
+npm config delete <key>
+npm config list
+npm config edit
+npm get <key>
+npm set <key> <value> [--global]
 ```
 
 在设置配置属性时属性值默认是被存储于用户配置文件中，如果加上--global，则被存储在全局配置文件中。
@@ -134,10 +134,10 @@ or 创建文件`.typingsrc` Place token in your home directory (C:\Users\yourUse
 
 ```
 {
-    "rejectUnauthorized": false,
-    "proxy": "http://server:port",
-    "registryURL": "http://api.typings.org/",
-    "defaultSource": "dt"
+  "rejectUnauthorized": false,
+  "proxy": "http://server:port",
+  "registryURL": "http://api.typings.org/",
+  "defaultSource": "dt"
 }
 ```
 

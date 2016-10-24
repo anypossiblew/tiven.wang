@@ -6,7 +6,7 @@ modified: 2016-10-21T17:00:00-00:00
 categories: articles
 tags: [HANA, ABAP, CDS]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: hana/masthead-abap-for-hana.jpg
 comments: true
 share: true
 references:
@@ -16,6 +16,8 @@ references:
     url: "https://help.sap.com/abapdocu_750/en/abencds.htm"
   - title: "SAP Blog - CDS – One Concept, Two Flavors"
     url: "https://blogs.sap.com/2015/07/20/cds-one-model-two-flavors/#comment-344403"
+  - title: "SAP Blog - Creating Odata services out of CDS views"
+    url: "https://blogs.sap.com/2015/04/20/creating-odata-services-out-of-cds-views/"
 ---
 
 * TOC
@@ -35,7 +37,7 @@ references:
 
 ### ABAP CDS
 
-CDS规范在ABAP上的实现自然就需要适应ABAP服务器的功能，比如CDS所以定义的对象可以在ABAP Dictionary里查看，可以被Open SQL使用，它也可以使用ABAP Dictionary对象，源代码可以使用[ADT(ABAP Development Tools)][6]编辑等，但远不是如此而已。ABAP CDS提供了更先进的功能，如基于角色定义(DCL)的新的授权概念，还有通过加注解达到各种功能的扩展，比如client自动处理，[CDS Model自动生成OData service][11]，UI5的自动适应等。CDS的强大之处就在于可以灵活地扩展注解来达到功能的扩展。
+CDS规范在ABAP上的实现自然就需要适应ABAP服务器的功能，比如CDS所以定义的对象可以在ABAP Dictionary里查看，可以被Open SQL使用，它也可以使用ABAP Dictionary对象，源代码可以使用[ADT(ABAP Development Tools)][6]编辑等，但远不是如此而已。ABAP CDS提供了更先进的功能，如基于角色定义(DCL)的新的授权概念，还增加了注解的能力。注解不仅能定义ABAP数据字典的语义还能指定各种框架的规范说明，比如[CDS Model自动生成OData service][11](@OData)，UI5的自动适配(@UI)，Enterprise Search(@Search)等。通过添加注解达到功能地灵活扩展，CDS的强大之处就在于可以灵活地扩展注解来达到功能的扩展。
 
 ### ABAP CDS vs. HANA CDS
 
@@ -43,14 +45,10 @@ ABAP CDS和HANA CDS是同一种规范的不同平台实现而已。核心功能�
 
 对于开发者来说该如何选择CDS两种不同的实现，是个需要斟酌的问题。这里给出一些建议
 
-* 如果你的HANA是独立运行的或者说并不是作为ABAP服务器的主数据库运行的，那么自然使用不了ABAP CDS，必须使用HANA CDS。
-
-* 如果你运行的是ABAP on HANA（也就是说HANA数据库作为AS ABAP的主数据库存在）
-	
+* 如果你的HANA是独立运行的或者说并不是作为ABAP服务器的主数据库运行的，那么自然使用不了ABAP CDS，必须使用HANA CDS
+* 如果你运行的是ABAP on HANA（也就是说HANA数据库作为AS ABAP的主数据库存在）	
 	* 如果你想在全局环境或者Open SQL中使用CDS实体对象，或者需要一些具有ABAP关联性的注解，那么必须使用ABAP CDS
-
 	* 如果你需要在ABAP中使用CDS实体对象，但想要像ABAP存储库对象一样地传输和升级它的话，可以使用ABAP CDS
-
 	* 如果以上都不需要，你可以使用HANA CDS，它跟HANA有更好的集成。同时你仍然可以在ABAP中使用[Native SQL（ADBC,AMDP）访问HANA CDS][5]
 
 有关CDS一些详细注解技术文档请参考[SAP Blog - Annotations in ABAP CDS][2]， [SAP Help - ABAP CDS - SAP Annotations][3]
@@ -62,7 +60,7 @@ ABAP CDS和HANA CDS是同一种规范的不同平台实现而已。核心功能�
 
 ### New DDL Source
 
-在ADT中新建一个DDL Source文件，向导中可以选择模板生成不同的CDS基本结构
+在ADT中新建一个DDL Source文件**_Z\_MKT\_DIGACC_**，向导中可以选择模板生成不同的CDS基本结构
 
 <figure class="center">
 	<img src="/images/abap/new-cds-template.jpg" alt="Create CDS by Templates">
@@ -116,9 +114,7 @@ association [0..*] to cuand_ce_mp_root as _MarketingPermission
 激活则生成以下Gateway所需部件
 
 * The actual service artifact with the technical name **_\<CDS_VIEW\>_CDS_**. You can find it as SAP Gateway Business Suite Enablement - Service object (object type: R3TR IWSV)
-
 * An SAP Gateway model (object type: R3TR IWMO) with the name **_\<CDS_VIEW\>_CDS_**
-
 * An ABAP class **_CL\_\<CDS_VIEW\>_** that is used to provide model metadata to the SAP Gateway service.
 
 #### Activate OData Service in the SAP Gateway Hub
@@ -131,7 +127,7 @@ association [0..*] to cuand_ce_mp_root as _MarketingPermission
 
 #### Test the Activated OData Service
 
-使用**_SAP Gatewat Client_**或者外部Rest Client工具测试生成的OData service
+使用**_SAP Gateway Client_**或者外部Rest Client工具测试生成的OData service
 
 查看服务的metadata信息
 
