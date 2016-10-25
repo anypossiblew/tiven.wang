@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Introduction to CDS on HANA and ABAP
-excerpt: "本文旨在介绍CDS的基础知识"
+title: Introduction to CDS on HANA and ABAP part 1
+excerpt: "“Core data services (CDS) is an infrastructure for defining and consuming semantically rich data models in SAP HANA.” 它诞生于SAP HANA数据库的出现，后来又被应用到ABAP Dictionary上。"
 modified: 2016-10-21T17:00:00-00:00
 categories: articles
-tags: [HANA, ABAP, CDS]
+tags: [HANA, ABAP, CDS, OData]
 image:
   feature: hana/masthead-abap-for-hana.jpg
 comments: true
@@ -24,6 +24,12 @@ references:
 {:toc}
 
 关于SAP's Core Data Services (CDS) 我们先来看一下它的官方解释 “Core data services (CDS) is an infrastructure for defining and consuming semantically rich data models in SAP HANA.” 它诞生于SAP HANA数据库的出现，后来又被应用到ABAP Dictionary上。接下来让我们来看一下他们有什么联系和区别以及一些基础应用。
+
+## Series
+
+* Introduction to CDS on HANA and ABAP part 1
+* [Introduction to CDS on HANA and ABAP part 2 - Authorization Check](/articles/cds-on-hana-and-abap-part-2/)
+* [Introduction to CDS on HANA and ABAP part 3 - Unit Test](/articles/cds-on-hana-and-abap-part-3/)
 
 ## Background 
 
@@ -75,7 +81,6 @@ ABAP CDS和HANA CDS是同一种规范的不同平台实现而已。核心功能�
 ```sql
 @AbapCatalog.sqlViewName: 'ZMKT_DIGACC'
 @AbapCatalog.compiler.compareFilter: true
-@AccessControl.authorizationCheck: #CHECK
 @EndUserText.label: 'Marketing Digital Account'
 define view Z_Mkt_Digacc as select from cuand_da_root
 association [0..*] to cuand_ce_mp_root as _MarketingPermission

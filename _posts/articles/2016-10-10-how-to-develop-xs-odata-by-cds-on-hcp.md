@@ -4,7 +4,7 @@ title: How to develop an XS Odata Service by CDS on the HCP
 excerpt: "本文介绍HANA CDS在实际中的应用及如何在SAP HANA Cloud Platform上利用CDS开发OData Service"
 modified: 2016-10-11T12:00:00-00:00
 categories: articles
-tags: [HCP, Odata, CDS, HANA, Cloud]
+tags: [HCP, OData, CDS, HANA, Cloud]
 image:
   feature: cloud/mashheader-cloud.jpg
 comments: true

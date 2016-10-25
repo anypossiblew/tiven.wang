@@ -17,7 +17,7 @@
     <div class="entry-wrapper">
       <header class="entry-header">
         <ul class="entry-tags">
-          {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged {{ tag }}">{{ tag }}</a></li>{% endfor %}
+          {% for tag in page.tags %}<li><a href="{{ site.url }}/tags/#{{ tag }}" title="Pages tagged #{{ tag }}">#{{ tag }}</a></li>{% endfor %}
         </ul>
         {% if page.link %}
           <h1 class="entry-title"><a href="{{ page.link }}">{% if page.headline %}{{ page.headline }}{% else %}{{ page.title }}{% endif %} <span class="link-arrow">&rarr;</span></a></h1>
@@ -46,7 +46,7 @@
         {{ content }}
         {% if page.references %}
           <h2>References</h2>
-          <ul>
+          <ul class="entry-references">
           {% for reference in page.references %}
             <li>[{{ forloop.index }}] {{ reference.title }} <a target="_blank" href="{{ reference.url }}">{{ reference.url }}</a></li>
           {% endfor %}
@@ -61,7 +61,7 @@
                     {% if postHasSimilar == false and hasSimilar.size < 6 and post != page and tag == thisTag %}
                         {% if hasSimilar.size == 0 %}
                           <h2>Similar Posts</h2>
-                          <ul>
+                          <ul class="entry-similar-posts">
                         {% endif %}
                         <li>
                             <a href="{{ site.url }}{{ post.url }}" title="{{ post.excerpt }}">{{ post.title }}</a>

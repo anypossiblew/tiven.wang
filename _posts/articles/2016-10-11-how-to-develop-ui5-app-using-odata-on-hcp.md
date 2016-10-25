@@ -4,7 +4,7 @@ title: How to develop an Fiori application using Odata Service on the HCP
 excerpt: "SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地创建开发UI5应用程序并使用HCP上的OData service和xsjs服务，并运行在HANA Cloud上。"
 modified: 2016-10-12T16:00:00-00:00
 categories: articles
-tags: [HCP, UI5, Odata, HANA, Cloud]
+tags: [HCP, UI5, OData, HANA, Cloud]
 image:
   feature: cloud/mashheader-cloud.jpg
 comments: true

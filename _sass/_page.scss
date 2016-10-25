@@ -63,7 +63,7 @@
 
 .entry-tags {
 	margin: 2em 0 0;
-  padding: 0;
+    padding: 0;
 	text-transform: uppercase;
 	@include font-size(16);
 	font-weight: 600;
@@ -75,7 +75,8 @@
     display: inline-block;
     margin-bottom: 0;
     &:before {
-      content: "\2022";
+      content: "|";
+      font-size: 1.1em;
     }
     &:first-child {
       &:before {
@@ -224,6 +225,27 @@ span + .entry-title {
 			border-bottom-style: solid;
 		}
 	}
+}
+
+/**
+ * article's references
+ */
+.entry-references {
+    li {
+        a {
+            font-style: italic;
+            color: lightseagreen;
+        }
+    }
+}
+
+.entry-similar-posts {
+    li {
+        a {
+            font-style: italic;
+            color: lightseagreen;
+        }
+    }
 }
 
 /*
