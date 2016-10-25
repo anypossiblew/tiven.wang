@@ -2,7 +2,7 @@
 layout: post
 title: Getting Started with HCP Cloud Foundry
 excerpt: "很多公司的云平台都提供了Cloud Foundry服务，本文介绍如何在Hybris YaaS上创建Project，如何在HANA Cloud platform HCP上的Cloud Foundry services上创建Application，和一些基础的CF命令"
-modified: 2016-09-29T11:51:25-04:00
+modified: 2016-10-25T11:51:25-04:00
 categories: articles
 tags: [HCP, Cloud Foundry, Hybris, YaaS]
 image:
@@ -22,6 +22,13 @@ references:
 {:toc}
 
 很多公司的云平台都提供了Cloud Foundry服务，本文介绍HANA Cloud platform上的Cloud Foundry services。
+
+## Series
+
+1. Getting Started with HCP Cloud Foundry
+2. [How to develop a Node.js application with MongoDB service on HCP Cloud Foundry](/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/)
+3. [How to develop a Node.js applicaiton with RabbitMQ service on HCP Cloud Foundry](/articles/nodejs-with-rabbitmq-on-hcp-cloud-foundry/)
+{: .entry-series}
 
 ## Prerequisites
 

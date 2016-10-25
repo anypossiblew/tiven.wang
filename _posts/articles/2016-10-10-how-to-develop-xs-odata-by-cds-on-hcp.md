@@ -2,7 +2,7 @@
 layout: post
 title: How to develop an XS Odata Service by CDS on the HCP
 excerpt: "本文介绍HANA CDS在实际中的应用及如何在SAP HANA Cloud Platform上利用CDS开发OData Service"
-modified: 2016-10-11T12:00:00-00:00
+modified: 2016-10-25T12:00:00-00:00
 categories: articles
 tags: [HCP, OData, CDS, HANA, Cloud]
 image:
@@ -23,6 +23,16 @@ references:
 
 理解和使用一项技术最好的方式是用到实际应用中去解决实际的问题，本文就是通过创建能够接受和处理数字账号(e.g. Line, Wechat)请求的程序来介绍这些技术知识。
 本文项目完整代码可以查看[Github][2]
+
+## Series
+
+1. [How to develop an XS application on the SAP HANA Cloud Platform](/articles/how-to-develop-xs-application-on-hcp/)
+2. How to develop an XS Odata Service by CDS on the HCP
+3. [How to Create a Fiori app Using OData service on the HCP](/articles/how-to-develop-ui5-app-using-odata-on-hcp/)
+4. [How to Config Fiori App in Fiori Launchpad](/articles/how-to-config-fiori-app-in-launchpad/)
+5. [How to use HTTP Destination in HANA and HANA Cloud](/articles/how-to-use-http-dest-in-hana-and-hcp/)
+6. [HANA Cloud Connector](/articles/hana-cloud-connector/)
+{: .entry-series}
 
 ## Prerequisites
 

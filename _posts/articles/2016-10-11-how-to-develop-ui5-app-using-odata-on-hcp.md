@@ -2,7 +2,7 @@
 layout: post
 title: How to develop an Fiori application using Odata Service on the HCP
 excerpt: "SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地创建开发UI5应用程序并使用HCP上的OData service和xsjs服务，并运行在HANA Cloud上。"
-modified: 2016-10-12T16:00:00-00:00
+modified: 2016-10-25T16:00:00-00:00
 categories: articles
 tags: [HCP, UI5, OData, HANA, Cloud]
 image:
@@ -16,9 +16,17 @@ references:
 * TOC
 {:toc}
 
-前面我们创建了xs application和OData service，本篇我们接着介绍SAP Fiori application的开发，并在Fiori app中调用使用OData service用来展示和管理数据。本篇所用项目完整代码可以在[Github][2]下载
+前面我们创建了xs application和OData service，本篇我们接着介绍SAP Fiori application的开发，并在Fiori app中调用使用OData service用来展示和管理数据。本篇所用项目完整代码可以在[Github][2]下载。SAP提供了在线开发工具webide供用户开发自定义的UI5和Fiori应用程序。
 
-SAP提供了在线开发工具webide供用户开发自定义的UI5和Fiori应用程序。
+## Series
+
+1. [How to develop an XS application on the SAP HANA Cloud Platform](/articles/how-to-develop-xs-application-on-hcp/)
+2. [How to develop an XS Odata Service by CDS on the HCP](/articles/how-to-develop-xs-odata-by-cds-on-hcp/)
+3. How to Create a Fiori app Using OData service on the HCP
+4. [How to Config Fiori App in Fiori Launchpad](/articles/how-to-config-fiori-app-in-launchpad/)
+5. [How to use HTTP Destination in HANA and HANA Cloud](/articles/how-to-use-http-dest-in-hana-and-hcp/)
+6. [HANA Cloud Connector](/articles/hana-cloud-connector/)
+{: .entry-series}
 
 ## Prerequisites
 

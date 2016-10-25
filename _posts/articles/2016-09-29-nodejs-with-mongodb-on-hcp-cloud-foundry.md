@@ -2,7 +2,7 @@
 layout: post
 title: How to develop a Node.js application with MongoDB service on HCP Cloud Foundry
 excerpt: "本文介绍了在HCP Cloud Foundry上创建Node.js应用程序，并使用MongoDB service数据库服务保存查询消息的功能。使用到了一些Cloud Foundry的基础命令"
-modified: 2016-09-29T11:51:25-04:00
+modified: 2016-10-25T11:51:25-04:00
 categories: articles
 tags: [HCP, Cloud Foundry, Node.js, MongoDB]
 image:
@@ -22,6 +22,13 @@ references:
 {:toc}
 
 上一篇[Getting Started with HCP Cloud Foundry](/articles/getting-started-with-hcp-cloud-foundry/)我们讲了如何在HCP Cloud Foundry上创建Project的基础知识，本篇进一步介绍如何创建[Node.js][2]应用，并且连接到HCP CF所提供的[MongoDB][3]服务。
+
+## Series
+
+1. [Getting Started with HCP Cloud Foundry](/articles/getting-started-with-hcp-cloud-foundry/)
+2. How to develop a Node.js application with MongoDB service on HCP Cloud Foundry
+3. [How to develop a Node.js applicaiton with RabbitMQ service on HCP Cloud Foundry](/articles/nodejs-with-rabbitmq-on-hcp-cloud-foundry/)
+{: .entry-series}
 
 ## Prerequisites
 

@@ -2,7 +2,7 @@
 layout: post
 title: How to use HTTP Destination in HANA and HANA Cloud
 excerpt: "如何在HANA或者HANA Cloud服务器上的XS应用程序里访问公网HTTP API或者On-Premise的API，本文介绍通过XS application里创建HTTP Destination来实现"
-modified: 2016-10-20T17:00:00-00:00
+modified: 2016-10-25T17:00:00-00:00
 categories: articles
 tags: [HCP, HANA, Cloud, XS, HTTP]
 image:
@@ -21,6 +21,16 @@ references:
 {:toc}
 
 本文我们在前面一篇[How to develop XS Application on the SAP HANA Cloud Platform][3]的基础上介绍在HANA和HANA Cloud上如何创建和使用HTTP Destination来访问Internet http api或者On-Premise系统的api。为了更贴近现实应用场景，我们仍然使用HANA XS Application与Line服务器的集成场景。本文完整项目代码可以在[Github][2]下载。
+
+## Series
+
+1. [How to develop an XS application on the SAP HANA Cloud Platform](/articles/how-to-develop-xs-application-on-hcp/)
+2. [How to develop an XS Odata Service by CDS on the HCP](/articles/how-to-develop-xs-odata-by-cds-on-hcp/)
+3. [How to Create a Fiori app Using OData service on the HCP](/articles/how-to-develop-ui5-app-using-odata-on-hcp/)
+4. [How to Config Fiori App in Fiori Launchpad](/articles/how-to-config-fiori-app-in-launchpad/)
+5. How to use HTTP Destination in HANA and HANA Cloud
+6. [HANA Cloud Connector](/articles/hana-cloud-connector/)
+{: .entry-series}
 
 ## HANA
 

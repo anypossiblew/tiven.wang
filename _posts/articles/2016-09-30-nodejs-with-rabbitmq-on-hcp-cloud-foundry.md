@@ -2,7 +2,7 @@
 layout: post
 title: How to develop a Node.js application with RabbitMQ service on HCP Cloud Foundry
 excerpt: "本文介绍了在HCP Cloud Foundry上创建Node.js应用程序，并使用RabbitMQ service接受分发消息的功能。使用到了一些Cloud Foundry的基础命令"
-modified: 2016-10-06T16:13:00-00:00
+modified: 2016-10-25T16:13:00-00:00
 categories: articles
 tags: [HCP, Cloud Foundry, Node.js, RabbitMQ]
 image:
@@ -20,6 +20,13 @@ references:
 {:toc}
 
 上一篇[Node.js with MongoDB service on HCP Cloud Foundry](/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/)我们介绍了在[HCP Cloud Foundry][2]服务上如何创建Node.js Application，并且使用了MongoDB数据库服务存储数据。本篇介绍HCP CF的另外一项服务 - [RabbitMQ][4]，此功能可以让你搭建高性能可扩展的应用程序。本篇带你一步步创建RabbitMQ消息队列服务和其与Node.js应用程序的集成。
+
+## Series
+
+1. [Getting Started with HCP Cloud Foundry](/articles/getting-started-with-hcp-cloud-foundry/)
+2. [How to develop a Node.js application with MongoDB service on HCP Cloud Foundry](/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/)
+3. How to develop a Node.js applicaiton with RabbitMQ service on HCP Cloud Foundry
+{: .entry-series}
 
 ## Prerequisites
 

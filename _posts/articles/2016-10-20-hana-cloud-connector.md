@@ -2,7 +2,7 @@
 layout: post
 title: HANA Cloud Connector
 excerpt: "HANA Cloud Connector"
-modified: 2016-10-20T17:00:00-00:00
+modified: 2016-10-25T17:00:00-00:00
 categories: articles
 tags: [HCP, HANA, Cloud, XS, HTTP]
 image:
@@ -19,6 +19,15 @@ references:
 * TOC
 {:toc}
 
+## Series
+
+1. [How to develop an XS application on the SAP HANA Cloud Platform](/articles/how-to-develop-xs-application-on-hcp/)
+2. [How to develop an XS Odata Service by CDS on the HCP](/articles/how-to-develop-xs-odata-by-cds-on-hcp/)
+3. [How to Create a Fiori app Using OData service on the HCP](/articles/how-to-develop-ui5-app-using-odata-on-hcp/)
+4. [How to Config Fiori App in Fiori Launchpad](/articles/how-to-config-fiori-app-in-launchpad/)
+5. [How to use HTTP Destination in HANA and HANA Cloud](/articles/how-to-use-http-dest-in-hana-and-hcp/)
+6. HANA Cloud Connector
+{: .entry-series}
 
 ## SAP HANA Cloud Connector
 

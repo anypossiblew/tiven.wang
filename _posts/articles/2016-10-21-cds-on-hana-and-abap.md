@@ -27,9 +27,10 @@ references:
 
 ## Series
 
-* Introduction to CDS on HANA and ABAP part 1
-* [Introduction to CDS on HANA and ABAP part 2 - Authorization Check](/articles/cds-on-hana-and-abap-part-2/)
-* [Introduction to CDS on HANA and ABAP part 3 - Unit Test](/articles/cds-on-hana-and-abap-part-3/)
+1. Introduction to CDS on HANA and ABAP part 1
+2. [Introduction to CDS on HANA and ABAP part 2 - Authorization Check](/articles/cds-on-hana-and-abap-part-2/)
+3. [Introduction to CDS on HANA and ABAP part 3 - Unit Test](/articles/cds-on-hana-and-abap-part-3/)
+{: .entry-series}
 
 ## Background 
 

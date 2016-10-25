@@ -2,7 +2,7 @@
 layout: post
 title: How to develop an XS application on the SAP HANA Cloud Platform
 excerpt: "SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地创建开发XS应用程序，并运行在HANA Cloud上。"
-modified: 2016-10-07T12:00:00-00:00
+modified: 2016-10-25T12:00:00-00:00
 categories: articles
 tags: [HCP, XS, CDS, HANA, Cloud]
 image:
@@ -19,6 +19,16 @@ references:
 
 SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地创建开发XS应用程序，并运行在HANA Cloud上。
 本文项目完整代码可以参见[Github][2]
+
+## Series
+
+1. How to develop an XS application on the SAP HANA Cloud Platform
+2. [How to develop an XS Odata Service by CDS on the HCP](/articles/how-to-develop-xs-odata-by-cds-on-hcp/)
+3. [How to Create a Fiori app Using OData service on the HCP](/articles/how-to-develop-ui5-app-using-odata-on-hcp/)
+4. [How to Config Fiori App in Fiori Launchpad](/articles/how-to-config-fiori-app-in-launchpad/)
+5. [How to use HTTP Destination in HANA and HANA Cloud](/articles/how-to-use-http-dest-in-hana-and-hcp/)
+6. [HANA Cloud Connector](/articles/hana-cloud-connector/)
+{: .entry-series}
 
 ## Prerequisites
 

@@ -21,9 +21,10 @@ references:
 
 ## Series
 
-* [Introduction to CDS on HANA and ABAP part 1](/articles/cds-on-hana-and-abap/)
-* [Introduction to CDS on HANA and ABAP part 2 - Authorization Check](/articles/cds-on-hana-and-abap-part-2/)
-* Introduction to CDS on HANA and ABAP part 3 - Unit Test
+1. [Introduction to CDS on HANA and ABAP part 1](/articles/cds-on-hana-and-abap/)
+2. [Introduction to CDS on HANA and ABAP part 2 - Authorization Check](/articles/cds-on-hana-and-abap-part-2/)
+3. Introduction to CDS on HANA and ABAP part 3 - Unit Test
+{: .entry-series}
 
 ## CDS Test Double Framework
 

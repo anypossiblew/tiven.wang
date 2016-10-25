@@ -2,7 +2,7 @@
 layout: post
 title: How to config Fiori App in Launchpad
 excerpt: "本文介绍如何将Fiori应用配置到Launchpad上去，其中包括HANA Cloud Platform版，HANA Respository版及ABAP版"
-modified: 2016-10-13T17:00:00-00:00
+modified: 2016-10-25T17:00:00-00:00
 categories: articles
 tags: [HCP, UI5, Fiori, HANA, Cloud, ABAP]
 image:
@@ -29,6 +29,15 @@ references:
 
 接着上一篇[How to Create a Fiori app Using OData service on the HCP][3]，本篇介绍如何将创建好的Fiori应用配置到Launchpad上去，HANA部分的完整项目代码可以在[Github][2]上下载。
 
+## Series
+
+1. [How to develop an XS application on the SAP HANA Cloud Platform](/articles/how-to-develop-xs-application-on-hcp/)
+2. [How to develop an XS Odata Service by CDS on the HCP](/articles/how-to-develop-xs-odata-by-cds-on-hcp/)
+3. [How to Create a Fiori app Using OData service on the HCP](/articles/how-to-develop-ui5-app-using-odata-on-hcp/)
+4. How to Config Fiori App in Fiori Launchpad
+5. [How to use HTTP Destination in HANA and HANA Cloud](/articles/how-to-use-http-dest-in-hana-and-hcp/)
+6. [HANA Cloud Connector](/articles/hana-cloud-connector/)
+{: .entry-series}
 
 ## About SAP Fiori Launchpad
 

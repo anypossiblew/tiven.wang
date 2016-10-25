@@ -59,9 +59,10 @@ references:
 
 ## Series
 
-* [Introduction to CDS on HANA and ABAP part 1](/articles/cds-on-hana-and-abap/)
-* Introduction to CDS on HANA and ABAP part 2 - Authorization Check
-* [Introduction to CDS on HANA and ABAP part 3 - Unit Test](/articles/cds-on-hana-and-abap-part-3/)
+1. [Introduction to CDS on HANA and ABAP part 1](/articles/cds-on-hana-and-abap/)
+2. Introduction to CDS on HANA and ABAP part 2 - Authorization Check
+3. [Introduction to CDS on HANA and ABAP part 3 - Unit Test](/articles/cds-on-hana-and-abap-part-3/)
+{: .entry-series}
 
 ## Data Control Language (DCL)
 
