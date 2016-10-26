@@ -12,7 +12,7 @@
     bottom: 0px;
     width: 100%;
     height: 100%;
-    background: #00A none repeat scroll 0 0;		
+    background: #00A none repeat scroll 0 0;
     color: #d3d3d3;
     font-weight: bold;
     font-size: 12px;
@@ -27,13 +27,13 @@
     margin: auto;
 }
 
-#all_blogs { 
-	display: none; 
+#all_blogs {
+	display: none;
 	overflow-y: auto;
 	height: 100%;
 }
-#all_blogs p { 
-	margin: 15px 0; 
+#all_blogs p {
+	margin: 15px 0;
 }
 
 @media screen and (max-width: 47em) {
@@ -45,7 +45,7 @@
       bottom: 20px;
       height: auto;
   }
-  
+
   #all_blogs {
     bottom: 0;
     position: absolute;
@@ -55,25 +55,29 @@
     height: auto;
   }
 }
-.win-bsod h1 {     
+.win-bsod h1 {
     text-align: center;
     font: bold 12px "Lucida Console", Monospace;
     margin-bottom: 20px;
 }
 
-.win-bsod h1 span {    
+.win-bsod h1 span {
     background: #9A9A9A;
     color: #00A;
     padding: 1px 7px;
 }
 
-.text-body { 
+.text-body {
     color: #d3d3d3;
     line-height: 16px;
 }
 
 .win-bsod a {
    color: lightblue;
+}
+
+.win-bsod p {
+   font-size: 1em;
 }
 	</style>
 }
@@ -93,7 +97,7 @@
 		strings: ["Press any key to back"],
 		typeSpeed: 0,
 		cursorChar: "_",
-		onStringTyped: function() { 
+		onStringTyped: function() {
                         $("body").unbind("keypress");
                         $("body").unbind("touchstart");
 			$("body").keypress( pageback );
@@ -124,7 +128,7 @@
         cursorChar: "_",
         backDelay: 3000
       });
-    
+
      $("body").keypress( keypress);
      $('body').on({ 'touchstart' : keypress });
   });
