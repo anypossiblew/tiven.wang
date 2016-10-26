@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html %}
+
+<header>
+	<style>
+.win-bsod {
+    position: fixed;
+    display: block;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    background: #00A none repeat scroll 0 0;		
+    color: #d3d3d3;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: "Lucida Console", Monospace, "KaiTi";
+ }
+
+.win-bsod-content {
+    position: relative;
+    top: 200px;
+    width: 600px;
+    height: 300px;
+    margin: auto;
+}
+
+#all_blogs { 
+	display: none; 
+	overflow-y: auto;
+	height: 100%;
+}
+#all_blogs p { 
+	margin: 15px 0; 
+}
+
+@media screen and (max-width: 47em) {
+  .win-bsod-content {
+      position: absolute;
+      top: 100px;
+      width: 100%;
+      padding: 20px;
+      bottom: 20px;
+      height: auto;
+  }
+  
+  #all_blogs {
+    bottom: 0;
+    position: absolute;
+    top: 100px;
+    left: 20px;
+    right: 20px;
+    height: auto;
+  }
+}
+.win-bsod h1 {     
+    text-align: center;
+    font: bold 12px "Lucida Console", Monospace;
+    margin-bottom: 20px;
+}
+
+.win-bsod h1 span {    
+    background: #9A9A9A;
+    color: #00A;
+    padding: 1px 7px;
+}
+
+.text-body { 
+    color: #d3d3d3;
+    line-height: 16px;
+}
+
+.win-bsod a {
+   color: lightblue;
+}
+	</style>
+}
+</header>
+<body>
+
+<script type="text/javascript" src="/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="/libs/typed.js/1.1.4/typed.min.js"></script>
+
+<script>
+  function pageback() {
+    window.location.href = "{{ site.url }}";
+  }
+  function keypress() {
+	$("#all_blogs").show();
+	$(".typed-element").typed({
+		strings: ["Press any key to back"],
+		typeSpeed: 0,
+		cursorChar: "_",
+		onStringTyped: function() { 
+                        $("body").unbind("keypress");
+                        $("body").unbind("touchstart");
+			$("body").keypress( pageback );
+			var flag = false;
+                        $('body').on({ 'touchstart' : function() {
+				if (!flag) {
+				    flag = true;
+				    setTimeout(function(){ flag = false; }, 100);
+				    // do something
+				  }
+			} });
+			$('body').on({ 'touchend' : function() {
+				if(flag) { pageback(); }
+			}});
+		}
+	});
+  }
+
+  $(function(){
+      $(".typed-element").typed({
+        strings: [
+{% for str in page.blogs | sort:"date" %}
+  "{{ str.date }} {{ str.content }}",
+{% endfor %}
+        "Press any key to show all blogs"
+        ],
+        typeSpeed: 50,
+        cursorChar: "_",
+        backDelay: 3000
+      });
+    
+     $("body").keypress( keypress);
+     $('body').on({ 'touchstart' : keypress });
+  });
+</script>
+
+<div class="win-bsod">
+  <div class="win-bsod-content">
+  <h1><span>Windows</span></h1>
+
+	<div class="text-body">
+	  <span class="typed-element"></span>
+	</div>
+
+        <div id="all_blogs">
+{% for str in page.blogs | sort:"date" %}
+  <p>{{ str.date }} {{ str.content }}</p>
+{% endfor %}
+	</div>
+</div>
+
+</div>
+
+</body>
+
+</html>

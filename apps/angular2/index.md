@@ -11,7 +11,17 @@ projects:
     description: "a project which offers the Todo application implemented using MVC concept in the Angular2 framework and TypeScript development language."
     page: "todo/index.html"
     previewImage: "images/todo-app.png"
+  - title: "BSOD"
+    description: "a project which shows my daily logs using the 'typed.js'."
+    page: "bsod/index.html"
+    previewImage: "images/bsod.png"
 ---
+
+## Projects
+
+### [BSOD](bsod/index.html)
+
+BSOD is a project which shows my daily logs using the 'typed.js'.
 
 ## references
 
