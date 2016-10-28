@@ -224,5 +224,5 @@ var map = L.map("map", options);
 [2]:/articles/hana-spatial-with-baidu-map/#section-1
 [3]:/apps/map/leaflet-baidu/
 [4]:http://mathworld.wolfram.com/MercatorProjection.html
-[5]:http://127.0.0.1:4000/apps/map/leaflet-baidu/leaflet-baidu.js
-[6]:http://127.0.0.1:4000/apps/map/leaflet-baidu/
+[5]:/apps/map/leaflet-baidu/leaflet-baidu.js
+[6]:/apps/map/leaflet-baidu/
