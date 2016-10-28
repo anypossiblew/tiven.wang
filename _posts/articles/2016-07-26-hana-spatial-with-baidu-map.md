@@ -1,10 +1,10 @@
 ---
 layout: post
 title: HANA Spatial with Baidu Map
-excerpt: "SAP HANA Spatial在SAP各产品中的应用越来越广泛，同时以SAP HANA为基础的产品在中国市场得到快速成长，SAP产品中的地图在进入中国市场时经常会遇到本土化的问题。作为国内知名的地图供应商百度地图Baidu Map经常被用来作为地图可视化的工具。但国外的产品在本地化的过程中总是会遇到水土不服的问题。"
+excerpt: "SAP HANA Spatial在SAP各产品中的应用越来越广泛，同时以SAP HANA为基础的产品在中国市场得到快速成长，SAP产品中的地图在进入中国市场时经常会遇到本土化的问题。作为国内知名的地图供应商 百度地图 Baidu Map 经常被用来作为地图可视化的工具。但国外的产品在本地化的过程中总是会遇到水土不服的问题。"
 modified: 2016-07-26T17:49:25-04:00
 categories: articles
-tags: [Baidu Map, HANA Spatial, WGS-84, SRS]
+tags: [Baidu Map, 百度地图, Map, HANA Spatial, WGS-84, SRS]
 image:
   feature: masthead-geospatial.jpg
 comments: true
@@ -83,9 +83,9 @@ DEFINITION 'GEOGCS["BD 09" DATUM["WGS_1984" SPHEROID["WGS 84" 6378137 298.257223
 TRANSFORM DEFINITION '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
 ELLIPSOID SEMI MAJOR AXIS 6378137
 INVERSE FLATTENING 298.257223563
-ORGANIZATION SAP IDENTIFIED BY 0 
+ORGANIZATION SAP IDENTIFIED BY 0
 ;
- 
+
 CREATE SPATIAL REFERENCE SYSTEM "BD 09 (planar)"
 IDENTIFIED BY 10000xxxxx
 TYPE PLANAR
@@ -103,7 +103,7 @@ ELLIPSOID SEMI MAJOR AXIS 6378137
 INVERSE FLATTENING 298.257223563
 ORGANIZATION SAP IDENTIFIED BY 0
 ;
-``` 
+```
 
 
 ### 如何在创建HANA View计算列

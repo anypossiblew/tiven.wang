@@ -7,6 +7,10 @@ laboratory:
   title: "Map Laboratory"
   description: "In this laboratory there are many big data analysis application demos on web map. We used a lot of opensource tools, for example Leaflet.js Turf.js D3.js ..."
 projects:
+  - title: "Leaflet Baidu Map"
+    description: "How to display baidu map on leaflet.js framework? This project show the baidu map on leaflet.js."
+    page: "leaflet-baidu/"
+    previewImage: "images/thumbs/leaflet-baidu.jpg"
   - title: "Super cluster on Baidu Map"
     description: "This project demo implemented super cluster for big data markers on baidu map."
     page: "cluster/"
@@ -28,6 +32,12 @@ projects:
     page: "realtime-aqi-via-turf-isolines-on-map.html"
     previewImage: "images/thumbs/AQI-Isolines-on-Map.jpg"
 ---
+
+## Baidu Map on Leaflet.js
+
+This project show how to display baidu map on Leaflet.js.
+
+详细教程参考[Use Baidu Map Provider in Leaflet.js](/articles/use-baidu-map-provider-in-leafletjs/)
 
 ## Super cluster on Baidu Map
 
@@ -164,7 +174,7 @@ var circle = g.selectAll("circle")
   .attr("cx", function(d, i) { return d.x; })
   .attr("cy", function(d, i) { return d.y; })
   .attr("r", 2)
-  .attr("fill", function(d,i) { 
+  .attr("fill", function(d,i) {
     return aqiColour(jQuery.isNumeric(d.aqi) ? Number(d.aqi) : -1);
   })
   ;
@@ -173,7 +183,7 @@ var circle = g.selectAll("circle")
 ```javascript
 // 计算得到voronoi diagram对象
 var diagram = voronoi(positions);
-  
+
 //删除旧的多边形
 svg.selectAll(".volonoi").remove();
 // 绘制新的多边形
@@ -182,12 +192,12 @@ svg.selectAll("path")
   .enter()
   .append("svg:path")
   .attr("class", "volonoi")
-  .attr("d", function(d) { 
-    return d ? "M" + d.join("L") + "Z" : null; 
+  .attr("d", function(d) {
+    return d ? "M" + d.join("L") + "Z" : null;
   })
   .attr("stroke", "white")
   .attr("opacity", .3)
-  .attr("fill", function(d,i) { 
+  .attr("fill", function(d,i) {
     return aqiColour(jQuery.isNumeric(pointdata[i].aqi) ? Number(pointdata[i].aqi) : -1);
   })
   .on("mouseenter", function (d, i) {
