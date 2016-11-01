@@ -9,6 +9,9 @@ image:
   feature: web/masthead-web.jpg
 comments: true
 share: true
+references:
+  - title: "Mapbox Blog - Clustering millions of points on a map with Supercluster"
+    url: "https://www.mapbox.com/blog/supercluster/"
 ---
 
 * TOC

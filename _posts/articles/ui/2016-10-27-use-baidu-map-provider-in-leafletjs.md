@@ -5,6 +5,7 @@ excerpt: "百度地图 Baidu Map 的墨卡托投影映射 Mercator Projection �
 modified: 2016-10-27T17:00:00-00:00
 categories: articles
 tags: [Baidu Map, 百度地图, Map, SRS]
+mathjax: true
 image:
   feature: web/masthead-web.jpg
 comments: true
