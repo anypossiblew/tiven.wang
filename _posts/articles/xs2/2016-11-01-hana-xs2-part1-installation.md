@@ -17,30 +17,68 @@ references:
 * TOC
 {:toc}
 
-git config --global http.sslVerify false
+`git config --global http.sslVerify false`
 
-********
-==> JRE 8.0
-java -cp "D:\xsa_root\jars\*" com.sap.xs2rt.installation.impl.readymade.ReadymadeInstallProcedure --parameter-file="D:\xsa_root\uaaserver\tomcat\conf\parameterCentralDb" --base-directory="D:\xsa_root"
+## Prepare your HANA
 
-********
-==> Start UAA/HANA Service Broker
-D:\xsa_root\bin\xs-uaa-server-own-uaa-schema 8080 localhost ssl-disable run
+[Preparing a HANA for XSA][1]
 
-********
-==> Start XS Controller
+> JRE 8.0
 
-D:\xsa_root\bin\xs-controller --embedded-ea --path D:\xsa_work  --default-domain=localhost --uaa-url=http://localhost:8080/uaa-security
-Execution Agent: http://localhost:54168
-UAA URL: http://localhost:40002/uaa-security
-System port: 9998
-Controller path: D:\xsa_work
-API URL: http://localhost:30030
+`java -cp "D:\xsa_root\jars\*" com.sap.xs2rt.installation.impl.readymade.ReadymadeInstallProcedure --parameter-file="D:\xsa_root\uaaserver\tomcat\conf\parameterCentralDb" --base-directory="D:\xsa_root"``
 
-*************
-!!!set no_proxy=localhost
-D:\xsa_root\bin\xs-init http://localhost:30030
+## Standalone XSA Installation
 
-*************
-OP sample
-https://wiki.wdf.sap.corp/wiki/display/xs2/Deploying+Sample+Applications
+[Standalone XSA Installation][2]
+
+### Start UAA/HANA Service Broker
+
+`D:\xsa_root\bin\xs-uaa-server-own-uaa-schema 8080 localhost ssl-disable run`
+
+### Start XS Controller
+
+`D:\xsa_root\bin\xs-controller --embedded-ea --path D:\xsa_work  --default-domain=localhost --uaa-url=http://localhost:8080/uaa-security`
+
+Output:
+
+```
+Initializing ConfigStore............... OK
+Initializing Platform Router. OK
+Initializing BlobStore. OK
+Initializing MonitoringStore OK
+Initializing Stager. OK
+Initializing Model (Check and patch) OK
+Initializing HTTP/REST Server.... OK
+Initializing Platform Router (Start-Up)......... OK
+Initializing local Execution Agent... OK
+Initialized.
+
+Organizations:  0
+Spaces:         0
+Buildpacks:     0
+Runtimes:       0
+Users:          0
+Applications:   0
+Services:       0
+
+Execution Agent (s):  http://localhost:54168               (embedded)
+UAA URL:              http://localhost:40002/uaa-security
+System port:          9998                                 (to connect execution agents)
+Controller path:      D:\xsa_work
+API URL:              http://localhost:30030
+
+Press 'Enter' to stop...
+```
+
+### Install Initial Content
+
+> set no_proxy=localhost
+
+`D:\xsa_root\bin\xs-init http://localhost:30030`
+
+## Next
+
+[HANA XS2 part2 - Getting Started](/articles/hana-xs2-part2-getting-started/)
+
+[1]:/docs/xs2/xs2-Preparing-a-HANA-for-XSA.pdf
+[2]:/docs/xs2/xs2-Standalone-XSA-Installation.pdf

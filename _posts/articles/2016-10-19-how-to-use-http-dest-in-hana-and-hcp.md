@@ -14,7 +14,7 @@ references:
     url: "https://help.sap.com/saphelp_hanaplatform/helpdata/en/ca/340c09551c40b7837e773b9d051821/content.htm"
   - title: "SAP HANA Cloud Documentation - Consuming the Connectivity Service (HANA XS)"
     url: "https://help.hana.ondemand.com/help/frameset.htm?5c0c9c90b1b546bcba8de180f14f0722.html"
-    
+
 ---
 
 * TOC
@@ -53,7 +53,7 @@ timeout = 0;
 
 ### XS Admin Trust Manager
 
-下载line.me网站的证书，并在XS Admin管理界面中的Trust Manager中创建一个Line的Trust Store，导入此证书
+下载line.me网站的证书，并在XS Admin管理界面(https://<your-hana-host>/sap/hana/xs/admin/)中的Trust Manager中创建一个Line的Trust Store，导入此证书
 
 <figure class="center">
 	<img src="/images/cloud/hana/hana-trust-manager.jpg" alt="HANA XS Admin Trust Manager">
@@ -79,7 +79,7 @@ var conDestPackage = "digital-account",
 
 function getUserProfiles( persons ) {
 	var mids = persons.join(",");
-	
+
    var dest = $.net.http.readDestination(conDestPackage, conLineDestName);
    var client = new $.net.http.Client();
    var req = new $.web.WebRequest($.net.http.GET, "?mids="+mids);
@@ -89,7 +89,7 @@ function getUserProfiles( persons ) {
    client.request(req, dest);
    var response = client.getResponse();  
    var contacts = JSON.parse(response.body.asString()).contacts;
-   
+
    var i = 0;
    for(i = 0; i < contacts.length; i++) {
 	    $.trace.info(contacts[i]);
