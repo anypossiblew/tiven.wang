@@ -6,7 +6,7 @@ modified: 2016-11-01T17:00:00-00:00
 categories: articles
 tags: [XS2, XS, HANA]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: hana/masthead-hana-xs2.jpg
 comments: true
 share: true
 references:
@@ -109,7 +109,13 @@ $ xs push <app_name>
 
 `$ xs delete <app_name>`
 
+### XS Adanced (XS2) CLI Commands
 
+<script src="https://gist.github.com/paschmann/80c4f94ffb31a5e84671.js"></script>
+
+## Next
+
+[HANA XS2 On-Premise part 3 - Nodejs Hello World](/articles/hana-xs2-part3-nodejs-hello-world/)
 
 [1]:/docs/xs2/xs2-Login-with-HANA-users.pdf
 [2]:http://help.sap.com/saphelp_hanaplatform/helpdata/en/20/d5ddb075191014b594f7b11ff08ee2/content.htm

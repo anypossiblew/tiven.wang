@@ -6,7 +6,7 @@ modified: 2016-11-01T17:00:00-00:00
 categories: articles
 tags: [XS2, XS, HANA]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: hana/masthead-hana-xs2.jpg
 comments: true
 share: true
 references:
@@ -19,7 +19,7 @@ references:
 * TOC
 {:toc}
 
-我们先来创建一个不涉及 HANA 组件的纯 Nodejs 应用程序。
+我们先来创建一个不涉及 HANA 组件的纯 Nodejs 应用程序，本文完整代码下载[Github][3]。
 
 ## Application
 
@@ -39,6 +39,7 @@ applications:
   path: web
   buildpack: sap_nodejs_buildpack
 ```
+
 ### Web
 
 在根目录**xs2-node-hw**下创建目录**_web_**，`$ cd web`并初始化Nodejs项目配置`npm init`，然后安装NPM依赖包`npm install`
@@ -117,7 +118,10 @@ index   created                  state      os user
 Hello World!
 ```
 
+## Next
 
+[HANA XS2 On-Premise part 4 - Nodejs with HDI](/articles/hana-xs2-part4-nodejs-hdi/)
 
 [1]:https://github.wdf.sap.corp/xs2/XS_JAVASCRIPT
 [2]:http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.milestones.npm/
+[3]:https://github.com/anypossiblew/hana-xs2-samples/tree/nodejs-hw

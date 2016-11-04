@@ -6,7 +6,7 @@ modified: 2016-11-01T17:00:00-00:00
 categories: articles
 tags: [XS2, XS, HANA]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: hana/masthead-hana-xs2.jpg
 comments: true
 share: true
 references:
@@ -78,7 +78,7 @@ Press 'Enter' to stop...
 
 ## Next
 
-[HANA XS2 part2 - Getting Started](/articles/hana-xs2-part2-getting-started/)
+[HANA XS2 On-Premise part 2 - Getting Started](/articles/hana-xs2-part2-getting-started/)
 
 [1]:/docs/xs2/xs2-Preparing-a-HANA-for-XSA.pdf
 [2]:/docs/xs2/xs2-Standalone-XSA-Installation.pdf
