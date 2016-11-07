@@ -80,7 +80,7 @@ npm init
 
 Output package.json:
 
-```
+```javascript
 {
   "name": "xs2-node-hw-db",
   "version": "1.0.0",
@@ -100,7 +100,7 @@ Output package.json:
 
 Add the SAP HDI dependencies by
 
-```
+```javascript
 {
   ...
   "scripts": {
@@ -114,12 +114,12 @@ Add the SAP HDI dependencies by
 ```
 
 then execute <br/>
-`npm config set registry http://nexus:8081/nexus/content/groups/build.releases.npm/` <br/>
+`npm config set registry http://nexus.wdf.sap.corp:8081/nexus/content/groups/build.milestones.npm/` <br/>
 `npm install`
 
 Or use the repository url <br/>
 
-```
+```javascript
 "dependencies": {
   "sap-hdi-deploy": "git://github.wdf.sap.corp/xs2/hdideploy.js.git"
 }
@@ -135,7 +135,7 @@ Or manually install SAP dependencies node_modules from [SAP SMP][5].
 
 #### .hdinamespace
 
-```
+```javascript
 {
     "name":      "com.sap.xs2.tiven",
     "subfolder": "append"
@@ -144,7 +144,7 @@ Or manually install SAP dependencies node_modules from [SAP SMP][5].
 
 #### .hdbcds
 
-```
+```javascript
 namespace com.sap.xs2.tiven;
 
 context AddressBook {

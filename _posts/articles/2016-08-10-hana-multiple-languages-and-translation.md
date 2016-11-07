@@ -2,9 +2,9 @@
 layout: post
 title: HANA Multiple Languages and Translation
 excerpt: "SAP HANA platform及相关的产品如SAPUI5、ABAP有多种开发对象Object的多语言Multiple Languages及翻译Translation问题，本文介绍HANA涉及到的多语言功能和翻译工具，及SAPUI5和ABAP的多语言的使用，并且介绍实际场景中需要注意的一些问题。最后特别说明对中文不同标识的处理方式。"
-modified: 2016-08-11T17:52:25-04:00
+modified: 2016-11-07T17:52:25-04:00
 categories: articles
-tags: [HANA, Languages, Translation, ABAP, CDS, UI5]
+tags: [Languages, Translation, HANA, ABAP, CDS, UI5]
 image:
   feature: hana/masthead-languages.jpg
 comments: true
@@ -21,8 +21,9 @@ references:
   - title: "BCP 47 Validator"
     url: "http://schneegans.de/lv/"
   - title: "W3C - Web application APIs"
-    url: "http://w3c.github.io/html/webappapis.html#dom-navigator-languages"
-
+    url: "http://w3c.github.io/html/webappapis.html#dom-navigator-languages"  
+  - title: "Hana Repository Translation Tool"
+    url: "https://archive.sap.com/discussions/thread/3729454"
 ---
 
 * TOC
@@ -72,13 +73,36 @@ UI5还可以使用Resource Bundles方式翻译文本，即使用添加不同国�
 HANA中的翻译工作有多种方式：
 
 ### HANA Studio
+
 //TODO
 
 ### Online Translation Tool
-//TODO
+
+Open the Online Translation Tool in HANA Cockpit. Select the delivery unit and package which includes the artifacts that need to be translated. Then you can add the text's target language text.
+
+> The privileges required to use the SAP HANA Online Translation Tool (OTT) are granted in the role *sap.hana.xs.ott.roles::translator* .
+
+> the path of online translation tool is `/sap/hana/xs/translationTool/`
 
 ### Repository Translation Tool
-//TODO 
+
+The [Repository Translation Tool (RTT)][1] is a Java-based command line tool shipped with the SAP HANA client that enables you to transport language files in a standard format between the SAP HANA repository and a file system or between the SAP HANA repository and a dedicated SAP translation system.
+
+// TODO
+
+### Translation tools in ABAP
+
+[Language Support with SAP HANA Transport for ABAP][3]
+
+[SAP HANA Transport for ABAP (HTA)][2] supports synchronizations of texts from SAP HANA to ABAP in the original language of the SAP HANA package. The synchronized texts can be translated using the standard ABAP translation tool (transaction *SE63*) and then transported.
+
+Open the transaction SE63, select the `Short Texts` button, search the object type ID *HOTS* in the Object Type Selection popup, then select the HANA Object Name which you need to translate then select the source and target language settings, then edit.
+
+// TODO how to transport back translated languages to HANA ?
+
+### SAP Translation Hub
+
+// TODO
 
 ## Language codes
 
@@ -126,10 +150,10 @@ HANA数据库对象的标签存在系统view `_SYS_REPO.ACTIVE_OBJECT_TEXT_CONTE
 
 ```sql
 select
-  * 
-from _SYS_REPO.ACTIVE_OBJECT_TEXT_CONTENT 
-where package_id = '<package id>' 
-and object_name = '<object name>' 
+  *
+from _SYS_REPO.ACTIVE_OBJECT_TEXT_CONTENT
+where package_id = '<package id>'
+and object_name = '<object name>'
 and lang = 'zh';
 ```
 
@@ -147,7 +171,7 @@ and lang = 'zh';
 
 ```sql
 where
-  <LANG column> = 
+  <LANG column> =
   (LOWER(SUBSTRING( (SELECT SESSION_CONTEXT('LOCALE') FROM "DUMMY") ) )
 
 ```
@@ -188,3 +212,7 @@ Cookie `sap-usercontext=sap-language=EN`
 ## 总结
 
 &lt;&lt;未完&gt;&gt;
+
+[1]:http://help.sap.com/saphelp_hanaplatform/helpdata/en/af/a4db3987da44e8b2e9cda823e0c126/content.htm
+[2]:https://help.sap.com/saphelp_nw74/helpdata/en/ff/7652bd542849b18b218efe8d2f2373/content.htm
+[3]:https://help.sap.com/saphelp_nw74/helpdata/en/41/9d211e7e884fc58e524724e58b17b5/content.htm
