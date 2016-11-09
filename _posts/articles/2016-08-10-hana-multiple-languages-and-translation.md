@@ -92,6 +92,8 @@ The [Repository Translation Tool (RTT)][1] is a Java-based command line tool shi
 
 ### Translation tools in ABAP
 
+[Setting Up and Coordinating Translation (BC-DOC-TTL)][5]
+
 [Language Support with SAP HANA Transport for ABAP][3]
 
 [SAP HANA Transport for ABAP (HTA)][2] supports synchronizations of texts from SAP HANA to ABAP in the original language of the SAP HANA package. The synchronized texts can be translated using the standard ABAP translation tool (transaction *SE63*) and then transported.
@@ -101,6 +103,8 @@ Open the transaction SE63, select the `Short Texts` button, search the object ty
 // TODO how to transport back translated languages to HANA ?
 
 ### SAP Translation Hub
+
+[SAP HANA Cloud Documentation - SAP Translation Hub (Beta)][4]
 
 // TODO
 
@@ -194,7 +198,7 @@ where
 8. 配置URL parameters (?sap-language=zh)
 
 > 可以通过Configuration API获取当前语言<br/>
-> __var sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();__
+> *var sCurrentLocale = sap.ui.getCore().getConfiguration().getLanguage();*
 
 > 对于Chrome浏览器变量`window.navigator.language`与`window.navigator.languages`的设置是在
 > Settings -> Show advanced settings -> Languages -> Languages and input settings<br/>
@@ -202,11 +206,13 @@ where
 > 添加在这里的Languages从上至下按顺序即是**window.navigator.languages**
 
 #### UI5 with ABAP
+
 Cookie `sap-usercontext=sap-language=EN`
 
 //TODO
 
 ## 中文
+
 //TODO
 
 ## 总结
@@ -216,3 +222,5 @@ Cookie `sap-usercontext=sap-language=EN`
 [1]:http://help.sap.com/saphelp_hanaplatform/helpdata/en/af/a4db3987da44e8b2e9cda823e0c126/content.htm
 [2]:https://help.sap.com/saphelp_nw74/helpdata/en/ff/7652bd542849b18b218efe8d2f2373/content.htm
 [3]:https://help.sap.com/saphelp_nw74/helpdata/en/41/9d211e7e884fc58e524724e58b17b5/content.htm
+[4]:https://help.hana.ondemand.com/help/frameset.htm?1b15cf69580449c0bd8525696c97b90d.html
+[5]:https://help.sap.com/saphelp_nw74/helpdata/en/47/0520b4d7b830c1e10000000a11466f/content.htm
