@@ -4,11 +4,9 @@ title: SAP XS2 XS_JAVASCRIPT
 excerpt: "Collecting project for shipment of node.js packages as one software component on Service Marketplace"
 modified: 2016-11-09T17:00:00-00:00
 categories: references
-tags: [XS2, XS, HANA]
 image:
   feature: hana/masthead-hana-xs2.jpg
 comments: true
-share: true
 ---
 
 XS_JAVASCRIPT

@@ -19,7 +19,7 @@ references:
 * TOC
 {:toc}
 
-Following the previous topic [HANA XS2 On-Premise part 4 - Nodejs with HDI][1] , I would like to introduce how to access HANA database in Node.js application in this article. The project code used by this topic can be downloaded from [Github][2].
+Following the previous topic [HANA XS2 On-Premise part 4 - Nodejs with HDI][1] , I would like to introduce how to access HANA database in Node.js application in this article. The project codes used by this topic can be downloaded from [Github][2].
 
 ## Setup New Module
 
@@ -45,7 +45,7 @@ Create a new folder **js**, the `cd js` and initialize it by `npm init`, the con
 
 ### Install Express
 
-Before used, we need install Express package for Node.js dependencies, use this command
+Before using the [Express package][8] for Node.js, you need install it use this command
 
 `$ npm install express --save`
 
@@ -57,7 +57,7 @@ We write these code in order to show how to access the database from Node.js app
 
 ### Express Server
 
-For the Express server, we use the file **_index.js_** to listen the http request. Before using the port, you can check which port can be used in your environment, for example in window `$ netstat -an`
+For the Express server, the codes in file **_index.js_** is to listen http request. About the port, you may check which port can be used in your environment, for example in window use `$ netstat -an` to check it.
 
 ```javascript
 'use strict';
@@ -77,7 +77,7 @@ app.listen(PORT, function () {
 
 ### Express Routes
 
-Because we want to access the HANA HDI artifacts from express routes, we need the `sap-hdbext` module to utilize accessing approach.
+In express routes the component [**sap-hdbext**][9] is used to access HANA hdi schema. sap-hdbext module provides convenient functions on top of the [hdb][10] module that is a JavaScript client for Node implementing the [SAP HANA Database SQL Command Network Protocol][11].
 
 #### Install the sap-hdbext
 
@@ -99,8 +99,8 @@ var hdbext = require('sap-hdbext');
 var hanaConfig = {
   host: '<HANA DB Host>',
   port: <HANA DB Port>,
-  user: '<HANA DB User Name>',
-  password: '<HANA DB User Password>',
+  user: '<User Name>',
+  password: '<User Password>',
   schema: '63BA774DD3EA4523B50E3C99FDA18305', // the schema id of application xs2-node-hw-db
   isolationLevel: hdbext.constants.isolation.SERIALIZABLE,
   locale: 'en_US',
@@ -135,8 +135,7 @@ module.exports = userInfoQuery;
 
 #### Express Routes
 
-We need use express route to pip the user information from SQL into express services.
-Create a file **_userinfo.js_**
+In the file **_userinfo.js_** the routers of express server are defined, they call the control logic function which operate HANA CDS entities.
 
 ```javascript
 var express = require('express');
@@ -158,9 +157,9 @@ router.get('/rest/userinfo', function (req, res) {
 module.exports = router;
 ```
 
-## Testing Locally
+## Test Locally
 
-If we want to test the application in local environment
+If you want to test the application in local environment, then
 
 ### Add Package Scripts
 
@@ -201,9 +200,9 @@ Up to now, the project code can be downloaded from [Github][5].
 
 ## Use hdbext Middleware
 
-We have set the HANA DB connection information in javascript code, but we need the connection information to be configurable. So we change the code
+We have set the HANA DB connection information in JavaScript code, but we need the connection information to be configurable. So let's change the code
 
-### hdbext.middleware
+### hdbext Middleware
 
 *sap-hdbext* provides an [Express middleware][6] which allows easy access to a connection pool in an Express based application. In the background a connection pool is created. The connection is automatically returned to the pool when the express request is closed or finished.
 
@@ -297,7 +296,7 @@ No execution environment variables have been set
 
 ### Configuration for Local Development
 
-Because there is no xs2 environment when we test the application in local, we need the local configuration of special User Account for db connection via a **_default-services.json_** file in the same directory as the node.js services themselves(not the project root).
+Because there is no xs2 environment when you are testing the application in local, you need the local configuration of special User Account for db connection via a **_default-services.json_** file in the same directory as the node.js services themselves(not the project root).
 
 *default-services.json*:
 
@@ -306,8 +305,8 @@ Because there is no xs2 environment when we test the application in local, we ne
     "hana": {
         "host"            : "vhnwa750",
         "port"            : "30015",
-        "user"            : "tiven",
-        "password"        : "password",
+        "user"            : "<tiven>",
+        "password"        : "<password>",
         "schema"          : "63BA774DD3EA4523B50E3C99FDA18305"
     }
 }
@@ -315,7 +314,7 @@ Because there is no xs2 environment when we test the application in local, we ne
 
 You can also add Authentication (UAA) services in this file for local development.
 
-### Testing of Local Development
+### Test of Local Development
 
 Execute `npm start` then you can also get the user information by accessing
 
@@ -332,3 +331,7 @@ Execute `npm start` then you can also get the user information by accessing
 [5]:https://github.com/anypossiblew/hana-xs2-samples/tree/sap-hdbext
 [6]:http://expressjs.com/en/guide/using-middleware.html
 [7]:/references/sap-github-xs2-xs-javascript/
+[8]:https://www.npmjs.com/package/express
+[9]:/references/sap-github-xs2-node-hdbext-readme/
+[10]:https://www.npmjs.com/package/hdb
+[11]:http://help.sap.com/hana/SAP_HANA_SQL_Command_Network_Protocol_Reference_en.pdf

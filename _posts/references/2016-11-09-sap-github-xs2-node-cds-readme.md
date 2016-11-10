@@ -4,11 +4,9 @@ title: SAP XS2 node-cds
 excerpt: "SAP XS2 node-cds"
 modified: 2016-11-09T17:00:00-00:00
 categories: references
-tags: [XS2, XS, HANA]
 image:
   feature: hana/masthead-hana-xs2.jpg
 comments: true
-share: true
 ---
 
 node-cds: Core Data Services for node.js

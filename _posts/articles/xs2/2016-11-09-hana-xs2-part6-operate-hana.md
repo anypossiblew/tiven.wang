@@ -4,7 +4,7 @@ title: HANA XS2 On-Premise part 6 - Operate artifacts in HANA from Nodejs
 excerpt: "HANA XS2 On-Premise part 6 - Operate artifacts in HANA from Nodejs"
 modified: 2016-11-09T17:00:00-00:00
 categories: articles
-tags: [XS2, XS, HANA]
+tags: [XS2, CDS, HANA]
 image:
   feature: hana/masthead-hana-xs2.jpg
 comments: true
@@ -14,7 +14,7 @@ share: true
 * TOC
 {:toc}
 
-In this article, we introduce how to operate HANA artifacts in Node.js application using SAP component [*sap-cds*][1] and other components like [*async*][2].
+In this article, we introduce how to operate HANA artifacts in Node.js application using SAP component [*sap-cds*][1] and other components like [*async*][2].The project codes used by this topic can be downloaded from [Github][4].
 
 ## Application
 
@@ -61,13 +61,14 @@ module.exports = testdataCreator;
 
 SAP provide the Core Data Services for node.js ([sap-cds][1]) which is a JavaScript client library for Core Data Services that allow node.js applications to consume CDS artifacts natively in node.js applications.
 
-We use the sap-cds component to operate HANA CDS entities in this topic.
+Use the sap-cds component to operate HANA CDS entities in this topic.
 
 Import the sap-cds component:
 
 ```javascript
 var cds = require('sap-cds');
 ```
+
 #### Import Entities
 
 CDS entities are imported by name. The import function takes a callback that is invoked when all imports have completed. Additional fields and overrides may be supplied for each entity.
@@ -142,7 +143,7 @@ tx.$rollback(callback);
 
 #### Created Entity Instances
 
-We can save a single entity instance into HANA DB
+Saving a single entity instance into HANA DB can use `$save` of `sap-cds`
 
 ```javascript
 function createBook(callback) {
@@ -192,9 +193,9 @@ function createAddresses(book, callback) {
 }
 ```
 
-### Express Routes
+#### Express Routes
 
-We add the routes in file *testdata.js*:
+Add the routes in file *testdata.js*:
 
 ```javascript
 var express = require('express');
@@ -215,17 +216,7 @@ router.get('/rest/addressbook/testdata', function (req, res) {
 });
 ```
 
-#### Testdata Destructor
-
-We also add the delete all books function used `$discardAll` in the file *testdataDestructor.js*:
-
-```javascript
-function deleteAllBooks(books, callback) {
-    conn.$discardAll(books, callback);
-}
-```
-
-#### Add Routes
+##### Add Routes
 
 Add the routes into express application:
 
@@ -235,17 +226,59 @@ var testdata = require('./routes/testdata');
 app.use('/', hdbext.middleware(), userinfo, testdata);
 ```
 
-## Test
+### Testdata Destructor
+
+Add the "delete all books" function in which use `$discardAll` into file *testdataDestructor.js*:
+
+```javascript
+function deleteAllBooks(books, callback) {
+    conn.$discardAll(books, callback);
+}
+```
+
+### Address Book Manager
+
+Add the route for address book manager what use `$query` of `sap-cds` to select address books from HANA database.
+
+```javascript
+function queryBooksFromDatabase(tx, cb) {
+    BOOK.$query()
+        .$project({
+            $all: true,
+            addresses: {id: true, first_name: true, last_name: true, phone: true, city: true}
+        })
+        .$execute(tx, {$factorized: true}, function (err, result) {
+            cb(err, tx, result);
+        });
+}
+```
+
+## Test Locally
 
 Execute `npm start` then access
 
 *http://localhost:3001/rest/addressbook/testdata*
 
-once got the success result, you can check the data in HANA tables.
+once get the success result, you can check the data using:
+
+*http://localhost:3001/rest/addressbook/tree*
+
+Or check the data in HANA tables using the user who has privileges.
+
+> If you are using HANA database users, you can grant role **_\<hdi_schema_id\>::access\_role_** to the users in order to access the schema.
+
+If you want to remove all of the instances of entities, use this url:
+
+*http://localhost:3001/rest/addressbook/testdataDestructor*
+
+If all of the test in local are ok, you can push the application onto xs2 server.
 
 ## Next
 
+[HANA XS2 On-Premise part 7 - Client User Interface of an XS Advanced Application][5]
 
 [1]:/references/sap-github-xs2-node-cds-readme/
 [2]:http://caolan.github.io/async/index.html
 [3]:http://caolan.github.io/async/docs.html#waterfall
+[4]:https://github.com/anypossiblew/hana-xs2-samples/tree/operate-cds
+[5]:/articles/hana-xs2-part7-client-ui/
