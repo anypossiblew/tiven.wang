@@ -34,14 +34,14 @@
 
 .entry-header {
 	@include fill-parent;
-	
+
 	@include media($medium) {
 		color: white;
 		text-shadow: 1px 0 lightgrey, 0 1px lightgrey, 1px 0 lightgrey, 0 1px lightgrey;
 		.entry-tags {a {color: white;}}
 		margin-bottom: 80px;
 	}
-	
+
 }
 
 .entry-page-header {
@@ -296,6 +296,7 @@ span + .entry-title {
 	margin-bottom: $gutter;
 	padding-left: 0;
 	border-top: 2px solid $border-color;
+	border-bottom: 2px solid $border-color;
 	border-radius: $border-radius;
   ul {
   	list-style-type: none;
@@ -306,6 +307,12 @@ span + .entry-title {
     border-bottom: 1px solid $border-color;
     list-style-type: none;
   }
+	li:first-child {
+		border-top: 1px solid $border-color;
+	}
+	li:last-child {
+		border-bottom: initial;
+	}
   h6 {
     margin: 0;
     padding: (.25 * $gutter) (.5 * $gutter);
@@ -323,22 +330,22 @@ span + .entry-title {
   }
 
   >li>ul>li {
-  	padding-left: 20px;
+  	margin-left: 20px;
   	@include font-size(14,no,18);
   }
 
   >li>ul>li>ul>li {
-  	padding-left: 30px;
+  	margin-left: 30px;
   	@include font-size(12,no,18);
   }
 
   >li>ul>li>ul>li>ul>li {
-  	padding-left: 40px;
+  	margin-left: 40px;
   	@include font-size(10,no,18);
   }
 
   >li>ul>li>ul>li>ul>li>ul>li {
-  	padding-left: 50px;
+  	margin-left: 50px;
   	@include font-size(10,no,18);
   }
 }
@@ -358,7 +365,7 @@ span + .entry-title {
  *  </table>
 */
 
-.table {
+table, .table {
 	border-collapse: collapse;
 	margin: ((0px + $doc-line-height) / 2) 0;
 	margin: ((0rem + ($doc-line-height / $doc-font-size)) / 2) 0;
