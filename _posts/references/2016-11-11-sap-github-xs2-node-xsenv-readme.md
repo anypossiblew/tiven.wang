@@ -17,11 +17,13 @@ SAP HANA XS Advanced apps take various configurations from the environment.
 For example Cloud Foundry provides properties of bound services in [VCAP_SERVICES](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) variable.
 
 To test locally you need to provide these configurations by yourself. This package allows you to provide default configurations in a separate configuration file.
+
 * This reduces clutter by removing configuration data from the app code.
 * You don't have to set env vars manually each time you start your app.
 * Different developers can use their own configurations for their local tests without changing files under source control. Just add this configuration file to `.gitignore` and `.cfignore`.
 
 Currently you can provide default configurations on two levels:
+
 * For Cloud Foundry services via `getServices()` and `default-services.json`
 * For any environment variable via `loadEnv()` and `default-env.json`
 
@@ -30,6 +32,7 @@ While here we often reference Cloud Foundry, it all applies also to SAP HANA XS 
 ### Service Lookup
 
 Here is an example how to lookup specific Cloud Foundry services bound to your application:
+
 ```js
 var xsenv = require('sap-xsenv');
 
@@ -41,12 +44,14 @@ var services = xsenv.getServices({
 var hanaCredentials = services.hana;
 var schedulerCredentials = services.scheduler;
 ```
+
 The search criteria for the required services is specified via the query parameter to `getServices`.
 Each property of the query object specifies the query value for one service.
 See [filterCFServices](#filtercfservices) below for description of the supported query values.
 
 To test this locally, create a file called `default-services.json` in the working directory of your application.
 This file should contain something like this:
+
 ```json
 {
   "hana": {
@@ -63,6 +68,7 @@ This file should contain something like this:
   }
 }
 ```
+
 Notice that the result property names (`hana` and `scheduler`) are the same as those in the query object and also those in `default-services.json`.
 
 For each requested service `getServices` first looks in [VCAP_SERVICES](http://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES) variable and then in `default-services.json` file.
@@ -73,6 +79,7 @@ This way you will find right away if some required service is missing.
 Note: `getServices` will return only the requested services. It will not return any of the standard SAP HANA XS Advanced services (hana, uaa, jobs) unless they are explicitly specified in the query parameter.
 
 You can also pass a custom file to load default service configuration from:
+
 ```js
 var xsenv = require('sap-xsenv');
 
@@ -81,11 +88,13 @@ var services = xsenv.getServices({
   uaa: { tag: 'uaa' }
 }, 'my-services.json');
 ```
+
 This will load defaults from `my-services.json` instead of `default-services.json`.
 
 #### User-Provided Service Instances
 
 While this package can look up any kind of bound service instances, you should be aware that [User-Provided Service Instances](https://docs.cloudfoundry.org/devguide/services/user-provided.html) have less properties than managed service instances. Here is an example:
+
 ```json
   "VCAP_SERVICES": {
     "user-provided": [
@@ -105,17 +114,20 @@ While this package can look up any kind of bound service instances, you should b
     ]
   }
 ```
+
 As you can see the only usable property is the `name`.
 
 #### Best practice
 
 The recommended and most reliable way to lookup a service is by using its instance name which is unique.
+
 ```js
 xsenv.getServices({
   hana: process.env.HANA_SERVICE_NAME,
   uaa: process.env.UAA_SERVICE_NAME
 })
 ```
+
 Of course you have to set HANA_SERVICE_NAME and UAA_SERVICE_NAME in the environment to same values you use to bind the respective services (in `manifest.yml` or via `cf bind-service`).
 
 #### filterCFServices
@@ -126,35 +138,44 @@ It always returns an array of matching service instances.
 If no matching services are found, it returns an empty array.
 
 You can lookup a service by its instance name (the name you use to bind the service):
+
 ```js
 var hanas = xsenv.filterCFServices({ name: 'hana' });
 if (hanas.length > 0) {
   connect(hanas[0].credentials);
 }
 ```
+
 **Note:** Do not confuse the instance name (`name` property) with service name (`label` property).
 Since you can have multiple instances of the same service bound to your app,
 instance name is unique while service name is not.
 For this reason the recommended approach is to look up services by instance name.
 So for this common case there is even simpler syntax:
+
 ```js
 xsenv.filterCFServices('hana');
 ```
+
 This call will return an aray of one element or an empty array, if not found.
 
 You can also look up a service by tag:
+
 ```js
 xsenv.filterCFServices({ tag: 'relational' });
 ```
+
 This looks for service instances that have the given tag.
 
 If you need, you can match several properties:
+
 ```js
 xsenv.filterCFServices({ label: 'hana', plan: 'shared' });
 ```
+
 This will return the services where _all_ of the given properties match.
 
 If you need more contrived search criteria, you can pass a custom filter function:
+
 ```js
 xsenv.filterCFServices(function(service) {
   return /shared/.test(service.plan) && /hdi/.test(service.label);
@@ -191,6 +212,7 @@ If the requested service is not found or multiple instances are found, it throws
 
 VCAP_SERVICES contains arrays of service instances.
 `readCFServices` returns a flat object with all service instances as properties.
+
 ```
   "VCAP_SERVICES": {
     "hana" : [ {
@@ -213,7 +235,9 @@ VCAP_SERVICES contains arrays of service instances.
     } ]
   }
 ```
+
 Then `readCFServices` would return:
+
 ```
 {
   hana1: {
@@ -236,6 +260,7 @@ Then `readCFServices` would return:
   }
 }
 ```
+
 This way it is easier to find a service instance.
 
 ### Local environment setup
@@ -244,6 +269,7 @@ Function `xsenv.loadEnv()` loads the given JSON file (by default `default-env.js
 converts each top-level property to a string and sets it in the respective env var,
 unless it is already set. So the file content acts like default values for env vars.
 Here is a sample `default-env.json` providing HANA and Job Scheduler configuration:
+
 ```json
 {
   "PORT": 3000,
@@ -288,6 +314,7 @@ This allows you to easily setup locally the same environment as in Cloud Foundry
 clean your code from conditional logic if it is running in CF or locally.
 
 You can also use a different file name:
+
 ```js
 xsenv.loadEnv('myenv.json');
 ```
@@ -309,6 +336,7 @@ the listed files.
 
 For example this code loads the trusted CA certificates so they are used for all
 subsequent outgoing HTTPS connections:
+
 ```js
 var https = require('https');
 var xsenv = require('sap-xsenv');
@@ -317,6 +345,7 @@ https.globalAgent.options.ca = xsenv.loadCertificates();
 ```
 
 This function can be used also to load SSL certificates for HANA like this:
+
 ```js
 var hdb = require('hdb');
 var xsenv = require('sap-xsenv');

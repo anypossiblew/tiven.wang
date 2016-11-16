@@ -63,10 +63,6 @@ name                 service   plan         bound apps
 node-hdi-container   hana      hdi-shared
 ```
 
-### Create XSUAA
-
-//`xs create-service xsuaa space node-uaa -c xs-security.json`
-
 ## Application
 
 ### Create DB
