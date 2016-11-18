@@ -2,9 +2,9 @@
 layout: post
 title: Getting Started with HCP Cloud Foundry
 excerpt: "很多公司的云平台都提供了Cloud Foundry服务，本文介绍如何在Hybris YaaS上创建Project，如何在HANA Cloud platform HCP上的Cloud Foundry services上创建Application，和一些基础的CF命令"
-modified: 2016-10-25T11:51:25-04:00
+modified: 2016-11-18T11:51:25-04:00
 categories: articles
-tags: [HCP, Cloud Foundry, Hybris, YaaS]
+tags: [Cloud Foundry, HCP, YaaS, Hybris]
 image:
   feature: cloud/mashheader-cloud.jpg
 comments: true
@@ -42,14 +42,16 @@ Go to Service，会转到[YaaS][1]，YaaS是[SAP Hybris][2]的云服务平台。
 2. **Create a poject in YaaS**
 注册登录YaaS并创建Organization和一个project，There seems to be a litte meshup between the terms because the project you create within an organization is in fact the name you want to remember as the organization when you push your application to HCP-CF.
 
-3. **Create a space**
-在YaaS的project的Administration里，添加HCP Starter Edition的subscription，然后project的左边栏会出现"SAP HANA Cloud Platform"。然后在"SAP HANA Cloud Platform"里创建一个space。点击"MANAGE HCP APPLICATION"转到[HCP][9]可以看到创建好的space。
-
+3. **Subscribe HCP Cloud Foundry Services**
+在YaaS的project的 **_Administration_** 里，添加HCP Starter Edition for Cloud Foundry Services的subscription，然后project的左边栏会出现"SAP HANA Cloud Platform"。
 ![HCP Starter edition for CF in YaaS](/images/cloud/hcp-starter-edition-for-cf-in-yaas.jpg)
 
+4. **Create a space**
+Go to and login ["SAP HANA Cloud Platform"][cf-hcp-cockpit] by clicking **_MANAGE HCP APPLICATIONS_**, then create a space by clicking **_New Space_**, which is the cloud space you put the applications.
 
 ### Install cf cli
-在使用HCP Cloud Foundry services时需要Cloud Foundry的命令行工具。
+
+在使用HCP Cloud Foundry services时需要Cloud Foundry的命令行工具[cf CLI][cf-cli] from
 [Github][3]
 
 ## Project Source Code
@@ -132,6 +134,8 @@ applications:
 * [How to develop a Node.js application with MongoDB service on the HCP Cloud Foundry][11]。
 
 
+[cf-hcp-cockpit]:https://hcp-cockpit.cfapps.us10.hana.ondemand.com/cockpit
+[cf-cli]:https://docs.cloudfoundry.org/cf-cli/
 [1]:https://www.yaas.io/
 [2]:https://www.hybris.com/
 [3]:https://github.com/cloudfoundry/cli/releases

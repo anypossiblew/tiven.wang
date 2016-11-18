@@ -44,15 +44,15 @@ Undeploy a multi-target app
 
 This page describes the required steps to install /deploy/ redeploy DevX over XSA
 
-\<version\>/sap-xsac-hrtt-<version>.zip --no-proxy
-
 ### HRTT
+
+First, need download and install **_hrtt_** from *<repository>/com/sap/xsa/hrtt/sap-xsac-hrtt/*
 
 * Login to XS by running: `xs-admin-login`
 
 > According to the XSA version you have installed you might be prompted for the xs admin user password.
 
-* Download HRTT: According to the version you need, download the relevant sap-xsac-hrtt\<version\>.zip file from nexus:  http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.milestones/com/sap/xsa/hrtt/sap-xsac-hrtt
+* Download HRTT: According to the version you need, download the relevant sap-xsac-hrtt\<version\>.zip file from nexus:  *http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.milestones/com/sap/xsa/hrtt/sap-xsac-hrtt*
 For example run: `wget http://nexus.wdf.sap.corp:8081/nexus/content/repositories/build.snapshots/com/sap/xsa/hrtt/sap-xsac-hrtt/<version>/sap-xsac-hrtt-<version>.zip --no-proxy`
 
 * Install HRTT by running: `xs install <sap-xsac-hrtt-zip> -o ALLOW_SC_SAME_VERSION`
@@ -61,7 +61,19 @@ For example run: `wget http://nexus.wdf.sap.corp:8081/nexus/content/repositories
 
 > If you don't have product installer, you can use `xs deploy <sap-xsac-hrtt>.mtar`, the .mtar file is a [MTA archive = *.mtar file][1]
 
+### DI and WEBIDE
 
+Download and install devx from here *<repository>/com/sap/devx/sap-xsac-devx/*
+
+`xs install sap-xsac-devx-4.0.8.zip -e sap-xsac-devx-4.0.8.mtaext`
+
+## UAA Command Line Interface
+
+*http://docs.cloudfoundry.org/adminguide/uaa-user-management.html*
+
+`gem install cf-uaac --source http://rubygems.org`
+
+`uaac target http://localhost:8080/uaa-security`
 
 [1]:http://help.sap.com/saphelp_hanaplatform/helpdata/en/a9/c21ff1c919441d9fdd6e7d90f63159/frameset.htm
 [2]:http://help.sap.com/saphelp_hanaplatform/helpdata/en/6d/dec3d5f3494e28a5aff6ee60e3554e/frameset.htm

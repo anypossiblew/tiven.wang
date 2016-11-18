@@ -129,15 +129,6 @@ node-hdi-container   hana      hdi-shared   xs2-node-hw-db, xs2-node-hw-backend
 node-uaa             xsuaa     space
 ```
 
-### UAA Command Line Interface
-
-http://docs.cloudfoundry.org/adminguide/uaa-user-management.html
-
-`gem install cf-uaac --source http://rubygems.org`
-
-`uaac target http://localhost:8080/uaa-security`
-
-
 ## Application Code
 
 Now add the security into the application.
@@ -422,4 +413,4 @@ Now you can delete all of the address books from client ui.
 
 [github-project]:https://github.com/anypossiblew/hana-xs2-samples/tree/security
 [create-xs-security-json]:http://help.sap.com/saphelp_hanaplatform/helpdata/en/df/31a08a2c164520bb7e558103dd5adf/content.htm
-[xsa-admin-tools]:/articles/hana-xs2-extra1-uaa/
+[xsa-admin-tools]:/articles/hana-xs2-extra1-xsa-components/

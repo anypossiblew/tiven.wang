@@ -4,7 +4,7 @@ title: How to develop a Node.js application with MongoDB service on HCP Cloud Fo
 excerpt: "本文介绍了在HCP Cloud Foundry上创建Node.js应用程序，并使用MongoDB service数据库服务保存查询消息的功能。使用到了一些Cloud Foundry的基础命令"
 modified: 2016-10-25T11:51:25-04:00
 categories: articles
-tags: [HCP, Cloud Foundry, Node.js, MongoDB]
+tags: [Cloud Foundry, MongoDB, Node.js, HCP]
 image:
   feature: cloud/mashheader-cloud.jpg
 comments: true
@@ -94,9 +94,6 @@ binary_buildpack       8          true      false    binary_buildpack-cached-v1.
 {
   "name": "hcp-cf-digital-account",
   "version": "0.0.1",
-  "engines": {
-    "node": "6.2.1"
-  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "cfenv": "^1.0.3",
@@ -132,8 +129,8 @@ applications:
 * __host__: Host information for the application which is used in the URL which makes the application accessible.
 
 ### Application structure
-**_.cfignore_**文件是说明需要被`cf push`命令忽略的目录，比如需要将**/data**和**/node_modules**加到此文件中。
-**_/data_**是在运行local的mongodb server时生成的文件，后面我们会讲到。**_/node_modules_**是存放Node.js依赖包的文件夹，因为Cloud Foundry会为我们解决依赖问题，所以我们不需要将依赖包上传。
+**_.cfignore_** 文件是说明需要被`cf push`命令忽略的目录，比如需要将**/data**和**/node_modules**加到此文件中。
+**_/data_** 是在运行local的mongodb server时生成的文件，后面我们会讲到。**_/node_modules_** 是存放Node.js依赖包的文件夹，因为Cloud Foundry会为我们解决依赖问题，所以我们不需要将依赖包上传。
 
 ![HCP CF Digital Account App structure](/images/cloud/hcp-cf-digital-account-app.jpg)
 
