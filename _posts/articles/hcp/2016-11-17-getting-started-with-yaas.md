@@ -190,7 +190,6 @@ YaaS centers around packages because they are the main commodity. You can use ex
 
 1. Create a package in YaaS builder.
 2. Include the service in the package.
-3.
 
 ## As a consumer
 
@@ -218,7 +217,7 @@ The projects use clients to access the services. The client is an [OAuth2][OAuth
 
 ### Test by Consumer
 
-Now you can test accessing the YaaS service by the client credentials.
+Now it is time to test accessing the YaaS service by the client credentials.
 
 #### Authorization using Client Credentials
 
@@ -260,7 +259,7 @@ You can also get the authorization using **_grant\_type_** as '**_password_**'.
 [yaas-security]:https://devportal.yaas.io/overview/security/index.html
 [yaas-oauth2]:https://devportal.yaas.io/services/oauth2/latest/index.html
 [OAuth2]:https://oauth.net/2/
-[articles-oauth2-with-yaas]:/articles/
+[articles-oauth2-with-yaas]:/articles/oauth2-with-yaas/
 [github-project]:https://github.com/anypossiblew/hcp-cf-digital-account/tree/master/yaas-getting-started
 
 [1]:/articles/getting-started-with-hcp-cloud-foundry/
