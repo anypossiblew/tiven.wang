@@ -4,7 +4,7 @@ title: OAuth2 with YaaS
 excerpt: "OAuth2 with YaaS"
 modified: 2016-11-21T17:00:00-00:00
 categories: articles
-tags: [OAuth2, YaaS, Cloud]
+tags: [OAuth2, YaaS, Cloud, Angular.js]
 image:
   feature: cloud/masthead-incubators.jpg
 comments: true
