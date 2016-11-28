@@ -15,10 +15,12 @@ comments: true
 Compatibility layer for SAP HANA extended application services, classic model (SAP HANA XS Classic) applications to run on Node.js in SAP HANA extended application services, advanced model.
 
 For the API of XS Engine
-  * [SAP HANA XS JavaScript Reference](http://help.sap.com/hana/SAP_HANA_XS_JavaScript_API_Reference_en/)
+
+* [SAP HANA XS JavaScript Reference](http://help.sap.com/hana/SAP_HANA_XS_JavaScript_API_Reference_en/)
 
 ## Usage
 It is as simple as it could be.
+
 ```js
 'use strict';
 
@@ -98,6 +100,7 @@ options.hana.sqlcc = xsenv.getServices({
 ```
 
 and used later in xsjs code like:
+
 ```js
 var connection = $.db.getConnection('com.sap.my.sqlcc_config');
 ```
@@ -182,12 +185,14 @@ This configuration extends the context of xsjs scripts with one additional varia
 Every time an xsjs script is executed it will not only have the `$` variable in it's context, but it will also include variable `answer` with value `42`.
 
 Lets have a file `answer.xsjs` with the following content:
+
 ```js
 $.response.setBody(answer);
 ```
 A request to `http://<your_domain>:3000/answer.xsjs` will respond with `42`.
 
 With the `context` property set, you can expose Node.js packages and variables:
+
 ```js
 var options = {
   anonymous: true,
@@ -199,6 +204,7 @@ Currently we are aware of a limitation, which causes `<variable> instanceof <con
 Also stubbing or mocking constructor functions such as `Date`, `String`, etc in a xsjs script won't affect other xsjs files.
 
 The `context` property also finds usage in a workaround for this limitations. Setting:
+
 ```js
 var options = {
   anonymous: true,
@@ -208,11 +214,13 @@ var options = {
 will fix these problems, but has side effects:
 
 * Creating an array in xsjs script and checking it's instance will now return false:
+
 ```js
   var myArray = [1, 2, 3];
   $.response.setBody(myArray instanceof Array); // Responds with false
 ```
 * Monkey-patching built-in types won't work as expected, if they are exposed through the `context` property:
+
 ```js
   String.prototype.contains = function(str) { return this.indexOf(str) >= 0; };
   var stringLiteral = 'Abc';
@@ -308,6 +316,7 @@ VCAP_SERVICES: {
 }
 ```
 Example usage in XSJS code:
+
 ```js
 var destination = $.net.http.readDestination('foobar.httpdest', 'mydest');
 ```
@@ -328,6 +337,7 @@ For example to set all logging and tracing to finest level set `XS_APP_LOG_LEVEL
 
 If the application is deployed on XS Advanced On-premise Runtime, you can change the log level without restarting the application.
 For example this command will set all logging and tracing to finest level.
+
 ```sh
 xs set-logging-level <application-name> '*' debug
 ```
