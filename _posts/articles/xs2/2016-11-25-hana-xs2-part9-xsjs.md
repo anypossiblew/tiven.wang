@@ -85,19 +85,7 @@ $.addressbook.bookManager.saveAddress({
         web        : 'http://tiven.wang'
 });
 
-$.addressbook.bookManager.saveAddress({
-        id         : Math.floor(Math.random() * 1000000),
-        book       : { id: bookId },
-        first_name : 'Max',
-        last_name  : 'Mustermann',
-        address    : 'Dietmar-Hopp-Allee 16',
-        city       : 'Walldorf',
-        country    : 'Germany',
-        zip        : '69169',
-        phone      : '+49 6227 7 54321',
-        email      : 'john.doe@sap.com',
-        web        : 'https://sap.de'
-});
+...
 
 $.response.setBody(JSON.stringify(book));
 ```
@@ -263,6 +251,23 @@ Then start local server by executing
 `npm start` in both of *xsjs/* and *web/*
 
 and access the url *http://localhost:3003/index.html*
+
+## Unit Test
+Create unit test files in folder *xsjs/lib/test*
+
+Add the script and develop dependencies in *package.json*
+
+```json
+"scripts": {
+  "start": "node --max-old-space-size=400 --expose-gc main.js",
+  "test": "xstest --test.reportdir=report"
+},
+"devDependencies": {
+  "sap-xsjs-test": "1.2.1"
+}
+```
+
+Then you can execute `npm test` for unit testing.
 
 ## Next
 
