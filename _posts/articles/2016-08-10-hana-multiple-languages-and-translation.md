@@ -2,7 +2,7 @@
 layout: post
 title: HANA Multiple Languages and Translation
 excerpt: "SAP HANA platform及相关的产品如SAPUI5、ABAP有多种开发对象Object的多语言Multiple Languages及翻译Translation问题，本文介绍HANA涉及到的多语言功能和翻译工具，及SAPUI5和ABAP的多语言的使用，并且介绍实际场景中需要注意的一些问题。最后特别说明对中文不同标识的处理方式。"
-modified: 2016-11-07T17:52:25-04:00
+modified: 2016-12-06T17:52:25-04:00
 categories: articles
 tags: [Languages, Translation, HANA, ABAP, CDS, UI5]
 image:
@@ -161,11 +161,38 @@ and object_name = '<object name>'
 and lang = 'zh';
 ```
 
+Select the labels of fields in HANA view from system view `bimc_dimension_view` in schema `_SYS_BI`, the language indicated by session context variable `LOCALE`. Check it by executing
+
+`select session_context('LOCALE') from dummy;`
+
+> If you want to change the language environment setting of HANA studio, please reference [change the session locale in HANA studio](#change-hana-session-locale)
+
+```sql
+mdx select
+     dimension_type,
+     cube_name,
+     is_private_attribute,
+     catalog_name,
+     dimension_unique_name,
+     dimension_catalog_name,
+     column_name,
+     dimension_caption,
+     column_caption
+from bimc_dimension_view
+where ( catalog_name = '<package id>'
+     and ( cube_name = '<object name>'
+           or ( cube_name = '$ATTRIBUTE'
+                and dimension_unique_name = '[<object name>]' ) ) )
+order by catalog_name,
+     dimension_unique_name
+;
+```
+
 ### Automatic decide Language code in HANA
 在HANA中如何根据会话Session自动选择语言，有三种情况：
 
 #### HANA View Filter
-在HANA Modeler View中可以在语言列上使用`filter="$$language$$"`
+在HANA Modeler View中可以在语言列上使用 input parameter : `filter="$$language$$"`
 
 #### HANA View Text Join
 在HANA View中使用`Text Join`类型来关联join语言类数据表，然后可以选择决定语言的field
@@ -177,13 +204,12 @@ and lang = 'zh';
 where
   <LANG column> =
   (LOWER(SUBSTRING( (SELECT SESSION_CONTEXT('LOCALE') FROM "DUMMY") ) )
-
 ```
 
 ### ABAP on HANA
 通常ABAP中的语言是登录GUI时给定的，存储在系统变量`SY-LANGU`中，但有时需要在ABAP程序中指定语言，可以使用ABAP语句`set locale language <language code>.`指定。这样在ABAP中使用sql查询HANA DB时会话就是相应的语言代码了。
 
->例如：ABAP中指定`set locale language '1'.`，ABAP调用HANA时结果`SELECT SESSION_CONTEXT('LOCALE') FROM "DUMMY"`为'zh'。
+例如：ABAP中指定 `set locale language '1'.` ，ABAP调用HANA时结果 `SELECT SESSION_CONTEXT('LOCALE') FROM "DUMMY"` 为'zh'。
 
 ### SAPUI5
 对于SAPUI5 app来说，如何判断当前语言及应该加载哪个语言版本的Resource Bundle有一系列判定条件(序号越大的优先级越高)：
@@ -213,7 +239,9 @@ Cookie `sap-usercontext=sap-language=EN`
 
 ## 中文
 
-//TODO
+由于 ABAP Language 只有 `ZH` 与 `ZF` 两种中文语言，所以在映射到 HANA 的时候 ZH 只能映射到 `zh` 或者 `zh_CN`, 并不能区分开。
+所以 HANA 也在修复这个Bug，在不久未来的某个版本 HANA 会增加根据[ABAP Locale Language 和 Country][abap-set-locale]两个属性决定映射的语言环境。
+
 
 ## 总结
 
@@ -224,3 +252,5 @@ Cookie `sap-usercontext=sap-language=EN`
 [3]:https://help.sap.com/saphelp_nw74/helpdata/en/41/9d211e7e884fc58e524724e58b17b5/content.htm
 [4]:https://help.hana.ondemand.com/help/frameset.htm?1b15cf69580449c0bd8525696c97b90d.html
 [5]:https://help.sap.com/saphelp_nw74/helpdata/en/47/0520b4d7b830c1e10000000a11466f/content.htm
+
+[abap-set-locale]:http://help.sap.com/saphelp_ehs27b/helpdata/en/34/8e73186df74873e10000009b38f9b8/content.htm

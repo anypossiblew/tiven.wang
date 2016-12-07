@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HANA Default Client
-excerpt: "HANA Default Client"
+excerpt: "When accessing the HANA views directly (or via analytical tools like Lumira or BOC), a proper client needs to be maintained at the HANA database user."
 modified: 2016-11-30T17:00:00-00:00
 categories: articles
 tags: [HANA]
