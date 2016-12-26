@@ -1,6 +1,6 @@
 ---
 layout: post
-title: From a CDS View to an OData Service
+title: From a CDS View to an OData Service for Analytics
 excerpt: "HANA content can be modeled in the HANA database based on the replicated and local data. Basically, HANA content will consumed in the ABAP layer through transient InfoProviders on Operational Data Providers (ODPs). Based on the transient providers, BEx Queries are defined. These Queries serve as a central consumption entity. They are exposed via EasyQuery to allow access via OData for HTML5 UIs and native mobile applications or external access from reports via the BusinessObjects BI Platform."
 modified: 2016-12-08T17:00:00-00:00
 categories: articles
@@ -12,12 +12,12 @@ share: true
 references:
   - title: "SAP Help - OLAP Engine"
     url: "http://help.sap.com/saphelp_nw73/helpdata/en/7c/c3e60666cd9147bb6242dc6500cd77/frameset.htm"
-  - title: "SAP Wiki - Analytics"
-    url: "https://wiki.wdf.sap.corp/wiki/display/cecmkt/Analytics"
+  - title: "SAP Help - Generate Service Artifacts From a CDS View"
+    url: "http://help.sap.com/saphelp_nw75/helpdata/en/9a/ecb367279e4df3a8608718f6dcea1e/content.htm"
   - title: "SAP Wiki - Easy Query"
     url: "https://wiki.wdf.sap.corp/wiki/display/ABAPBICS/Easy+Query"
-  - title: "SAP Blogs - Publishing SAP BW BEx Queries to SAP HANA Views"
-    url: "https://blogs.sap.com/2015/11/23/publishing-sap-bw-bex-queries-to-sap-hana-views/"
+  - title: "SAP Blogs - Consumption of CDS in an OData Service"
+    url: "https://blogs.sap.com/2016/09/26/consumption-of-cds-in-an-odata-service/"
 
 ---
 
@@ -29,13 +29,12 @@ BEx Analyzer is an analytical, reporting and design tool embedded in Microsoft E
 
 **BICS** means BI Consumer Services and is a SDK developed and used by SAP.
 
-[1508237 - First Steps to Check Wrong Number in BW Query (Transaction RSFC)][Transaction-RSFC]
-
 ## Virtual Data Models
 A virtual data model (VDM) is a structured representation of HANA database views used in SAP HANA Live for SAP Business Suite and follows consistent modeling rules.
 It provides direct access to SAP business data using standard SQL or OData requests. Business data is exposed through well-defined database views, operating directly on the tables of the SAP Business Suite systems and transforming them into consistent and easily understandable views. These views can be consumed directly by rich client UIs (such as HTML5, SAP BusinessObjects, and Excel) without any additional software layer (an ABAP application system, for example) in between (two-tier architecture).
 
 VDM View types:
+
 * Interface(I)
 * Consumption(C)
 * Private(P)
@@ -107,7 +106,7 @@ Create two basic CDS views, set the views as VDM basic view type by `@VDM.viewTy
 @AbapCatalog.sqlViewName: 'ZIMKT_DIGACC'
 @VDM.viewType: #BASIC
 @EndUserText.label: 'Contacts of Digital Account'
-define view Zi_Mkt_Digacc as select from cuand_da_root
+define view ZI_Mkt_DigAcc as select from cuand_da_root
 association [0..*] to cuand_ce_mp_root as _MarketingPermission
   on cuand_da_root.comm_cat_key = _MarketingPermission.comm_cat_key
 {
@@ -127,7 +126,7 @@ association [0..*] to cuand_ce_mp_root as _MarketingPermission
 @AbapCatalog.sqlViewName: 'ZIMKT_IA'
 @VDM.viewType: #BASIC
 @EndUserText.label: 'Interaction'
-define view Zi_Mkt_Interaction as select from cuand_ce_ic_root
+define view ZI_Mkt_Interaction as select from cuand_ce_ic_root
 association [0..*] to cuand_ce_ia_rt as _interaction
   on $projection.Contact = _interaction.contact_key
 {
@@ -149,8 +148,8 @@ Create a view for analytic manager using annotation `@Analytics.dataCategory: #C
 @Analytics.dataCategory: #CUBE
 @VDM.viewType: #COMPOSITE
 @EndUserText.label: 'Cube for Contacts of Digital Account'
-define view Zi_Mkt_Digacc_C as select from Zi_Mkt_Digacc as digitalAccount
-association [1] to Zi_Mkt_Interaction as _interaction
+define view ZI_Mkt_DigAcc_C as select from ZI_Mkt_DigAcc as digitalAccount
+association [1] to ZI_Mkt_Interaction as _interaction
   on $projection.Contact = _interaction.Contact
 {
   key digitalAccount.DigitalAccount,
@@ -224,11 +223,11 @@ Generate an analytical OData Service: Use Transaction **/IWBEP/ANA_SRV_GEN**:
 
 [![SAP Gateway Analytics Service Generator ](/images/hana/olap/gateway-analytics-service-generator.jpg)](/images/hana/olap/gateway-analytics-service-generator.jpg)
 
-Check the generated gateway service using transaction **/N/IWBEP/REG_SERVICE**, you can also find the entity set external name (e.g. ZQ_DIGACC_CONTACTSResults) in the *Configuration* menu.
+Check the generated gateway service using transaction **/IWBEP/REG_SERVICE**, you can also find the entity set external name (e.g. ZQ_DIGACC_CONTACTSResults) in the *Configuration* menu.
 
 [![SAP Gateway Display Service](/images/hana/olap/gateway-display-service.jpg)](/images/hana/olap/gateway-display-service.jpg)
 
-#### Active Gateway Service
+#### Activate Gateway Service
 
 Start transaction **/IWFND/MAINT_SERVICE** to add the gateway service in the service catalog, ensure the ICF nodes for OData and system aliases configuration are ok.
 
@@ -251,11 +250,13 @@ Save the service. The usual steps for OData services apply: Activation, transpor
 > Queries may not be changed in an incompatible way. Thay means, existing fields from already delivered queries may not be deleted.<br>
 Fields from delivered OData services my not be removed or renamed, as this would also be an imcompatible change
 
-## From a CDS to an OData Service
+> May be get an error from accessing the OData service when you includes the gateway service in exist gateway project, then you can click the button 'Load Metadata' in transaction **/IWFND/MAINT_SERVICE** to refresh the metadata of the OData service.
+
+## Use CDS Annotations for OData Service
 Use another approach to expose CDS view as an OData service.
 
 ### Create CDS View for Analytics Query
-Create a CDS View used for Analytics Query by annotation `@Analytics.query: true`
+Create a CDS View used for Analytics Query by annotation `@Analytics.query: true`, which select data from Cube CDS view. And add annotation `@OData.publish: true` onto the view to publish it to an OData service.
 
 ```sql
 @AbapCatalog.sqlViewName: 'ZMKT_DIGACC_Q'
@@ -264,30 +265,23 @@ Create a CDS View used for Analytics Query by annotation `@Analytics.query: true
 @EndUserText.label: 'Query view of Digital Account'
 @VDM.viewType: #CONSUMPTION
 @Analytics.query: true
-define view Zc_Mkt_Digacc_Q as select from Zi_Mkt_Digacc_C
+@OData.publish: true
+define view ZC_Mkt_DigAcc_Q as select from ZI_Mkt_DigAcc_C
 {
-  Zi_Mkt_Digacc_C.DigitalAccount,
-  Zi_Mkt_Digacc_C.MarketingArea,
-  Zi_Mkt_Digacc_C.Contact,
-  Zi_Mkt_Digacc_C.Interactions
+  ZI_Mkt_DigAcc_C.DigitalAccount,
+  ZI_Mkt_DigAcc_C.MarketingArea,
+  ZI_Mkt_DigAcc_C.Contact,
+  ZI_Mkt_DigAcc_C.Interactions
 }
 ```
 
 The Query can be check in transaction **RSRT** (format `2C<CUBE_SQL_VIEW>/2C<QUERY_SQL_VIEW>`), the result is similar to 'Easy Query'.
+And you can also check the generated OData technical service named `<QUERY_VIEW>_CDS` in transaction **/IWBEP/REG_SERVICE**.
 
-### Change Release State
-Open transaction **SCLAS_API**, Select Characteristic "Release State" and search for your CDS view. Change your CDS view's release state to **_Released for version '2'_**
+### Activate the Service
+Activate the service in transaction **/IWFND/MAINT_SERVICE** manually. Now, you can access the OData service
 
-### Extensibility registration
-Extensibility registration in **SCFD_REGISTRY** (in ER3, package CUAN_MODEL_S_APPLICATION):
-
-* For Cube views: Retrieval should be done via association to extension include view.
-
-* For query views:
-
-* Query Designer app can be used to create new queries:
-
-* Query Browser can be used for multidimensional analysis of standard and custom queries:
+*/sap/opu/odata/SAP/ZC_MKT_DIGACC_Q_CDS/ZC_MKT_DIGACC_Q*
 
 ## OData Client Call
 When you call the OData service in client, you can filter data by
