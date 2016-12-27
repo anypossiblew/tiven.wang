@@ -18,6 +18,11 @@
         <script src="/libs/headjs/1.0.3/head.min.js"></script>
         <script>
             Reveal.initialize({
+              // Transition style
+              transition: '{{ page.transition }}',
+              // Transition style for full page slide backgrounds
+              backgroundTransition: '{{ page.transition }}',
+              
               dependencies: [
                 // Interpret Markdown in <section> elements
                 { src: '/libs/reveal.js/3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },

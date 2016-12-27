@@ -52,7 +52,7 @@ In the context of the consumption frameworks the main goals of the CDS based met
 
 * Enabling the reuse of metadata definitions across various realizations of a given domain like Fioiri UI and analytics,
 * Provisioning of a common unified and harmonized meta model for all frameworks
-isolines
+
 #### Analytical Engine
 Implicit Analytical Engine Logic (< NW7.50/7.62):
 [![VDMCDSAEImplictModel](/images/hana/cds/VDMCDSAEImplictModel.jpg)](/images/hana/cds/VDMCDSAEImplictModel.jpg)
