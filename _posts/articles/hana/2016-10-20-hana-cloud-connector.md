@@ -1,10 +1,10 @@
 ---
 layout: post
 title: HANA Cloud Connector
-excerpt: "HANA Cloud Connector"
-modified: 2016-10-25T17:00:00-00:00
+excerpt: "SAP HANA Cloud Platform, cloud connector is a simple on-premises integration agent that allows highly secure and reliable connectivity between your cloud applications and on-premises systems."
+modified: 2016-12-27T17:00:00-00:00
 categories: articles
-tags: [HCP, HANA, Cloud, XS, HTTP]
+tags: [HCC, HCP, HANA, Cloud, XS, HTTP]
 image:
   feature: cloud/mashheader-cloud.jpg
 comments: true
@@ -64,8 +64,15 @@ SAP HANA Cloud Platform, cloud connector provides a set of capabilities to secur
 [Download the HANA Cloud Connector](https://tools.hana.ondemand.com/#cloud)
 
 ### Add HCP Account
+Click the button **+ Add Account** in the **Connector** page, after created the account connect it
 
-[Configuration](https://help.hana.ondemand.com/help/frameset.htm?db9170a7d97610148537d5a84bf79ba2.html)
+![HCC Add Account](/images/cloud/hcp/hcc-add-account.jpg)
+
+Reference: [SAP HANA Cloud Connector Configuration](https://help.hana.ondemand.com/help/frameset.htm?db9170a7d97610148537d5a84bf79ba2.html)
+
+### Cloud To On-Premise
+
+Select your account, in **Cloud To On-Premise** page add the access control, create a **Mapping Virtual To Internal System**, input your OData services host information (e.g. *p514.dmzsin.sap.corp:56105*) and create the **Resources Accessible**.
 
 ### Be Used in Destination
 
