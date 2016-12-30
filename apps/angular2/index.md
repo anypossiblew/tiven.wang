@@ -8,16 +8,25 @@ laboratory:
   description: "Angular2 Developer With 5 Years experience on web development."
 projects:
   - title: "Todo list app"
-    description: "a project which offers the Todo application implemented using MVC concept in the Angular2 framework and TypeScript development language."
+    description: "A project which offers the Todo application implemented using MVC concept in the Angular2 framework and TypeScript development language."
     page: "todo/index.html"
     previewImage: "images/todo-app.png"
   - title: "BSOD"
-    description: "a project which shows my daily logs using the 'typed.js'."
+    description: "A project which shows my daily logs using the 'typed.js'."
     page: "bsod/index.html"
     previewImage: "images/bsod.png"
+  - title: "OAuth2 with YaaS"
+    description: "OAuth 2 is an authorization framework that enables applications to obtain limited access to user accounts on an HTTP service, such as Facebook, GitHub, and YaaS."
+    page: "oauth2/"
+    previewImage: "images/oauth2-with-yaas.png"
+
 ---
 
 ## Projects
+
+### [OAuth2 with YaaS](oauth2/)
+
+The detail can be found in article [OAuth2 with YaaS](/articles/oauth2-with-yaas/)
 
 ### [BSOD](bsod/index.html)
 

@@ -21,6 +21,8 @@ references:
 
 > The project code of the OAuth2 client for YaaS can be downloaded from [Github][github-oauth2-client]
 
+> The live demo: [OAuth2 with YaaS](/apps/angular2/oauth2/)
+
 ## OAuth 2
 
 OAuth 2 is an authorization framework that enables applications to obtain limited access to user accounts on an HTTP service, such as Facebook, GitHub, and YaaS.  It works by delegating user authentication to the service that hosts the user account, and authorizing third-party applications to access the user account. OAuth 2 provides authorization flows for web and desktop applications, and mobile devices.
