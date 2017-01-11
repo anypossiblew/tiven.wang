@@ -57,7 +57,7 @@ SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地�
 </figure>
 
 > The SAP HANA Multitenant Database Containers (MDC) feature enables hosting multiple SAP HANA databases on a single SAP HANA system. All tenant databases in the same system share the same system resources (memory and CPU cores) but each tenant database is fully isolated with its own database users, catalog, repository, persistence (data files and log files) and services. And now you can use all this on a trial landscape.
-> 
+>
 > You can have only one tenant database per account.
 
 创建成功后进入BD界面，显示此Database的一些重要信息
@@ -87,7 +87,7 @@ SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地�
 
 ### Create Package
 
-打开 **_SAP HANA Web-based Development Workbench： Editor_** 工具， 可以看到根目录为Content，即HANA Respository。 
+打开 **_SAP HANA Web-based Development Workbench： Editor_** 工具， 可以看到根目录为Content，即HANA Respository。
 
 创建一个新的Package "**_digital-account_**"， 我们的项目代码就放在此package下面。
 
@@ -99,7 +99,7 @@ SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地�
 
 HANA Application Lifecycle Management路径为 **_/sap/hana/xs/lm_**
 
-> 需要权限用户角色为 **sap.hana.xs.lm.roles::Administrator** 
+> 需要权限用户角色为 **sap.hana.xs.lm.roles::Administrator**
 
 #### Create Delivery Unit
 
@@ -123,9 +123,9 @@ Delivery Unit管理的详细教程可以参见[附录1][3]
 
 ### Synchronize with Github (Optional)
 
-可能是为了向现代化的代码管理工具上靠拢，Editor里增加了与Github库同步的功能。
+为了向现代化的代码管理工具上靠拢，Editor里增加了与Github和Github企业版的代码库同步功能。
 
-在需要同步的Package上右键菜单中**_Synchronize with Github_**开打Git Pane。
+在需要同步的Package上右键菜单中点击**_Synchronize with Github_**开打Git Pane。
 输入Github用户信息，确定后并设置respository和branch，然后就可以双向同步代码了。
 
 <figure class="center">
@@ -240,7 +240,7 @@ namespace "digital-account".data;
 context DigAccMessage {
 
 	type Content : String(5000);
-	
+
 	entity Message {
 		key id : Integer;
 		createdTime: UTCTimestamp;
@@ -278,11 +278,11 @@ function validateInput() {
 		 $.response.setBody("Wrong content type request use application/json");
 		return false;
 	}
-	
+
 	return true;
 }
-	
-// Request process 
+
+// Request process
 function processRequest(){
     if (validateInput()){
 		try {
@@ -294,10 +294,10 @@ function processRequest(){
 		            //Handle your POST calls here
 		        case $.net.http.POST:
 		            $.response.setBody(JSON.stringify(handlePost()));
-		            break; 
+		            break;
 		        case $.net.http.DEL:
 		            //
-		            break; 
+		            break;
 		        //Handle your other methods: PUT, DELETE
 		        default:
 		            $.response.status = $.net.http.METHOD_NOT_ALLOWED;
@@ -335,14 +335,14 @@ function saveMessage(content) {
 	var id = 0;
 	var conn = $.db.getConnection(conSQLConnection); // Create Connection used SQL Connection
 	conn.prepareStatement("SET SCHEMA " + conSchema).execute(); // Setting the SCHEMA
-	
+
 	var pStmt = conn.prepareStatement("select max( \"id\" ) from " + conMessageTable);
 	var rs = pStmt.executeQuery();
 	if (rs.next()) {
 		id = Number(rs.getNString(1)) + 1;
 	}
 	rs.close();
-	
+
 	pStmt = conn.prepareStatement("insert INTO "+conMessageTable+'("id", "createdTime", "content") values(?, now(), ?)');
 	pStmt.setInteger(1, id);
 	pStmt.setNString(2, JSON.stringify(content));
@@ -357,7 +357,7 @@ function saveMessage(content) {
 			id: id,
 			info: "Success!"
 		};
-	
+
 	if (conn) {
 		conn.close();
 	}
@@ -395,12 +395,12 @@ function handleGet() {
 		});
 	}
 	rs.close();
-	
+
 	if (conn) {
 		conn.close();
 	}
-	
-	// Retrieve data here and return results in JSON/other format 
+
+	// Retrieve data here and return results in JSON/other format
 	$.response.status = $.net.http.OK;
 	return {"result": messages};
 }

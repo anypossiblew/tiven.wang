@@ -1,5 +1,7 @@
 ---
 layout: post
+title: Persistence Service for Java Maven Project on HCP
+excerpt: "Persistence Service for Java Maven Project on HCP"
 modified: 2017-01-09T17:00:00-00:00
 categories: articles
 tags: [Maven, Java, HCP, HANA]
@@ -185,10 +187,96 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
 ## Test Locally
 
-`neo open-db-tunnel -h <host> -u <user> -a <account> --id <schema ID>`
+
+### Open DB Tunnel
+
+[SAP HANA Cloud Platform Console Client][HCP-Console-Client] enables development, deployment and configuration of an application outside the Eclipse IDE as well as continuous integration and automation tasks. The tool is part of the [SDK][HCP-SDK]. You can find it in the tools folder of your SDK location.
+
+So you can use a database tunnel to connect to a remote database instance through a secure connection. To open a tunnel, use the `open-db-tunnel` command in [console client][HCP-Console-Client] in [HCP SDK][HCP-SDK].
+
+For example :
+
+```
+set HTTP_PROXY_HOST=proxy
+set HTTP_PROXY_PORT=8080
+set HTTPS_PROXY_HOST=proxy
+set HTTPS_PROXY_PORT=8080
+set HTTP_NON_PROXY_HOSTS="localhost"
+neo open-db-tunnel -h int.sap.hana.ondemand.com -u cxxxxxx -a ixxxxxxsapdev --id hcpwechat
+```
+
+> If you have to configure proxy settings, specify them using the environment variables.
+
+If the tunnel is opened successfully, the remote database instance can be used as a local database connection.
+
+### Local Context Resource
+
+The [Context][Context] element represents a web application, which is run within a particular virtual host. Each web application is based on a [Web Application Archive (WAR)][WAR] file, or a corresponding directory containing the corresponding unpacked contents, as described in the [Servlet Specification][Servlet-Specification-3.0] (version 2.2 or later).
+
+You can declare the characteristics of the resource to be returned for [JNDI][JNDI] lookups of `<resource-ref>` and `<resource-env-ref>` elements in the web application deployment descriptor.
+
+You can define the context file at *src/test/resources/context.xml* as
+
+```xml
+<Context >
+  <Resource name="jdbc/DefaultDB"
+        global="jdbc/DefaultDB"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="com.sap.db.jdbc.Driver"
+        url="jdbc:sap://localhost:30015/"
+        username="<db_user>"
+        password="<password>"
+
+        maxActive="100"
+        maxIdle="20"
+        minIdle="5"
+        maxWait="10000"/>
+</Context>
+```
+
+### Maven Configurations and Tomcat7 Plugin
+
+In order to define *com.sap.db.jdbc.Driver* as the driver class name, you need add the SAP HANA jdbc Java package as a dependency in *pom.xml*:
+
+```xml
+<dependency>
+  <groupId>com.sap.db.jdbc</groupId>
+  <artifactId>ngdbc</artifactId>
+  <version>1.96.0</version>
+  <scope>system</scope>
+  <systemPath>${sap.cloud.sdk.path}/repository/.archive/lib/ngdbc.jar</systemPath>
+</dependency>
+```
+
+You also need to add the *context.xml* file in maven tomcat7 plugin configuration:
+
+```xml
+<plugin>
+  <groupId>org.apache.tomcat.maven</groupId>
+  <artifactId>tomcat7-maven-plugin</artifactId>
+  <version>2.0</version>
+  <configuration>
+    <contextFile>${project.basedir}/src/test/resources/context.xml</contextFile>
+  </configuration>
+</plugin>
+```
+
+### Run Locally
+
+Execute mvn tomcat plugin goal `mvn tomcat7:run` then access the web application through *http://localhost:8080/wechat/message*
 
 
 [github-project]:https://github.com/anypossiblew/hcp-java-wechat/tree/persistence
 
 [Java-EE-6-Tutorial-Persistence]:https://docs.oracle.com/javaee/6/tutorial/doc/bnbpy.html
 [EclipseLink]:http://www.eclipse.org/eclipselink/
+
+[HCP-Console-Client]:https://help.hana.ondemand.com/help/frameset.htm?76132306711e1014839a8273b0e91070.html
+[HCP-SDK]:https://help.hana.ondemand.com/help/frameset.htm?e7f54c25bb571014baee8ae351acd8d5.html
+[HCP-Opening-DB-Tunnel]:https://help.hana.ondemand.com/help/frameset.htm?6930850a8f9a40489c01ed1aa381946d.html
+
+[JNDI]:https://en.wikipedia.org/wiki/Java_Naming_and_Directory_Interface
+[Context]:https://tomcat.apache.org/tomcat-7.0-doc/config/context.html
+[WAR]:https://en.wikipedia.org/wiki/WAR_(file_format)
+[Servlet-Specification-3.0]:http://download.oracle.com/otn-pub/jcp/servlet-3.0-fr-eval-oth-JSpec/servlet-3_0-final-spec.pdf

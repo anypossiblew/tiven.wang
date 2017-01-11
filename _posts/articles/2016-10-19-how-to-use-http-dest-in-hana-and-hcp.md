@@ -53,12 +53,14 @@ timeout = 0;
 
 ### XS Admin Trust Manager
 
-下载line.me网站的证书，并在XS Admin管理界面(https://<your-hana-host>/sap/hana/xs/admin/)中的Trust Manager中创建一个Line的Trust Store，导入此证书
+下载*https://api.line.me*域名的证书，并在XS Admin管理界面(https://<your-hana-host>/sap/hana/xs/admin/)中的Trust Manager中创建一个Line的Trust Store，导入此证书
 
 <figure class="center">
 	<img src="/images/cloud/hana/hana-trust-manager.jpg" alt="HANA XS Admin Trust Manager">
 	<figcaption>HANA XS Admin Trust Manager</figcaption>
 </figure>
+
+> 下载LINE API的证书时注意，要使用完整的API访问（不然域名会发生跳转），然后使用默认配置导出cer证书文件
 
 ### Assign Trust Store
 
