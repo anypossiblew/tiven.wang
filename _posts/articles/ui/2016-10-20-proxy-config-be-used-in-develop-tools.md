@@ -45,7 +45,12 @@ systemProp.http.proxyUser=username
 systemProp.http.proxyPassword=xxx
 ```
 
-### JVM proxy config
+### JVM Proxy
+
+`java -Dhttp.proxyHost=proxy.com -Dhttp.proxyPort=8080
+-Dhttp.nonProxyHosts="localhost|host.example.com"`
+
+[Java Networking and Proxies](http://docs.oracle.com/javase/7/docs/technotes/guides/net/proxies.html)
 
 ### maven proxy config
 
@@ -106,9 +111,9 @@ npm get <key>
 npm set <key> <value> [--global]
 ```
 
-在设置配置属性时属性值默认是被存储于用户配置文件中，如果加上--global，则被存储在全局配置文件中。
-如果要查看npm的所有配置属性（包括默认配置），可以使用npm config ls -l。
-如果要查看npm的各种配置的含义，可以使用npm help config。
+在设置配置属性时属性值默认是被存储于用户配置文件中，如果加上`--global`， 则被存储在全局配置文件中。
+如果要查看npm的所有配置属性（包括默认配置），可以使用`npm config ls -l`。
+如果要查看npm的各种配置的含义，可以使用`npm help config`。
 为npm设置代理
 
 `$ npm config set proxy http://server:port`<br/>
@@ -126,11 +131,11 @@ npm set <key> <value> [--global]
 
 ### typings proxy
 
-You should be able to install it using `npm install -g typings` and use it by doing 
+You should be able to install it using `npm install -g typings` and use it by doing
 
 `typings install --proxy <proxy_uri>`
 
-or 创建文件`.typingsrc` Place token in your home directory (C:\Users\yourUsername\ on Windows) or your project directory.
+or 创建文件`.typingsrc` Place token in your home directory (*C:\\Users\\yourUsername\\* on Windows) or your project directory.
 
 ```
 {
@@ -145,7 +150,7 @@ or 创建文件`.typingsrc` Place token in your home directory (C:\Users\yourUse
 
 ### tsd proxy
 
-Create a .tsdrc file and in JSON set a proxy
+Create a `.tsdrc` file and in JSON set a proxy
 
 ```
 {
@@ -158,3 +163,9 @@ Create a .tsdrc file and in JSON set a proxy
 
 `$ gem install --http-proxy http://server:port $gem_name`
 
+### Cloud Foundry CLI
+System variable `https_proxy` = `http://my.proxyserver.com:8080`
+
+[Using the cf CLI with an HTTP Proxy Server][cf-CLI-proxy]
+
+[cf-CLI-proxy]:https://docs.cloudfoundry.org/cf-cli/http-proxy.html
