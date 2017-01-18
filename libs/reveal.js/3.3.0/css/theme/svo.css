@@ -300,14 +300,24 @@ body {
     margin-left: 10px;
     font-style: italic;
     font-weight: 200; }
+  .reveal .Adjective {
+    font-family: 'Dosis', "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 2.5em; }
   .reveal .Question {
     font-family: 'Dosis', "Source Sans Pro", Helvetica, sans-serif;
     font-size: 2.5em; }
+  .reveal .Explain {
+    font-family: 'Dosis', "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 1.5em; }
   .reveal .slides section .fragment.strikethrough {
     visibility: visible;
     opacity: 1; }
   .reveal .slides section .fragment.strikethrough.visible {
     text-decoration: line-through; }
+  .reveal .slides section .fragment.display {
+    display: none; }
+  .reveal .slides section .fragment.display.visible {
+    display: inline; }
   .reveal .Author {
     text-align: right;
     margin: 150px;
