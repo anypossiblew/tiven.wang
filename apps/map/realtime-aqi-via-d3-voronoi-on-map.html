@@ -12,6 +12,8 @@
 
 <link rel="stylesheet" href="/libs/leaflet/0.7.7/leaflet.css"/>
 
+<link rel="stylesheet" href="/libs/jquery-modal/0.8.0/jquery.modal.min.css"/>
+
 <style>
 html, body{
   height: 100%;
@@ -23,21 +25,17 @@ html, body{
   height: 100%;
 }
 
-div.tooltip {
-  position: absolute;	
-  padding: 2px;	
+#modal {
   font-family: 'Cambria','Palatino Linotype','Book Antiqua','URW Palladio L',serif, "微软雅黑";
-  background: lightsteelblue;	
-  border: 0px;					
-  border-radius: 4px;
 }
 
-div.tooltip:hover {
-	display: block;
+#modal.modal {
+  padding: 15px 20px;
 }
 
-div.tooltip .name {
-	font-weight: bold;
+.aqiwidget .aqivalue {
+  border-radius: 10px;
+  text-align: center;
 }
 
 .leaflet-control-legend {
@@ -56,12 +54,12 @@ div.tooltip .name {
 
 .ds-thread {
 	position: absolute;
-    right: 0;
-    background: #fcfcfc;
-    padding: 20px;
-    border-radius: 10px;
-    bottom: 0;
-    z-index: 1000;
+  right: 0;
+  background: #fcfcfc;
+  padding: 20px;
+  border-radius: 10px;
+  bottom: 0;
+  z-index: 1000;
 }
 
 </style>
@@ -69,7 +67,10 @@ div.tooltip .name {
 <body>
 <div id="map"></div>
 
+<div id="modal"></div>
+
 <script type="text/javascript" src="/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="/libs/jquery-modal/0.8.0/jquery.modal.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="/libs/d3/4.2.2/d3.min.js"></script>
 <script type="text/javascript" src="/libs/leaflet/0.7.7/leaflet.js"></script>
 <script type="text/javascript" src="./AQILegend.js"></script>
@@ -87,8 +88,9 @@ var aqiColour = d3.scaleThreshold()
 var aqiData = [];
 
 //leaflet地图初始化
-var map = L.map('map');  
+var map = L.map('map');
 map.setView([34, 119], 5);
+map.locate({setView: true, maxZoom: 9});
 map.on("viewreset moveend", onMapChanged);
 
 map.addControl(new L.control.LegendControl({
@@ -105,7 +107,7 @@ var openStreetMap = L.tileLayer(
 		attribution: 'Map data &copy; ' + mapLink + ' | AQI data &copy; ' + aqicnLink,
 		maxZoom: 18
 	}
-).addTo(map); 
+).addTo(map);
 
 var cartoDB_DarkMatter = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
@@ -127,15 +129,15 @@ var g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
 // Create tooltips for AQI
 // Define 'div' for tooltips
-var tooltips = d3.select("body")
-	.append("div")  // declare the tooltip div 
-	.attr("class", "tooltip")              // apply the 'tooltip' class
-	.style("opacity", 0);                  // set the opacity to nil
+// var tooltips = d3.select("body")
+// 	.append("div")  // declare the tooltip div
+// 	.attr("class", "tooltip")              // apply the 'tooltip' class
+// 	.style("opacity", 0);                  // set the opacity to nil
 
 var aqiPopup = L.popup({keepInView: true});
 
 var pSize = map.getPixelBounds().getSize();
-	
+
 // voronoi工具
 var voronoi = d3.voronoi()
 	.extent([[-pSize.x, -pSize.y], [pSize.x + 1, pSize.y + 1]])
@@ -210,8 +212,8 @@ function updateMap(pointdata) {
 	voronoi.extent([[topLeft.x-1, topLeft.y-1], [bottomRight.x + 1, bottomRight.y + 1]]);
 
 	var positions = [];
-	
-	pointdata.forEach(function(d) {        
+
+	pointdata.forEach(function(d) {
 		var latlng = new L.LatLng(d.lat, d.lon);
 		positions.push({
 			x :map.latLngToLayerPoint(latlng).x,
@@ -219,7 +221,7 @@ function updateMap(pointdata) {
 			aqi: d.aqi
 		});
 	});
-    
+
 	//删除旧的circle
 	d3.selectAll('.AQIpoint').remove();
 	var circle = g.selectAll("circle")
@@ -230,13 +232,13 @@ function updateMap(pointdata) {
 		.attr("cx", function(d, i) { return d.x; })
 		.attr("cy", function(d, i) { return d.y; })
 		.attr("r", 2)
-		.attr("fill", function(d,i) { 
+		.attr("fill", function(d,i) {
 			return aqiColour(jQuery.isNumeric(d.aqi) ? Number(d.aqi) : -1);
 		})
 		;
 
 	var diagram = voronoi(positions);
-  
+
 	//删除旧的path
 	svg.selectAll(".volonoi").remove();
 	//path追加
@@ -245,17 +247,17 @@ function updateMap(pointdata) {
 		.enter()
 		.append("svg:path")
 		.attr("class", "volonoi")
-		.attr("d", function(d) { 
-			return d ? "M" + d.join("L") + "Z" : null; 
+		.attr("d", function(d) {
+			return d ? "M" + d.join("L") + "Z" : null;
 		})
 		.attr("stroke", "white")
 		.attr("opacity", .3)
-		.attr("fill", function(d,i) { 
+		.attr("fill", function(d,i) {
 			return aqiColour(jQuery.isNumeric(pointdata[i].aqi) ? Number(pointdata[i].aqi) : -1);
 		})
 		.on("mouseenter", function (d, i) {
 		    d3.select(this).attr("stroke", "blue");
-		    closeTooltips(i);
+		    //closeTooltips(i);
 		})
 		.on("mouseleave", function () {
 		    d3.select(this).attr("stroke", "white");
@@ -287,32 +289,31 @@ function legend() {
 
 function openTooltips(d, aqiPoint, i) {
 
-	var position = map.layerPointToContainerPoint(L.point(aqiPoint.x, aqiPoint.y));
+  var tooltips = $("#modal");
+
+  getAqiWidget(d.x, function(widget) {
+    if(tooltips.aqiIndex === i) {
+      $("#aqi-content").html(widget);
+    }
+  });
 
 	tooltips.aqiIndex = i;
-	tooltips.style("display", "block");
-	tooltips.transition()
-		.duration(500)	
-		.style("opacity", 0);
-	tooltips.transition()
-		.duration(200)	
-		.style("opacity", .9);	
-	var html = '<div>' +
-				'<span class="name">监测点:</span>' + 
+
+	var html = '<div id="aqi-content">' +
+				'<span class="name">监测点:</span>' +
 				'<span>'+d.city+'</span><br>' +
-				'<span class="name">AQI类型:</span>' + 
+				'<span class="name">AQI类型:</span>' +
 				'<span>'+d.pol+'</span><br>' +
-				'<span class="name">AQI值:</span>' + 
+				'<span class="name">AQI值:</span>' +
 				'<span>'+d.aqi+'</span><br>' +
-				'<span class="name">更新时间:</span>' + 
+				'<span class="name">更新时间:</span>' +
 				'<span>'+d.utime+'</span>' +
-				'</div>'
-	tooltips.html(html)	 
-		.style("left", (position.x) + "px")			 
-		.style("top", (position.y - 28) + "px");
-	tooltips.on("click", function () {
-			closeTooltips(0);
-		});
+				'</div>';
+	tooltips.html(html);
+
+  $("#modal").modal({
+    fadeDuration: 250
+  });
 }
 
 function closeTooltips(i) {
@@ -320,6 +321,22 @@ function closeTooltips(i) {
 		tooltips.transition()
 				.style("display", "none");
 	}
+}
+
+function getAqiWidget(x, callback) {
+
+	var url = "https://api.waqi.info/api/widget/@"+x+"/widget.v1.json";
+
+	jQuery.ajax(url).done(function( data ) {
+    if(data.rxs && data.rxs.status === "ok") {
+      for (var i = data.rxs.obs.length - 1; i >= 0; i--) {
+        if(data.rxs.obs[i].status === "ok") {
+          callback(data.rxs.obs[i].msg.xxl);
+          return;
+        }
+      }
+    }
+  });
 }
 </script>
 </body>
