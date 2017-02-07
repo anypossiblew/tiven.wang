@@ -25,17 +25,37 @@ html, body{
   height: 100%;
 }
 
+.jquery-modal.blocker.current {
+  z-index: 1000;
+  padding: 0;
+}
+
 #modal {
   font-family: 'Cambria','Palatino Linotype','Book Antiqua','URW Palladio L',serif, "微软雅黑";
 }
 
 #modal.modal {
-  padding: 15px 20px;
+  padding: 15px;
+}
+
+#aqi-content .aqiwidget.aqiwidget-xxl {
+  float: left;
+}
+#aqi-content .divider {
+  float: left;
+  border-top: 1px solid lightgray;
+  width: 100%;
+  margin: 15px 0;
 }
 
 .aqiwidget .aqivalue {
   border-radius: 10px;
   text-align: center;
+}
+
+.divider {
+  width: 100%;
+  border-top: 1px solid grey;
 }
 
 .leaflet-control-legend {
@@ -76,6 +96,14 @@ html, body{
 <script type="text/javascript" src="./AQILegend.js"></script>
 <script type="text/javascript" src="./LegendControl.js"></script>
 
+<!-- setup Air Quality Widget -->
+<script type="text/javascript" charset="utf-8">
+    (function(w,d,t,f){  w[f]=w[f]||function(c,k,n){s=w[f],k=s['k']=(s['k']||(k?('&k='+k):''));s['c']=
+    c=(c  instanceof  Array)?c:[c];s['n']=n=n||0;var L=d.createElement(t),e=d.getElementsByTagName(t)[0];
+    L.async=1;L.src='//feed.aqicn.org/feed/'+(c[n].city)+'/'+(c[n].lang||'')+'/feed.v1.js?n='+n+k;
+    e.parentNode.insertBefore(L,e);  };  })(  window,document,'script','_aqiFeed'  );
+</script>
+
 <script>
 
 var aqiLegend = new AQILegend();
@@ -90,8 +118,9 @@ var aqiData = [];
 //leaflet地图初始化
 var map = L.map('map');
 map.setView([34, 119], 5);
-map.locate({setView: true, maxZoom: 9});
+// map.locate({setView: true, maxZoom: 9});
 map.on("viewreset moveend", onMapChanged);
+getMyAQI();
 
 map.addControl(new L.control.LegendControl({
     colors: aqiLegend.colors,
@@ -287,13 +316,17 @@ function legend() {
 	  .call(legendLinear);
 }
 
+/**
+ * Open a modal to display widget
+ */
 function openTooltips(d, aqiPoint, i) {
 
   var tooltips = $("#modal");
 
   getAqiWidget(d.x, function(widget) {
+    widget = widget.replace('javascript:clickShareWidget()', 'javascript:clickShareWidget('+d.x+')');
     if(tooltips.aqiIndex === i) {
-      $("#aqi-content").html(widget);
+      $("#aqi-content").html(widget);//+'<span class="divider"></span>'+widget+widget+widget);
     }
   });
 
@@ -316,6 +349,9 @@ function openTooltips(d, aqiPoint, i) {
   });
 }
 
+/**
+ * Close the widget modal
+ */
 function closeTooltips(i) {
 	if(tooltips.aqiIndex !== i) {
 		tooltips.transition()
@@ -323,6 +359,9 @@ function closeTooltips(i) {
 	}
 }
 
+/**
+ * Get the widget detail by index id of station.
+ */
 function getAqiWidget(x, callback) {
 
 	var url = "https://api.waqi.info/api/widget/@"+x+"/widget.v1.json";
@@ -338,6 +377,117 @@ function getAqiWidget(x, callback) {
     }
   });
 }
+
+function openWidgetModal(stations) {
+  var modal = $("#modal");
+
+  var content = '<div id="aqi-content">';
+  // stations.forEach(function(station) {
+  //   content = content + '<div id="widget@'+station.idx+'"></div>';
+  // });
+  content = content + '</div>';
+
+  modal.html(content);
+
+  modal.modal({
+    fadeDuration: 250
+  });
+
+  var citys = [];
+  stations.forEach(function(station) {
+    citys.push({city:station.city,  callback:  displayCity});
+    // _aqiFeed({  display:"%details",
+    //   container:"widget@"+station.idx,  city:station.city});
+  });
+  _aqiFeed(citys);
+  function displayCity(aqi) {
+    $("#aqi-content").append(aqi.text("%details"));
+  }
+}
+
+var localAQIStations = "aqi-stations";
+/**
+ * Get the use's location by IP address, and display the AQI widget in there.
+*/
+var aqiIndex = 0;
+function getMyAQI() {
+  var url = "https://api.waqi.info/feed/here/?token=e0fa2748923e43d5b5aa9627807b5ca857a909a4";
+  jQuery.ajax(url).done(function( data ) {
+    if(data.status === 'ok') {
+      aqiIndex++;
+      var stations = [{idx:data.data.idx, city: data.data.city.name}],
+          localStations = localStorage.getItem(localAQIStations);
+
+      if(localStations) {
+        localStations = JSON.parse(localStations);
+        stations = stations.concat(localStations);
+      }
+
+      openWidgetModal(stations);
+      // openTooltips({x:data.data.idx}, null, aqiIndex);
+      map.setView(data.data.city.geo, 8);
+
+      // console.log(localStorage.getItem(localAQIStations));
+    }
+  });
+}
+
+/**
+ * Save favorite stations in user's localStorage
+ */
+function clickShareWidget(station) {
+  console.log(station);
+  if (typeof(Storage) !== "undefined") {
+    getCityFeed('@'+station, function(data) {
+      // var city = data.city.url.match(/[-a-zA-Z0-9@:%_\+.~#?&=]*\/$/);
+      var city = data.city.name.split(',');
+      if(city && city.length) {
+        city = city[city.length-1];
+        city = city.trim();
+      }else {
+        return;
+      }
+      var newStation = {
+        idx: station,
+        city: city
+      };
+      // Code for localStorage/sessionStorage.
+      var stations = localStorage.getItem(localAQIStations);
+      if(stations) {
+        stations = JSON.parse(stations);
+        var exist = false;
+        stations.forEach(function(station) {
+          if(station.city === newStation.city) {
+            exist = true;
+          }
+        });
+        if(!exist) {
+          stations.push(newStation);
+          // Store
+          localStorage.setItem(localAQIStations, JSON.stringify(stations));
+        }
+      }else {
+        var stations = [newStation];
+        // Store
+        localStorage.setItem(localAQIStations, JSON.stringify(stations));
+      }
+    });
+  } else {
+      // Sorry! No Web Storage support..
+  }
+}
+
+function getCityFeed(city, callback) {
+
+  var url = 'https://api.waqi.info/feed/'+city+'/?token=e0fa2748923e43d5b5aa9627807b5ca857a909a4';
+
+  jQuery.ajax(url).done(function( data ) {
+    if(data.status === 'ok') {
+      callback(data.data);
+    }
+  });
+}
+
 </script>
 </body>
 </html>
