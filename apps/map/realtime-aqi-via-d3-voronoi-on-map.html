@@ -27,7 +27,7 @@ html, body{
 
 .jquery-modal.blocker.current {
   z-index: 1000;
-  padding: 0;
+  padding: 15px 0;
 }
 
 #modal {
@@ -36,16 +36,27 @@ html, body{
 
 #modal.modal {
   padding: 15px;
+  /*width: auto;*/
 }
 
 #aqi-content .aqiwidget.aqiwidget-xxl {
   float: left;
 }
-#aqi-content .divider {
+
+#aqi-content .widget {
+  text-align: center;
+}
+
+#aqi-content .divider:not(:last-child) {
   float: left;
   border-top: 1px solid lightgray;
   width: 100%;
   margin: 15px 0;
+}
+
+#aqi-content,#aqi-content-simple {
+  padding: 10px;
+  overflow-x: auto;
 }
 
 .aqiwidget .aqivalue {
@@ -83,6 +94,148 @@ html, body{
 }
 
 </style>
+<style type="text/css">
+  .leaflet-control-button {
+    background-color: white;
+    border: 2px solid rgba(0,0,0,0.2);
+    background-clip: padding-box;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .leaflet-buttons-control-button {
+    width: 30px;
+    height: 30px;
+  }
+  .leaflet-buttons-control-img {
+    width: 20px;
+    margin: 5px;
+  }
+  .leaflet-buttons-control-text-hide {
+    display: none;
+  }
+  @media only screen and (max-width: 1000px) {
+     .aqiwidget-table-x {
+         display: inline-block;
+     }
+
+     .aqiwidget {
+         border-radius: 0px;
+         /*border: 1px solid #ccc;*/
+         -moz-border-radius: 0px;
+         -webkit-border-radius: 0px;
+         box-shadow: none;
+         -moz-box-shadow: none;
+         -webkit-box-shadow: none;
+         text-align: center;
+     }
+
+     .aqiwgtsharebtn a span{
+       position: inherit !important;
+     }
+  }
+
+  @media only screen and (max-width: 500px) {
+     .aqiwidget-table-container-x {
+         display:inline-block;
+         text-align: center;
+     }
+
+     .aqiwgt-table-aqicell {
+         width: 33%;
+     }
+
+     .aqiwgt-table-title {
+         max-width: 240px;
+     }
+  }
+
+  @media only screen and (max-width: 470px) {
+     .aqiwidget-table-x {
+         width:100%!important;
+     }
+  }
+
+  @media only screen and (max-width: 800px) {
+     .aqi-graph-img {
+         x-width: 600px!important;
+     }
+  }
+
+  @media only screen and (max-width: 768px) {
+     .aqi-graph-img {
+         x-width: 568px!important;
+     }
+  }
+
+  @media only screen and (max-width: 600px) {
+     .aqi-graph-img {
+         x-width: 400px!important;
+     }
+
+     .aqivalue {
+         font-size: 38px!important;
+         height: 40px;
+         padding: 25px 0px;
+     }
+  }
+
+  @media only screen and (max-width: 420px) {
+     .aqi-graph-img {
+         width: 230px!important;
+     }
+  }
+
+  @media only screen and (max-width: 400px) {
+     .aqi-graph-img {
+         width: 215px!important;
+     }
+
+     .aqivalue {
+         font-size: 48px!important;
+         height: 30px;
+         padding: 30px 0px;
+         line-height: 30px;
+     }
+  }
+
+  @media only screen and (max-width: 380px) {
+     .aqi-graph-img {
+         width: 230px!important;
+     }
+
+     .tdmin {
+         display: none;
+     }
+
+     #modal.modal {
+       padding: 0;
+     }
+  }
+
+  @media only screen and (max-width: 360px) {
+     .aqi-graph-img {
+         width: 230px!important;
+     }
+
+     .tditem {
+         display: inline-block;
+         max-width: 30px;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+     }
+  }
+
+  @media only screen and (max-width: 320px) {
+     .aqi-graph-img {
+         width: 220px!important;
+     }
+
+     .tdmax {
+         display: none;
+     }
+  }
+</style>
 </head>
 <body>
 <div id="map"></div>
@@ -95,6 +248,8 @@ html, body{
 <script type="text/javascript" src="/libs/leaflet/0.7.7/leaflet.js"></script>
 <script type="text/javascript" src="./AQILegend.js"></script>
 <script type="text/javascript" src="./LegendControl.js"></script>
+<script type="text/javascript" src="./leaflet-button-control.js"></script>
+
 
 <!-- setup Air Quality Widget -->
 <script type="text/javascript" charset="utf-8">
@@ -105,6 +260,8 @@ html, body{
 </script>
 
 <script>
+//Constants
+var localAQIStations = "aqi-stations";
 
 var aqiLegend = new AQILegend();
 
@@ -120,12 +277,36 @@ var map = L.map('map');
 map.setView([34, 119], 5);
 // map.locate({setView: true, maxZoom: 9});
 map.on("viewreset moveend", onMapChanged);
-getMyAQI();
+
+map.addControl(new L.Control.Button({
+  position: 'topleft',
+  iconUrl: "/apps/map/images/favorited.png",
+  maxWidth: "30px",
+  hideText: true,
+  onClick: onMapFavClick
+}));
+
+map.addControl(new L.Control.Button({
+  position: 'topleft',
+  iconUrl: "/apps/map/images/Tracking.svg",
+  maxWidth: "30px",
+  hideText: true,
+  onClick: onMapLocClick
+}));
 
 map.addControl(new L.control.LegendControl({
     colors: aqiLegend.colors,
     labels: aqiLegend.labels
 }));
+
+function onMapFavClick(p) {
+  showFavorites();
+}
+function onMapLocClick(p) {
+  getMyAQI();
+}
+
+showFavorites();
 
 var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 var aqicnLink = '<a href="http://aqicn.org/">http://aqicn.org</a>'
@@ -292,7 +473,8 @@ function updateMap(pointdata) {
 		    d3.select(this).attr("stroke", "white");
 		})
 		.on("click", function (d, i) {
-			openTooltips(pointdata[i], positions[i], i);
+      openWidgetModal([{idx:pointdata[i].x}]);
+			// openTooltips(pointdata[i], positions[i], i);
 		});
 }
 
@@ -326,13 +508,13 @@ function openTooltips(d, aqiPoint, i) {
   getAqiWidget(d.x, function(widget) {
     widget = widget.replace('javascript:clickShareWidget()', 'javascript:clickShareWidget('+d.x+')');
     if(tooltips.aqiIndex === i) {
-      $("#aqi-content").html(widget);//+'<span class="divider"></span>'+widget+widget+widget);
+      $("#aqi-content-simple").html(widget);//+'<span class="divider"></span>'+widget+widget+widget);
     }
   });
 
 	tooltips.aqiIndex = i;
 
-	var html = '<div id="aqi-content">' +
+	var html = '<div id="aqi-content-simple">' +
 				'<span class="name">监测点:</span>' +
 				'<span>'+d.city+'</span><br>' +
 				'<span class="name">AQI类型:</span>' +
@@ -382,9 +564,9 @@ function openWidgetModal(stations) {
   var modal = $("#modal");
 
   var content = '<div id="aqi-content">';
-  // stations.forEach(function(station) {
-  //   content = content + '<div id="widget@'+station.idx+'"></div>';
-  // });
+  stations.forEach(function(station) {
+    content = content + '<div id="widget'+station.idx+'" class="widget"><img class="loading" src="/apps/images/Loading.gif"></div><span class="divider"></span>';
+  });
   content = content + '</div>';
 
   modal.html(content);
@@ -393,19 +575,17 @@ function openWidgetModal(stations) {
     fadeDuration: 250
   });
 
-  var citys = [];
   stations.forEach(function(station) {
-    citys.push({city:station.city,  callback:  displayCity});
-    // _aqiFeed({  display:"%details",
-    //   container:"widget@"+station.idx,  city:station.city});
+    getAqiWidget(station.idx, function(widget) {
+      widget = widget.replace('javascript:clickShareWidget()', 'javascript:clickShareWidget('+station.idx+')');
+      widget = $(widget);
+      widget.find( ".aqiwgtsharebtn a" ).attr("title", "收藏");
+      widget.find( ".aqiwgtsharebtn a span img" ).attr("src", checkLocalStation(station) ? "/apps/map/images/favorited.png" : "/apps/map/images/favorite.png");
+      $("#aqi-content #widget"+station.idx).find(".loading").replaceWith(widget);
+    });
   });
-  _aqiFeed(citys);
-  function displayCity(aqi) {
-    $("#aqi-content").append(aqi.text("%details"));
-  }
 }
 
-var localAQIStations = "aqi-stations";
 /**
  * Get the use's location by IP address, and display the AQI widget in there.
 */
@@ -415,65 +595,100 @@ function getMyAQI() {
   jQuery.ajax(url).done(function( data ) {
     if(data.status === 'ok') {
       aqiIndex++;
-      var stations = [{idx:data.data.idx, city: data.data.city.name}],
-          localStations = localStorage.getItem(localAQIStations);
-
-      if(localStations) {
-        localStations = JSON.parse(localStations);
-        stations = stations.concat(localStations);
-      }
-
+      var stations = [{idx:data.data.idx, city: data.data.city.name}];
       openWidgetModal(stations);
       // openTooltips({x:data.data.idx}, null, aqiIndex);
       map.setView(data.data.city.geo, 8);
-
-      // console.log(localStorage.getItem(localAQIStations));
     }
   });
+}
+
+/**
+ * Show user's favorite lists in modal
+ */
+function showFavorites() {
+  openWidgetModal(getFavorites());
+}
+
+/**
+ * Get user's favorite lists in localStorage
+ */
+function getFavorites() {
+  var localStations = localStorage.getItem(localAQIStations);
+  return JSON.parse(localStations).reverse();
 }
 
 /**
  * Save favorite stations in user's localStorage
  */
 function clickShareWidget(station) {
-  console.log(station);
+
+  var newStation = {
+    idx: station
+  };
+
   if (typeof(Storage) !== "undefined") {
-    getCityFeed('@'+station, function(data) {
-      // var city = data.city.url.match(/[-a-zA-Z0-9@:%_\+.~#?&=]*\/$/);
-      var city = data.city.name.split(',');
-      if(city && city.length) {
-        city = city[city.length-1];
-        city = city.trim();
-      }else {
-        return;
-      }
-      var newStation = {
-        idx: station,
-        city: city
-      };
-      // Code for localStorage/sessionStorage.
-      var stations = localStorage.getItem(localAQIStations);
-      if(stations) {
-        stations = JSON.parse(stations);
-        var exist = false;
-        stations.forEach(function(station) {
-          if(station.city === newStation.city) {
-            exist = true;
+
+    // Code for localStorage/sessionStorage.
+    var stations = localStorage.getItem(localAQIStations);
+    if(stations) {
+      stations = JSON.parse(stations);
+      var exist = false;
+      stations.some(function(station) {
+        if(station.idx === newStation.idx) {
+          return exist = true;
+        }
+      });
+      if(exist) {
+        stations.forEach(function(station, index, object) {
+          if(station.idx === newStation.idx) {
+            object.splice(index, 1);
           }
         });
-        if(!exist) {
-          stations.push(newStation);
-          // Store
-          localStorage.setItem(localAQIStations, JSON.stringify(stations));
-        }
       }else {
-        var stations = [newStation];
-        // Store
-        localStorage.setItem(localAQIStations, JSON.stringify(stations));
+        stations.push(newStation);
       }
-    });
-  } else {
-      // Sorry! No Web Storage support..
+      // Store
+      localStorage.setItem(localAQIStations, JSON.stringify(stations));
+    }else {
+      var stations = [newStation];
+      // Store
+      localStorage.setItem(localAQIStations, JSON.stringify(stations));
+    }
+  }else{
+    // Sorry! No Web Storage support..
+  }
+
+  toggleFavorite(newStation);
+}
+
+/**
+ * Toggle the icon of favorite button
+ */
+function toggleFavorite(station) {
+  $("#aqi-content #widget"+station.idx).find( ".aqiwgtsharebtn a span img" )
+    .attr("src", checkLocalStation(station) ? "/apps/map/images/favorited.png" : "/apps/map/images/favorite.png");
+}
+
+/**
+ * Check if the station is favorited
+ */
+function checkLocalStation(station) {
+  if (typeof(Storage) !== "undefined") {
+    var stations = localStorage.getItem(localAQIStations);
+    if(stations) {
+      stations = JSON.parse(stations);
+      var exist = false;
+      stations.forEach(function(s) {
+        if(station.idx === s.idx) {
+          exist = true;
+        }
+      });
+      return exist;
+    }
+    return false;
+  }else {
+    return false;
   }
 }
 
