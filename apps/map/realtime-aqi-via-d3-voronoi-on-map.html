@@ -607,7 +607,10 @@ function getMyAQI() {
  * Show user's favorite lists in modal
  */
 function showFavorites() {
-  openWidgetModal(getFavorites());
+  var favorites = getFavorites();
+  if(favorites) {
+    openWidgetModal(favorites);
+  }
 }
 
 /**
@@ -615,7 +618,11 @@ function showFavorites() {
  */
 function getFavorites() {
   var localStations = localStorage.getItem(localAQIStations);
-  return JSON.parse(localStations).reverse();
+  if(localStations) {
+    return JSON.parse(localStations).reverse();
+  }else {
+    return null;
+  }
 }
 
 /**
