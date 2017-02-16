@@ -42,6 +42,8 @@ install maven plugins for eclipse using url *http://download.eclipse.org/technol
 
 `mvn clean`
 
+`mvn ... -DskipTests`
+
 [Maven guides getting started][maven-getting-started]
 
 [maven-getting-started]:https://maven.apache.org/guides/getting-started/
