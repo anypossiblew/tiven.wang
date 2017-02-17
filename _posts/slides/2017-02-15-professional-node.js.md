@@ -2,7 +2,7 @@
 layout: slides
 theme: svo
 transition: slide
-title: Professional Node.js Building Javascript Based Scalable Software
+title: Professional Node.js - Building Javascript Based Scalable Software
 excerpt: ""
 modified: 2017-02-14T17:00:00-00:00
 categories: articles
@@ -10,7 +10,12 @@ tags: [Node.js]
 ---
 
 <section>
-  <p class="Question">Introducing Node.js</p>
+  <p class="Question">Professional Node.js</p>
+  <p class="Author">Pedro Teixeira</p>
+</section>
+
+<section>
+  <p class="Question">Introduction</p>
 </section>
 
 <section>

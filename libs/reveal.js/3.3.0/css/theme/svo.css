@@ -322,3 +322,5 @@ body {
     text-align: right;
     margin: 150px;
     margin-bottom: 10px; }
+  .reveal .Keyword {
+    padding: 0 15px; }
