@@ -5,8 +5,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
     <head>
       {% include head.html %}
-        <link rel="stylesheet" href="/libs/reveal.js/3.3.0/css/reveal.css">
-        <link rel="stylesheet" href="/libs/reveal.js/3.3.0/css/theme/{{ page.theme }}.css">
+        <link rel="stylesheet" href="{{ site.cdnjs }}/reveal.js/3.3.0/css/reveal.css">
+        <link rel="stylesheet" href="{{ site.cdnjs }}/reveal.js/3.3.0/css/theme/{{ page.theme }}.css">
     </head>
     <body>
         <div class="reveal">
@@ -14,36 +14,36 @@
             {{ content }}
           </div>
         </div>
-        <script src="/libs/reveal.js/3.3.0/js/reveal.js"></script>
-        <script src="/libs/headjs/1.0.3/head.min.js"></script>
+        <script src="{{ site.cdnjs }}/reveal.js/3.3.0/js/reveal.js"></script>
+        <script src="{{ site.cdnjs }}/headjs/1.0.3/head.min.js"></script>
         <script>
             Reveal.initialize({
               // Transition style
               transition: '{{ page.transition }}',
               // Transition style for full page slide backgrounds
               backgroundTransition: '{{ page.transition }}',
-              
+
               dependencies: [
                 // Interpret Markdown in <section> elements
-                { src: '/libs/reveal.js/3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                  { src: '/libs/reveal.js/3.3.0/plugin/markdown/markdown.js', condition: function() {
+                { src: '{{ site.cdnjs }}/reveal.js/3.3.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                  { src: '{{ site.cdnjs }}/reveal.js/3.3.0/plugin/markdown/markdown.js', condition: function() {
                     return !!document.querySelector( '[data-markdown]' );
                   } },
 
                   // Syntax highlight for <code> elements
-                  { src: '/libs/reveal.js/3.3.0/plugin/highlight/highlight.js', async: true, callback: function() {
+                  { src: '{{ site.cdnjs }}/reveal.js/3.3.0/plugin/highlight/highlight.js', async: true, callback: function() {
                       hljs.initHighlightingOnLoad();
                     }
                   },
 
                   // Zoom in and out with Alt+click
-                  { src: '/libs/reveal.js/3.3.0/plugin/zoom-js/zoom.js', async: true },
+                  { src: '{{ site.cdnjs }}/reveal.js/3.3.0/plugin/zoom-js/zoom.js', async: true },
 
                   // Speaker notes
-                  { src: '/libs/reveal.js/3.3.0/plugin/notes/notes.js', async: true },
+                  { src: '{{ site.cdnjs }}/reveal.js/3.3.0/plugin/notes/notes.js', async: true },
 
                   // MathJax
-                  { src: '/libs/reveal.js/3.3.0/plugin/math/math.js', async: true }
+                  { src: '{{ site.cdnjs }}/reveal.js/3.3.0/plugin/math/math.js', async: true }
               ]
           });
         </script>

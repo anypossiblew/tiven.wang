@@ -6,7 +6,7 @@ title: Professional Node.js - Building Javascript Based Scalable Software
 excerpt: ""
 modified: 2017-02-14T17:00:00-00:00
 categories: articles
-tags: [Node.js]
+tags: [Node.js, Reading]
 ---
 
 <section>
@@ -91,15 +91,44 @@ tags: [Node.js]
 <section>
 <p>
 <span class="Adjective fragment fade"><a href="https://nodejs.org/api/path.html">path</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/fs.html">, fs</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/child_process.html">, child_process</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/stream.html">, stream</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/net.html">, net</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/http.html">, http</a></span>
-<span class="Adjective fragment fade"><a href="https://github.com/request/request">, request</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/dgram.html">, dgram</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/tls.html">, tls</a></span>
-<span class="Adjective fragment fade"><a href="https://nodejs.org/api/https.html">, https</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/fs.html">fs</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/child_process.html">child_process</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/stream.html">stream</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/net.html">net</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/http.html">http</a></span>
+<span class="Adjective fragment fade">, <a href="https://github.com/request/request">request</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/dgram.html">dgram</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/tls.html">tls</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/https.html">https</a></span>
+</p>
+</section>
+
+<section>
+  <p class="Question">Building and Debugging Modules and Applications</p>
+</section>
+
+<section>
+<p>
+<span class="Adjective fragment fade"><a href="http://www.node-tap.org/">tap</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/assert.html">assert</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/console.html">console.log</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/util.html#util_util_format_format_args">util.format</a></span>
+<span class="Adjective fragment fade">, <a href="https://nodejs.org/api/debugger.html">debugger</a></span>
+<span class="Adjective fragment fade">, <a href="https://github.com/node-inspector/node-inspector">node-inspector</a></span>
+<span class="Adjective fragment fade">, <a href="http://caolan.github.io/async/">async</a></span>
+</p>
+</section>
+
+<section>
+  <p class="Subject">V</p>
+  <p class="Question">Building Web Applications</p>
+</section>
+
+<section>
+<p>
+<span class="Adjective"><a href="https://github.com/senchalabs/connect">connect</a></span>
+<span class="Adjective fragment fade">, <a href="http://expressjs.com/">express</a></span>
+<span class="Adjective fragment fade">, <a href="https://pugjs.org">pug</a></span>
 </p>
 </section>
 

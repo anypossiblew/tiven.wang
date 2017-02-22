@@ -16,17 +16,68 @@ references:
     url: "https://www.youtube.com/playlist?list=PLkzo92owKnVyHVtrzyF4KSQomTuKRg0q_"
   - title: "SAP Blog - HCI: Integrate On Premise ERP with HCI IDoc Adapter using HANA Cloud Connector & Client Authentication"
     url: "https://blogs.sap.com/2016/03/30/hci-integrate-on-premise-erp-with-hci-idoc-adapter-using-hana-cloud-connector-client-authentication/"
-  - title: "SAP Blog - HCI: Integrate On Premise ERP with HCI IDoc Adapter using HANA Cloud Connector & Client Authentication"
+  - title: "HCP Documents - SAP HANA Cloud Integration for Processes"
     url: "https://proddps.hana.ondemand.com/dps/d/preview/88a767b35adb4dc887ee1d545d301140/1/en-US/f830932fddf6453ebe1fd0c666592017.html"
+  - title: "open.sap.com - Application Integration Made Simple with SAP HANA Cloud Integration"
+    url: "https://open.sap.com/courses/hci1/overview"
 ---
 
 * TOC
 {:toc}
 
+## Backgrounds
+
+### Apache Camel
+[Apache Camel][Apache-Camel] ™ is a versatile open-source integration framework based on known [Enterprise Integration Patterns][Enterprise-Integration-Patterns].
+
+### Enterprise Integration Patterns
+[Camel][Apache-Camel] supports most of the [Enterprise Integration Patterns][Enterprise-Integration-Patterns] from the excellent book by [Gregor Hohpe and Bobby Woolf][amazon-Enterprise-Integration-Patterns].
+
 ### Download HCI-DS Agent
 
-https://p514.dmzsin.sap.corp:30030
-
 [Data Services Agent][1]
+
+## Camel’s Message Model
+
+### Message
+![Image Camel Message](/images/cloud/hcp/hci/camel-message.jpg)
+{: .pull-right}
+
+Fundamental entity **containing the data** being carried and routed in Camel
+
+* Messages have a body (a payload), headers, and optional attachments
+* Messages are uniquely identified with an identifier of type `java.lang.String`
+* Headers
+  * Headers are values associated with the message Sender identifier, hints about content encoding, authentication information,…
+  * Headers are name-value-pairs Name is a unique, case-insensitive string Value is of type `java.lang.Object`
+* Attachments
+  * Optional – typically used for Web service and e-mail components
+* Body
+  * Type: `java.lang.Object` -> any kind of content is allowed
+
+### Exchange
+![Image Camel Message](/images/cloud/hcp/hci/camel-exchange.jpg)
+{: .pull-right}
+
+The **message’s container** during routing
+
+* Provides support for various interaction types between systems, known as Message Exchange Patterns (MEP)
+  * InOnly: a one-way message (e.g. JMS messaging)
+  * InOut: a request-response message (e.g. HTTP-based transports)
+* Exchange ID: a unique ID that identifies the exchange
+* MEP
+  * InOnly: exchange contains an “in message” only
+  * InOut: exchange contains an “in message” and an “out message” containing the reply message for the caller
+* Exception: If an error occurs during runtime, the Exception field will be filled
+* Properties: Similar to message headers, but they last for the duration of the entire exchange; they contain global-level information; you can store and retrieve properties at any point during the lifetime of an exchange
+
+### Goals
+Store data in the message header and in the properties of the exchange. Retrieve data from header and properties to build the reply message
+
+
+
+[Apache-Camel]:http://camel.apache.org/
+[Enterprise-Integration-Patterns]:http://camel.apache.org/enterprise-integration-patterns.html
+[amazon-Enterprise-Integration-Patterns]:http://www.amazon.com/exec/obidos/search-handle-url/105-9796798-8100401?%5Fencoding=UTF8&search-type=ss&index=books&field-author=Gregor%20Hohpe
 
 [1]:https://launchpad.support.sap.com

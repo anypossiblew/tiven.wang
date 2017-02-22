@@ -2,10 +2,11 @@
 
 title: Tiven's Blog
 locale: zh
-description: personal technical blog about SAP.
+description: Personal Computer Technology Blog.
 logo: site-logo.png
 search: true
-url: http://tiven.wang #http://127.0.0.1:4000
+url: http://tiven.wang #http://127.0.0.1:4000 #
+cdnjs: http://cdnjs.tiven.wang/ajax/libs
 
 # Jekyll configuration
 
@@ -14,7 +15,7 @@ markdown:    kramdown
 highlighter: rouge
 sass:
   sass_dir: _sass
-  style: compressed
+  style:    compressed
 gems:
   - jekyll-sitemap
   - jekyll-gist
@@ -29,6 +30,7 @@ kramdown:
   entity_output: as_char
   toc_levels: 2..4
   enable_coderay: false
+  syntax_highlighter: rouge
 
 mathjax: false
 
@@ -51,7 +53,7 @@ owner:
   linkedin: tiven
   instagram: #username
   flickr: #username
-  tumblr: wangtiven
+  tumblr: tiven-wang
   pinterest: #username
   weibo: #userid
   google:

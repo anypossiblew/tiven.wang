@@ -6,7 +6,7 @@ title: Cloud Application Architectures - Building Applications and Infrastructur
 excerpt: ""
 modified: 2017-02-17T17:00:00-00:00
 categories: articles
-tags: [Cloud]
+tags: [Cloud, Reading]
 ---
 
 <section>
@@ -88,6 +88,11 @@ tags: [Cloud]
 <li class="Object fragment fade-up">Data Segmentation</li>
 <li class="Object fragment fade-up">Credential Management</li>
 </ul>
+</section>
+
+<section>
+  <p class="Subject">Chapter 6</p>
+  <p class="Adjective">Disaster Recovery</p>
 </section>
 
 <section>

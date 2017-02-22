@@ -22,6 +22,8 @@ share: true
 * Maven 3.+
 * Eclipse with Maven plugins
 
+http://download.eclipse.org/technology/m2e/releases/
+
 ## Maven Project Initialization
 
 You will need somewhere for your project to reside, create a directory somewhere and start a shell in that directory. On your command line, execute the following Maven goal:
