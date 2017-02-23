@@ -107,7 +107,7 @@ svg.selectAll("path")
 ### Demo
 
 <div class="mfp-iframe-scaler">
-<iframe width="420" height="100" src="/apps/map/realtime-aqi-via-d3-voronoi-on-map.html" frameborder="1"></iframe>
+<iframe width="420" height="100" src="http://labs.tiven.wang/map/realtime-aqi-via-d3-voronoi-on-map.html" frameborder="1"></iframe>
 </div>
 [See this example stand-alone][1]
 {: .center}
@@ -122,7 +122,7 @@ svg.selectAll("path")
 
 * [isolines][4] 可以计算出AQI不同区间值的分割线，即AQI值等高线。对于观测AQI的区间分布范围有比较好的效果。
 
-[1]:/apps/map/realtime-aqi-via-d3-voronoi-on-map.html
-[2]:/apps/map/realtime-aqi-via-turf-tin-on-map-local.html
-[3]:/apps/map/realtime-aqi-via-turf-hex-on-map.html
-[4]:/apps/map/realtime-aqi-via-turf-isolines-on-map.html
+[1]:http://labs.tiven.wang/map/realtime-aqi-via-d3-voronoi-on-map.html
+[2]:http://labs.tiven.wang/map/realtime-aqi-via-turf-tin-on-map-local.html
+[3]:http://labs.tiven.wang/map/realtime-aqi-via-turf-hex-on-map.html
+[4]:http://labs.tiven.wang/map/realtime-aqi-via-turf-isolines-on-map.html

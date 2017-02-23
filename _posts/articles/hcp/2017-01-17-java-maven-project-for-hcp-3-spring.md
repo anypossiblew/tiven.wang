@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Apply Spring Architecture for Java Maven Project on HCP
-excerpt: "Apply Spring Architecture for Java Maven Project on HCP"
-modified: 2017-01-17T17:00:00-00:00
+title: Apply Spring Architecture to Java Project on HCP
+excerpt: "The Spring Framework is an application framework and inversion of control container for the Java platform. The framework's core features can be used by any Java application, but there are extensions for building web applications on top of the Java EE platform. Although the framework does not impose any specific programming model, it has become popular in the Java community as an alternative to, replacement for, or even addition to the Enterprise JavaBeans (EJB) model. I will show you how to apply Spring Frameworks to Java project on HANA Cloud Platform."
+modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [Spring, Maven, Java, HCP, HANA]
 image:

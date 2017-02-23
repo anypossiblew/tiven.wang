@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Apply Spring Data JPA for Java Maven Project on HCP
-excerpt: "Apply Spring Data JPA for Java Maven Project on HCP"
-modified: 2017-01-18T17:00:00-00:00
+title: Apply Spring Data JPA to Java Project on HCP
+excerpt: "Spring Data’s mission is to provide a familiar and consistent, Spring-based programming model for data access while still retaining the special traits of the underlying data store. Spring Data JPA, part of the larger Spring Data family, makes it easy to easily implement JPA based repositories. This module deals with enhanced support for JPA based data access layers. It makes it easier to build Spring-powered applications that use data access technologies."
+modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [Spring, Maven, Java, HCP, HANA]
 image:

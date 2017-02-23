@@ -1,8 +1,8 @@
 ---
 layout: post
 title: OAuth2 with YaaS
-excerpt: "OAuth2 with YaaS"
-modified: 2016-11-21T17:00:00-00:00
+excerpt: "OAuth 2 is an authorization framework that enables applications to obtain limited access to user accounts on an HTTP service, such as Facebook, GitHub, and YaaS. YaaS is a microservices ecosystem helping businesses to rapidly augment and build new, highly flexible solutions. In this article I will show you how to create OAuth2 client and how to use OAuth2 services in YaaS Platform"
+modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [OAuth2, YaaS, Cloud, Angular.js]
 image:
@@ -21,11 +21,11 @@ references:
 
 > The project code of the OAuth2 client for YaaS can be downloaded from [Github][github-oauth2-client]
 
-> The live demo: [OAuth2 with YaaS](/apps/angular2/oauth2/)
+> The live demo: [OAuth2 with YaaS][OAuth2-with-YaaS]
 
 ## OAuth 2
 
-OAuth 2 is an authorization framework that enables applications to obtain limited access to user accounts on an HTTP service, such as Facebook, GitHub, and YaaS.  It works by delegating user authentication to the service that hosts the user account, and authorizing third-party applications to access the user account. OAuth 2 provides authorization flows for web and desktop applications, and mobile devices.
+OAuth 2 is an authorization framework that enables applications to obtain limited access to user accounts on an HTTP service, such as Facebook, GitHub, and YaaS. It works by delegating user authentication to the service that hosts the user account, and authorizing third-party applications to access the user account. OAuth 2 provides authorization flows for web and desktop applications, and mobile devices.
 
 OAuth defines four roles:
 
@@ -270,6 +270,7 @@ The Access Token Response
 [yaas-oauth2]:https://devportal.yaas.io/services/oauth2/latest/index.html
 [OAuth2]:https://oauth.net/2/
 [restangular]:https://github.com/mgonto/restangular
+[OAuth2-with-YaaS]:http://labs.tiven.wang/angular2/oauth2/
 
 [github-oauth2-client]:https://github.com/anypossiblew/hcp-cf-digital-account/tree/master/yaas-oauth2-client
 [ietf-oauth2-section10.12]:https://tools.ietf.org/html/rfc6749#section-10.12

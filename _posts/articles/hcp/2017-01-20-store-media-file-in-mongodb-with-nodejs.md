@@ -1,8 +1,8 @@
 ---
 layout: post
 title: How to Store Media Files in MongoDB with Node.js application
-excerpt: "How to Store Media Files in MongoDB with Node.js application"
-modified: 2017-01-20T17:00:00-00:00
+excerpt: "I want to store a large number of media files in a mongo database, but I don't know if it is a good practice. I would like to know the problems and concerns of doing it in this way. In this topic I will introduce how to store media files in MongoDB with Node.js application"
+modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [GridFS, Mongoose, MongoDB, Node.js]
 image:

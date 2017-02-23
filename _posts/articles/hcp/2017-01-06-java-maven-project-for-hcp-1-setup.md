@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Setup Java Maven Project for HANA Cloud Platform
-excerpt: "Setup Java Maven Project for HANA Cloud Platform"
-modified: 2017-01-06T17:00:00-00:00
+excerpt: "SAP HANA Cloud Platform is an open platform-as-a-service that provides unique in-memory database and application services. It is the proven cloud platform that enables you to rapidly develop new applications or extend existing ones. Enabling anyone to extend SAP applications in minutes, all in the cloud."
+modified: 2017-02-23T17:00:00-00:00
 categories: articles
-tags: [Maven, Java, HCP]
+tags: [HCP, Maven, Java]
 image:
   feature: cloud/masthead-incubators.jpg
 comments: true

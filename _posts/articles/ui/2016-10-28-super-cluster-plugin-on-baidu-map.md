@@ -112,7 +112,7 @@ function getJSON(url, callback) {
 这里使用5w个点进行模拟，最终地图效果
 
 <div class="mfp-iframe-scaler">
-<iframe width="420" height="100" src="/apps/map/cluster/" frameborder="1"></iframe>
+<iframe width="420" height="100" src="http://labs.tiven.wang/map/cluster/" frameborder="1"></iframe>
 </div>
 [See this example stand-alone][4]
 {: .center}
@@ -121,4 +121,4 @@ function getJSON(url, callback) {
 [1]:https://github.com/Leaflet/Leaflet.markercluster
 [2]:http://lbsyun.baidu.com/index.php?title=open/library
 [3]:https://github.com/mapbox/supercluster
-[4]:/apps/map/cluster/
+[4]:http://labs.tiven.wang/map/cluster/

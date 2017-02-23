@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Maven Commands
-excerpt: "Maven Commands"
+excerpt: "Maven is a build automation tool used primarily for Java projects. Apache Maven is a software project management and comprehension tool. Based on the concept of a project object model (POM), Maven can manage a project's build, reporting and documentation from a central piece of information."
 modified: 2017-01-06T17:00:00-00:00
 categories: articles
 tags: [Maven, Tools]

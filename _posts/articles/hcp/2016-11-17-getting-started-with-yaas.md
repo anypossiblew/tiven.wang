@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Getting Started with YaaS
-excerpt: "Getting Started with YaaS"
+excerpt: "YaaS (Hybris as a Service) is a microservices ecosystem helping businesses to rapidly augment and build new, highly flexible solutions. Two role in YaaS, one is provider, another is consumer. As a provider, add new microservice-based features to your products or create your own services and apps from scratch. As a business, subscribe to YaaS services and add new capabilities to your applications. Let's get started with YaaS"
 modified: 2016-11-18T17:00:00-00:00
 categories: articles
 tags: [YaaS, HCP, Cloud]

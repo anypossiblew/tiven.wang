@@ -1,7 +1,7 @@
 ---
 layout: post
 title: HANA Cloud Integration
-excerpt: "HANA Cloud Integration"
+excerpt: " SAP HANA Cloud Integration easily exchange data in real-time with SAP HANA Cloud Platform, integration services. Integrate processes and data between cloud apps, 3rd party applications and on-premises solutions with this open, flexible, on-demand integration system running as a core service on SAP HANA Cloud Platform."
 modified: 2016-10-31T17:00:00-00:00
 categories: articles
 tags: [HCP, HANA, Cloud, Integration, HCI]

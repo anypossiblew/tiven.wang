@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Persistence Service for Java Maven Project on HCP
-excerpt: "Persistence Service for Java Maven Project on HCP"
-modified: 2017-01-09T17:00:00-00:00
+excerpt: "The Java Persistence API (JPA) is a Java specification for accessing, persisting, and managing data between Java objects / classes and a relational database. JPA was defined as part of the EJB 3.0 specification as a replacement for the EJB 2 CMP Entity Beans specification. In this topic I will show you how to create persistence service for Java project on HCP using Java Persistence API (JPA) and it's implementation EclipseLink"
+modified: 2017-02-23T17:00:00-00:00
 categories: articles
-tags: [Maven, Java, HCP, HANA]
+tags: [JPA, HCP, Maven, Java, HANA]
 image:
   feature: cloud/masthead-incubators.jpg
 comments: true
