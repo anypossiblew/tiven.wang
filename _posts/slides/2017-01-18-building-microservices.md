@@ -10,6 +10,11 @@ tags: [Microservices, Reading]
 ---
 
 <section>
+<p class="Subject">CHAPTER 1</p>
+<p class="Question">Microservices</p>
+</section>
+
+<section>
 <p class="Question">What are Microservices</p>
 </section>
 
@@ -45,6 +50,15 @@ tags: [Microservices, Reading]
 <p class="Attributive">is as</p>
 <p class="Object fragment fade">a specific approach for SOA in the same way that XP or
 Scrum are specific approaches for Agile software development</p>
+</section>
+
+<section>
+<p class="Subject">CHAPTER 2</p>
+<p class="Question">The Evolutionary Architect</p>
+</section>
+
+<section>
+<p class=""><a href="https://12factor.net/">12-factors</a></p>
 </section>
 
 <section>

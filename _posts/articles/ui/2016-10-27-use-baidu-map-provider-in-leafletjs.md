@@ -214,16 +214,14 @@ var map = L.map("map", options);
 
 ### Demo
 
-<div class="mfp-iframe-scaler">
-<iframe width="420" height="100" src="/apps/map/leaflet-baidu/" frameborder="1"></iframe>
-</div>
-
-[See this example stand-alone][6]
+[![Image: leaflet baidu map][7]][6]
 {: .center}
+
 
 [1]:/articles/hana-spatial-in-action/#srs---spatial-reference-system
 [2]:/articles/hana-spatial-with-baidu-map/#section-1
-[3]:/apps/map/leaflet-baidu/
+[3]:http://labs.tiven.wang/map/leaflet-baidu/
 [4]:http://mathworld.wolfram.com/MercatorProjection.html
-[5]:/apps/map/leaflet-baidu/leaflet-baidu.js
-[6]:/apps/map/leaflet-baidu/
+[5]:http://labs.tiven.wang/map/leaflet-baidu/leaflet-baidu.js
+[6]:http://labs.tiven.wang/map/leaflet-baidu/
+[7]:http://labs.tiven.wang/map/images/thumbs/leaflet-baidu.jpg
