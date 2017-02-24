@@ -15,6 +15,7 @@ tags: [Node.js, Reading]
 </section>
 
 <section>
+  <p class="Subject">I</p>
   <p class="Question">Introduction</p>
 </section>
 
@@ -51,6 +52,7 @@ tags: [Node.js, Reading]
 </section>
 
 <section>
+  <p class="Subject">II</p>
   <p class="Question">Node Core API</p>
 </section>
 
@@ -85,6 +87,7 @@ tags: [Node.js, Reading]
 </section>
 
 <section>
+  <p class="Subject">III</p>
   <p class="Question">Files, Processes, Streams, and Networking</p>
 </section>
 
@@ -104,6 +107,7 @@ tags: [Node.js, Reading]
 </section>
 
 <section>
+  <p class="Subject">IV</p>
   <p class="Question">Building and Debugging Modules and Applications</p>
 </section>
 
@@ -129,6 +133,9 @@ tags: [Node.js, Reading]
 <span class="Adjective"><a href="https://github.com/senchalabs/connect">connect</a></span>
 <span class="Adjective fragment fade">, <a href="http://expressjs.com/">express</a></span>
 <span class="Adjective fragment fade">, <a href="https://pugjs.org">pug</a></span>
+<span class="Adjective fragment fade">, <a href="https://github.com/socketio/socket.io">socket.io</a></span>
+<span class="Adjective fragment fade">, <a href="https://github.com/nodejitsu/node-http-proxy">node-http-proxy</a></span>
+<span class="Adjective fragment fade">, <a href="https://github.com/NodeRedis/node_redis">redis</a></span>
 </p>
 </section>
 
