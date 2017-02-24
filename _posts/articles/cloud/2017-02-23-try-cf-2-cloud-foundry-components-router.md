@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Cloud Foundry Components Router
+title: Try Cloud Foundry 2 - Components Router
 excerpt: "Cloud Foundry Components Router"
 modified: 2017-02-23T17:00:00-00:00
 categories: articles

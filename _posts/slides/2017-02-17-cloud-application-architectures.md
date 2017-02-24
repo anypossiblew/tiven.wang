@@ -96,6 +96,12 @@ tags: [Cloud, Reading]
 </section>
 
 <section>
+<p class="Subject">Recovery Point Objective</p>
+<p class="Attributive">provide</p>
+<p></p>
+</section>
+
+<section>
   <p class="Question">Thank you</p>
   <p class="Author"><a href="http://tiven.wang">@tiven.wang</a></p>
 </section>
