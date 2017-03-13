@@ -14,6 +14,8 @@ share: true
 * TOC
 {:toc}
 
+`[git rev-parse](https://git-scm.com/docs/git-rev-parse)`
+
 [Git Reference](https://git-scm.com/docs)
 
 [Atlassian Git Tutorials - Basic Git commands](https://confluence.atlassian.com/bitbucketserver/basic-git-commands-776639767.html)

@@ -97,6 +97,58 @@ $ git commit -c ORIG_HEAD                                   (5)
 
 [stackoverflow.com - How to undo last commit(s) in Git?](http://stackoverflow.com/questions/927358/how-to-undo-last-commits-in-git)
 
+### Viewing Unpushed Commits
+
+`git log origin/master..HEAD`
+You can also view the diff using the same syntax:
+
+`git diff origin/master..HEAD`
+
+[Viewing Unpushed Git Commits](http://stackoverflow.com/questions/2016901/viewing-unpushed-git-commits)
+
+
+### Viewing Uncommitted Changes
+
+`git diff` - Show changes between commits, commit and working tree, etc
+
+Here are some of the options it expose which you can use
+
+*  `git diff` (no parameters)
+  Print out differences between your working directory and the index.
+
+*  `git diff –-cached`:
+  Print out differences between the index and HEAD (current commit).
+
+*  `git diff HEAD*`:
+  Print out differences between your \*\*working directory and the HEAD.
+
+*  `git diff --name-only`
+  Show only names of changed files.
+
+*  `git diff --name-status`
+  Show only names and status of changed files.
+
+*  `git diff --color-words`
+  Word by word diff instead of line by line.
+
+[Git, How to show uncommitted changes](http://stackoverflow.com/questions/35978550/git-how-to-show-uncommitted-changes)
+
+### Adding an existing project to Git Remote Repository using the command line
+
+`git init`
+
+`git add .`
+
+`git commit -m "First commit"`
+
+`git remote add origin remote repository URL`
+
+`git remote -v`
+
+`git push origin master`
+
+[GitHub Help - Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
+
 ## Best Practices
 [Version Control Best Practices](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices)
 

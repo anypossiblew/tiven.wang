@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Try Cloud Foundry - Pivotal Web Services
+title: Try Cloud Foundry 1 - Pivotal Web Services
 excerpt: "Try Pivotal Cloud Foundry Web Services"
 modified: 2017-02-23T17:00:00-00:00
 categories: articles

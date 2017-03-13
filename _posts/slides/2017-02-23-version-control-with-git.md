@@ -25,6 +25,20 @@ tags: [Git, Reading]
 </section>
 
 <section>
+  <p class="Subject">5</p>
+  <p class="Question">File Management and the Index</p>
+</section>
+
+<section>
+  <p class="Subject">git add</p>
+  <p class="Object">git status</p>
+  <p class="Object">git add</p>
+  <p class="Object">git ls-files --stage</p>
+  <p class="Object">git rm --cached &lt;filename&gt;</p>
+  <p class="Object">git rm &lt;filename&gt;</p>
+</section>
+
+<section>
   <p class="Question">Thank you</p>
   <p class="Author"><a href="http://tiven.wang">@tiven.wang</a></p>
 </section>

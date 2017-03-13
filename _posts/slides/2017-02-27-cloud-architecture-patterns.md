@@ -112,10 +112,10 @@ $ cf scale myApp -m 1G</code></pre>
 <p class="Attributive">include</p>
 <p class="Object">  
   <ul>
-    <li class="Object Small fragment fade">capacity planning for large scale</li>
-    <li class="Object Small fragment fade">sizing virtual machines</li>
-    <li class="Object Small fragment fade">failure is partial</li>
-    <li class="Object Small fragment fade">operational data collection</li>
+    <li class="Object fragment fade">capacity planning for large scale</li>
+    <li class="Object fragment fade">sizing virtual machines</li>
+    <li class="Object fragment fade">failure is partial</li>
+    <li class="Object fragment fade">operational data collection</li>
   </ul>
 </p>
 </section>
@@ -125,6 +125,11 @@ $ cf scale myApp -m 1G</code></pre>
   <p class="Subject">III</p>
   <p class="Question">Queue-Centric Workflow Pattern</p>
 </section>
+
+<section>
+<a href="http://queues.io/">http://queues.io/</a>
+</section>
+
 
 <section>
   <p class="Question">Thank you</p>
