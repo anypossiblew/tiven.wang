@@ -149,6 +149,10 @@ Here are some of the options it expose which you can use
 
 [GitHub Help - Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
 
+### Which remote URL should I use
+
+[Which remote URL should I use?](https://help.github.com/enterprise/2.8/user/articles/which-remote-url-should-i-use/)
+
 ## Best Practices
 [Version Control Best Practices](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices)
 
