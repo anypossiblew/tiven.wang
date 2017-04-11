@@ -73,6 +73,24 @@ Now that we are running an instance of Jenkins at *http://localhost:49001/* , ac
 
 ### Install Maven
 
+Manually:
+
+`docker exec -it myjenkins /bin/bash`
+
+`curl -O http://download.java.net/java/jdk8u152/archive/b02/binaries/jdk-8u152-ea-bin-b02-linux-x64-27_mar_2017.tar.gz`
+
+`curl -O http://mirror.synyx.de/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz`
+
+`tar -zxvf apache-maven-3.3.9-bin.tar.gz`
+
+Configure the path of Maven and JDK in Jenkins Global Tool Configure page.
+
+Automatically:
+
+Install from Apache(or Oracle):
+
+
+
 [Docker]:http://docker.io/
 [Docker installation]:https://docs.docker.com/engine/installation/
 [jenkins image]:https://hub.docker.com/_/jenkins/
