@@ -227,6 +227,14 @@ At this point, things are getting pretty crazy, so run gitk to see what's going 
 
 [How to clone all remote branches in Git?](http://stackoverflow.com/questions/67699/how-to-clone-all-remote-branches-in-git)
 
+### Rewriting the most recent commit message
+
+[https://help.github.com/articles/changing-a-commit-message/](https://help.github.com/articles/changing-a-commit-message/)
+
+### Associating text editors with Git
+
+[https://help.github.com/articles/associating-text-editors-with-git/](https://help.github.com/articles/associating-text-editors-with-git/)
+
 ## Best Practices
 [Version Control Best Practices](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices)
 

@@ -217,6 +217,31 @@ tags: [Git, Reading]
 </section>
 
 <section>
+  <p class="Subject">V</p>
+  <p class="Question">Remote Repositories</p>
+</section>
+
+<section>
+  <p class="Subject">Remote Repository</p>
+  <p class="Attributive"></p>
+  <ul>
+    <li class="fragment fade-up">git remote</li>
+    <li class="fragment fade-up">git fetch</li>
+    <li class="fragment fade-up">git pull</li>
+    <li class="fragment fade-up">git push</li>
+    <li class="fragment fade-up">git ls-remote</li>
+    <li class="fragment fade-up">git clone</li>
+    <li class="fragment fade-up">git remote add origin <i>URL</i></li>
+    <li class="fragment fade-up">git update</li>
+    <li class="fragment fade-up">git branch -a</li>
+    <li class="fragment fade-up">git push origin master</li>
+    <li class="fragment fade-up">git ls-remote origin</li>
+    <li class="fragment fade-up">git remote show origin</li>
+    <li class="fragment fade-up">git pull = git fetch + git merge/rebase</li>
+  </ul>
+</section>
+
+<section>
   <p class="Question">Thank you</p>
   <p class="Author"><a href="http://tiven.wang">@tiven.wang</a></p>
 </section>
