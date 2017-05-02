@@ -80,3 +80,14 @@ Run Tomcat7:
 Open HANA DB tunnel:
 
 `> docker run --rm -it -e "https_proxy=proxy:8080" -p 30015:30015 test/scp neo open-db-tunnel -h int.sap.hana.ondemand.com -u <User> -a ixxxxxxsapdev --id hanadb`
+
+### Running Private Registry
+
+Running:
+`docker run -d -p 5000:5000 --restart always --name registry registry:2`
+
+Tagging:
+`docker tag test/jekyll localhost:5000/test/jekyll`
+
+Pushing:
+`docker push localhost:5000/test/jekyll`
