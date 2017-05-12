@@ -4,7 +4,7 @@ title: Docker Best Practices
 excerpt: "Docker Best Practices"
 modified: 2017-04-25T17:00:00-00:00
 categories: articles
-tags: [Docker, CI/CD]
+tags: [Docker, Infrastructure as Code, CI/CD]
 image:
   feature: hana/masthead-microservices.jpg
 comments: true
@@ -91,3 +91,15 @@ Tagging:
 
 Pushing:
 `docker push localhost:5000/test/jekyll`
+
+### Running CloudFoundry CLI
+
+`docker run -v /workspace -it diegoteam/cf-cli`
+
+### Running Puppet
+
+`docker run --rm -it -w /workspace -v C:/Users/C5235715/dockers/learning-puppet4:/workspace devopsil/puppet bash`
+
+#### Running Maven
+
+docker run --rm -it -w /workspace -v C:/dev/works/onlingo:/workspace -v C:/Users/C5235715/.m2/repository:/root/.m2/repository maven:3.5.0-jdk-8 mvn archetype:generate -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT -DgroupId=com.sample -DartifactId=my-car-service -DarchetypeGroupId=org.apache.olingo -DarchetypeArtifactId=olingo-odata2-sample-cars-annotation-archetype -DarchetypeVersion=2.0.0

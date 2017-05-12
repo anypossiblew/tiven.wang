@@ -4,7 +4,7 @@ title: Using Docker
 excerpt: "Review for <<Using Docker>>"
 modified: 2017-04-25T17:00:00-00:00
 categories: articles
-tags: [Docker, CI/CD]
+tags: [Docker, Infrastructure as Code, CI/CD]
 image:
   feature: hana/masthead-microservices.jpg
 comments: true
@@ -124,6 +124,27 @@ Delete:
 
 ## Creating a Simple Web App
 
+```
+FROM python:3.4
+
+RUN groupadd -r uwsgi && useradd -r -g uwsgi uwsgi
+RUN pip install Flask==0.10.1 uWSGI==2.0.8 requests==2.5.1 redis==2.10.3
+WORKDIR /app
+COPY app /app
+COPY cmd.sh /
+
+EXPOSE 9090 9191
+USER uwsgi
+
+CMD ["/cmd.sh"]
+```
+
+### Docker Compose
+
+* [Compose command-line reference](https://docs.docker.com/compose/reference/)
+
+* [Compose file version 3 reference](https://docs.docker.com/compose/compose-file/)
+
 ## Image Distribution
 
 Running:
@@ -137,9 +158,67 @@ Pushing:
 
 ## Continuous Integration and Testing with Docker
 
+
+
 ## Deploying Containers
 
+### Provisioning Resources with Docker Machine
+
+[Docker Machine][Docker Machine]
+
+`docker-machine ls`
+
+`docker-machine create --driver virtualbox dev`
+
+`docker-machine regenerate-certs dev` if need
+
+`docker-machine env dev`
+
+`docker-machine env dev | Invoke-Expression`
+
+`docker info`
+
+
 ## Logging and Monitoring
+
+# Part III. Tools and Techniques
+
+## Networking and Service Discovery
+
+### Ambassadors
+
+`docker-machine create -d virtualbox redis-host`
+
+`docker-machine env redis-host | Invoke-Expression`
+
+`docker run -d --name real-redis redis:3`
+
+`docker run -d --name real-redis-ambassador -p 6379:6379 --link real-redis:real-redis amouat/ambassador`
+
+`docker-machine ip redis-host`
+
+[Socat](https://linux.die.net/man/1/socat) is a command line based utility that establishes two bidirectional byte streams and transfers data between them.
+
+[sed](https://www.computerhope.com/unix/used.htm) is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline). While in some ways similar to an editor which permits scripted edits (such as ed), sed works by making only one pass over the input(s), and is consequently more efficient.
+
+### Service Discovery
+
+#### etcd
+
+The [Raft Consensus Algorithm][raft]
+
+[etcd](https://github.com/coreos/etcd) is a distributed reliable key-value store for the most critical data of a distributed system.
+
+#### SkyDNS
+
+[SkyDNS](https://github.com/skynetservices/skydns) is a distributed service for announcement and discovery of services built on top of etcd. It utilizes DNS queries to discover available services. This is done by leveraging SRV records in DNS, with special meaning given to subdomains, priorities and weights.
+
+#### Consul
+
+### Networking Options
+
+#### Bridge
+
 
 
 [Docker container networking][networking]
@@ -162,3 +241,5 @@ Pushing:
 [Engine (docker) CLI]:https://docs.docker.com/engine/reference/run/
 
 [networking]:https://docs.docker.com/engine/userguide/networking/
+[Docker Machine]:https://docs.docker.com/machine/
+[raft]:https://raft.github.io/
