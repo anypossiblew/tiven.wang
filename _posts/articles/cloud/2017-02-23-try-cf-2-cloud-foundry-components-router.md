@@ -6,7 +6,7 @@ modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [Cloud Foundry, Pivotal]
 image:
-  feature: hana/masthead-microservices.jpg
+  feature: cloud/masthead-cf.jpg
 comments: true
 share: true
 references:

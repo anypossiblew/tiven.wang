@@ -107,6 +107,8 @@ tags: [Git, Reading]
     <li class="fragment fade-up">= git branch <i>new-branch</i> <i>start-point</i> + git checkout <i>new-branch</i></li>
     <li class="fragment fade-up">detached HEAD</li>
     <li class="fragment fade-up">git merge <i>dev</i> (at master)</li>
+    <li class="fragment fade-up">git branch -d [local branch]</li>
+    <li class="fragment fade-up">git push origin --delete [remote branch]</li>
   </ul>
 </section>
 

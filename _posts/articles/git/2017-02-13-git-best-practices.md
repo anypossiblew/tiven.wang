@@ -227,6 +227,17 @@ At this point, things are getting pretty crazy, so run gitk to see what's going 
 
 [How to clone all remote branches in Git?](http://stackoverflow.com/questions/67699/how-to-clone-all-remote-branches-in-git)
 
+#### Delete branch
+
+`git branch -d [local branch]`
+
+`git push origin --delete [remote branch]`
+
+[stackoverflow - How to delete a Git branch both locally and remotely?](http://stackoverflow.com/questions/2003505/how-to-delete-a-git-branch-both-locally-and-remotely)
+
+[stackoverflow - I can't delete a remote master branch on github](http://stackoverflow.com/questions/12208751/i-cant-delete-a-remote-master-branch-on-git)
+
+
 ### Rewriting the most recent commit message
 
 [https://help.github.com/articles/changing-a-commit-message/](https://help.github.com/articles/changing-a-commit-message/)
@@ -234,6 +245,51 @@ At this point, things are getting pretty crazy, so run gitk to see what's going 
 ### Associating text editors with Git
 
 [https://help.github.com/articles/associating-text-editors-with-git/](https://help.github.com/articles/associating-text-editors-with-git/)
+
+### Remote
+
+#### Remote origin already exists on 'git push' to a new repository
+
+I have my project on GitHub at some location, `git@github.com:myname/oldrep.git`.
+
+Now I want to push all my code to a new repository at some other location, `git@github.com:newname/newrep.git`.
+
+I used the command:
+
+`git remote add origin git@github.com:myname/oldrep.git`
+
+but I am receiving this:
+
+`fatal: remote origin already exists`.
+
+Answers:
+
+You are getting this error because "origin" is not available. "origin" is a convention not part of the command. "origin" is the local name of the remote repository.
+
+For example you could also write:
+
+```
+git remote add myorigin git@github.com:myname/oldrep.git  
+git remote add testtest git@github.com:myname/oldrep.git
+```
+
+then push the repository to the new remote repository:
+
+`git push --set-upstream myorigin master`
+
+See the manual:
+
+[http://www.kernel.org/pub/software/scm/git/docs/git-remote.html](http://www.kernel.org/pub/software/scm/git/docs/git-remote.html)
+
+To remove a remote repository you enter:
+
+`git remote rm origin`
+
+Again "origin" is the name of the remote repository if you want to remove the "upstream" remote:
+
+`git remote rm upstream`
+
+[Remote origin already exists on 'git push' to a new repository](http://stackoverflow.com/questions/1221840/remote-origin-already-exists-on-git-push-to-a-new-repository)
 
 ## Best Practices
 [Version Control Best Practices](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices)
