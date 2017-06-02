@@ -23,6 +23,28 @@ references:
 
 `> docker rm -v (docker ps -aq -f status=exited)`
 
+### Accessing host machine from within docker container
+
+Run docker container with option:
+
+`docker run --net=host ...` or `docker run --network host ...`
+
+Within the container to get the IP of the host:
+
+`route | awk '/^default/ { print $2 }'` or `ip route | awk '/^default/ { print $3 }'`
+
+**Or**
+
+Add entries to container hosts file ([--add-host](https://docs.docker.com/engine/reference/commandline/run/#add-entries-to-container-hosts-file-add-host)):
+
+`docker run --add-host="docker:10.0.75.1"`
+
+Example:
+
+`docker run --add-host=docker:10.0.75.1 --rm -it byrnedo/alpine-curl -H "Accept: application/json" docker:8080/uaa/login`
+
+[Accessing host machine from within docker container](https://forums.docker.com/t/accessing-host-machine-from-within-docker-container/14248)
+
 ## Run
 ### Running Nodejs
 

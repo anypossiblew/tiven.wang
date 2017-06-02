@@ -21,10 +21,15 @@ references:
 * TOC
 {:toc}
 
+The CloudFoundry User Account and Authentication (UAA) is a multi tenant identity management service, used in Cloud Foundry, but also available as a stand alone OAuth2 server. It's primary role is as an OAuth2 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users. It can also authenticate users with their Cloud Foundry credentials, and can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth2 clients, as well as various other management functions.
+
 [Introducing the UAA and Security for Cloud Foundry][uaa-intro]
+
+Clone the UAA sourcecode project to local:
 
 `git clone https://github.com/cloudfoundry/uaa.git`
 
+Build and publish the application:
 
 ```powershell
 ./gradlew manifests -Dapp="try-cf-uaa" -Dapp-domain="cfapps.io"
@@ -122,7 +127,7 @@ Create a postgresql Database service in CloudFoundry platform manually or use co
 > Don't bind the Database to the application in the CloudFoundry platform, because the CloudFoundry platform will set the environment variables as
 ```json
 {
-  "uri": "postgres://opfwkjiu:sipOocxnyqJQkUYGJk6vPvwUXsrBYysk@stampy-01.db.elephantsql.com:5432/opfwkjiu",
+  "uri": "postgres://opfwkjiu:sipOocxnyqJQkUYGRFGvPvwUXsrBYysk@stampy-01.db.elephantsql.com:5432/opfwkjiu",
   "max_conns": "5"
 }
 ```
@@ -137,11 +142,13 @@ database:
   driverClassName: org.postgresql.Driver
   url: jdbc:postgresql://stampy-01.db.elephantsql.com:5432/opfwkjiu
   username: opfwkjiu
-  password: sipOocxnyqJQkUYGJk6vPvwUXsrBYysk
+  password: sipOocxnyqJQkUYGRFGvPvwUXsrBYysk
   maxactive: 4
   maxidle: 2
   minidle: 1
 ```
+
+> The **maxactive** should less than the concurrent connections in the plan of database service.
 
 Then push the application to CloudFoundry platform:
 
