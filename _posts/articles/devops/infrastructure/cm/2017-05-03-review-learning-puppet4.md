@@ -10,7 +10,7 @@ image:
 comments: true
 share: true
 references:
-  - title: ""
+  - title: "Docker 优秀资源集锦"
     url: "https://github.com/haiiiiiyun/awesome-docker-cn"
 ---
 
