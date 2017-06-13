@@ -9,7 +9,7 @@ categories: articles
 tags: [JavaScript, Training]
 ---
 
-<section>
+<section data-background-image="/images/nationalgeographic/Strutting-Stork.jpg">
 <p class="Subject">Training JavaScript</p>
 <p class="Question">Foundation</p>
 <p class="Author"><a href="/about">Tiven Wang</a></p>
@@ -94,11 +94,11 @@ var person = {
   <p class="Subject">Function</p>
   <p class="Attributive">points</p>
   <ul>
-  <li class="fragment fade-up">How to define and use a function</li>
-  <li class="fragment fade-up">Passing parameters to a function</li>
-  <li class="fragment fade-up">Pre-defined functions that are available to you "for free"</li>
-  <li class="fragment fade-up">The scope of variables in JavaScript</li>
-  <li class="fragment fade-up">The concept that functions are just data, albeit a special type of data</li>
+    <li class="fragment fade-up">How to define and use a function</li>
+    <li class="fragment fade-up">Passing parameters to a function</li>
+    <li class="fragment fade-up">Pre-defined functions that are available to you "for free"</li>
+    <li class="fragment fade-up">The scope of variables in JavaScript</li>
+    <li class="fragment fade-up">The concept that functions are just data, albeit a special type of data</li>
 
     <li class="fragment fade-up">Function has prototype that is a Object</li>
     <li class="fragment fade-up">new Function = Object</li>
@@ -110,13 +110,13 @@ var person = {
   <p class="Subject">Function</p>
   <p class="Attributive">points</p>
   <ul>
-  <li class="fragment fade-up">Using anonymous functions</li>
-  <li class="fragment fade-up">Callbacks</li>
-  <li class="fragment fade-up">Self-invoking functions</li>
-  <li class="fragment fade-up">Inner functions (functions defined inside functions)</li>
-  <li class="fragment fade-up">Functions that return functions</li>
-  <li class="fragment fade-up">Functions that redefine themselves</li>
-  <li class="fragment fade-up">Closures</li>
+    <li class="fragment fade-up">Using anonymous functions</li>
+    <li class="fragment fade-up">Callbacks</li>
+    <li class="fragment fade-up">Self-invoking functions</li>
+    <li class="fragment fade-up">Inner functions (functions defined inside functions)</li>
+    <li class="fragment fade-up">Functions that return functions</li>
+    <li class="fragment fade-up">Functions that redefine themselves</li>
+    <li class="fragment fade-up">Closures</li>
   </ul>
   <aside class="notes" data-markdown>
 * Callbacks
@@ -189,7 +189,6 @@ Hello [object Object]
 </section>
 
 
-
 <section >
 <p class="Subject">Scope</p>
 <ul>
@@ -211,10 +210,15 @@ Hello [object Object]
 </section>
 
 <section data-markdown>
-  ## Markdown support
+  ## TypeScript
 
-  Write content using inline or external Markdown.
-  Instructions and more info available in the [readme](https://github.com/hakimel/reveal.js#markdown).
+  [TypeScript](https://zh.wikipedia.org/wiki/TypeScript) [CoffeeScript](http://coffeescript.org/) [ES6](http://es6-features.org)
+
+  `npm install -g typescript`
+
+  `tsc helloworld.ts`
+
+  `node helloworld.js`
 </section>
 
 <section>

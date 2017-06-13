@@ -122,6 +122,15 @@ Pushing:
 
 `docker run --rm -it -w /workspace -v C:/Users/C5235715/dockers/learning-puppet4:/workspace devopsil/puppet bash`
 
-#### Running Maven
+### Running Maven
 
-docker run --rm -it -w /workspace -v C:/dev/works/onlingo:/workspace -v C:/Users/C5235715/.m2/repository:/root/.m2/repository maven:3.5.0-jdk-8 mvn archetype:generate -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT -DgroupId=com.sample -DartifactId=my-car-service -DarchetypeGroupId=org.apache.olingo -DarchetypeArtifactId=olingo-odata2-sample-cars-annotation-archetype -DarchetypeVersion=2.0.0
+`docker run --rm -it -w /workspace -v C:/dev/works/onlingo:/workspace -v C:/Users/C5235715/.m2/repository:/root/.m2/repository maven:3.5.0-jdk-8 mvn archetype:generate -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT -DgroupId=com.sample -DartifactId=my-car-service -DarchetypeGroupId=org.apache.olingo -DarchetypeArtifactId=olingo-odata2-sample-cars-annotation-archetype -DarchetypeVersion=2.0.0`
+
+## Issues
+
+### "New state of 'nil' is invalid"
+Ah right, I get it now. Have verified just now that this is still an issue on docker master, but only when using the legacy (go-ansiterm emulated) console. Which means on any version of Windows before Windows 10, or Windows 10 with the console explicitly set to legacy mode.  MC does run just fine on a Windows 10 client (with console in native/default mode) pointing to a Linux daemon:
+
+> Recommend: [ConEmu](https://conemu.github.io/) with PowerShell on Windows
+
+["New state of 'nil' is invalid" when attaching to container, probably related to UTF-8](https://github.com/moby/moby/issues/22345)
