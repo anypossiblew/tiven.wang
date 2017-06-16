@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Training JavaScript - 2. Node.js (JavaScript)
+title: Training JavaScript - 2. Create Server by Node.js (JavaScript version)
 excerpt: ""
 modified: 2017-06-08T17:00:00-00:00
 categories: articles
@@ -23,6 +23,12 @@ references:
 * TOC
 {:toc}
 
+JavaScript Series:
+
+1. [JavaScript Foundation](/articles/training-javascript-1-foundation/) and [Node.js](/articles/professional-node.js/)
+2. **Create a backend server by Node.js (JavaScript version)** or [Create Server by Node.js (TypeScript version)](/articles/training-javascript-2-server-typescript/)
+3. Angular for frontend development
+
 I want to use Node.js to create a application which can receive the messages that come from [wechat](https://open.weixin.qq.com/
 ) server, and store them in [MongoDB](https://www.mongodb.com), and retrieve them by restful api.
 
@@ -34,31 +40,7 @@ I want to use Node.js to create a application which can receive the messages tha
 
 `npm init`
 
-### Install Gulp
-
-I am going to be using the Gulp task runner to compile the TypeScript source code. Use npm to install gulp:
-
-`npm install gulp --save-dev`
-
-> Note: this also generates a new **node_modules** folder in your project. If you are using **Git** then should add this folder to your **.gitignore** file.
-
-Now that we have gulp installed, let’s install some task runners:
-
-```
-
-```
-
-#### Create gulpfile.js
-
-```javascript
-
-```
-
-Check the configuration by running:
-
-`gulp build`
-
-## HTTP Server
+## Application Server
 
 [Express.js](https://expressjs.com/), or simply **Express**, is a web application framework for Node.js. Express is the backend part of the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle)), together with MongoDB database and AngularJS frontend framework.
 
@@ -147,9 +129,13 @@ module.exports = function (oApp) {
 
 ## MongoDB and mongoose
 
+### Install mongodb Dependencies
+
 `npm install --save mongodb`
 
 `npm install --save mongoose`
+
+### Create DB Layer for MongoDB
 
 db/mongo-connect.js:
 
@@ -241,16 +227,15 @@ module.exports = function (oApp) {
 	            id: event.id,
 	            createdTime: event.createdTime,
 	            eventType: event.eventType,
-	            text: event.content.text
+	            text: event.content && event.content.text
 	        }).save(function (err, message) {
 	            if (err) {
-	                return res.status(500).send('Error occurred: database error');
+	                //return res.status(500).send('Error occurred: database error');
 	            }
-	            res.json({
-	                id: message.id
-	            });
 	        });
     	}
+
+      res.send('success');
     });
 
     oApp.delete('/api/message/:id', function (req, res) {
@@ -279,10 +264,111 @@ module.exports = function (oApp) {
 };
 ```
 
-## ES6 Promise
+### Update server.js
 
+Endable express routes and mongodb connection in server.js:
 
+```javascript
+// connect to mongodb
+require('./db/mongo-connect.js')(oAppEnv);
+// api
+require('./api/messages.js')(oApp);
+```
 
-## IDE
+### Test MongoDB Layer
 
-## Debug
+Run a docker container for mongodb locally:
+
+`docker run --rm --name my-mongo -d -p 27017:27017 mongo`
+
+Then start the node http server:
+
+`node server.js`
+
+Now you can create and get messages through the message url:
+
+*http://localhost:6001/api/message*
+
+## Promises
+
+Promises are usually vaguely defined as "a proxy for a value that will eventually become available".
+
+> A promise is an abstraction for asynchronous programming. It’s an object that proxies for the return value or the exception thrown by a function that has to do some asynchronous processing. — [Kris Kowal on JSJ](http://javascriptjabber.com/037-jsj-promises-with-domenic-denicola-and-kris-kowal/)
+
+Callbacks are the simplest possible mechanism for asynchronous code in JavaScript. Unfortunately, raw callbacks sacrifice the control flow, exception handling, and function semantics familiar from synchronous code. Promises provide a way to get those things back.
+
+The core component of a promise object is its **then** method. The **then** method is how we get the return value (known as the fulfillment value) or the exception thrown (known as the rejection reason) from an asynchronous operation. then takes two optional callbacks as arguments, which we’ll call **onFulfilled** and **onRejected**
+
+```javascript
+var promise = doSomethingAync()
+promise.then(onFulfilled, onRejected)
+```
+
+[Promises/A+](http://promises-aplus.github.io/promises-spec/), a specification that has made its way into ES6 JavaScript as well as multiple third-party libraries.
+
+### Mongoose Promises
+Mongoose has [built-in Promises](http://mongoosejs.com/docs/promises.html), Mongoose async operations, like .save() and queries, return [Promises/A+ conformant promises](https://promisesaplus.com/).
+
+Change the query callback to promise:
+
+```javascript
+oApp.get('/api/message/:id', function (req, res) {
+  message.findOne({ id: req.params.id })
+    .then(message => {
+      res.json({
+          id: message.id,
+          createdTime: message.createdTime,
+          eventType: message.eventType,
+          text: message.text,
+          created: message.created
+      });
+    })
+    .catch(err => {
+      if (err) {
+          res.status(500).send('Error occurred: database error');
+      }
+    });
+});
+```
+
+### bluebird
+
+There are many third party promise libraries (e.g. [async][async]) available for JavaScript and even the standard library contains a promise implementation in newer versions of browsers and node/io.js. We use [bluebird][bluebird] promises over other third party or the standard library implementations.
+
+Install the bluebird in Node:
+
+`npm install --save bluebird`
+
+Then
+
+`var Promise = require("bluebird");`
+
+We use the [Promise.reduce](http://bluebirdjs.com/docs/api/promise.reduce.html) method to gather the result of async saving messages.
+
+```javascript
+oApp.post('/api/message', function (req, res) {
+  Promise.reduce(req.body.result, function(total, event) {
+    return new message({
+          id: event.id,
+          createdTime: event.createdTime,
+          eventType: event.eventType,
+          text: event.content && event.content.text
+      }).save(function (err, message) {
+          if (err) {
+              //return res.status(500).send('Error occurred: database error');
+          }
+      })
+      .then((message) => {
+        return total + 1;
+      });
+  }, 0).then(total => {
+      //Total number of messages
+      res.json({
+        total: total
+      });
+  });
+});
+```
+
+[async]:https://caolan.github.io/async/
+[bluebird]:http://bluebirdjs.com

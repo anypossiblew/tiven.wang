@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Training JavaScript - 2. Node.js (TypeScript)
+title: Training JavaScript - 2. Create Server by Node.js (TypeScript version)
 excerpt: ""
 modified: 2017-06-05T17:00:00-00:00
 categories: articles
@@ -16,6 +16,12 @@ references:
 
 * TOC
 {:toc}
+
+JavaScript Series:
+
+1. [JavaScript Foundation](/articles/training-javascript-1-foundation/) and [Node.js](/articles/professional-node.js/)
+2. [Create Server by Node.js (JavaScript version)](/articles/training-javascript-2-server-javascript/) or Create Server by Node.js (TypeScript version)
+3. Angular
 
 I want to use Node.js to create a application which can receive the messages that come from [wechat](https://open.weixin.qq.com/
 ) server, and store them in [MongoDB](https://www.mongodb.com), and retrieve them by restful api.

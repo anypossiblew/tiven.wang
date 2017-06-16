@@ -14,6 +14,9 @@ references:
     url: "https://github.com/google/traceur-compiler/wiki/Using-Traceur-with-Node.js"
 ---
 
+* TOC
+{:toc}
+
 ## traceur
 
 [traceur](https://github.com/google/traceur-compiler)
@@ -104,3 +107,15 @@ Create the babel's environment file *.babelrc*:
 Compile JavaScript files in folder *src* into folder *lib*:
 
 `./node_modules/.bin/babel src -d lib`
+
+## Typescript
+
+`npm install -g typescript`
+
+`tsc helloworld.ts`
+
+`node helloworld.js`
+
+If you want add more options for typescript compiler, please add a file named *tsconfig.json* in the root of your project.
+
+If you want read more knowledge about TypeScript and Node, refer to [TypeScript Node Starter](https://github.com/Microsoft/TypeScript-Node-Starter#typescript-node-starter)
