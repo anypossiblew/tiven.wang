@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to develop a Node.js application with RabbitMQ service on HCP Cloud Foundry
+title: SCP Cloud Foundry 3 - How to develop a Node.js application with RabbitMQ service
 excerpt: "本文介绍了在HCP Cloud Foundry上创建Node.js应用程序，并使用RabbitMQ service接受分发消息的功能。使用到了一些Cloud Foundry的基础命令"
 modified: 2016-10-25T16:13:00-00:00
 categories: articles

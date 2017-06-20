@@ -27,7 +27,7 @@ JavaScript Series:
 
 1. [JavaScript Foundation](/articles/training-javascript-1-foundation/) and [Node.js](/articles/professional-node.js/)
 2. **Create a backend server by Node.js (JavaScript version)** or [Create Server by Node.js (TypeScript version)](/articles/training-javascript-2-server-typescript/)
-3. Angular for frontend development
+3. [Angular for frontend development](/articles/training-javascript-3-frontend-angular/)
 
 I want to use Node.js to create a application which can receive the messages that come from [wechat](https://open.weixin.qq.com/
 ) server, and store them in [MongoDB](https://www.mongodb.com), and retrieve them by restful api.
@@ -81,6 +81,16 @@ oApp.listen(oAppEnv.port, function(){
     console.log('Server listening at ' + oAppEnv.url);
 });
 ```
+
+#### Static Pages
+
+Add the statement:
+
+`oApp.use(express.static('public'))`
+
+and the public static pages in folder *public*
+
+for example: *index.html*
 
 #### Test the Server
 
@@ -369,6 +379,11 @@ oApp.post('/api/message', function (req, res) {
   });
 });
 ```
+
+## Deploy to Cloud
+
+If you want to deploy the application to CloudFoundry based cloud service, please refer to my another article:
+[How to develop a Node.js application with MongoDB service on HCP Cloud Foundry](/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/)
 
 [async]:https://caolan.github.io/async/
 [bluebird]:http://bluebirdjs.com

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: How to develop a Node.js application with MongoDB service on HCP Cloud Foundry
+title: SCP Cloud Foundry 2 - How to develop a Node.js application with MongoDB service
 excerpt: "本文介绍了在HCP Cloud Foundry上创建Node.js应用程序，并使用MongoDB service数据库服务保存查询消息的功能。使用到了一些Cloud Foundry的基础命令"
 modified: 2016-10-25T11:51:25-04:00
 categories: articles

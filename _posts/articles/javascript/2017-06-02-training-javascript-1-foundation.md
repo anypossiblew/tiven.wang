@@ -16,6 +16,17 @@ tags: [JavaScript, Training]
 </section>
 
 <section >
+<p class="Subject">JavaScript Series</p>
+<ul>
+  <li class="fragment fade-up">JavaScript Foundation</li>
+  <li class="fragment fade-up"><a href="/articles/professional-node.js/">Node.js</a></li>
+  <li class="fragment fade-up"><a href="/articles/training-javascript-2-server-javascript/">Create Server by Node.js (JavaScript version)</a></li>
+  <li class="fragment fade-up"><a href="/articles/training-javascript-2-server-typescript/">Create Server by Node.js (TypeScript version)</a></li>
+  <li class="fragment fade-up"><a href="/articles/training-javascript-3-frontend-angular/">Angular for frontend development</a></li>
+</ul>
+</section>
+
+<section >
 <p class="Subject">Language basics</p>
 <p class="Question">Variable</p>
 </section>
