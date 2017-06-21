@@ -32,6 +32,8 @@ JavaScript Series:
 I want to use Node.js to create a application which can receive the messages that come from [wechat](https://open.weixin.qq.com/
 ) server, and store them in [MongoDB](https://www.mongodb.com), and retrieve them by restful api.
 
+> Get the project from [Github](https://github.com/tiven-wang/training-javascript-node)
+
 ## Setup Node.js Project
 
 `$ mkdir training-javascript-node`
@@ -102,7 +104,7 @@ Test the api by accessing:
 
 *http://localhost:6001/*
 
-You will get: _**Cannot GET /**_ in your browser.
+You will get the index.html in your browser.
 
 ### Create Routes
 
@@ -139,15 +141,40 @@ module.exports = function (oApp) {
 
 ## MongoDB and mongoose
 
-### Install mongodb Dependencies
+### MongoDB
+
+Install the dependency:
 
 `npm install --save mongodb`
 
+
+```javascript
+var MongoClient = require('mongodb').MongoClient,
+  test = require('assert');
+// Connection url
+var url = 'mongodb://localhost:27017/test';
+
+// Connect using MongoClient
+MongoClient.connect(url, function(err, db) {
+  // Create a collection we want to drop later
+  var col = db.collection('messages');
+
+  // Show that duplicate records got dropped
+  col.find({}).toArray(function(err, items) {
+    test.equal(null, err);
+    console.log(items);
+    db.close();
+  });
+});
+```
+
+### mongoose
+Install the mongoose dependency;
+
 `npm install --save mongoose`
 
-### Create DB Layer for MongoDB
-
-db/mongo-connect.js:
+Create mongodb connect
+*db/mongo-connect.js*:
 
 ```javascript
 'use strict';
@@ -163,10 +190,10 @@ module.exports = function(oAppEnv){
       mongoose.connect(oAppEnv.services.mongodb[0].credentials.uri);
   }
 }
-
 ```
 
-db/models/message.js:
+Create mongodb model
+*db/models/message.js*:
 
 ```javascript
 'use strict';
@@ -384,6 +411,17 @@ oApp.post('/api/message', function (req, res) {
 
 If you want to deploy the application to CloudFoundry based cloud service, please refer to my another article:
 [How to develop a Node.js application with MongoDB service on HCP Cloud Foundry](/articles/nodejs-with-mongodb-on-hcp-cloud-foundry/)
+
+`cf api https://api.run.pivotal.io`
+
+`cf login`
+
+`cf create-service mlab sandbox training-javascript-node`
+
+`cf push`
+
+Access url *http://training-javascript-node.cfapps.io/api/message*
+
 
 [async]:https://caolan.github.io/async/
 [bluebird]:http://bluebirdjs.com
