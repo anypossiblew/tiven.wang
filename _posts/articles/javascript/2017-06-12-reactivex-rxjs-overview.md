@@ -14,6 +14,8 @@ references:
     url: "http://reactivex.io/rxjs/"
   - title: "Github - ReactiveX/rxjs"
     url: "https://github.com/ReactiveX/rxjs"
+  - title: "GitBook - Learn RxJS"
+    url: "https://www.learnrxjs.io/"
 ---
 
 * TOC

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Training JavaScript - 2. Create Server by Node.js (JavaScript version)
-excerpt: ""
+excerpt: "Node.js is an open-source, cross-platform JavaScript run-time environment for executing JavaScript code server-side. Historically, JavaScript was used primarily for client-side scripting, in which scripts written in JavaScript are embedded in a webpage's HTML, to be run client-side by a JavaScript engine in the user's web browser. Node.js enables JavaScript to be used for server-side scripting, and runs scripts server-side to produce dynamic web page content before the page is sent to the user's web browser."
 modified: 2017-06-08T17:00:00-00:00
 categories: articles
 tags: [Node.js, JavaScript]

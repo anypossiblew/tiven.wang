@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Training JavaScript - 3. Angular for Frontend Development
-excerpt: ""
+excerpt: "Angular (commonly referred to as 'Angular 2+' or 'Angular 2') is a TypeScript-based open-source front-end web application platform led by the Angular Team at Google and by a community of individuals and corporations to address all of the parts of the developer's workflow while building complex web applications. Angular is a complete rewrite from the same team that built AngularJS."
 modified: 2017-06-19T17:00:00-00:00
 categories: articles
 tags: [Angular, JavaScript]
@@ -12,8 +12,9 @@ share: true
 references:
   - title: "angular.io"
     url: "https://angular.io/"
-
 ---
+
+> [鹳](https://en.wikipedia.org/wiki/Stork)是一个大型水鸟科的通称。包括19个品种。在大多数地球上比较温暖的地带都可以见到它们的踪迹。鹳是候鸟，善于飞行。鹳有很长的腿和细长的带蹼的爪子。它们有又长又结实的尖喙。羽毛通常是白色和黑色的。但有些品种鹳的头上或头上和脖子上几乎没有羽毛。
 
 * TOC
 {:toc}
@@ -23,6 +24,8 @@ JavaScript Series:
 1. [JavaScript Foundation](/articles/training-javascript-1-foundation/) and [Node.js](/articles/professional-node.js/)
 2. [Create a backend server by Node.js (JavaScript version)](/articles/training-javascript-2-server-javascript/) or [Create Server by Node.js (TypeScript version)](/articles/training-javascript-2-server-typescript/)
 3. **Angular for frontend development**
+
+[Angular](https://en.wikipedia.org/wiki/Angular_(application_platform)) is the frontend part of the [MEAN][MEAN] stack, consisting of [**M**ongoDB][MongoDB] database, [**E**xpress.js][Express.js] web application server framework, [**A**ngular][angular.io] itself, and [**N**ode.js][Node.js] runtime environment.
 
 We follow the [quickstart tutorial](https://angular.io/guide/quickstart) of [angular][angular.io] to create a application in our JavaScript blog series.
 
@@ -413,3 +416,7 @@ copy the files in *dist* into *public* in node.js server project.
 
 
 [angular.io]:https://angular.io/
+[MEAN]:https://en.wikipedia.org/wiki/MEAN_(software_bundle)
+[MongoDB]:https://en.wikipedia.org/wiki/MongoDB
+[Express.js]:https://en.wikipedia.org/wiki/Express.js
+[Node.js]:https://nodejs.org/

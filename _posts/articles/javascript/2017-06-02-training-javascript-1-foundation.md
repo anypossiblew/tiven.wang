@@ -3,7 +3,7 @@ layout: slides
 theme: svo
 transition: slide
 title: Training JavaScript - 1. Foundation
-excerpt: ""
+excerpt: "JavaScript, often abbreviated as 'JS', is a high-level, dynamic, untyped, interpreted run-time language. It has been standardized in the ECMAScript language specification. Alongside HTML and CSS, JavaScript is one of the three core technologies of World Wide Web content production; the majority of websites employ it, and all modern Web browsers support it without the need for plug-ins. JavaScript is a multi-paradigm language, since it supports prototype-based with first-class functions, imperative, and functional programming paradigms."
 modified: 2017-06-02T17:00:00-00:00
 categories: articles
 tags: [JavaScript, Training]
