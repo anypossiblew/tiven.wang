@@ -30,9 +30,13 @@ Try CloudFoundry Series:
 
 ## Multi Tenancy
 
-## Identity Zones
+Multi Tenancy涉及到数据库、应用服务、认证授权服务等都要支持。
 
-The UAA supports multi tenancy. This is referred to as identity zones. An identity zones is accessed through a unique subdomain. If the standard UAA responds to https://uaa.10.244.0.34.xip.io a zone on this UAA would be accessed through https://testzone1.uaa.10.244.0.34.xip.io
+## UAA Support Multi Tenancy
+
+### Identity Zones
+
+The UAA supports multi tenancy. This is referred to as identity zones. An identity zones is accessed through a unique subdomain. If the standard UAA responds to https://uaa.10.244.0.34.xip.io a zone on this UAA would be accessed through https://testzone1.uaa.10.244.0.34.xip.io?
 
 
 
