@@ -20,6 +20,8 @@ references:
     url: "https://gist.github.com/staltz/868e7e9bc2a7b8c1f754"
   - title: "ruanyifeng.com - ECMAScript 6 入门"
     url: "http://es6.ruanyifeng.com/"
+  - title: "Google web developers - JavaScript Promises"
+    url: "https://developers.google.com/web/fundamentals/getting-started/primers/promises"
 
 ---
 
