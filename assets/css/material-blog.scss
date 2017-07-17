@@ -1,0 +1,183 @@
+---
+sitemap: false
+---
+
+@import "variables";
+
+
+/*
+   Global
+   ========================================================================== */
+
+@import "mixins";
+
+
+@import "syntax";
+
+.demo-blog.demo-blog--blogpost .blog__post {
+  text-align: left;
+}
+
+.mdl-card__supporting-text p {
+  max-width:initial;
+  margin: 16px 0;
+}
+
+.demo-blog {
+  .blog__post {
+
+    .mdl-color-text--grey-700.mdl-card__supporting-text {
+      padding: 40px;
+      align-items: left;
+      p {
+        max-width: 100%;
+        margin: 16px 0
+      }
+
+      img {
+        max-width: 100%;
+      }
+    }
+
+    .blog__post-body.mdl-color-text--grey-700.mdl-card__supporting-text {
+      margin-top: -40px;
+    }
+
+    h2[id] {
+      font-size: 2em;
+      margin: 15px 0 0 0;
+    }
+
+    h2[id]::after {
+      content: '#';
+      margin: 0 5px;
+      opacity: 0.3;
+    }
+
+    h3[id] {
+      font-size: 1.7em;
+      margin: 15px 0 0 0;
+    }
+
+    h3[id]::after {
+      content: '##';
+      margin: 0 5px;
+      opacity: 0.3;
+    }
+
+    h4 {
+      font-size: 1.5em;
+    }
+
+    h4::after {
+      content: '###';
+      margin: 0 5px;
+      opacity: 0.3;
+    }
+
+    .tag--link {
+        text-decoration: none;
+    }
+  }
+
+  .page-content {
+    margin: 50px auto;
+  }
+
+  .mdl-list {
+    .entry-date {
+      float: right;
+    }
+  }
+
+  .simple-search {
+    margin: auto;
+  }
+
+  .android-link:hover {
+    color: white !important;
+  }
+}
+
+/*
+   Kramdown generated table of contents
+   ========================================================================== */
+
+#markdown-toc {
+	font-family: $alt-font;
+  width: 100%;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	border-top: 2px solid $border-color;
+	border-bottom: 2px solid $border-color;
+	border-radius: $border-radius;
+  ul {
+  	list-style-type: none;
+  	padding-left: 0;
+  }
+  li {
+    @include font-size(20,no,18);
+    border-bottom: 1px solid $border-color;
+    list-style-type: none;
+  }
+	li:first-child {
+		border-top: 1px solid $border-color;
+	}
+	li:last-child {
+		border-bottom: initial;
+	}
+  h6 {
+    margin: 0;
+    padding: 0 0;
+    background: $table-stripe-color;
+  }
+  a {
+    color: grey !important;
+    display: block;
+    padding: 0 0;
+    border-left: 2px solid transparent;
+    border-bottom: 0 solid transparent;
+    text-decoration: none;
+    &:hover,
+    &:focus {
+      background: lighten($border-color,5);
+    }
+  }
+
+  >li>ul>li {
+  	margin-left: 1em;
+  	@include font-size(18,no,18);
+  }
+
+  >li>ul>li>ul>li {
+  	margin-left: 1.5em;
+  	@include font-size(16,no,18);
+  }
+
+  >li>ul>li>ul>li>ul>li {
+  	margin-left: 2em;
+  	@include font-size(14,no,18);
+  }
+
+  >li>ul>li>ul>li>ul>li>ul>li {
+  	margin-left: 2.5em;
+  	@include font-size(12,no,18);
+  }
+}
+
+.mdl-button.mdl-badge.mdl-badge--overlap:after {
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.post-list {
+  li {
+    margin: 10px 0;
+  }
+}
+
+a.social-btn {
+  display: inline-block;
+}

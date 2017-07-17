@@ -5,8 +5,9 @@ excerpt: "Documenting Restful API"
 modified: 2017-07-10T11:51:25-04:00
 categories: articles
 tags: [OpenAPI, Swagger, Microservices]
+author: tiven_wang
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: /images/cloud/mashheader-cloud.jpg
 comments: true
 share: true
 references:

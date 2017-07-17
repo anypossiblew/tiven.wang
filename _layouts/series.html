@@ -1,0 +1,115 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Android</title>
+
+    {% include head.html %}
+
+    <style>
+    #view-source {
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+      z-index: 900;
+    }
+
+    body::before {
+      background-size: cover;
+      background-attachment: fixed;
+      content: '';
+      will-change: transform;
+      z-index: -1;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      position: fixed;
+    }
+
+    @media (max-width: 512px)  and (-webkit-min-device-pixel-ratio: 1.5),
+       (max-width: 512px)  and (min-resolution: 1.5dppx),
+       (max-width: 1024px) and (-webkit-max-device-pixel-ratio: 1.5),
+       (max-width: 1024px) and (max-resolution: 1.5dppx) {
+      body::before {
+        background-image: url('{{ page.image.feature }}');
+      }
+    }
+    @media (min-width: 513px)  and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5),
+           (min-width: 513px)  and (max-width: 1024px) and (min-resolution: 1.5dppx),
+           (min-width: 1025px) and (max-width: 2048px) and (-webkit-max-device-pixel-ratio: 1.5),
+           (min-width: 1025px) and (max-width: 2048px) and (max-resolution: 1.5dppx)  {
+      body::before {
+        background-image: url('{{ page.image.feature }}');
+      }
+    }
+    @media (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 1.5),
+           (min-width: 1025px) and (min-resolution: 1.5dppx),
+           (min-width: 2049px) and (-webkit-max-device-pixel-ratio: 1.5),
+           (min-width: 2049px) and (max-resolution: 1.5dppx) {
+      body::before {
+        background-image: url('{{ page.image.feature }}');
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <div class="demo-blog mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      {% include navigation.html %}
+
+      {% include drawer.html %}
+
+      <main class="mdl-layout__content">
+        <div class="demo-blog__posts mdl-grid">
+
+          {% for post in page.series %}
+          <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__title mdl-color-text--grey-50" style="background-color:{{ post.background }}">
+              <h3 class=""><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            </div>
+            <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
+              {{ post.excerpt }}
+            </div>
+            <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+              <div class="minilogo"></div>
+              <div>
+                <strong>{{ page.author }}</strong>
+                <span>{{ post.date | date: "%B %d, %Y" }}</span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+        {{ content }}
+      </main>
+
+    </div>
+    <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
+    {% include scripts.html %}
+  </body>
+</html>

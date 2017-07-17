@@ -5,7 +5,7 @@ locale: zh
 description: Personal Computer Technology Blog.
 logo: site-logo.png
 search: true
-myurl: http://tiven.wang
+myurl: http://tiven.wang #http://127.0.0.1:4000
 # url: http://127.0.0.1:4000 #http://tiven.wang
 cdnjs: http://cdnjs.tiven.wang/ajax/libs
 
@@ -45,9 +45,10 @@ comments: true
 owner:
   name: Wang Tiven
   avatar: tiven.jpg
-  email: anypossible.w@gmail.com
+  background: /images/so-simple-sample-image-4.jpg
+  email: i.tiven.wang@gmail.com
   disqus-shortname: tiven-wang
-  twitter: #username
+  twitter: anyispossible
   facebook: tiwen.wang
   github: anypossiblew
   stackexchange: #http://stackoverflow.com/users/123456/username

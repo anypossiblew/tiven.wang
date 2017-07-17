@@ -5,6 +5,7 @@
 pre.highlight {
   padding: 1em;
   overflow-x: auto;
+  margin: 0;
 }
 
 /*
@@ -237,11 +238,11 @@ ol.CodeRay li { white-space: pre }
     font-family: $code-font;
     white-space: nowrap;
     margin: 0 2px;
-    padding: 0 5px;
+    padding: 2px 5px;
     background-color: #f2f2f2;
     border-radius: 3px;
     word-break: break-word;
-    
+    width: 100%;
 }
 
 code.highlighter-rouge {

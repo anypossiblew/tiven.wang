@@ -6,7 +6,7 @@ modified: 2017-06-22T17:00:00-00:00
 categories: articles
 tags: [TypeScript, Webpack, JavaScript]
 image:
-  feature: nationalgeographic/mountain-goat.jpg
+  feature: /images/nationalgeographic/mountain-goat.jpg
 comments: true
 share: true
 references:
