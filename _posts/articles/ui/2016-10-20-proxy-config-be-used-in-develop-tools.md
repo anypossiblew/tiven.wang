@@ -6,7 +6,7 @@ modified: 2016-10-21T17:00:00-00:00
 categories: articles
 tags: [PROXY, UI, TOOLS]
 image:
-  feature: web/masthead-web.jpg
+  feature: /images/web/masthead-web.jpg
 comments: true
 share: true
 ---

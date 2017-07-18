@@ -6,7 +6,7 @@ modified: 2016-10-25T16:13:00-00:00
 categories: articles
 tags: [Cloud Foundry, RabbitMQ, Node.js, HCP]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: /images/cloud/mashheader-cloud.jpg
 comments: true
 share: true
 references:

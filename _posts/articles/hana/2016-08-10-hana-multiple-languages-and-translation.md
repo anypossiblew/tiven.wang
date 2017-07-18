@@ -6,7 +6,7 @@ modified: 2016-12-06T17:52:25-04:00
 categories: articles
 tags: [Languages, Translation, HANA, ABAP, CDS, UI5]
 image:
-  feature: hana/masthead-languages.jpg
+  feature: /images/hana/masthead-languages.jpg
 comments: true
 share: true
 references:

@@ -6,7 +6,7 @@ modified: 2016-12-08T17:00:00-00:00
 categories: articles
 tags: [VDM, CDS, OLAP, BW Query, OData, BICS]
 image:
-  feature: hana/masthead-abap-for-hana.jpg
+  feature: /images/hana/masthead-abap-for-hana.jpg
 comments: true
 share: true
 references:

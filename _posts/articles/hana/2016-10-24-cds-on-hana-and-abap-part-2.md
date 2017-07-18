@@ -6,7 +6,7 @@ modified: 2016-10-24T17:00:00-00:00
 categories: articles
 tags: [HANA, ABAP, CDS, Role, Authorization]
 image:
-  feature: hana/masthead-abap-for-hana.jpg
+  feature: /images/hana/masthead-abap-for-hana.jpg
 comments: true
 share: true
 references:
@@ -76,7 +76,7 @@ references:
 ```sql
 @AbapCatalog.sqlViewName: 'ZMKT_DIGACC'
 ...
-@AccessControl.authorizationCheck: #CHECK 
+@AccessControl.authorizationCheck: #CHECK
 define view Z_Mkt_Digacc as select from cuand_da_root
 association [0..*] to cuand_ce_mp_root as _MarketingPermission
     on cuand_da_root.comm_cat_key = _MarketingPermission.comm_cat_key {
@@ -118,7 +118,7 @@ define role Z_Mkt_Digacc {
 
 想要查看CDS View的权限问题，Tcode SACM(Access Control Management) 可以帮助你调试。
 
-打开`Tcode SACM` -> `ACM Runtime Tool(for SELECT)` 
+打开`Tcode SACM` -> `ACM Runtime Tool(for SELECT)`
 
 <figure class="center">
   <img src="/images/abap/SACM.jpg" alt="ACM Runtime Tool in SACM">

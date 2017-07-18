@@ -6,7 +6,7 @@ modified: 2016-11-25T17:51:25-04:00
 categories: articles
 tags: [Git, Github]
 image:
-  feature: web/masthead-git.jpg
+  feature: /images/web/masthead-git.jpg
 comments: true
 share: true
 ---

@@ -6,7 +6,7 @@ modified: 2016-09-27T15:51:25-04:00
 categories: articles
 tags: [Timezone, Timestamp, SAP, HANA, ABAP, OData, UI5]
 image:
-  feature: fiori/mashheader-fiori.png
+  feature: /images/fiori/mashheader-fiori.png
 comments: true
 share: true
 references:
@@ -123,7 +123,7 @@ CONVERT TIME STAMP lv_ts_dummy TIME ZONE lv_timezone INTO DATE lv_date_dummy.
 那么我们需要的SQL如下, `TO_TIMESTAMP`转换ABAP TIMESTAMP成UTC timestamp，`UTCTOLOCAL`转换UTC timestamp成Local日期时间，`TO_DATS`截取日期。
 
 ```sql
-SELECT TO_DATS(UTCTOLOCAL(TO_TIMESTAMP(TIMESTAMP), 'UTC+8')) AS DATE_LOCAL, 
+SELECT TO_DATS(UTCTOLOCAL(TO_TIMESTAMP(TIMESTAMP), 'UTC+8')) AS DATE_LOCAL,
 		SUM(SALES) AS SALES
   FROM "Sales_Order"
   WHERE (TIMESTAMP BETWEEN '20160916160000.0000000'
@@ -141,7 +141,7 @@ SELECT
       B.DATE_SAP AS DATE
 FROM "_SYS_BI"."M_TIME_DIMENSION" AS B
 LEFT OUTER JOIN (
-	SELECT TO_DATS(UTCTOLOCAL(TO_TIMESTAMP(TIMESTAMP), 'UTC+8')) AS DATE_LOCAL, 
+	SELECT TO_DATS(UTCTOLOCAL(TO_TIMESTAMP(TIMESTAMP), 'UTC+8')) AS DATE_LOCAL,
 		SUM(SALES) AS SALES
   FROM "Sales_Order"
   WHERE (TIMESTAMP BETWEEN '20160916160000.0000000'

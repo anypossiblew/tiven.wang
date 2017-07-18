@@ -6,7 +6,7 @@ modified: 2016-10-21T15:00:00-00:00
 categories: articles
 tags: [SAP, HANA, ABAP, ADBC, AMDP, CDS, OLTP, OLAP, BOPF]
 image:
-  feature: hana/masthead-abap-for-hana.jpg
+  feature: /images/hana/masthead-abap-for-hana.jpg
 comments: true
 share: true
 references:
@@ -145,23 +145,23 @@ ADBC是ABAP提供的动态访问数据库的一组API Class。如同`JDBC`一样
 > 但SAP的一些产品中实现了相应的组装SQL的Class组件，如[**Hybris Marketing**](https://www.hybris.com/en/marketing)。
 
 ```sql
-DATA key TYPE string. 
-cl_demo_input=>request( CHANGING field = key ). 
+DATA key TYPE string.
+cl_demo_input=>request( CHANGING field = key ).
 
-TRY. 
-    DATA(sql) = NEW cl_sql_statement( ). 
-    sql->set_param( REF #( sy-mandt ) ). 
-    sql->set_param( REF #( key ) ). 
-    DATA(result) = sql->execute_query( 
-          `SELECT carrname ` && 
-          `FROM scarr ` && 
-          `WHERE mandt  = ? AND carrid = ?` ). 
-    DATA name TYPE scarr-carrname. 
-    result->set_param( REF #( name ) ). 
-    result->next( ). 
-    cl_demo_output=>display( name ). 
-  CATCH cx_sql_exception INTO DATA(err). 
-    cl_demo_output=>display( err->get_text( ) ). 
+TRY.
+    DATA(sql) = NEW cl_sql_statement( ).
+    sql->set_param( REF #( sy-mandt ) ).
+    sql->set_param( REF #( key ) ).
+    DATA(result) = sql->execute_query(
+          `SELECT carrname ` &&
+          `FROM scarr ` &&
+          `WHERE mandt  = ? AND carrid = ?` ).
+    DATA name TYPE scarr-carrname.
+    result->set_param( REF #( name ) ).
+    result->next( ).
+    cl_demo_output=>display( name ).
+  CATCH cx_sql_exception INTO DATA(err).
+    cl_demo_output=>display( err->get_text( ) ).
 ENDTRY.
 ```
 

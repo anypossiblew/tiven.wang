@@ -6,7 +6,7 @@ modified: 2016-10-25T16:00:00-00:00
 categories: articles
 tags: [HCP, UI5, OData, HANA, Cloud]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: /images/cloud/mashheader-cloud.jpg
 comments: true
 share: true
 references:

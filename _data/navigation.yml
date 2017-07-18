@@ -6,8 +6,8 @@
 - title: Articles
   url: /articles/
 
-- title: Blog
-  url: http://blog.tiven.wang
+- title: Series
+  url: /series/
 
 - title: Tags
   url: /tags/
@@ -17,3 +17,6 @@
 
 - title: Labs
   url: http://labs.tiven.wang
+
+- title: Blog
+  url: http://blog.tiven.wang

@@ -6,7 +6,7 @@ modified: 2017-02-13T17:51:25-04:00
 categories: articles
 tags: [Git, Best Practices, Github]
 image:
-  feature: web/masthead-git.jpg
+  feature: /images/web/masthead-git.jpg
 comments: true
 share: true
 ---

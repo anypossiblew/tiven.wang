@@ -26,7 +26,27 @@ sitemap: false
 .demo-blog {
   .blog__post {
 
+    blockquote {
+    	@media (max-width: 479px) {
+    	  margin: 5px;
+    	}
+    }
+
+    @media (max-width: 479px) {
+      .mdl-color-text--grey-50.mdl-card__media {
+        padding: 15px;
+        .android-link.mdl-button.mdl-js-button {
+          padding: 0;
+        }
+      }
+    }
+
     .mdl-color-text--grey-700.mdl-card__supporting-text {
+
+      @media (max-width: 479px) {
+        padding: 15px;
+      }
+
       padding: 40px;
       align-items: left;
       p {
@@ -41,6 +61,9 @@ sitemap: false
 
     .blog__post-body.mdl-color-text--grey-700.mdl-card__supporting-text {
       margin-top: -40px;
+      @media (max-width: 479px) {
+        margin-top: -15px;
+      }
     }
 
     h2[id] {
@@ -117,7 +140,7 @@ sitemap: false
   	padding-left: 0;
   }
   li {
-    @include font-size(20,no,18);
+    @include font-size(18,no,18);
     border-bottom: 1px solid $border-color;
     list-style-type: none;
   }
@@ -147,22 +170,22 @@ sitemap: false
 
   >li>ul>li {
   	margin-left: 1em;
-  	@include font-size(18,no,18);
+  	@include font-size(16,no,18);
   }
 
   >li>ul>li>ul>li {
   	margin-left: 1.5em;
-  	@include font-size(16,no,18);
+  	@include font-size(14,no,18);
   }
 
   >li>ul>li>ul>li>ul>li {
   	margin-left: 2em;
-  	@include font-size(14,no,18);
+  	@include font-size(12,no,18);
   }
 
   >li>ul>li>ul>li>ul>li>ul>li {
   	margin-left: 2.5em;
-  	@include font-size(12,no,18);
+  	@include font-size(10,no,18);
   }
 }
 
@@ -181,3 +204,11 @@ sitemap: false
 a.social-btn {
   display: inline-block;
 }
+
+figure.center, p.center {
+  margin: 0 auto;
+}
+
+// p.has(.MathJax_Display) {
+//   width: 100%;
+// }

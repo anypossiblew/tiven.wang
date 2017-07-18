@@ -6,7 +6,7 @@ modified: 2016-12-01T17:00:00-00:00
 categories: articles
 tags: [XSDS, XSC, HANA]
 image:
-  feature: hana/masthead-hana-xsc.jpg
+  feature: /images/hana/masthead-hana-xsc.jpg
 comments: true
 share: true
 references:

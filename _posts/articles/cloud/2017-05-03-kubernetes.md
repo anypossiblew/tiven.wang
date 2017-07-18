@@ -6,7 +6,7 @@ modified: 2017-05-03T17:00:00-00:00
 categories: articles
 tags: [Kubernetes]
 image:
-  feature: web/masthead-web.jpg
+  feature: /images/web/masthead-web.jpg
 comments: true
 share: true
 references:

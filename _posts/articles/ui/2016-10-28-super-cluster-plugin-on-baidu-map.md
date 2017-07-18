@@ -6,7 +6,7 @@ modified: 2016-10-28T17:00:00-00:00
 categories: articles
 tags: [Baidu Map, 百度地图, Map, Cluster]
 image:
-  feature: web/masthead-web.jpg
+  feature: /images/web/masthead-web.jpg
 comments: true
 share: true
 references:

@@ -1,6 +1,6 @@
 ---
 layout: series
-title: Cloud Training 1 - Create Maven Project and Deploy to Tomcat
+title: Microservices
 excerpt: ""
 modified: 2017-04-24T17:00:00-00:00
 categories: series

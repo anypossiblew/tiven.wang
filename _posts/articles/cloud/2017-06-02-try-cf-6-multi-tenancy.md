@@ -6,7 +6,7 @@ modified: 2017-05-26T17:00:00-00:00
 categories: articles
 tags: [Multi Tenancy, Cloud Foundry, Pivotal]
 image:
-  feature: cloud/masthead-cf.jpg
+  feature: /images/cloud/masthead-cf.jpg
 comments: true
 share: true
 references:

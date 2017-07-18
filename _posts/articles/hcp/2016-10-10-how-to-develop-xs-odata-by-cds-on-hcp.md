@@ -6,7 +6,7 @@ modified: 2016-10-25T12:00:00-00:00
 categories: articles
 tags: [HCP, OData, CDS, HANA, Cloud]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: /images/cloud/mashheader-cloud.jpg
 comments: true
 share: true
 references:
@@ -75,7 +75,7 @@ Context里可以创建用户自定义的数据结构，实体，视图。
 	type EventID : String(20);
 	// User ID Type
 	type UserID : String(40);
-	
+
 	/**
 	 * Table definition for Inbound Message
 	 */
@@ -85,7 +85,7 @@ Context里可以创建用户自定义的数据结构，实体，视图。
 		events : Association[*] to Event on events.message = id;
 		content: Content;
 	};
-	
+
 	/**
 	 * Table definition for Events in a Message
 	 */
@@ -99,7 +99,7 @@ Context里可以创建用户自定义的数据结构，实体，视图。
 		subscribers: Association[*] to Subscriber on subscribers.event = id;
 		content : Content;
 	};
-	
+
 	/**
 	 * Table definition for the Users in an Event
 	 */
@@ -107,7 +107,7 @@ Context里可以创建用户自定义的数据结构，实体，视图。
 		key event: EventID;
 		key user: Association to User;
 	}
-	
+
 	/**
 	 * Table definition for User info
 	 */
@@ -157,20 +157,20 @@ function saveMessage(content) {
 	var id = 0;
 	var conn = $.db.getConnection(conSQLConnection);
 	conn.prepareStatement("SET SCHEMA " + conSchema).execute(); // Setting the SCHEMA
-	
+
 	var pStmt = conn.prepareStatement('select max( "id" ) from "' + conMessageTable + '"');
 	var rs = pStmt.executeQuery();
 	if (rs.next()) {
 		id = Number(rs.getNString(1)) + 1;
 	}
 	rs.close();
-	
+
 	pStmt = conn.prepareStatement('insert INTO "'+conMessageTable+'"("id", "createdTime", "content") values(?, now(), ?)');
 	pStmt.setInteger(1, id);
 	pStmt.setNString(2, JSON.stringify(content));
 	pStmt.executeUpdate();
 	pStmt.close();
-	
+
 	var i = 0;
 	if(content.result && content.result.length > 0) {
 		for(i = 0; i < content.result.length; i++) {
@@ -186,7 +186,7 @@ function saveMessage(content) {
 			id: id,
 			info: "Success!"
 		};
-	
+
 	if (conn) {
 		conn.close();
 	}
@@ -194,11 +194,11 @@ function saveMessage(content) {
 }
 
 function createEvent(conn, id, event) {
-    
+
 	var pStmt, mid, toMid, j, persons;
-    
+
 	toMid = event.to[0];
-						
+
 	pStmt = conn.prepareStatement('INSERT INTO "'+conEventTable+'"("message", "id", "createdTime", "eventType", "fromUser.id", "toUser.id", "content") values(?, ?, ?, ?, ?, ?, ?)');
 	pStmt.setInteger(1, id);
 	pStmt.setNString(2, event.id);
@@ -214,7 +214,7 @@ function createEvent(conn, id, event) {
 
 	pStmt.executeUpdate();
 	pStmt.close();
-	
+
 	if(event.content.params) {
 		for(j = 0; j < event.content.params.length; j++) {
 			mid = event.content.params[j];
@@ -224,11 +224,11 @@ function createEvent(conn, id, event) {
 			createSubscriber(conn, event.id, mid);
 		}
 	}
-	
+
 	if(event.content.from) {
 		createSubscriber(conn, event.id, event.content.from);
 	}
-	
+
 	if(event.to && event.to.length) {
 	    createUser(conn, event, event.to[0]);
 	}
@@ -240,7 +240,7 @@ function createSubscriber(conn, event, mid) {
 	pStmt.setNString(2, mid);
 	pStmt.executeUpdate();
 	pStmt.close();
-	
+
 	createUser(conn, event, mid);
 }
 
@@ -253,7 +253,7 @@ function createUser(conn, event, mid) {
 	pStmt.setNString(4, mid);
 	var update = pStmt.executeUpdate();
 	pStmt.close();
-	
+
 	if(!update) {
 		pStmt = conn.prepareStatement('INSERT INTO "'+conUserTable+'"("id", "displayName", "pictureUrl", "statusMessage") values(?, ?, ?, ?)');
 		pStmt.setNString(1, mid);
@@ -341,9 +341,9 @@ _/digital-account/services/DigAccMessage.xsodata/**Messages?$format=json**_
 ```sql
 "digital-account.data::DigAccMessage.Message" as "Message" navigates ("Message_Events" as "events");
 "digital-account.data::DigAccMessage.Event" as "Event";
-	
-association "Message_Events" with referential constraint principal 
-	"Message"("id") multiplicity "1" 
+
+association "Message_Events" with referential constraint principal
+	"Message"("id") multiplicity "1"
 	dependent "Event"("message") multiplicity "*";
 ```
 
@@ -361,8 +361,8 @@ _/digital-account/services/DigAccMessage.xsodata/Message?**$expand=events**_
 "digital-account.data::DigAccMessage.Message" as "Message" navigates ("Message_Events" as "events") delete forbidden;
 "digital-account.data::DigAccMessage.Event" as "Event" delete forbidden;
 
-association "Message_Events" with referential constraint principal 
-	"Message"("id") multiplicity "1" 
+association "Message_Events" with referential constraint principal
+	"Message"("id") multiplicity "1"
 	dependent "Event"("message") multiplicity "*";
 ```
 
@@ -381,7 +381,7 @@ message.xsjslib文件内容为
 
 let	conSchema = "DigAcc",
 	conMessageTable = "digital-account.data::DigAccMessage.Message";
-	
+
 function createMessage(param) {
 
 	let before = param.beforeTableName;
@@ -405,7 +405,7 @@ function createMessage(param) {
 	}
 	rs.close();
 	pStmt.close();
-	
+
 	pStmt = param.connection.prepareStatement('insert into "'+conMessageTable+'"("id", "createdTime", "content") values(?, now(), ?)');
 	pStmt.setInteger(1, id);
 	pStmt.setNString(2, content);

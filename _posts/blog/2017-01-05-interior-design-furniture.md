@@ -6,7 +6,7 @@ modified: 2017-01-05T15:49:25-04:00
 categories: blog
 tags: [Interior, Furniture]
 image:
-  feature: interior/masthead-interior.jpg
+  feature: /images/interior/masthead-interior.jpg
 comments: true
 share: true
 ---

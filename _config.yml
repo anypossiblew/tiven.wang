@@ -8,6 +8,7 @@ search: true
 myurl: http://tiven.wang #http://127.0.0.1:4000
 # url: http://127.0.0.1:4000 #http://tiven.wang
 cdnjs: http://cdnjs.tiven.wang/ajax/libs
+labs: http://labs.tiven.wang
 
 # Jekyll configuration
 

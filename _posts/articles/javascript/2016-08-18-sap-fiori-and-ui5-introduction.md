@@ -6,7 +6,7 @@ modified: 2016-08-19T17:51:25-04:00
 categories: articles
 tags: [SAP, Fiori, UI5]
 image:
-  feature: fiori/mashheader-fiori.png
+  feature: /images/fiori/mashheader-fiori.png
 comments: true
 share: true
 references:
@@ -39,17 +39,3 @@ SAP Fiori是为了给企业级应用带来更好的用户体验的一种设计�
 ## 总结
 
 &lt;&lt;未完&gt;&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-

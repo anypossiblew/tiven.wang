@@ -6,7 +6,7 @@ modified: 2017-04-25T17:00:00-00:00
 categories: articles
 tags: [Docker, Infrastructure as Code, CI/CD]
 image:
-  feature: hana/masthead-microservices.jpg
+  feature: /images/hana/masthead-microservices.jpg
 comments: true
 share: true
 references:

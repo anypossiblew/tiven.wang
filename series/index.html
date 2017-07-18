@@ -1,0 +1,60 @@
+---
+layout: page
+title: "Series"
+date:
+modified:
+excerpt:
+image:
+  feature:
+search_omit: true
+sitemap: false
+---
+
+<style>
+
+.mdl-card > .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('/images/so-simple-sample-image-6.jpg') center / cover;
+}
+.mdl-card > .mdl-card__menu {
+  color: #fff;
+}
+.section__circle-container .section__circle-container__circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  margin: 8px 0;
+}
+</style>
+
+<div class="mdl-layout__tab-panel is-active demo-blog" id="overview">
+<div class="demo-blog__posts page-content mdl-grid">
+  {% for series in site.data.series %}
+  <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+    <div class="mdl-card__title" style="background: url('{{ series.background }}') center / cover;">
+      <h2 class="mdl-card__title-text">{{ series.title }}</h2>
+    </div>
+    <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
+      <h4 class="mdl-cell mdl-cell--12-col">Details</h4>
+      {% for post in series.posts %}
+      <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
+        <div class="section__circle-container__circle mdl-color--primary"></div>
+      </div>
+      <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+        <h5><a href="{{ post.link }}">{{ post.title }}</a></h5>
+        {{ post.description }}
+      </div>
+      {% endfor %}
+    </div>
+    {% if series.series %}
+    <div class="mdl-card__actions">
+      <a href="{{ series.series }}" class="mdl-button">Read our features</a>
+    </div>
+    {% endif %}
+  </div>
+
+  {% endfor %}
+
+</div>
+</div>

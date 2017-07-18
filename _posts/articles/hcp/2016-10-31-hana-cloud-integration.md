@@ -6,7 +6,7 @@ modified: 2016-10-31T17:00:00-00:00
 categories: articles
 tags: [HCP, HANA, Cloud, Integration, HCI]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: /images/cloud/mashheader-cloud.jpg
 comments: true
 share: true
 references:

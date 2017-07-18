@@ -6,7 +6,7 @@ modified: 2016-11-28T17:51:25-04:00
 categories: articles
 tags: [Material Design, Angular.js]
 image:
-  feature: angular/mashheader-angular1x.png
+  feature: /images/angular/mashheader-angular1x.png
 comments: true
 share: true
 references:

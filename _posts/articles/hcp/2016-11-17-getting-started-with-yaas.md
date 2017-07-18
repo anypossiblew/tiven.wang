@@ -6,7 +6,7 @@ modified: 2016-11-18T17:00:00-00:00
 categories: articles
 tags: [YaaS, HCP, Cloud]
 image:
-  feature: cloud/masthead-incubators.jpg
+  feature: /images/cloud/masthead-incubators.jpg
 comments: true
 share: true
 references:

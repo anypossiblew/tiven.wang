@@ -6,7 +6,7 @@ modified: 2016-08-20T23:51:25-04:00
 categories: articles
 tags: [Node.js, Turf.js, GeoJSON, Map, 大数据]
 image:
-  feature: nodejs/mashheader-turf.png
+  feature: /images/nodejs/mashheader-turf.png
 comments: true
 share: true
 references:
@@ -110,10 +110,10 @@ fs.readFile('number-of-entrance.csv', 'utf8', function (err, data) {
 循环各省进行计算`人数/面积`的密度
 
 ```javascript
-items.map(function(item) { 
- for(var i = 0; i < china.features.length; i++) { 
-  if(china.features[i].properties.name == item['省'] ) { 
-   china.features[i].properties.register_number = item['人数']*10000; 
+items.map(function(item) {
+ for(var i = 0; i < china.features.length; i++) {
+  if(china.features[i].properties.name == item['省'] ) {
+   china.features[i].properties.register_number = item['人数']*10000;
     china.features[i].properties.register_density =  
      (china.features[i].properties.register_number) / china.features[i].properties.area;  
    }
@@ -124,21 +124,21 @@ items.map(function(item) {
 数据计算过之后，我们也可以计算style样式（虽然这里可能使用不到，但像这样可以往properties里添加自定义的属性）
 
 ```javascript
-var min = 0, max = 0; 
-for(var i = 0; i < china.features.length; i++) { 
- var registerDensity = china.features[i].properties.register_density; 
- if(registerDensity > max) { 
-  max = registerDensity; 
- } 
- if(min == 0 || min > registerDensity) { 
-  min = registerDensity; 
- } 
-} 
-for(var i = 0; i < china.features.length; i++) { 
- var opacity = Math.floor((china.features[i].properties.register_density-min)/(max-min)*10+1)/10; 
- china.features[i].properties.style = { 
-  fillOpacity: opacity 
- }; 
+var min = 0, max = 0;
+for(var i = 0; i < china.features.length; i++) {
+ var registerDensity = china.features[i].properties.register_density;
+ if(registerDensity > max) {
+  max = registerDensity;
+ }
+ if(min == 0 || min > registerDensity) {
+  min = registerDensity;
+ }
+}
+for(var i = 0; i < china.features.length; i++) {
+ var opacity = Math.floor((china.features[i].properties.register_density-min)/(max-min)*10+1)/10;
+ china.features[i].properties.style = {
+  fillOpacity: opacity
+ };
 }
 ```
 

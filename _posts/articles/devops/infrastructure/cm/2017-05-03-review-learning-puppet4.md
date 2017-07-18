@@ -6,7 +6,7 @@ modified: 2017-05-03T17:00:00-00:00
 categories: articles
 tags: [Puppet, Infrastructure as Code]
 image:
-  feature: hana/masthead-microservices.jpg
+  feature: /images/hana/masthead-microservices.jpg
 comments: true
 share: true
 references:

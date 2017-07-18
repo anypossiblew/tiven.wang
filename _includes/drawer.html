@@ -1,6 +1,6 @@
 <div class="android-drawer mdl-layout__drawer">
   <span class="mdl-layout-title">
-    <img class="android-logo-image" src="/images/android-logo-white.png">
+    <a href="/"><img class="android-logo-image" src="/images/android-logo-white.png"></a>
   </span>
   <nav class="mdl-navigation">
     {% for link in site.data.navigation %}
@@ -13,20 +13,24 @@
     {% endfor %}
 
     <div class="android-drawer-separator"></div>
-    <span class="mdl-navigation__link" href="">Versions</span>
-    <a class="mdl-navigation__link" href="">Lollipop 5.0</a>
-    <a class="mdl-navigation__link" href="">KitKat 4.4</a>
-    <a class="mdl-navigation__link" href="">Jelly Bean 4.3</a>
-    <a class="mdl-navigation__link" href="">Android history</a>
+    <span class="mdl-navigation__link" href="{{ site.labs }}">Laboratory</span>
+    <a class="mdl-navigation__link" href="{{ site.labs }}/map/realtime-aqi-via-d3-voronoi-on-map.html">Voronoi AQI</a>
+    <a class="mdl-navigation__link" href="{{ site.labs }}/map/realtime-aqi-via-turf-isolines-on-map.html">Isolines AQI</a>
+    <a class="mdl-navigation__link" href="{{ site.labs }}/map/leaflet-baidu/">Leaflet Baidu</a>
+    <a class="mdl-navigation__link" href="{{ site.labs }}/fiori/cv/">Fiori</a>
+    <a class="mdl-navigation__link" href="{{ site.labs }}/angular2/todo/index.html">Angular</a>
+    <a class="mdl-navigation__link" href="{{ site.labs }}/d3/zoom-sequence-sunburst.html">D3.js</a>
+
     <div class="android-drawer-separator"></div>
     <span class="mdl-navigation__link" href="">Resources</span>
-    <a class="mdl-navigation__link" href="">Official blog</a>
-    <a class="mdl-navigation__link" href="">Android on Google+</a>
-    <a class="mdl-navigation__link" href="">Android on Twitter</a>
+    <a class="mdl-navigation__link" href="https://design.google/">Google Design</a>
+    <a class="mdl-navigation__link" href="https://fonts.google.com/">Google Fonts</a>
+    <a class="mdl-navigation__link" href="https://material.angular.io/">Angular Material</a>
+    <a class="mdl-navigation__link" href="https://www.webcomponents.org/">Web Components</a>
     <div class="android-drawer-separator"></div>
     <span class="mdl-navigation__link" href="">For developers</span>
-    <a class="mdl-navigation__link" href="">App developer resources</a>
-    <a class="mdl-navigation__link" href="">Android Open Source Project</a>
-    <a class="mdl-navigation__link" href="">Android SDK</a>
+    <a class="mdl-navigation__link" href="https://github.com/anypossiblew">Github</a>
+    <a class="mdl-navigation__link" href="https://developers.google.com/web/">Google Web</a>
+    <a class="mdl-navigation__link" href="https://getmdl.io/index.html">Material Design Lite</a>
   </nav>
 </div>

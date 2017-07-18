@@ -6,7 +6,7 @@ modified: 2017-01-06T17:00:00-00:00
 categories: articles
 tags: [Maven, Tools]
 image:
-  feature: cloud/masthead-incubators.jpg
+  feature: /images/cloud/masthead-incubators.jpg
 comments: true
 share: true
 ---

@@ -6,7 +6,7 @@ modified: 2017-06-05T17:00:00-00:00
 categories: articles
 tags: [Node.js, TypeScript, JavaScript]
 image:
-  feature: nationalgeographic/Strutting-Stork.jpg
+  feature: /images/nationalgeographic/Strutting-Stork.jpg
 comments: true
 share: true
 references:

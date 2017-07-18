@@ -6,7 +6,7 @@ modified: 2016-07-27T11:10:25-04:00
 categories: articles
 tags: [HANA, HANA Spatial, WGS-84, SRS, 大数据]
 image:
-  feature: masthead-geospatial.jpg
+  feature: /images/masthead-geospatial.jpg
 comments: true
 share: true
 references:
@@ -20,7 +20,7 @@ references:
     url: "https://epsg.io/"
   - title: "SAP HANA Spatial Reference pdf"
     url: "http://help.sap.com/hana/SAP_HANA_Spatial_Reference_en.pdf"
-  
+
 ---
 
 * TOC
@@ -87,14 +87,14 @@ HANA Spatial还支持聚合方法，并支持多种算法如K-Means。 使用语
 
 ```sql
 SELECT
-	 ST_AsSVGAggr(centroid) 
+	 ST_AsSVGAggr(centroid)
 from (SELECT
 	 ST_ClusterId() AS cluster_id,
 	 ST_ClusterCentroid() AS centroid,
 	 COUNT(*) AS number_of_households,
-	 AVG(INCOME) AS average_cluster_income 
-	FROM HOUSEHOLDS 
-	WHERE INCOME > 120000 
+	 AVG(INCOME) AS average_cluster_income
+	FROM HOUSEHOLDS
+	WHERE INCOME > 120000
 	GROUP CLUSTER BY LOCATION USING KMEANS CLUSTERS 100 HAVING COUNT(*) >= 300)
 ;
 
@@ -102,16 +102,16 @@ SELECT
 	 cluster_id,
 	 REVENUE,
 	 VM_ID,
-	 RANK() OVER (PARTITION BY cluster_id 
+	 RANK() OVER (PARTITION BY cluster_id
 	order by REVENUE ASC) AS rank,
-	 LOCATION 
+	 LOCATION
 FROM (SELECT
 	 ST_ClusterID() OVER (CLUSTER BY LOCATION USING DBSCAN EPS 100 MINPTS 5) AS cluster_id,
 	 REVENUE,
 	 VM_ID,
-	 LOCATION 
-	FROM VENDING_MACHINES 
-	WHERE REVENUE < 60000) 
+	 LOCATION
+	FROM VENDING_MACHINES
+	WHERE REVENUE < 60000)
 ORDER BY cluster_id
 ;
 ```
@@ -135,9 +135,9 @@ DEFINITION 'GEOGCS["BD 09" DATUM["WGS_1984" SPHEROID["WGS 84" 6378137 298.257223
 TRANSFORM DEFINITION '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
 ELLIPSOID SEMI MAJOR AXIS 6378137
 INVERSE FLATTENING 298.257223563
-ORGANIZATION SAP IDENTIFIED BY 0 
+ORGANIZATION SAP IDENTIFIED BY 0
 ;
- 
+
 CREATE SPATIAL REFERENCE SYSTEM "BD 09 (planar)"
 IDENTIFIED BY 10000xxxxx
 TYPE PLANAR

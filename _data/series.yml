@@ -1,0 +1,26 @@
+- title: Try Cloud Foundry
+  background: /images/cloud/masthead-cf.jpg
+  series: /series/try-cloudfoundry
+  posts:
+    - title: 1 - Pivotal Web Services
+      description: Try Pivotal Cloud Foundry Web Services
+      link: /articles/try-cf-1-pivotal-web-services/
+    - title: 2 - Components Router
+      description: Cloud Foundry Components Router
+      link: /articles/try-cf-2-cloud-foundry-components-router/
+    - title: 3 - Components UAA
+      description: Cloud Foundry Components UAA
+      link: /articles/try-cf-3-cloud-foundry-components-uaa/
+- title: Microservices
+  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  series: /series/microservices
+  posts:
+    - title: Documenting Restful API
+      description: Documenting Restful API
+      link: /articles/microservices-restful-api-documenting/
+    - title: Restful API Exceptions Handler
+      description: Restful API Exceptions Handler
+      link: /articles/microservices-restful-api-exceptions/
+    - title: Restful API HATEOAS
+      description: Restful API HATEOAS
+      link: /articles/microservices-restful-api-hateoas/

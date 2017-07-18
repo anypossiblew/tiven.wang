@@ -6,7 +6,7 @@ modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [Unit Test, Spring, Maven, Java, HCP, HANA]
 image:
-  feature: cloud/masthead-incubators.jpg
+  feature: /images/cloud/masthead-incubators.jpg
 comments: true
 share: true
 references:

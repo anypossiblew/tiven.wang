@@ -6,7 +6,7 @@ modified: 2016-11-18T11:51:25-04:00
 categories: articles
 tags: [YaaS, Cloud Foundry, HCP, Hybris]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: /images/cloud/mashheader-cloud.jpg
 comments: true
 share: true
 references:

@@ -6,7 +6,7 @@ modified: 2017-04-24T17:00:00-00:00
 categories: articles
 tags: [Servlet, Maven, Tomcat]
 image:
-  feature: web/masthead-web.jpg
+  feature: /images/web/masthead-web.jpg
 comments: true
 share: true
 ---

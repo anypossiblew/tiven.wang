@@ -6,7 +6,7 @@ modified: 2016-10-21T17:00:00-00:00
 categories: articles
 tags: [HANA, ABAP, CDS, OData]
 image:
-  feature: hana/masthead-abap-for-hana.jpg
+  feature: /images/hana/masthead-abap-for-hana.jpg
 comments: true
 share: true
 references:
@@ -32,7 +32,7 @@ references:
 3. [Introduction to CDS on HANA and ABAP part 3 - Unit Test](/articles/cds-on-hana-and-abap-part-3/)
 {: .entry-series}
 
-## Background 
+## Background
 
 ### ABAP Dictionary
 
@@ -53,7 +53,7 @@ ABAP CDS和HANA CDS是同一种规范的不同平台实现而已。核心功能�
 对于开发者来说该如何选择CDS两种不同的实现，是个需要斟酌的问题。这里给出一些建议
 
 * 如果你的HANA是独立运行的或者说并不是作为ABAP服务器的主数据库运行的，那么自然使用不了ABAP CDS，必须使用HANA CDS
-* 如果你运行的是ABAP on HANA（也就是说HANA数据库作为AS ABAP的主数据库存在）	
+* 如果你运行的是ABAP on HANA（也就是说HANA数据库作为AS ABAP的主数据库存在）
 	* 如果你想在全局环境或者Open SQL中使用CDS实体对象，或者需要一些具有ABAP关联性的注解，那么必须使用ABAP CDS
 	* 如果你需要在ABAP中使用CDS实体对象，但想要像ABAP存储库对象一样地传输和升级它的话，可以使用ABAP CDS
 	* 如果以上都不需要，你可以使用HANA CDS，它跟HANA有更好的集成。同时你仍然可以在ABAP中使用[Native SQL（ADBC,AMDP）访问HANA CDS][5]

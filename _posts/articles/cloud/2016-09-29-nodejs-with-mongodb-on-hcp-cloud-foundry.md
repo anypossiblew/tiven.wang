@@ -6,7 +6,7 @@ modified: 2016-10-25T11:51:25-04:00
 categories: articles
 tags: [Cloud Foundry, MongoDB, Node.js, HCP]
 image:
-  feature: cloud/mashheader-cloud.jpg
+  feature: /images/cloud/mashheader-cloud.jpg
 comments: true
 share: true
 references:

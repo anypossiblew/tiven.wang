@@ -6,7 +6,7 @@ modified: 2016-07-26T17:49:25-04:00
 categories: articles
 tags: [Baidu Map, 百度地图, Map, HANA Spatial, WGS-84, SRS]
 image:
-  feature: masthead-geospatial.jpg
+  feature: /images/masthead-geospatial.jpg
 comments: true
 share: true
 references:

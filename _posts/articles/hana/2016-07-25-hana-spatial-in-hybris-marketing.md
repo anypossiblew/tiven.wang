@@ -6,7 +6,7 @@ modified: 2016-07-26T15:49:25-04:00
 categories: articles
 tags: [HANA, 内存数据库, geospatial, 地理空间, Big data, 大数据, Hybris Marketing]
 image:
-  feature: masthead-geospatial.jpg
+  feature: /images/masthead-geospatial.jpg
 comments: true
 share: true
 references:

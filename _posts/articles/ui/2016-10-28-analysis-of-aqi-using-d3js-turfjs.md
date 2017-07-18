@@ -6,7 +6,7 @@ modified: 2016-10-28T18:00:00-00:00
 categories: articles
 tags: [D3.js, Turf.js, AQI, Map]
 image:
-  feature: web/masthead-web.jpg
+  feature: /images/web/masthead-web.jpg
 comments: true
 share: true
 ---

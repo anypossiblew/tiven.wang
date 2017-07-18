@@ -6,7 +6,7 @@ modified: 2016-11-30T17:00:00-00:00
 categories: articles
 tags: [HANA]
 image:
-  feature: hana/masthead-abap-for-hana.jpg
+  feature: /images/hana/masthead-abap-for-hana.jpg
 comments: true
 share: true
 ---

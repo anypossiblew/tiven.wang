@@ -6,7 +6,7 @@ modified: 2017-04-06T17:00:00-00:00
 categories: articles
 tags: [Jenkins, Docker, CI/CD]
 image:
-  feature: hana/masthead-microservices.jpg
+  feature: /images/hana/masthead-microservices.jpg
 comments: true
 share: true
 references:

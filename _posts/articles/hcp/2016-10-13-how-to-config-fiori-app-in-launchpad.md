@@ -6,7 +6,7 @@ modified: 2016-10-25T17:00:00-00:00
 categories: articles
 tags: [HCP, UI5, Fiori, HANA, Cloud, ABAP]
 image:
-  feature: fiori/mashheader-fiori.png
+  feature: /images/fiori/mashheader-fiori.png
 comments: true
 share: true
 references:

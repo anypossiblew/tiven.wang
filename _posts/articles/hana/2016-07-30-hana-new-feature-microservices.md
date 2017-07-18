@@ -6,7 +6,7 @@ modified: 2016-07-30T12:47:25-04:00
 categories: articles
 tags: [HANA, SOA, Microservices, Node.js, XSA, HDI, OLAP]
 image:
-  feature: hana/masthead-microservices.jpg
+  feature: /images/hana/masthead-microservices.jpg
 comments: true
 share: true
 references:
@@ -26,7 +26,7 @@ references:
     url: "http://go.sap.com/developer/tutorials/xsa-hdi-module.html"
   - title: "SAP HANA SPS 11: New Developer Features"
     url: "http://scn.sap.com/community/developer-center/hana/blog/2015/12/08/sap-hana-sps-11-new-developer-features"
-        
+
 ---
 
 * TOC
