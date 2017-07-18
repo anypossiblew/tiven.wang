@@ -214,11 +214,15 @@ figure.center, p.center {
     .demo-references.mdl-card {
       min-height: 100px;
       .mdl-card__supporting-text {
-        padding: 0;
+        padding-top: 0;
       }
 
       .mdl-list {
-        margin: 0
+        margin: 0 -16px;
+      }
+
+      .mdl-list__item, .mdl-list__item-primary-content {
+        display: block;
       }
     }
   }

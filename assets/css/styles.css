@@ -580,7 +580,7 @@ body .demo-blog {
   color: inherit;
 }
 .demo-blog .mdl-card__supporting-text {
-  width: 100%;
+  /*width: 100%;*/
   padding: 16px;
   min-height: 64px;
   display: flex;
@@ -753,6 +753,7 @@ body .demo-blog {
   align-items: stretch;
   padding: 32px;
   box-sizing: border-box;
+  width: 100%;
 }
 .demo-blog--blogpost .comments > form {
   display: flex;
