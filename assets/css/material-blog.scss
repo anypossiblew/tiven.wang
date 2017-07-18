@@ -209,6 +209,22 @@ figure.center, p.center {
   margin: 0 auto;
 }
 
+.demo-blog  {
+  .blog__post {
+    .demo-references.mdl-card {
+      min-height: 100px;
+      .mdl-card__supporting-text {
+        padding: 0;
+      }
+
+      .mdl-list {
+        margin: 0
+      }
+    }
+  }
+}
+
+
 // p.has(.MathJax_Display) {
 //   width: 100%;
 // }

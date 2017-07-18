@@ -11,6 +11,7 @@
     - title: 3 - Components UAA
       description: Cloud Foundry Components UAA
       link: /articles/try-cf-3-cloud-foundry-components-uaa/
+
 - title: Microservices
   background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
   series: /series/microservices
@@ -24,3 +25,23 @@
     - title: Restful API HATEOAS
       description: Restful API HATEOAS
       link: /articles/microservices-restful-api-hateoas/
+
+- title: Machine Learning
+  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  series: /series/machine-learning
+  posts:
+
+- title: JavaScript
+  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  series: /series/javascript
+  posts:
+
+- title: HANA
+  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  series: /series/hana
+  posts:
+
+- title: SAP Cloud Platform
+  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  series: /series/scp
+  posts:
