@@ -41,6 +41,18 @@ sitemap: false
       }
     }
 
+    .mdl-card__supporting-text {
+
+      p {
+        max-width: 100%;
+        margin: 16px 0
+      }
+
+      figure.center, p.center {
+        margin: 0 auto;
+      }
+    }
+
     .mdl-color-text--grey-700.mdl-card__supporting-text {
 
       @media (max-width: 479px) {
@@ -49,17 +61,19 @@ sitemap: false
 
       padding: 40px;
       align-items: left;
-      p {
-        max-width: 100%;
-        margin: 16px 0
-      }
+      -webkit-align-items: left;
+
 
       img {
         max-width: 100%;
       }
     }
 
-    .blog__post-body.mdl-color-text--grey-700.mdl-card__supporting-text {
+    .mdl-card__supporting-text {
+      box-sizing: border-box;
+    }
+
+    .blog__post-body.mdl-card__supporting-text {
       margin-top: -40px;
       @media (max-width: 479px) {
         margin-top: -15px;
@@ -223,12 +237,8 @@ figure.center, p.center {
 
       .mdl-list__item, .mdl-list__item-primary-content {
         display: block;
+        font-size: 1em;
       }
     }
   }
 }
-
-
-// p.has(.MathJax_Display) {
-//   width: 100%;
-// }

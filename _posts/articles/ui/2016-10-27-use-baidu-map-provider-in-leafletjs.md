@@ -48,12 +48,16 @@ share: true
 公式如下
 
 \\[ R = 6378137(mi)  地球半径 \\]
+{: .center}
 
 \\[ x = R * \pi * \frac{lng}{180} \\]
+{: .center}
 
 \\[ \phi = \frac{\pi * lat}{180} \\]
+{: .center}
 
 \\[ y = R * \frac{1}{2} * \ln\left(\frac{1+\sin(\phi)}{1-\sin(\phi)}\right) \\]
+{: .center}
 
 由于百度地图墨卡托投影坐标进行了偏移加密，所以并不能直接使用上面的标准公式计算。为了方便我们直接调用百度地图javascript的已有方法进行计算
 
@@ -132,12 +136,10 @@ L.Projection.BaiduSphericalMercator = {
 计算公式如下（有前辈已经算出来了系数\\(\omega\\)我们拿来用）
 
 \\[ \Delta = 0.5 \\]
-
 \\[ \omega = 2^{-8-18} \\]
-
 \\[ tile = point * \omega + \Delta \\]
-
 \\[ pixel = 256 * 2^{zoom} * tile \\]
+{: .center}
 
 我们只需要设置\\(\omega\\)\\(\Delta\\)为L.Transformation的系数
 
@@ -165,6 +167,7 @@ Leaflet.js 默认的Tile Url规则是与Tile Coordinate直接对应的,但百度
 
 \\[ x_1 = x_0 - 2^{zoom-1} \\]
 \\[ y_1 = 2^{zoom-1} - y_0 - 1 \\]
+{: .center}
 
 实现代码如下
 
