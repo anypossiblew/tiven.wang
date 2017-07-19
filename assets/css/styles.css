@@ -733,11 +733,16 @@ body .demo-blog {
 }
 .demo-blog--blogpost .meta > * {
   align-items: center;
+  -webkit-align-items: center;
 }
 .demo-blog--blogpost .meta + .mdl-card__supporting-text {
   border: 0;
   display: flex;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
 }
 .demo-blog--blogpost .meta + .mdl-card__supporting-text p {
   max-width: 512px;
