@@ -41,12 +41,17 @@
       {% include drawer.html %}
 
       <div class="android-content mdl-layout__content">
+
+        <a name="top"></a>
+
         {{ content }}
 
         {% include footer.html %}
       </div>
     </div>
-    <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
+    <a href="#top" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Back to Top</a>
+
     {% include scripts.html %}
+
   </body>
 </html>
