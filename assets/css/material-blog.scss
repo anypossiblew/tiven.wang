@@ -14,6 +14,47 @@ sitemap: false
 
 @import "syntax";
 
+html, body {
+  font-family: 'Source Sans Pro',"Helvetica","Arial",sans-serif;
+}
+
+.android-drawer {
+  font-family: 'Comfortaa', cursive;
+  .mdl-layout-title {
+    background-image: url(/images/bg-lab.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Comfortaa', cursive;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+.android-header {
+  font-family: 'Comfortaa', cursive;
+  .mdl-layout__header-row {
+    .android-title.mdl-layout-title {
+      font-family: 'Comfortaa', cursive;
+      a {
+        text-decoration: none;
+        color: #6ab344;
+      }
+    }
+    .android-mobile-title.mdl-layout-title {
+      line-height: 40px;
+    }
+  }
+}
+
+.mdl-layout-title a {
+  font-weight: 700;
+}
+
 .demo-blog.demo-blog--blogpost .blog__post {
   text-align: left;
 }
