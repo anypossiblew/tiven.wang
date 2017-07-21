@@ -199,8 +199,11 @@
             {% endif %}
           </nav>
 
-          <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
+          <div class="comments mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__title">
+              <h2 class="mdl-card__title-text">Comments</h2>
+            </div>
+            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text">
               {% if site.owner.disqus-shortname and page.comments or site.comments %}
                 <div id="disqus_thread"></div><!-- /#disqus_thread -->
                 {% include disqus-comments.html %}
