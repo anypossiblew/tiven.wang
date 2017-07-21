@@ -39,16 +39,16 @@ html, body {
 .android-header {
   font-family: 'Comfortaa', cursive;
   .mdl-layout__header-row {
-    .android-title.mdl-layout-title {
+    .mdl-layout-title {
       font-family: 'Comfortaa', cursive;
       a {
         text-decoration: none;
         color: #6ab344;
         font-weight: 700;
       }
-    }
-    .android-mobile-title.mdl-layout-title {
-      line-height: 40px;
+      &.android-mobile-title {
+        line-height: 35px;
+      }
     }
   }
 }
