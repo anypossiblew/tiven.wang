@@ -16,5 +16,12 @@ references:
     url: "https://spring.io/guides/gs/rest-hateoas/"
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,500');
+.mdl-card__supporting-text.blog__post-body {
+  font-family: 'Dosis', sans-serif;
+}
+</style>
+
 * TOC
 {:toc}

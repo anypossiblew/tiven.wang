@@ -15,6 +15,13 @@ references:
     url: "http://www.baeldung.com/swagger-2-documentation-for-spring-rest-api"
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Dosis:400,500');
+.mdl-card__supporting-text.blog__post-body {
+  font-family: 'Dosis', sans-serif;
+}
+</style>
+
 * TOC
 {:toc}
 

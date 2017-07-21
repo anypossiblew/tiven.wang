@@ -21,6 +21,13 @@ references:
 * TOC
 {:toc}
 
+<style>
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600');
+.mdl-card__supporting-text.blog__post-body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+</style>
+
 ## what others say
 
 ### say 1
