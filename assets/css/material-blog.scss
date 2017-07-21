@@ -15,7 +15,7 @@ sitemap: false
 @import "syntax";
 
 html, body {
-  font-family: 'Source Sans Pro',"Helvetica","Arial",sans-serif;
+  font-family: 'Roboto', 'Source Sans Pro',"Helvetica","Arial",sans-serif;
 }
 
 .android-drawer {
@@ -31,6 +31,7 @@ html, body {
     a {
       text-decoration: none;
       color: white;
+      font-weight: 700;
     }
   }
 }
@@ -43,16 +44,13 @@ html, body {
       a {
         text-decoration: none;
         color: #6ab344;
+        font-weight: 700;
       }
     }
     .android-mobile-title.mdl-layout-title {
       line-height: 40px;
     }
   }
-}
-
-.mdl-layout-title a {
-  font-weight: 700;
 }
 
 .demo-blog.demo-blog--blogpost .blog__post {
@@ -200,7 +198,7 @@ html, body {
    ========================================================================== */
 
 #markdown-toc {
-	font-family: $alt-font;
+	font-family: 'Comfortaa', cursive;
   width: 100%;
 	margin-top: 0;
 	margin-bottom: 0;
