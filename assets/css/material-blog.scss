@@ -53,6 +53,14 @@ html, body {
   }
 }
 
+h2[id], h3[id], h4[id] {
+    font-family: 'Comfortaa',"Roboto","Helvetica","Arial",sans-serif;
+}
+
+.demo-blog .blog__post .demo-references.mdl-card .mdl-list__item {
+    font-family: 'Comfortaa',"Roboto","Helvetica","Arial",sans-serif;
+}
+
 .demo-blog.demo-blog--blogpost .blog__post {
   text-align: left;
 }
