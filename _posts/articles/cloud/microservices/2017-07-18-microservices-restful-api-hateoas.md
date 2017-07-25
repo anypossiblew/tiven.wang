@@ -14,6 +14,8 @@ share: true
 references:
   - title: "Spring.io guides - Building a Hypermedia-Driven RESTful Web Service"
     url: "https://spring.io/guides/gs/rest-hateoas/"
+  - title: "Spring Data extensions - Web support"
+    url: "https://docs.spring.io/spring-data/data-commons/docs/current/reference/html/#core.extensions"
 ---
 
 <style>
@@ -25,3 +27,26 @@ references:
 
 * TOC
 {:toc}
+
+Spring Data Commons 1.6 version 以上版本可以使用 `@EnableSpringDataWebSupport` annotation 啟用 web support：
+
+```java
+@Configuration
+@EnableWebMvc
+@EnableSpringDataWebSupport
+class WebConfiguration { }
+```
+
+* `DomainClassConverter` 組件可以使用 request 的 parameters 或者 path variables 並通過 repository 得到相應實例。
+
+```java
+@Controller
+@RequestMapping("/users")
+public class UserController {
+
+  @RequestMapping("/{id}")
+  public User showUserForm(@PathVariable("id") User user) {
+    return user;
+  }
+}
+```
