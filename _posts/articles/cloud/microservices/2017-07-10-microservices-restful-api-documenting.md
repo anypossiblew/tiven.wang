@@ -7,7 +7,9 @@ categories: articles
 tags: [OpenAPI, Swagger, Microservices]
 author: tiven_wang
 image:
-  feature: /images/cloud/mashheader-cloud.jpg
+  feature: https://drscdn.500px.org/photo/112198071/q%3D80_m%3D2000_k%3D1/v2?webp=true&sig=61e24e8f804079377957abae0c6470b843f14d95ab5da7dedd3a8a70c36531b1
+  credit: 500px
+  creditlink: https://500px.com/photo/112198071
 comments: true
 share: true
 references:
@@ -22,13 +24,15 @@ references:
 }
 </style>
 
+> Thailand Buffalo Racing Festival，中文稱為『泰國水牛節』，是泰國歷史非常悠久的活動慶典。每年約於十月份(農曆的九月十四)，在泰國的春武里府(Chonburi Province) 來舉辦。 泰國水牛節，據說在距今一百年多前，就出現在泰國中南半島。在農業時代，水牛是泰國農民耕作和運輸的主要工具。為了感激水牛的辛勤工作，農民為水牛們舉辦了一個活動，讓水牛可以充分休息一天。活動演變至今，慢慢發展成水牛競賽。活動內容包含了水牛賽跑比賽，看看誰能在水牛的背上待最久，另外還有選美比賽，優勝者可以得到水牛小姐封號(Miss Buffalo)。
+
 * TOC
 {:toc}
 
 
 [OpenAPI][OpenAPI]
 
-
+**Spring REST Docs**
 
 我們使用 [Springfox][Springfox] 在 Spring MVC 框架上實現 [Swagger][Swagger] API文檔說明。
 
