@@ -170,4 +170,24 @@ applications:
 
 成功後可以得到可訪問鏈接 *http://try-cf-spring-boot.cfapps.io*
 
+## More
+
+更改 [Spring Boot][Spring Boot] 的啟動入口， 其中 `@SpringBootApplication` 為一方便性的註解，它包含了
+
+* `@Configuration` 標註此class在應用上下文 application context 中為一定義bean的class。
+* `@EnableAutoConfiguration` tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.
+* 如果 Spring Boot 發現 **spring-webmvc** on the classpath， 則自動添加 `@EnableWebMvc`， 你也可以手動添加 `@EnableWebMvc`
+* `@ComponentScan` 則說明自動查找其他components, configurations, and services
+
+```java
+@SpringBootApplication
+public class HeroApplication {
+
+  public static void main(String[] args) throws Exception {
+    SpringApplication.run(HeroApplication.class, args);
+  }
+
+}
+```
+
 [Spring Boot]:http://projects.spring.io/spring-boot/

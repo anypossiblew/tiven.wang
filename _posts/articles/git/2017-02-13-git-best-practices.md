@@ -237,6 +237,11 @@ At this point, things are getting pretty crazy, so run gitk to see what's going 
 
 [stackoverflow - I can't delete a remote master branch on github](http://stackoverflow.com/questions/12208751/i-cant-delete-a-remote-master-branch-on-git)
 
+#### How to merge branches
+
+`git checkout master` and `git merge dev` `git push`
+
+[Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 
 ### Rewriting the most recent commit message
 
