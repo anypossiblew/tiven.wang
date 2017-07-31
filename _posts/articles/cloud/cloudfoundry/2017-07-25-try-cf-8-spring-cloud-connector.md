@@ -10,8 +10,8 @@ image:
 comments: true
 share: true
 references:
-  - title: "Cloud Foundry - The User Account and Authentication Service (UAA)"
-    url: "https://docs.cloudfoundry.org/api/uaa/index.html"
+  - title: "Cloud Foundry - Spring Cloud Connectors"
+    url: "http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html"
 ---
 
 > Autumn [Grizzly](https://en.wikipedia.org/wiki/Grizzly_bear) [Denali National Park](https://earth.google.com/web/@63.21366,-151.11581685,1529.07672297a,335251.48439207d,35y,0h,0t,0r), [Alaska](https://en.wikipedia.org/wiki/Alaska)
@@ -126,11 +126,11 @@ public class CloudConfiguration extends AbstractCloudConfig {
 ```
 
 * `@ServiceScan` 註解類似Spring中的`@ComponentScan`， 它會掃描綁定在此app上的服務，並為每個服務創建一個bean
-* `@Profile("cloud")` ???
+* `@Profile("cloud")` 說明當應用運行在雲環境中時才加載此配置
 
 ## Test
 
-可以在本機啟動一個MongoDB服務，Spring Cloud Connectors是支持localhost的。
+可以在本機啟動一個MongoDB服務，因為本機運行不起用 profile *cloud* 時默認使用localhost的 MongoDB 服務。
 
 例如使用docker在本機創建一個MongoDB服務
 

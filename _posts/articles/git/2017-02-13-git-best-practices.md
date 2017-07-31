@@ -60,9 +60,64 @@ git checkout HEAD^ -- <filename>          # the version before the most recent c
 
 ### how can I git stash a specific file
 
+Here's a probable use-case, from the top:
+
+You're going to pull some changes, but oops, you're not up to date:
+
+```
+git fetch origin
+git pull origin master
+
+From ssh://gitosis@example.com:22/projectname
+ * branch            master     -> FETCH_HEAD
+Updating a030c3a..ee25213
+error: Entry 'filename.c' not uptodate. Cannot merge.
+```
+
+So you get up-to-date and try again, but have a conflict:
+
+```
+git add filename.c
+git commit -m "made some wild and crazy changes" // you must commit the content which will be merged with remote commit.
+git pull origin master
+
+From ssh://gitosis@example.com:22/projectname
+ * branch            master     -> FETCH_HEAD
+Auto-merging filename.c
+CONFLICT (content): Merge conflict in filename.c
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+So you decide to take a look at the changes:
+
+`git mergetool`
+
+Oh me, oh my, upstream changed some things, but just to use my changes...no...their changes...
+
+```
+git checkout --ours filename.c
+git checkout --theirs filename.c
+git add filename.c
+git commit -m "using theirs"
+```
+
+And then we try a final time
+
+```
+git pull origin master
+
+From ssh://gitosis@example.com:22/projectname
+ * branch            master     -> FETCH_HEAD
+Already up-to-date.
+```
+
+Ta-da!
+
 [how can I git stash a specific file? [duplicate]](http://stackoverflow.com/questions/5506339/how-can-i-git-stash-a-specific-file)
 
 [Stash only one file out of multiple files that have changed with Git?](http://stackoverflow.com/questions/3040833/stash-only-one-file-out-of-multiple-files-that-have-changed-with-git)
+
+[7.8 Git 工具 - 高级合并](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6)
 
 ### Difference between git stash pop and git stash apply
 
