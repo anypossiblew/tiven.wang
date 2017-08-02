@@ -89,6 +89,25 @@ h2[id], h3[id], h4[id] {
       }
     }
 
+    /**
+     * card media
+     */
+    .mdl-card__media {
+      position: relative;
+      cursor: default;
+      // credit link
+      .credit {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        text-decoration: none;
+        font-weight: 200;
+        font-size: 10px;
+        padding: 0 5px;
+      }
+    }
+
+
     .mdl-card__supporting-text {
       @media (max-width: 479px) {
         padding: 15px;
@@ -121,9 +140,14 @@ h2[id], h3[id], h4[id] {
     }
 
     .blog__post-body.mdl-card__supporting-text {
+
       margin-top: -40px;
       @media (max-width: 479px) {
         margin-top: -15px;
+      }
+
+      p {
+        //font-size: $main-body-font-size;
       }
     }
 

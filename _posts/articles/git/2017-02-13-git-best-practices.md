@@ -54,12 +54,6 @@ git checkout HEAD^ -- <filename>          # the version before the most recent c
 
 ### How to resolve merge conflicts in Git
 
-[Stackoverflow.com - How to resolve merge conflicts in Git?](http://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git)
-
-[Handling and Avoiding Conflicts in Git](http://weblog.masukomi.org/2008/07/12/handling-and-avoiding-conflicts-in-git/)
-
-### how can I git stash a specific file
-
 Here's a probable use-case, from the top:
 
 You're going to pull some changes, but oops, you're not up to date:
@@ -113,11 +107,18 @@ Already up-to-date.
 
 Ta-da!
 
+[Stackoverflow.com - How to resolve merge conflicts in Git?](http://stackoverflow.com/questions/161813/how-to-resolve-merge-conflicts-in-git)
+
+[Handling and Avoiding Conflicts in Git](http://weblog.masukomi.org/2008/07/12/handling-and-avoiding-conflicts-in-git/)
+
+[7.8 Git 工具 - 高级合并](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6)
+
+### how can I git stash a specific file
+
 [how can I git stash a specific file? [duplicate]](http://stackoverflow.com/questions/5506339/how-can-i-git-stash-a-specific-file)
 
 [Stash only one file out of multiple files that have changed with Git?](http://stackoverflow.com/questions/3040833/stash-only-one-file-out-of-multiple-files-that-have-changed-with-git)
 
-[7.8 Git 工具 - 高级合并](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6)
 
 ### Difference between git stash pop and git stash apply
 

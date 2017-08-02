@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Microservices - Restful API Spring Restful
-excerpt: "Restful API Spring REST"
+excerpt: "Representational state transfer (REST) or RESTful web services is a way of providing interoperability between computer systems on the Internet. REST-compliant Web services allow requesting systems to access and manipulate textual representations of Web resources using a uniform and predefined set of stateless operations. Other forms of Web service exist, which expose their own arbitrary sets of operations such as WSDL and SOAP."
 modified: 2017-07-25T11:51:25-04:00
 categories: articles
 tags: [Spring, Microservices]
