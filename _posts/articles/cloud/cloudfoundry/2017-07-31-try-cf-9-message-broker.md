@@ -7,6 +7,8 @@ categories: articles
 tags: [RabbitMQ, Message Broker, Cloud Foundry]
 image:
   feature: https://drscdn.500px.org/photo/221853391/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=4291e5de5da2b66f0caa296e54fa72a8503ec2244674448a4e0d17724638dfb6
+  credit: Fabian Heilos
+  creditlink: https://www.500px.com/heilosphotography
 comments: true
 share: true
 references:
@@ -28,7 +30,7 @@ references:
 * TOC
 {:toc}
 
-> [Message brokers][Message_broker] are elements in telecommunication or computer networks where software applications communicate by exchanging formally-defined messages. Message brokers are a building block of message-oriented middleware.
+[Message brokers][Message_broker] are elements in telecommunication or computer networks where software applications communicate by exchanging formally-defined messages. Message brokers are a building block of message-oriented middleware.
 
 > 下載本篇完整代碼 [Github](https://github.com/tiven-wang/try-cf/tree/message-broker)
 
@@ -46,7 +48,7 @@ references:
 
 ### Create a RabbitMQ message receiver
 
-首先我們創建一個 `Receiver` 去接受壞蛋出現的事件, 並讓我們的大英雄去抓住他
+首先我們創建一個 `Receiver` 去接收壞蛋出現的事件, 並讓我們的大英雄去抓住他
 
 ```java
 @Component
@@ -174,10 +176,45 @@ Catched villain<I am here!>
 
 ## Deploy to CloudFoundry
 
+部署到 [CloudFoundry][CloudFoundry] 之前我們需要創建一個 AMQP 服務，這裡我們使用 [Pivotal CloudFoundry][pivotal-console] Marketplace 裡提供的 CloudAMQP 服務
+
+`cf create-service cloudamqp lemur try-cf-amqp`
+
+創建成功後，把 CloudAMQP 服務名稱加入 manifest 文件中，全部信息如下
+
+```yaml
+---
+applications:
+- name: try-cf-message-broker
+  buildpack: java_buildpack
+  instances: 1
+  memory: 200M
+  host: try-cf-message-broker
+  path: target/try-cf-0.0.1-SNAPSHOT.jar
+  services:
+  - try-cf-amqp
+```
+
+上傳
+
 `cf push`
+
+上傳成功之後訪問鏈接即可發送消息
+
+*https://try-cf-message-broker.cfapps.io/villains?message=I am here!*
+
+可以查看 CloudFoundry 的應用後台打印信息
+
+`cf logs try-cf-message-broker`
+
+
 
 [Message_broker]:https://en.wikipedia.org/wiki/Message_broker
 [spring-amqp]:https://projects.spring.io/spring-amqp/
 [RabbitMQ]:https://www.rabbitmq.com
 [queue]:https://www.rabbitmq.com/amqp-0-9-1-quickref.html#class.queue
 [exchange]:https://www.rabbitmq.com/amqp-0-9-1-quickref.html#class.exchange
+[CloudFoundry]:https://www.cloudfoundry.org/
+[pivotal-platform]:https://pivotal.io/platform
+[pivotal-services]:https://pivotal.io/platform/services
+[pivotal-console]:https://console.run.pivotal.io/

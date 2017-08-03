@@ -73,6 +73,10 @@ h2[id], h3[id], h4[id] {
 .demo-blog {
   .blog__post {
 
+    a {
+      font-weight: normal;
+    }
+
     blockquote {
       font-family: $heading-font;
     	@media (max-width: 479px) {

@@ -2,11 +2,13 @@
 layout: post
 title: Proxy config be used in develop tools
 excerpt: "本文列出常用前端UI开发工具的proxy代理配置"
-modified: 2016-10-21T17:00:00-00:00
+modified: 2017-08-03T17:00:00-00:00
 categories: articles
 tags: [PROXY, UI, TOOLS]
 image:
-  feature: /images/web/masthead-web.jpg
+  feature: https://drscdn.500px.org/photo/67579067/q%3D80_m%3D2000/v2?webp=true&sig=9716935e4676ec2c010405c6509749dd73f720b9f4aae300d9088f56c9cb2dbe
+  credit: Cédric GUERE
+  creditlink: https://500px.com/cdricguere
 comments: true
 share: true
 ---
@@ -14,6 +16,8 @@ share: true
 * TOC
 {:toc}
 
+
+## Http proxy
 
 ### git proxy config
 
@@ -128,6 +132,43 @@ npm set <key> <value> [--global]
 
 `$ npm config set registry "http://registry.npmjs.org/"`
 
+### Node.js proxy
+
+#### Request Http proxy
+```javascript
+var request = require('request');
+var proxiedRequest = request.defaults({'proxy': 'http://proxy:port'});
+
+proxiedRequest('http://www.google.com', function (error, response, body) {
+  console.log('error:', error); // Print the error if one occurred
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the HTML for the Google homepage.
+});
+```
+
+[Node.js Request Proxies](https://github.com/request/request#user-content-proxies)
+
+#### Request Tor proxy
+
+Run tor on the terminal and try the following. (Needs `socks5-http-client` to connect to tor)
+
+```js
+var request = require('../index.js');
+var Agent = require('socks5-http-client/lib/Agent');
+
+request.get({
+    url: 'http://www.tenreads.io',
+    agentClass: Agent,
+    agentOptions: {
+        socksHost: 'localhost', // Defaults to 'localhost'.
+        socksPort: 9050 // Defaults to 1080.
+    }
+}, function (err, res) {
+    console.log(res.body);
+});
+```
+
+[Request Tor proxy](https://github.com/request/request/tree/master/examples#proxys)
 
 ### typings proxy
 
@@ -157,7 +198,6 @@ Create a `.tsdrc` file and in JSON set a proxy
 "proxy": "http://bluecoat-proxy:8080"
 }
 ```
-
 
 ### gem proxy
 
