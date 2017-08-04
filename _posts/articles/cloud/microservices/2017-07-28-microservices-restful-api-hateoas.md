@@ -4,7 +4,7 @@ title: Microservices - Restful API HATEOAS
 excerpt: "HATEOAS (Hypermedia as the Engine of Application State) is a constraint of the REST application architecture. A hypermedia-driven site provides information to navigate the site's REST interfaces dynamically by including hypermedia links with the responses. This capability differs from that of SOA-based systems and WSDL-driven interfaces."
 modified: 2017-07-28T11:51:25-04:00
 categories: articles
-tags: [HATEOAS, Microservices]
+tags: [HATEOAS, Restful, Microservices]
 image:
   feature: https://drscdn.500px.org/photo/221202183/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=d846d6dd286097443ef7ba53d6a163116274e569a12fc45ef9c060951a3da4fc
   credit: 500px
