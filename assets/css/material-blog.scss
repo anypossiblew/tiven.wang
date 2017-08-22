@@ -318,8 +318,42 @@ figure.center, p.center {
   margin: 0 auto;
 }
 
-.demo-blog  {
-  .blog__post {
+// blockquote: WARNING TIPS Notes ...
 
+.warning {
+  font-size: 10px;
+  color: #ff4081;
+}
+
+blockquote {
+  &.WARNING {
+    &::before {
+      content: "WARNING";
+      @extend .warning;
+    }
+    &::after {
+      content: none;
+    }
   }
+
+  &.Tips {
+    &::before {
+      content: "Tips";
+      @extend .warning;
+    }
+    &::after {
+      content: none;
+    }
+  }
+
+  &.Notes {
+    &::before {
+      content: "Notes";
+      @extend .warning;
+    }
+    &::after {
+      content: none;
+    }
+  }
+
 }
