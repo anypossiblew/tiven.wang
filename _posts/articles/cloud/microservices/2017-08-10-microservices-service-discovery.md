@@ -37,12 +37,9 @@ references:
 * Hero          -> Villain       "Catch you!"
 * Hero          -> Police office "Give him to you!"
 
-
-
 `docker run --rm --name my-mongo -d -p 27017:27017 mongo`
 
 Start eureka service;
 Start photo service;
 Start bookmark service;
-
 Start passport service;
