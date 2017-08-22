@@ -6,7 +6,8 @@ modified: 2017-08-03T17:00:00-00:00
 categories: articles
 tags: [PROXY, UI, TOOLS]
 image:
-  feature: https://drscdn.500px.org/photo/67579067/q%3D80_m%3D2000/v2?webp=true&sig=9716935e4676ec2c010405c6509749dd73f720b9f4aae300d9088f56c9cb2dbe
+  vendor: 500px
+  feature: /photo/67579067/q%3D80_m%3D2000/v2?webp=true&sig=9716935e4676ec2c010405c6509749dd73f720b9f4aae300d9088f56c9cb2dbe
   credit: Cédric GUERE
   creditlink: https://500px.com/cdricguere
 comments: true

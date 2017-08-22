@@ -6,7 +6,8 @@ modified: 2017-08-02T17:00:00-00:00
 categories: articles
 tags: [Blogging]
 image:
-  feature: https://images.unsplash.com/photo-1490332695540-5acc256ec383?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb
+  vendor: unsplash
+  feature: /photo-1490332695540-5acc256ec383?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb
   credit: Jonathan Simcoe
   creditlink: https://unsplash.com/@jdsimcoe?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge
 comments: true

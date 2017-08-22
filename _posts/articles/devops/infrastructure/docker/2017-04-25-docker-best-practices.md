@@ -6,11 +6,15 @@ modified: 2017-04-25T17:00:00-00:00
 categories: articles
 tags: [Docker, Infrastructure as Code, CI/CD]
 image:
-  feature: /images/hana/masthead-microservices.jpg
+  feature: http://68.media.tumblr.com/5a0023f2fdede3dcceddd5cc604bae74/tumblr_ouh324vRau1riijaro1_1280.jpg
+  credit: Harold Klein
+  creditlink: http://yourshot.nationalgeographic.com/profile/283330/
 comments: true
 share: true
 references:
 ---
+
+> the morning as very quiet as he observed a mother brown bear looking for food with two cubs in Katmai National Park located in Alaska.
 
 * TOC
 {:toc}
@@ -33,6 +37,9 @@ Within the container to get the IP of the host:
 
 `route | awk '/^default/ { print $2 }'` or `ip route | awk '/^default/ { print $3 }'`
 
+[stackoverflow.com - Let two Containers getting linked to eachother
+](https://stackoverflow.com/questions/27563460/let-two-containers-getting-linked-to-eachother)
+
 **Or**
 
 Add entries to container hosts file ([--add-host](https://docs.docker.com/engine/reference/commandline/run/#add-entries-to-container-hosts-file-add-host)):
@@ -44,6 +51,18 @@ Example:
 `docker run --add-host=docker:10.0.75.1 --rm -it byrnedo/alpine-curl -H "Accept: application/json" docker:8080/uaa/login`
 
 [Accessing host machine from within docker container](https://forums.docker.com/t/accessing-host-machine-from-within-docker-container/14248)
+
+**Or**
+
+In docker-compose use `[network_mode](https://docs.docker.com/compose/compose-file/#network_mode): "host"`
+
+And alse need [extra_hosts](https://docs.docker.com/compose/compose-file/#extra_hosts) when you get error
+```
+extra_hosts:
+  - "moby:127.0.0.1"
+```
+
+[Docker Machine – moby: Name or service not known](http://blog.yohanliyanage.com/2016/09/docker-machine-moby-name-or-service-not-known/)
 
 ## Run
 ### Running Nodejs
@@ -132,5 +151,6 @@ Pushing:
 Ah right, I get it now. Have verified just now that this is still an issue on docker master, but only when using the legacy (go-ansiterm emulated) console. Which means on any version of Windows before Windows 10, or Windows 10 with the console explicitly set to legacy mode.  MC does run just fine on a Windows 10 client (with console in native/default mode) pointing to a Linux daemon:
 
 > Recommend: [ConEmu](https://conemu.github.io/) with PowerShell on Windows
+{: .Tips}
 
 ["New state of 'nil' is invalid" when attaching to container, probably related to UTF-8](https://github.com/moby/moby/issues/22345)

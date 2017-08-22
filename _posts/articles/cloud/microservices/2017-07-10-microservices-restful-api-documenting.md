@@ -7,7 +7,8 @@ categories: articles
 tags: [OpenAPI, Swagger, Microservices]
 author: tiven_wang
 image:
-  feature: https://drscdn.500px.org/photo/112198071/q%3D80_m%3D2000_k%3D1/v2?webp=true&sig=61e24e8f804079377957abae0c6470b843f14d95ab5da7dedd3a8a70c36531b1
+  vendor: 500px
+  feature: /photo/112198071/q%3D80_m%3D2000_k%3D1/v2?webp=true&sig=61e24e8f804079377957abae0c6470b843f14d95ab5da7dedd3a8a70c36531b1
   credit: 500px
   creditlink: https://500px.com/photo/112198071
 comments: true

@@ -6,7 +6,8 @@ modified: 2017-07-28T11:51:25-04:00
 categories: articles
 tags: [HATEOAS, Restful, Microservices]
 image:
-  feature: https://drscdn.500px.org/photo/221202183/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=d846d6dd286097443ef7ba53d6a163116274e569a12fc45ef9c060951a3da4fc
+  vendor: 500px
+  feature: /photo/221202183/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=d846d6dd286097443ef7ba53d6a163116274e569a12fc45ef9c060951a3da4fc
   credit: 500px
   creditlink: https://500px.com/photo/221202183
 comments: true

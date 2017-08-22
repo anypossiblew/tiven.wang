@@ -6,7 +6,8 @@ modified: 2017-07-25T11:51:25-04:00
 categories: articles
 tags: [Restful, Spring, Microservices]
 image:
-  feature: https://drscdn.500px.org/photo/55365754/q%3D80_m%3D2000/v2?webp=true&sig=a090e2986b9d784a08695aeea1ca32ddd3f4c81c1d85cf01ae9a7a28dcc24ea5
+  vendor: 500px
+  feature: /photo/55365754/q%3D80_m%3D2000/v2?webp=true&sig=a090e2986b9d784a08695aeea1ca32ddd3f4c81c1d85cf01ae9a7a28dcc24ea5
   credit: 500px
 comments: true
 share: true

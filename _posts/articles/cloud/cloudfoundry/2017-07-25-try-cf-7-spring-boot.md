@@ -6,7 +6,8 @@ modified: 2017-07-25T17:00:00-00:00
 categories: articles
 tags: [Spring Boot, Cloud Foundry]
 image:
-  feature: http://www.nationalgeographic.com/content/dam/photography/photos/000/637/63787.ngsversion.1467253446748.adapt.1190.1.jpg
+  vendor: nationalgeographic
+  feature: /content/dam/photography/photos/000/637/63787.ngsversion.1467253446748.adapt.1190.1.jpg
 comments: true
 share: true
 references:

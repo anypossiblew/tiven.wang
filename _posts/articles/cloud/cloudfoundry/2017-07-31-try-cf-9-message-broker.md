@@ -6,7 +6,8 @@ modified: 2017-07-31T17:00:00-00:00
 categories: articles
 tags: [RabbitMQ, Message Broker, Cloud Foundry]
 image:
-  feature: https://drscdn.500px.org/photo/221853391/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=4291e5de5da2b66f0caa296e54fa72a8503ec2244674448a4e0d17724638dfb6
+  vendor: 500px
+  feature: /photo/221853391/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=4291e5de5da2b66f0caa296e54fa72a8503ec2244674448a4e0d17724638dfb6
   credit: Fabian Heilos
   creditlink: https://www.500px.com/heilosphotography
 comments: true

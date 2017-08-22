@@ -91,7 +91,13 @@
 
         <div class="blog__post demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{ page.image.feature }}')">
+            {% if page.image.vendor == "500px"  %}
+            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('https://drscdn.500px.org{{ page.image.feature }}')">
+            {% else if page.image.vendor == "unsplash" %}
+            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('https://images.unsplash.com{{ page.image.feature }}')">
+            {% else if page.image.vendor == "nationalgeographic" %}
+            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('http://www.nationalgeographic.com{{ page.image.feature }}')">
+            {% endif %}
               <!-- Article tags -->
               <span>
                 {% for tag in page.tags %}

@@ -6,7 +6,8 @@ modified: 2017-07-24T17:00:00-00:00
 categories: articles
 tags: [C4C, Hybris, SAP]
 image:
-  feature: https://drscdn.500px.org/photo/221061839/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=cea61d6f5a9f4e63ff8218dc2ec0caa08e293b442461e33a480368ac6c2cacad
+  vendor: 500px
+  feature: /photo/221061839/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=cea61d6f5a9f4e63ff8218dc2ec0caa08e293b442461e33a480368ac6c2cacad
 comments: true
 share: true
 references:
