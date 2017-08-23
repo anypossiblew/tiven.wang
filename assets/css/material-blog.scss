@@ -325,6 +325,11 @@ figure.center, p.center {
   color: #ff4081;
 }
 
+.quotes {
+  font-size: 10px;
+  color: #6ab344;
+}
+
 blockquote {
   &.WARNING {
     &::before {
@@ -350,6 +355,16 @@ blockquote {
     &::before {
       content: "Notes";
       @extend .warning;
+    }
+    &::after {
+      content: none;
+    }
+  }
+
+  &.Quotes {
+    &::before {
+      content: "Quotes";
+      @extend .quotes;
     }
     &::after {
       content: none;

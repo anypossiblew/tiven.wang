@@ -30,6 +30,7 @@ references:
 {:toc}
 
 > 下載本文完整項目代碼 [Github](https://github.com/tiven-wang/try-cf/tree/spring-async)
+{: .Notes}
 
 同步執行任務就是你需要等待任務執行完成才能接著執行後續步驟，而異步執行則是你不需要等待任務執行完成就能繼續執行後續步驟。在計算機環境中異步任務會在另外的線程 Thread 裡執行。
 
@@ -102,7 +103,7 @@ public class AsyncConfiguration {
 方法調用 `HeroService` 的 catchVillains 方法。
 
 > 注意 這裡不要調用返回值 `CompletableFuture` 的 `get` 方法獲取任務結果，那樣的話此 API 就仍然需要等待異步任務執行完成才返回 Response。因為我們想要的效果是不需要等待抓捕結果。
-{: .WARNING}
+{: .Tips}
 
 ```java
 @RequestMapping(path="/{id}/catch/{villains}", method=RequestMethod.POST)
