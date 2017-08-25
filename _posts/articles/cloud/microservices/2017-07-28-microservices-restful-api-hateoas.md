@@ -17,6 +17,9 @@ references:
     url: "https://spring.io/guides/gs/rest-hateoas/"
   - title: "Spring Data extensions - Web support"
     url: "https://docs.spring.io/spring-data/data-commons/docs/current/reference/html/#core.extensions"
+  - title: "How to correctly use PagedResourcesAssembler from Spring Data?"
+    url: "https://stackoverflow.com/questions/21346387/how-to-correctly-use-pagedresourcesassembler-from-spring-data"
+
 ---
 
 <style>
@@ -34,6 +37,7 @@ references:
 了解更多關於[HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)的知識請閱讀 [Understanding HATEOAS](https://spring.io/understanding/HATEOAS)
 
 > 下載本文完整項目代碼 [Github](https://github.com/tiven-wang/try-cf/tree/spring-hateoas)
+{: .Tips}
 
 ## Setup Dependencies
 

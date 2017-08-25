@@ -17,6 +17,9 @@ references:
     url: "http://microservices.io/patterns/service-registry.html"
   - title: "Microservice Architecture - Pattern: Client-side service discovery"
     url: "http://microservices.io/patterns/client-side-discovery.html"
+  - title: "Microservice Architecture - Pattern: Client-side service discovery"
+    url: "https://alexandreesl.com/2016/01/08/docker-using-containers-to-implement-a-microservices-architecture/"
+
 
 ---
 
@@ -43,3 +46,5 @@ Start eureka service;
 Start photo service;
 Start bookmark service;
 Start passport service;
+
+## docker-compose
