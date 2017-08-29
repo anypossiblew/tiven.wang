@@ -6,15 +6,17 @@ modified: 2017-04-25T17:00:00-00:00
 categories: articles
 tags: [Docker, Infrastructure as Code, CI/CD]
 image:
-  feature: http://68.media.tumblr.com/5a0023f2fdede3dcceddd5cc604bae74/tumblr_ouh324vRau1riijaro1_1280.jpg
-  credit: Harold Klein
-  creditlink: http://yourshot.nationalgeographic.com/profile/283330/
+  vendor: unsplash
+  feature: /photo-1430026996702-608b84ce9281?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=
+  credit: Lucas Alexander
+  creditlink: https://unsplash.com/@lucasalexander
 comments: true
 share: true
 references:
 ---
 
-> the morning as very quiet as he observed a mother brown bear looking for food with two cubs in Katmai National Park located in Alaska.
+> [犀牛](https://en.wikipedia.org/wiki/Rhinoceros) 在犀类的后代中，现仅残存有犀牛科的4属5种，主要分布在亚洲和非洲，其中分布在亚洲的犀牛已经濒临绝种，非洲犀牛因为还有保护措施尚有族群。主要是因为犀牛角作为药材获利不菲，现行非洲犀牛角主要由养殖者所提供。南非养殖者会将犀牛角砍下，等待约一年半后再度收成，而部分盗猎者会将犀牛直接杀死取角，随盗猎导致数量减少，现在也不容易买到真正的犀牛角，现在商贩还懂得以牛羊的蛋白质部位替代来获利，甚至用相似成分的猫狗爪磨成假货变换充数。
+{: .Warning}
 
 * TOC
 {:toc}
@@ -54,13 +56,28 @@ Example:
 
 **Or**
 
-In docker-compose use `[network_mode](https://docs.docker.com/compose/compose-file/#network_mode): "host"`
+In docker-compose use [network_mode](https://docs.docker.com/compose/compose-file/#network_mode): "host"
 
 And alse need [extra_hosts](https://docs.docker.com/compose/compose-file/#extra_hosts) when you get error
 ```
 extra_hosts:
   - "moby:127.0.0.1"
 ```
+
+> **extra_hosts** <br>
+> Add hostname mappings. Use the same values as the docker client `--add-host` parameter.
+>
+```
+extra_hosts:
+  - "somehost:162.242.195.82"
+  - "otherhost:50.31.209.229"
+```
+> An entry with the ip address and hostname will be created in `/etc/hosts` inside containers for this service, e.g:
+```
+162.242.195.82  somehost
+50.31.209.229   otherhost
+```
+{: .Quotes}
 
 [Docker Machine – moby: Name or service not known](http://blog.yohanliyanage.com/2016/09/docker-machine-moby-name-or-service-not-known/)
 

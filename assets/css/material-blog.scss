@@ -331,9 +331,9 @@ figure.center, p.center {
 }
 
 blockquote {
-  &.WARNING {
+  &.Warning {
     &::before {
-      content: "WARNING";
+      content: "Warning";
       @extend .warning;
     }
     &::after {
