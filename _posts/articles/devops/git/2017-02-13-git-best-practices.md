@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git Best Practices
-excerpt: "Git Best Practices"
+excerpt: "本文收集了常用的 Git Best Practices"
 modified: 2017-02-13T17:51:25-04:00
 categories: articles
 tags: [Git, Best Practices, Github]
@@ -298,6 +298,31 @@ At this point, things are getting pretty crazy, so run gitk to see what's going 
 `git checkout master` and `git merge dev` `git push`
 
 [Git Branching - Basic Branching and Merging](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
+
+#### Rebase a branch
+
+Assume the following history exists and the current branch is "topic":
+```
+        A---B---C topic
+       /
+  D---E---F---G master
+```
+
+From this point, the result of either of the following commands:
+
+```
+git rebase master
+git rebase master topic
+```
+
+would be:
+```
+                A'--B'--C' topic
+               /
+  D---E---F---G master
+```
+
+See more by `git rebase --help`
 
 ### Rewriting the most recent commit message
 
