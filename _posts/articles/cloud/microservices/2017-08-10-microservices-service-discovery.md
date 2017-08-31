@@ -191,6 +191,7 @@ eureka:
 * The web application port default as **8060**
 * The server url for local eureka service is *http://localhost:8761/eureka/*
 
+The application’s Eureka instance name (the name by which it will be registered in Eureka) will be derived from the value of the `spring.application.name` property on the application.
 
 ```java
 @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
@@ -352,13 +353,13 @@ PoliceOfficeClient policeOfficeClient;
 @RequestMapping(method = RequestMethod.POST)
 @ResponseBody void move(@PathVariable String heroName, @RequestBody Villain villain) {
 
-	System.out.println("I " + heroName + " move!");
+  System.out.println("I " + heroName + " move!");
 
-	Resource resource = villainClient.get(villain.getName());
+  Resource resource = villainClient.get(villain.getName());
 
-	System.out.println(villain.getName() + ", catch you!");
+  System.out.println(villain.getName() + ", catch you!");
 
-	policeOfficeClient.catched(villain.getName());
+  policeOfficeClient.catched(villain.getName());
 }
 ```
 
@@ -456,6 +457,12 @@ And add the network into all the Docker containers:
 `docker run --rm --name hero-service -h hero-service --network microservices-net -p 8050:8050 -v \<project-path\>/hero-service:/data -w /data openjdk java -jar ./target/hero-service.jar`
 
 You can get the complete application sourcecode for this step on [Github](https://github.com/tiven-wang/try-cf/tree/service-discovery-dockerization)
+
+## Cloud Foundry
+
+In production, how to deploy our services to CloudFoundry platform? Please refer to [Try Cloud Foundry 10 - Service Discovery](/articles/try-cf-10-service-discovery/).
+
+
 
 [eureka]:https://github.com/Netflix/eureka
 [spring-cloud-netflix]:https://cloud.spring.io/spring-cloud-netflix/
