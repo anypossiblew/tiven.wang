@@ -279,7 +279,7 @@ $ git branch -a
 
 At this point, things are getting pretty crazy, so run gitk to see what's going on:
 
-`$ gitk --all &`
+`$ gitk --all`
 
 [How to clone all remote branches in Git?](http://stackoverflow.com/questions/67699/how-to-clone-all-remote-branches-in-git)
 

@@ -51,6 +51,8 @@ references:
 `mkdir try-cf-spring-boot`
 `cd try-cf-spring-boot`
 
+### Build System
+
 創建文件 *pom.xml*:
 
 ```xml
@@ -76,6 +78,24 @@ references:
 </project>
 ```
 
+这是通过继承 `spring-boot-starter-parent` 来获得默认的配置, 包括 common dependencies, plugins, resource filtering等.
+你也可以不继承它而自己配置这些设置,比如添加 `spring-boot-dependencies` 来引入默认的packages.
+
+```xml
+<dependencyManagement>
+     <dependencies>
+        <dependency>
+            <!-- Import dependency management from Spring Boot -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-dependencies</artifactId>
+            <version>1.5.4.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
 使用 `mvn dependency:tree` 下載依賴並查看項目依賴結構，目前只有一個 `wang.tiven:try-cf:jar:0.0.1-SNAPSHOT` 。
 
 我們要開發 web application 所以添加 `spring-boot-starter-web` module
@@ -90,6 +110,10 @@ references:
 ```
 
 重新運行 `mvn dependency:tree` 下載相關依賴。
+
+更多内容请参考 [Build systems ](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-build-systems.html) on [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/).
+
+### Structuring Code
 
 創建代碼
 
