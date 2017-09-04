@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Try Cloud Foundry 5 - UAA OAuth2
-excerpt: "Cloud Foundry: UAA Single Sign On with OAuth2"
+excerpt: "This article explains how to use Cloud Foundry APIs from a user application using the built in identity management solution in the User Account and Authentication Service (UAA). The UAA acts (amongst other things) as an OAuth 2.0 Authorization Server, granting access tokens to Client applications for them to use when accessing Resource Servers in the platform, such as the Cloud Controller. This article describes the responsibilities of a Client application and the mechanics of setting one up."
 modified: 2017-06-02T17:00:00-00:00
 categories: articles
 tags: [OAuth2, Cloud Foundry, Pivotal]
@@ -16,9 +16,16 @@ references:
     url: "https://spring.io/guides/tutorials/spring-boot-oauth2/"
   - title: "Spring REST API + OAuth2 + AngularJS"
     url: "http://www.baeldung.com/rest-api-spring-oauth2-angularjs"
+  - title: "Securing RESTful Web Services with OAuth2"
+    url: "https://www.cloudfoundry.org/oauth-rest/"
+  - title: "How to Integrate an Application with Cloud Foundry using OAuth2"
+    url: "https://www.cloudfoundry.org/how-to-integrate-an-application-with-cloud-foundry-using-oauth2-2/"    
+
+
 ---
 
 > [冠斑犀鸟](https://en.wikipedia.org/wiki/Malabar_pied_hornbill)（学名：Anthracoceros coronatus）大型鸟类，体长74~78厘米。嘴具大的盔突，颜色为蜡黄色或象牙白色，盔突前面有显着的黑色斑；上体黑色，具金属绿色光泽，下体除腹为白色外，亦全为黑色，外侧尾羽具宽阔的白色末端。翅缘、飞羽先端和基部亦为白色，飞翔时极明显。喜较开阔的森林及林缘。成对或喧闹成群，振翅飞行或滑翔在树间。喜食昆虫多于果实。
+{: .Warning}
 
 * TOC
 {:toc}
@@ -73,19 +80,19 @@ In your new project create an index.html in the "src/main/resources/static" fold
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>Try CF App</title>
-    <meta name="description" content=""/>
-    <meta name="viewport" content="width=device-width"/>
-    <base href="/"/>
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
-    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>Try CF App</title>
+  <meta name="description" content=""/>
+  <meta name="viewport" content="width=device-width"/>
+  <base href="/"/>
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<h1>Try CF App</h1>
-	<div class="container"></div>
+  <h1>Try CF App</h1>
+  <div class="container"></div>
 </body>
 </html>
 ```
@@ -94,23 +101,23 @@ adding some dependencies in 'pom.xml':
 
 ```xml
 <dependency>
-	<groupId>org.webjars</groupId>
-	<artifactId>angularjs</artifactId>
-	<version>1.4.3</version>
+  <groupId>org.webjars</groupId>
+  <artifactId>angularjs</artifactId>
+  <version>1.4.3</version>
 </dependency>
 <dependency>
-	<groupId>org.webjars</groupId>
-	<artifactId>jquery</artifactId>
-	<version>2.1.1</version>
+  <groupId>org.webjars</groupId>
+  <artifactId>jquery</artifactId>
+  <version>2.1.1</version>
 </dependency>
 <dependency>
-	<groupId>org.webjars</groupId>
-	<artifactId>bootstrap</artifactId>
-	<version>3.2.0</version>
+  <groupId>org.webjars</groupId>
+  <artifactId>bootstrap</artifactId>
+  <version>3.2.0</version>
 </dependency>
 <dependency>
-	<groupId>org.webjars</groupId>
-	<artifactId>webjars-locator</artifactId>
+  <groupId>org.webjars</groupId>
+  <artifactId>webjars-locator</artifactId>
 </dependency>
 ```
 
@@ -120,12 +127,12 @@ add Spring Security as a dependency
 
 ```xml
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-security</artifactId>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-security</artifactId>
 </dependency>
 <dependency>
-	<groupId>org.springframework.security.oauth</groupId>
-	<artifactId>spring-security-oauth2</artifactId>
+  <groupId>org.springframework.security.oauth</groupId>
+  <artifactId>spring-security-oauth2</artifactId>
 </dependency>
 ```
 
@@ -192,10 +199,10 @@ public class tryCfAppApplication {
 
   ...
 
-	@RequestMapping("/user")
-	public Principal user(Principal principal) {
-		return principal;
-	}
+  @RequestMapping("/user")
+  public Principal user(Principal principal) {
+    return principal;
+  }
 
 }
 ```
@@ -204,43 +211,43 @@ Restart server and access *http://localhost:8080/user* and login if you haven't,
 
 ```json
 {
-  authorities: [
+  "authorities": [
     {
-    authority: "ROLE_USER"
+    "authority": "ROLE_USER"
     }
   ],
-  details: {
-    remoteAddress: "0:0:0:0:0:0:0:1",
-    sessionId: "5E5D2F3797CCEE8E6B10AF13C478BC9A",
+  "details": {
+    "remoteAddress": "0:0:0:0:0:0:0:1",
+    "sessionId": "5E5D2F3797CCEE8E6B10AF13C478BC9A",
     ...
   },
-  authenticated: true,
-  userAuthentication: {
-    authorities: [
+  "authenticated": true,
+  "userAuthentication": {
+    "authorities": [
       {
-      authority: "ROLE_USER"
+      "authority": "ROLE_USER"
       }
     ],
-    details: {
-      user_id: "0da8195f-3027-406d-a899-1c742b2eba9e",
-      sub: "0da8195f-3027-406d-a899-1c742b2eba9e",
-      user_name: "marissa",
+    "details": {
+      "user_id": "0da8195f-3027-406d-a899-1c742b2eba9e",
+      "sub": "0da8195f-3027-406d-a899-1c742b2eba9e",
+      "user_name": "marissa",
       ...
     },
-    authenticated: true,
-    principal: "0da8195f-3027-406d-a899-1c742b2eba9e",
-    credentials: "N/A",
-    name: "0da8195f-3027-406d-a899-1c742b2eba9e"
+    "authenticated": true,
+    "principal": "0da8195f-3027-406d-a899-1c742b2eba9e",
+    "credentials": "N/A",
+    "name": "0da8195f-3027-406d-a899-1c742b2eba9e"
   },
-  principal: "0da8195f-3027-406d-a899-1c742b2eba9e",
-  clientOnly: false,
-  credentials: "",
-  oauth2Request: {
-    clientId: "app",
-    scope: [ ],
+  "principal": "0da8195f-3027-406d-a899-1c742b2eba9e",
+  "clientOnly": false,
+  "credentials": "",
+  "oauth2Request": {
+    "clientId": "app",
+    "scope": [ ],
     ...
   },
-  name: "0da8195f-3027-406d-a899-1c742b2eba9e"
+  "name": "0da8195f-3027-406d-a899-1c742b2eba9e"
 }
 ```
 
@@ -267,9 +274,9 @@ angular.module("app", []).controller("home", function($http) {
 ...
 
 <body ng-app="app" ng-controller="home as home">
-	<h1>Try CF App</h1>
-	<div class="container" ng-show="home.authenticated">
-	   Logged in as: <span ng-bind="home.user"></span>
+  <h1>Try CF App</h1>
+  <div class="container" ng-show="home.authenticated">
+    Logged in as: <span ng-bind="home.user"></span>
   </div>
 </body>
 ```
@@ -278,7 +285,7 @@ Now you get the user info in the index page like this:
 
 ```
 Try CF App
-    Logged in as: Marissa Bloggs
+  Logged in as: Marissa Bloggs
 ```
 
 ### Add Spring Security Configurations
@@ -293,7 +300,7 @@ public class tryCfAppApplication extends WebSecurityConfigurerAdapter {
 
   ...
 
-	@Override
+  @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
       .antMatcher("/**")
@@ -328,12 +335,12 @@ angular.module("app", []).controller("home", function($http) {
 </script>
 ...
 <body ng-app="app" ng-controller="home as home">
-	<h1>Try CF App</h1>
+  <h1>Try CF App</h1>
   <div class="container" ng-show="!home.authenticated">
-  	Login with: <a href="/login">try-cf-uaa@CloudFoundry</a>
+    Login with: <a href="/login">try-cf-uaa@CloudFoundry</a>
   </div>
-	<div class="container" ng-show="home.authenticated">
-	  Logged in as: <span ng-bind="home.user"></span>
+  <div class="container" ng-show="home.authenticated">
+    Logged in as: <span ng-bind="home.user"></span>
     <div>
       <button ng-click="home.logout()" class="btn btn-primary">Logout</button>
     </div>
