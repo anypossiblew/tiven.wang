@@ -4,7 +4,7 @@ title: OAuth2 with YaaS
 excerpt: "OAuth 2 is an authorization framework that enables applications to obtain limited access to user accounts on an HTTP service, such as Facebook, GitHub, and YaaS. YaaS is a microservices ecosystem helping businesses to rapidly augment and build new, highly flexible solutions. In this article I will show you how to create OAuth2 client and how to use OAuth2 services in YaaS Platform"
 modified: 2017-02-23T17:00:00-00:00
 categories: articles
-tags: [OAuth2, YaaS, Cloud, Angular.js]
+tags: [OAuth2, YaaS, Cloud, Angular]
 image:
   feature: /images/cloud/masthead-incubators.jpg
 comments: true

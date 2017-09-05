@@ -4,7 +4,7 @@ title: Maven Best Practices
 excerpt: "Maven Best Practices"
 modified: 2017-04-27T17:00:00-00:00
 categories: articles
-tags: [Maven, CI/CD]
+tags: [Best Practices, Maven, CI/CD]
 image:
   feature: /images/hana/masthead-microservices.jpg
 comments: true

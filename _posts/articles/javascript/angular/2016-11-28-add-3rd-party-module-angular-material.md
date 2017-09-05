@@ -4,7 +4,7 @@ title: Angular.js Adds 3rd Party Module - Angular Material
 excerpt: "Angular.js Adds 3rd Party Module - Angular Material"
 modified: 2016-11-28T17:51:25-04:00
 categories: articles
-tags: [Material Design, Angular.js]
+tags: [Material Design, Angular]
 image:
   feature: /images/angular/mashheader-angular1x.png
 comments: true

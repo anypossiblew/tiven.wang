@@ -30,7 +30,9 @@ share: true
   Placed code to upstream/master
 8. `git push` This push changes to *https://\<github\>/\<original-account\>/\<original-repository\>.git*
 
-### How to undo local changes of one file
+### Commits
+
+#### How to undo local changes of one file
 
 You can use
 
@@ -52,7 +54,16 @@ git checkout HEAD^ -- <filename>          # the version before the most recent c
 
 [Stackoverflow.com - Undo working copy modifications of one file in Git?](http://stackoverflow.com/questions/692246/undo-working-copy-modifications-of-one-file-in-git)
 
-### How to resolve merge conflicts in Git
+#### How to remove local (untracked) files
+
+[git clean](https://git-scm.com/docs/git-clean)
+
+`git clean -d -f -f`
+
+
+*https://stackoverflow.com/questions/61212/how-to-remove-local-untracked-files-from-the-current-git-working-tree*
+
+#### How to resolve merge conflicts in Git
 
 Here's a probable use-case, from the top:
 
@@ -113,14 +124,13 @@ Ta-da!
 
 [7.8 Git 工具 - 高级合并](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%AB%98%E7%BA%A7%E5%90%88%E5%B9%B6)
 
-### how can I git stash a specific file
+#### how can I git stash a specific file
 
 [how can I git stash a specific file? [duplicate]](http://stackoverflow.com/questions/5506339/how-can-i-git-stash-a-specific-file)
 
 [Stash only one file out of multiple files that have changed with Git?](http://stackoverflow.com/questions/3040833/stash-only-one-file-out-of-multiple-files-that-have-changed-with-git)
 
-
-### Difference between git stash pop and git stash apply
+#### Difference between git stash pop and git stash apply
 
 `git stash pop` throws away the (topmost, by default) stash after applying it, whereas `git stash apply` leaves it in the stash list for possible later reuse (or you can then git stash drop it).
 
@@ -128,13 +138,7 @@ Another way to look at it: `git stash pop` is `git stash apply` && `git stash dr
 
 [Difference between git stash pop and git stash apply](http://stackoverflow.com/questions/15286075/difference-between-git-stash-pop-and-git-stash-apply)
 
-### What is the difference between 'git pull' and 'git fetch'
-
-![Git Data Transport Commands](https://i.stack.imgur.com/XwVzT.png)
-
-[What is the difference between 'git pull' and 'git fetch'?](http://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch)
-
-### How to undo last commit(s) in Git?
+#### How to undo last commit(s) in Git?
 Undo a commit and redo
 
 ```
@@ -153,7 +157,7 @@ $ git commit -c ORIG_HEAD                                   (5)
 
 [stackoverflow.com - How to undo last commit(s) in Git?](http://stackoverflow.com/questions/927358/how-to-undo-last-commits-in-git)
 
-### Viewing Unpushed Commits
+#### Viewing Unpushed Commits
 
 `git log origin/master..HEAD`
 You can also view the diff using the same syntax:
@@ -163,7 +167,7 @@ You can also view the diff using the same syntax:
 [Viewing Unpushed Git Commits](http://stackoverflow.com/questions/2016901/viewing-unpushed-git-commits)
 
 
-### Viewing Uncommitted Changes
+#### Viewing Uncommitted Changes
 
 `git diff` - Show changes between commits, commit and working tree, etc
 
@@ -188,6 +192,12 @@ Here are some of the options it expose which you can use
   Word by word diff instead of line by line.
 
 [Git, How to show uncommitted changes](http://stackoverflow.com/questions/35978550/git-how-to-show-uncommitted-changes)
+
+### What is the difference between 'git pull' and 'git fetch'
+
+![Git Data Transport Commands](https://i.stack.imgur.com/XwVzT.png)
+
+[What is the difference between 'git pull' and 'git fetch'?](http://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch)
 
 ### Adding an existing project to Git Remote Repository using the command line
 
@@ -323,6 +333,31 @@ would be:
 ```
 
 See more by `git rebase --help`
+
+#### Create Branch from Commit
+
+You can create the branch via hash,
+
+`git branch branchname <sha1-of-commit>`
+`
+or by using a symbolic ref.
+
+`git branch branchname HEAD~3`
+
+You can also use
+
+`git checkout -b branchname <commit>`
+
+======================
+
+If you are not sure which commit you want to branch from in advance you can check commits out and examine their code (see source, compile, test) by
+
+`git checkout <sha1-of-commit>`
+
+once you find the commit you want to branch from you can do that from within the commit (i.e. without going back to the master first) just by creating a branch in the usual way:
+
+`git checkout -b <branch_name>`
+
 
 ### Rewriting the most recent commit message
 
