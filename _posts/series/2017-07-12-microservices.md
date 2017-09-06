@@ -4,12 +4,15 @@ title: Microservices
 excerpt: ""
 modified: 2017-04-24T17:00:00-00:00
 categories: series
-tags: [Servlet, Maven, Tomcat]
+tags: [Microservices, Architecture, Cloud]
 image:
   feature: /images/web/masthead-web.jpg
 comments: true
 share: true
 series:
+  - title: "Architecture"
+    url: "/articles/microservices-architecture/"
+    background: "#263238"
   - title: "Documenting Restful API"
     url: "/articles/microservices-restful-api-documenting/"
     background: "#263238"

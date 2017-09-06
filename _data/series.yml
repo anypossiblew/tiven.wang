@@ -16,12 +16,12 @@
   background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
   series: /series/microservices
   posts:
+    - title: Architecture
+      description: Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services. These services are isolated and autonomous yet communicate to provide some piece of business functionality. Microservices are typically implemented and operated by small teams with enough autonomy that each team and service can change its internal implementation details (including replacing it outright!) with minimal impact across the rest of the system.
+      link: /articles/microservices-architecture/
     - title: Documenting Restful API
       description: Documenting Restful API
       link: /articles/microservices-restful-api-documenting/
-    - title: Restful API Exceptions Handler
-      description: Restful API Exceptions Handler
-      link: /articles/microservices-restful-api-exceptions/
     - title: Restful API HATEOAS
       description: Restful API HATEOAS
       link: /articles/microservices-restful-api-hateoas/

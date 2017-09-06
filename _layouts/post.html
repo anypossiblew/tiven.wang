@@ -97,6 +97,8 @@
             <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('https://images.unsplash.com{{ page.image.feature }}')">
             {% elsif page.image.vendor == "nationalgeographic" %}
             <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('http://www.nationalgeographic.com{{ page.image.feature }}')">
+            {% elsif page.image.vendor == "instagram" %}
+            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('https://scontent-frt3-1.cdninstagram.com{{ page.image.feature }}')">
             {% else %}
             <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{ page.image.feature }}')">
             {% endif %}
