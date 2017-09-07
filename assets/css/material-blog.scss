@@ -230,6 +230,12 @@ h2[id], h3[id], h4[id] {
   .android-link:hover {
     color: white !important;
   }
+
+  .mdl-card__title {
+    padding: 40px;
+    padding-bottom: 10px;
+    flex-grow: 1;
+  }
 }
 
 /*

@@ -26,6 +26,20 @@
       description: Restful API HATEOAS
       link: /articles/microservices-restful-api-hateoas/
 
+- title: Reactive Design Patterns
+  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  series: /series/reactive-design-patterns
+  posts:
+    - title: Reactive Manifesto
+      description: 以响应式系统方式构建的系统更加灵活，松耦合和可扩展。这使得它们更容易被开发，而且经得起变化的考验。它们对于系统失败表现出显著的包容性，并且当失败真的发生时，它们能用优雅的方式去应对，而不是放任灾难的发生。响应式系统是高度灵敏的，能够给用户以有效的交互式的反馈
+      link: /articles/reactive-design-patterns-manifesto/
+    - title: Analyzing Latency of Traditional Approach
+      description:
+      link: /articles/reactive-design-patterns-latency-of-traditional-approach/
+    - title: Spring Boot Messaging
+      description:
+      link: /articles/reactive-design-patterns-spring-boot-messaging/
+
 - title: Machine Learning
   background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
   series: /series/machine-learning
