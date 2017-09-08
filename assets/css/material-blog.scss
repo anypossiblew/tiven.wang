@@ -70,7 +70,14 @@ h2[id], h3[id], h4[id] {
   margin: 16px 0;
 }
 
-.demo-blog {
+.demo-blog.mdl-layout {
+
+  @media (max-width: 479px) {
+    .mdl-layout__content {
+      padding-top: 50px;
+    }
+  }
+
   .blog__post {
 
     a {
@@ -90,6 +97,11 @@ h2[id], h3[id], h4[id] {
         .android-link.mdl-button.mdl-js-button {
           padding: 0;
         }
+      }
+
+      .mdl-card__title {
+        padding: 15px;
+        padding-bottom: 5px;
       }
     }
 

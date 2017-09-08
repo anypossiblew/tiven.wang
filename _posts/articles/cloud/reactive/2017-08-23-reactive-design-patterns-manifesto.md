@@ -15,6 +15,8 @@ share: true
 references:
   - title: "The Reactive Manifesto"
     url: "http://www.reactivemanifesto.org/"
+  - title: "What is Reactive Programming?"
+    url: "https://blog.redelastic.com/what-is-reactive-programming-bc9fa7f4a7fc"
   - title: "Reactive programming vs. Reactive systems"
     url: "https://www.oreilly.com/ideas/reactive-programming-vs-reactive-systems"
   - title: "Reactive programming"
@@ -64,5 +66,6 @@ references:
 这些实际上就是响应式宣言的核心特征所表达的。
 
 
-
 ## Why Now?
+
+https://blog.redelastic.com/a-journey-into-reactive-streams-5ee2a9cd7e29

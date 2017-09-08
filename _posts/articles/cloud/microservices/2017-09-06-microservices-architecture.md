@@ -37,16 +37,16 @@ references:
 
 那么就现在的企业系统，如何做到对市场变化迅速敏捷的反应呐？ 微服务架构是这样一个简单的原则：它倡导通过创建一群这样的服务：
 
-* **小的**
-* **独立的**
+* **小的** Small
+* **隔离的** Isolation
   * **拥有属于自己的数据**
-  * **无依赖地独立**
-* **可伸缩的**
-* **可快速恢复的**
+  * **无依赖地隔离**
+* **可伸缩的** Scalable
+* **可快速恢复的** Resilient to failure
 
 来构建系统。
 
-**小而独立** 具有很重要的意义，意味着它可以被一个小型的团队负责，更好地实施敏捷开发方法，意味着它更适应CI/CD，意味着它可以选择适合自己的技术栈。
+**小而隔离** 具有很重要的意义，意味着它可以被一个小型的团队负责，更好地实施敏捷开发方法，意味着它更适应CI/CD，意味着它可以选择适合自己的技术栈。
 
 **可伸缩** 这一特性已经是现代系统的标准，可伸缩才能是系统对负载做出及时响应，才能使企业按需付费，避免了资产的闲置浪费。
 
@@ -70,7 +70,7 @@ references:
 
 ### SOA
 
-方法始终不是一瞬间产生的，在微服务之前我们已经在做了，把应用程序系统划分成不同的应用程序服务然后在通过统一协议的API连接起来，以做到松耦合的效果，这就是 [Service Oriented Architecture (SOA)][SOA]. 虽然 SOA 的基础思想也是 解耦(decoupling), 隔离(isolation), 组合(composition), 集成(integration), 分离(discrete), 自治的服务(autonomous service), 但它并没有深入地走下去，反而纠结于技术争论（例如，对[ESB][ESB]来说 `WS-*`和`REST`哪一个更好？）。
+方法始终不是一瞬间产生的，在微服务之前我们已经在做了，把应用程序系统划分成不同的应用程序服务然后在通过统一协议的API连接起来，以做到松耦合的效果，这就是 [Service Oriented Architecture (SOA)][SOA]. 虽然 SOA 的基础思想也是 解耦(decoupling), 隔离(isolation), 组合(composition), 集成(integration), 分离(discrete), 自治的服务(autonomous service), 但它并没有深入地走下去，反而纠结于一些技术争论（例如，对[ESB][ESB]来说 `WS-*`和`REST`哪一个更好？）。
 
 > Although the word “SOA” is dead, the requirement for service-oriented architecture is stronger than ever.
 >
@@ -102,14 +102,31 @@ references:
 > Today applications are deployed on everything from mobile devices to cloud-based clusters running thousands of multi-core processors. Users expect millisecond response times and 100% uptime. Data is measured in Petabytes. Today's demands are simply not met by yesterday’s software architectures.
 >
 > We believe that a coherent approach to systems architecture is needed, and we believe that all necessary aspects are already recognised individually: we want systems that are Responsive, Resilient, Elastic and Message Driven. We call these Reactive Systems.
-
+>
 > — [The Reactive Manifesto](http://www.reactivemanifesto.org/)
+{: .Quotes}
 
 Reactive 原则与 Microservices 理论的结合在当今 Cloud 环境下开发会发挥更积极更重要的效果。
 
 更多关于 Reactive 编程的讨论可以参考系列[Reactive Design Patterns](/series/reactive-design-patterns).
 
-## Service Design
+### Who
+
+就目前情况来看，什么样的应用系统适合微服务架构呐？有什么好的principles和practices
+
+要想走在微服务的道路上，两个要点要牢记在心：去中心化(Decentralization)和自治 (autonomy)。
+
+你肯定已经看到不少同事已经在学习和使用 [Docker][docker], [continuous delivery][continuous-delivery] 或者 [service discovery][service-discovery] 等这些工具或者开发模式，其实这些工作的结果就是在构建微服务系统。但微服务不是仅使用某些工具或者开发模式开发过程所能达到的，你应该专注于它的目标本身：构建更容易改变的系统。
+
+## Microservice Systems Design
+微服务讲要建立小而隔离(Isolated)或者自治(Autonomous)的服务，那么问题是多小算小服务，怎么样才算隔离或者说自治？
+
+多小算小，并没有标准答案。答案并不重要，找到适合你组织的才算最好。所以接下来我们提供一些方式方法以供参考。
+
+![microservice system design model](/images/cloud/microservices/microservice system design model.png "microservice system design model")
+{: .center}
+
+### Service Design
 
 // TODO
 
@@ -133,3 +150,6 @@ DevOps Agile CI/CD
 [SOA]:https://en.wikipedia.org/wiki/Service-oriented_architecture
 [ESB]:https://en.wikipedia.org/wiki/Enterprise_service_bus
 [Reactive_programming]:https://en.wikipedia.org/wiki/Reactive_programming
+[docker]:https://www.docker.com/
+[continuous-delivery]:https://www.thoughtworks.com/continuous-delivery
+[service-discovery]:http://microservices.io/patterns/client-side-discovery.html
