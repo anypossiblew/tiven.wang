@@ -147,6 +147,16 @@ proxiedRequest('http://www.google.com', function (error, response, body) {
 });
 ```
 
+*or*
+
+The following environment variables are respected by `request`:
+
+```
+HTTP_PROXY / http_proxy
+HTTPS_PROXY / https_proxy
+NO_PROXY / no_proxy
+```
+
 [Node.js Request Proxies](https://github.com/request/request#user-content-proxies)
 
 #### Request Tor proxy
@@ -210,3 +220,14 @@ System variable `https_proxy` = `http://my.proxyserver.com:8080`
 [Using the cf CLI with an HTTP Proxy Server][cf-CLI-proxy]
 
 [cf-CLI-proxy]:https://docs.cloudfoundry.org/cf-cli/http-proxy.html
+
+### Firebase cli proxy
+Firebase-tools uses the `request` module for all connections to auth endpoints, you could try specifying the proxy details using these command line parameters: https://www.npmjs.com/package/request#controlling-proxy-behaviour-using-environment-variables
+
+Set the following environment variables:
+
+```
+HTTP_PROXY / http_proxy
+HTTPS_PROXY / https_proxy
+NO_PROXY / no_proxy
+```
