@@ -17,7 +17,14 @@ references:
     url: "http://www.jonathanbeard.io/blog/2015/09/19/streaming-and-dataflow.html"
   - title: "A Journey into Reactive Streams"
     url: "https://blog.redelastic.com/a-journey-into-reactive-streams-5ee2a9cd7e29"
+  - title: "Java 9 Reactive Streams"
+    url: "http://www.baeldung.com/java-9-reactive-streams"
+  - title: "Making Sense of Stream Processing"
+    url: "http://www.oreilly.com/data/free/stream-processing.csp"
+
 ---
 
 * TOC
 {:toc}
+
+// TODO

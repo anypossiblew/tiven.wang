@@ -50,6 +50,19 @@ Clients of a service use either **Client-side discovery** or **Server-side disco
 
 Why Use Service Discovery? Please refer to the section in [Service Discovery in a Microservices Architecture](https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/)
 
+### Service Discovery Products
+
+* [Eureka](https://github.com/Netflix/eureka)
+* [ZooKeeper](https://zookeeper.apache.org/)
+* [Consul](https://www.consul.io/)
+* [etcd](https://github.com/coreos/etcd)
+
+[Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/)
+
+[Spring Cloud Zookeeper](https://cloud.spring.io/spring-cloud-zookeeper/)
+
+[Consul vs. Other Software](https://www.consul.io/intro/vs/zookeeper.html)
+
 ## Building
 
 ### Parent POM

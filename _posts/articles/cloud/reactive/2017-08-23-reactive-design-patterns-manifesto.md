@@ -15,6 +15,8 @@ share: true
 references:
   - title: "The Reactive Manifesto"
     url: "http://www.reactivemanifesto.org/"
+  - title: "Reactive Streams"
+    url: "http://www.reactive-streams.org/"
   - title: "What is Reactive Programming?"
     url: "https://blog.redelastic.com/what-is-reactive-programming-bc9fa7f4a7fc"
   - title: "Reactive programming vs. Reactive systems"
@@ -58,14 +60,26 @@ references:
 
 为什么要创建 **响应式** 的系统呐? 一个响应式的系统应该是
 
-* Be responsive to interactions with its users
-* Handle failure and remain available during outages
-* Strive under varying load conditions
-* Be able to send, receive, and route messages in varying network conditions
+* 对它用户的交互是灵敏的
+* 在服务器中断时能处理失败和保持可用性
+* 能在不同负载下保持运行状态
+* 能在不同的网络条件下发送、接收和路由消息
 
-这些实际上就是响应式宣言的核心特征所表达的。
+这些实际上就是解释了响应式宣言说的响应式的核心特征“灵敏的” “有回复性的” “可伸缩的” “消息驱动的”。
 
+### Why Asynchronous
+
+// TODO
+
+### Stream Processing
+
+// TODO
 
 ## Why Now?
 
+// TODO
+
 https://blog.redelastic.com/a-journey-into-reactive-streams-5ee2a9cd7e29
+
+[Actor_model]:https://en.wikipedia.org/wiki/Actor_model
+[JDK_9_Flow_API]:https://community.oracle.com/docs/DOC-1006738

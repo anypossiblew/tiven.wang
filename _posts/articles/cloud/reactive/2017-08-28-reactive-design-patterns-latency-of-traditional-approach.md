@@ -14,6 +14,8 @@ comments: true
 share: true
 mathjax: true
 references:
+  - title: "Baron Schwartz &lt;&lt;Practical Scalability Analysis with the Universal Scalability Law&gt;&gt;"
+    url: "https://cdn2.hubspot.net/hubfs/498921/eBooks/scalability_new.pdf"
   - title: "Scalability"
     url: "https://en.wikipedia.org/wiki/Scalability"
   - title: "Scale-Up vs. Scale-Out Storage: What’s the Difference?"

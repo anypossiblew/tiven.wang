@@ -11,7 +11,6 @@ sitemap: false
 
 @import "mixins";
 
-
 @import "syntax";
 
 html, body {
@@ -70,11 +69,13 @@ h2[id], h3[id], h4[id] {
   margin: 16px 0;
 }
 
-.demo-blog.mdl-layout {
+.demo-blog {
 
-  @media (max-width: 479px) {
-    .mdl-layout__content {
-      padding-top: 50px;
+  &.mdl-layout {
+    @media (max-width: 479px) {
+      .mdl-layout__content {
+        padding-top: 50px;
+      }
     }
   }
 
@@ -86,6 +87,7 @@ h2[id], h3[id], h4[id] {
 
     blockquote {
       font-family: $heading-font;
+      margin: 10px 40px;
     	@media (max-width: 479px) {
     	  margin: 5px;
     	}
@@ -146,6 +148,10 @@ h2[id], h3[id], h4[id] {
       padding: 0;
       #disqus_thread {
         width: 100%;
+      }
+
+      .mdl-card__supporting-text {
+        min-height: 280px;
       }
     }
 
@@ -335,6 +341,56 @@ a.social-btn {
 
 figure.center, p.center {
   margin: 0 auto;
+}
+
+/*
+   Tables
+   ========================================================================== */
+
+/** For nicer looking tables apply the .table class
+ *  Example:
+ *  <table class="table">
+ *    <tr>
+ *      <td>cell1</td>
+ *      <td>cell2</td>
+ *      <td>cell3</td>
+ *    </tr>
+ *  </table>
+*/
+
+table, .table {
+	border-collapse: collapse;
+	margin: ((0px + $doc-line-height) / 2) 0;
+	margin: ((0rem + ($doc-line-height / $doc-font-size)) / 2) 0;
+	width: 100%;
+	tbody {
+		tr:hover > td, tr:hover > th {
+			background-color: $table-hover-color;
+		}
+	}
+	thead {
+		tr:first-child td {
+			border-bottom: 2px solid $table-border-color;
+		}
+	}
+	th {
+		padding: (0px + $doc-line-height) / 2;
+		padding: (0rem + ($doc-line-height / $doc-font-size)) / 2;
+		font-family: $alt-font;
+		font-weight: bold;
+		text-align: left;
+		background-color: $table-header-color;
+		border-bottom: 1px solid darken($border-color, 15%);
+	}
+	td {
+		border-bottom: 1px solid $border-color;
+		padding: (0px + $doc-line-height) / 2;
+		padding: (0rem + ($doc-line-height / $doc-font-size)) / 2;
+		@include font-size(18);
+	}
+	tr, td, th {
+		vertical-align: middle;
+	}
 }
 
 // blockquote: WARNING TIPS Notes ...

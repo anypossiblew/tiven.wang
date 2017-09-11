@@ -7,9 +7,9 @@ categories: articles
 tags: [Firebase, Serverless, Cloud]
 image:
   vendor: unsplash
-  feature: /photo-1503301360699-4f60cf292ec8
-  credit: Simon Matzinger
-  creditlink: https://unsplash.com/@8moments
+  feature: /photo-1482211317141-14c8a4e628fd?dpr=1.5&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=
+  credit: Irina Blok
+  creditlink: https://unsplash.com/@irinablok
 comments: true
 share: true
 references:
@@ -26,13 +26,23 @@ references:
 
 ## Setup
 
+在 Google firebase console 上创建项目 `try-serverless-firebase`，或者在 *firebase cli* 工具里创建项目。
+
+安装 firebase cli 工具：
+
 `npm install -g firebase-tools`
 
+登录 firebase 账号
+
 `firebase login`
+
+初始化 Google Cloud functions 功能
 
 `firebase init functions`
 
 ## Hello world
+
+在 *./functions/index.js* 里编写程序如下：
 
 ```javascript
 const functions = require('firebase-functions');
@@ -54,13 +64,19 @@ exports.addMessage = functions.https.onRequest((req, res) => {
 });
 ```
 
-Deploy functions:
+部署此 function 到 firebase 上:
 
 `firebase deploy --only functions` or `firebase deploy --only functions:addMessage`
 
-```
-Function URL (addMessage): https://us-central1-MY_PROJECT.cloudfunctions.net/addMessage
-```
+在 firebase console functions 栏里会出现这一条记录
 
+Function | Event | Executions | Median run time
+--- | --- | --- | ---
+addMessage | HTTP Request https://us-central1-try-serverless-firebase.cloudfunctions.net/addMessage | - | -
+{: .table}
 
-https://us-central1-MY_PROJECT.cloudfunctions.net/addMessage?text=uppercaseme
+在浏览器打开链接
+https://us-central1-try-serverless-firebase.cloudfunctions.net/addMessage?text=Hello world!
+ 它会跳转到 Firebase Realtime Database 里此条 Message 页面，因为我们在程序里指定了这样的返回：
+
+ `res.redirect(303, snapshot.ref);`

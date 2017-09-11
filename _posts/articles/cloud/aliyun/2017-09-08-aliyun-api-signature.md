@@ -7,7 +7,7 @@ categories: articles
 tags: [Signature, Aliyun]
 image:
   vendor: unsplash
-  feature: /photo-1503301360699-4f60cf292ec8
+  feature: /photo-1503301360699-4f60cf292ec8?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=
   credit: Simon Matzinger
   creditlink: https://unsplash.com/@8moments
 comments: true
