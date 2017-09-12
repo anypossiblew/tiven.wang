@@ -93,6 +93,10 @@ h2[id], h3[id], h4[id] {
     	}
     }
 
+    .gist {
+      width: 100%;
+    }
+
     @media (max-width: 479px) {
       .mdl-color-text--grey-50.mdl-card__media {
         padding: 15px;

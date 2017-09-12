@@ -6,7 +6,7 @@ modified: 2017-08-31T17:00:00-00:00
 categories: series
 tags: [Reactive]
 image:
-  feature: /images/web/masthead-web.jpg
+  feature: https://images.unsplash.com/photo-1490645935967-10de6ba17061?dpr=1.5&auto=format&fit=crop&w=1080&h=735&q=80&cs=tinysrgb&crop=
 comments: true
 share: true
 series:

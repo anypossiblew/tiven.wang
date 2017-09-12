@@ -6,7 +6,7 @@ modified: 2017-04-24T17:00:00-00:00
 categories: series
 tags: [Microservices, Architecture, Cloud]
 image:
-  feature: /images/web/masthead-web.jpg
+  feature: https://pbs.twimg.com/media/DI-OJIuXgAAAFHJ.jpg:large
 comments: true
 share: true
 series:

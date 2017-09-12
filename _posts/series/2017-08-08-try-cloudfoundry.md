@@ -4,9 +4,9 @@ title: Try CloudFoundry
 excerpt: ""
 modified: 2017-08-08T17:00:00-00:00
 categories: series
-tags: [CloudFoundry, Maven, Tomcat]
+tags: [Cloud Foundry, Maven, Tomcat]
 image:
-  feature: /images/web/masthead-web.jpg
+  feature: https://drscdn.500px.org/photo/221057513/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=60aff417e3a09b742e25817d38e1434edcde82324f3b51ad969164e0b129a274
 comments: true
 share: true
 series:
