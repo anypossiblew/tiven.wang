@@ -158,7 +158,7 @@
 
               <ul class="mdl-list">
                 {% for reference in page.references %}
-                <li class="mdl-list__item">
+                <li class="mdl-list__item" id="reference-{{ reference.id }}">
                   <span class="mdl-list__item-primary-content">
                     [{{ forloop.index }}] {{ reference.title }} <a target="_blank" href="{{ reference.url }}">{{ reference.url }}</a>
                   </span>

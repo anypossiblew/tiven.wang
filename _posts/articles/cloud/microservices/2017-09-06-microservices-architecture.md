@@ -16,12 +16,16 @@ share: true
 references:
   - title: "O’Reilly &lt;&lt;Building Microservices&gt;&gt; Designing Fine-Grained Systems"
     url: "http://shop.oreilly.com/product/0636920033158.do"
+    id: 1
   - title: "O’Reilly &lt;&lt;Microservice Architecture&gt;&gt; Aligning Principles, Practices, and Culture"
     url: "http://shop.oreilly.com/product/0636920050308.do"
+    id: 2
   - title: "O’Reilly &lt;&lt;Reactive Microservices Architecture&gt;&gt; Design Principles for Distributed Systems"
     url: "http://www.oreilly.com/programming/free/reactive-microservices-architecture-orm.csp"
+    id: 3
   - title: "O’Reilly - Free Programming Ebooks"
     url: "http://www.oreilly.com/programming/free/?cmp=li-business-free-info-onboarding_li_freereport_programming_ac"
+    id: 4
 
 ---
 
@@ -46,7 +50,7 @@ references:
 
 来构建系统。
 
-**小而隔离** 具有很重要的意义，意味着它可以被一个小型的团队负责，更好地实施敏捷开发方法，意味着它更适应CI/CD，意味着它可以选择适合自己的技术栈。
+**小而隔离** 具有很重要的意义<a href="#reference-1">\[1\]</a>，意味着它可以被一个小型的团队负责，更好地实施敏捷开发方法，意味着它更适应CI/CD，意味着它可以选择适合自己的技术栈。
 
 **可伸缩** 这一特性已经是现代系统的标准，可伸缩才能是系统对负载做出及时响应，才能使企业按需付费，避免了资产的闲置浪费。
 
@@ -119,16 +123,36 @@ Reactive 原则与 Microservices 理论的结合在当今 Cloud 环境下开发�
 你肯定已经看到不少同事已经在学习和使用 [Docker][docker], [continuous delivery][continuous-delivery] 或者 [service discovery][service-discovery] 等这些工具或者开发模式，其实这些工作的结果就是在构建微服务系统。但微服务不是仅使用某些工具或者开发模式开发过程所能达到的，你应该专注于它的目标本身：构建更容易改变的系统。
 
 ## Microservice Systems Design
-微服务讲要建立小而隔离(Isolated)或者自治(Autonomous)的服务，那么问题是多小算小服务，怎么样才算隔离或者说自治？
+微服务讲要建立小而隔离(Isolated)自治(Autonomous)的服务，那么问题是多小算小服务，怎么样才算隔离或者说自治？
 
-多小算小，并没有标准答案。答案并不重要，找到适合你组织的才算最好。所以接下来我们提供一些方式方法以供参考。
+多小算小，如果说一个微服务多少行代码才算小, 这样回答并不好. 这个问题应该说一个微服务到底应该有合适大小的责任,适合你团队大小的才算最好. 专业做好一件事.
+
+> Do one thing and do it well.  — Doug McIlroy
+
+所以接下来我们提供一些方式方法以供参考。
 
 ![microservice system design model](/images/cloud/microservices/microservice system design model.png "microservice system design model")
 {: .center}
 
 ### Service Design
 
+微服务架构核心原则之一就是：分而治之 ([Divide and Conquer](https://en.wikipedia.org/wiki/Divide_and_rule)), 即把系统分解成通过明确定义的协议通讯的不相关的隔离的子系统。
+
+隔离(Isolation)是一切的前提：弹性(Elasticity) 伸缩性(Scalability) 回复性(Resilience) 可用性(Availability)等。有了隔离才能更好的利用持续集成(Continuous Integration)和持续交付(Continuous Delivery).
+
+如果做到服务的隔离，需要从多个方面考虑
+
+* Share-Nothing
+* Autonomous
+* Responsibility
+* State
+* Bounded Context
+
+#### Share-Nothing
+
 // TODO
+
+[Divide and conquer algorithm](https://en.wikipedia.org/wiki/Divide_and_conquer_algorithm)
 
 microservices applications share some important characteristics:
 * Small in size
@@ -139,6 +163,15 @@ microservices applications share some important characteristics:
 * Decentralized
 * Built and released with automated processes
 
+### Services Communication
+
+#### Restful API
+
+// TODO
+
+#### Asynchronous Messaging-Passing
+
+// TODO
 
 ## Conclusion
 

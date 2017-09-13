@@ -80,3 +80,38 @@ https://us-central1-try-serverless-firebase.cloudfunctions.net/addMessage?text=H
  它会跳转到 Firebase Realtime Database 里此条 Message 页面，因为我们在程序里指定了这样的返回：
 
  `res.redirect(303, snapshot.ref);`
+
+### Event-driven Functions
+
+Serverless 架构实现的核心概念就是事件驱动的函数. 想要实现自己的逻辑, 只需要编写当某个事件发生时所要执行的函数即可. 例如接下来我们要实现把保存的text转换成大写字母, 可以编写一个 `on write original` 事件所要执行的函数:
+
+```javascript
+// Listens for new messages added to /messages/:pushId/original and creates an
+// uppercase version of the message to /messages/:pushId/uppercase
+// [START makeUppercaseTrigger]
+exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
+    .onWrite(event => {
+// [END makeUppercaseTrigger]
+  // [START makeUppercaseBody]
+  // Grab the current value of what was written to the Realtime Database.
+  const original = event.data.val();
+  console.log('Uppercasing', event.params.pushId, original);
+  const uppercase = original.toUpperCase();
+  // You must return a Promise when performing asynchronous tasks inside a Functions such as
+  // writing to the Firebase Realtime Database.
+  // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
+  return event.data.ref.parent.child('uppercase').set(uppercase);
+  // [END makeUppercaseBody]
+});
+```
+
+使用Firebase封装好的函数来为数据库的某个消息字段保存时指定函数逻辑:
+`functions.database.ref('/messages/{pushId}/original').onWrite(event => { ... });`
+
+重新部署之后, 再次调用`addMessage` url 可以看到消息如下:
+
+```
+-KtttKs7lWKs_CgO2PqK
+|--- original: "Hello world!"
+|--- uppercase: "HELLO WORLD!"
+```

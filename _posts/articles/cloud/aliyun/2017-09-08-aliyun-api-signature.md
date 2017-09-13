@@ -1,10 +1,10 @@
 ---
 layout: post
 title: Aliyun - API Signature
-excerpt: "DirectMail 服务会对每个访问请求进行身份验证，所以无论使用 HTTP 还是 HTTPS 协议提交请求，都需要在请求中包含签名（Signature）信息。DirectMail 通过使用 Access Key ID 和 Access Key Secret 进行对称加密的方法来验证请求的发送者身份。Access Key ID 和 Access Key Secret 由阿里云官方颁发给访问者（可以通过阿里云官方网站申请和管理），其中 Access Key ID 用于标识访问者的身份；Access Key Secret 是用于加密签名字符串和服务器端验证签名字符串的密钥，必须严格保密，只有阿里云和用户知道。"
+excerpt: "阿里云各个服务会对每个访问请求进行身份验证，所以无论使用 HTTP 还是 HTTPS 协议提交请求，都需要在请求中包含签名（Signature）信息。DirectMail 通过使用 Access Key ID 和 Access Key Secret 进行对称加密的方法来验证请求的发送者身份。Access Key ID 和 Access Key Secret 由阿里云官方颁发给访问者（可以通过阿里云官方网站申请和管理），其中 Access Key ID 用于标识访问者的身份；Access Key Secret 是用于加密签名字符串和服务器端验证签名字符串的密钥，必须严格保密，只有阿里云和用户知道。"
 modified: 2017-09-08T11:51:25-04:00
 categories: articles
-tags: [Signature, Aliyun]
+tags: [Signature, SMS, Aliyun]
 image:
   vendor: unsplash
   feature: /photo-1503301360699-4f60cf292ec8?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=
@@ -23,7 +23,7 @@ references:
 * TOC
 {:toc}
 
-[阿里云 开发API参考 签名机制](https://help.aliyun.com/document_detail/29442.html?spm=5176.doc29440.2.1.qR6fIY)
+[阿里云 开发API参考 签名机制](https://help.aliyun.com/document_detail/54229.html)
 
 ```javascript
 const crypto = require('crypto');
@@ -86,10 +86,10 @@ accessKeySecret = accessKeySecret + '&';
 return crypto.createHmac('sha1', accessKeySecret).update(new Buffer(stringToSign, 'utf-8')).digest('base64');
 ```
 
-5 将得到的签名值作为 Signature 参数添加到请求参数中，即完成对请求签名的过程。注意：得到的签名值在作为最后的请求参数值提交给 DirectMail 服务器的时候，要和其他参数一样，按照 RFC3986 的规则进行 URL 编码）。
+5 将得到的签名值作为 Signature 参数添加到请求参数中，即完成对请求签名的过程。注意：得到的签名值在作为最后的请求参数值提交给 SMS 服务器的时候，要和其他参数一样，按照 RFC3986 的规则进行 URL 编码）。
 
 ```javascript
-var apiUrl = 'http://dm.aliyuncs.com/';
+var apiUrl = 'http://dysmsapi.aliyuncs.com/';
 request.post({
     url: apiUrl,
     headers: {
@@ -100,4 +100,4 @@ request.post({
 ```
 
 完整代码:
-<script src="https://gist.github.com/anypossiblew/1a35e340fa54779528c2d9897d3e841c.js"></script>
+<script src="https://gist.github.com/anypossiblew/46c14aa9616b8f6adad1f6f6078333e1.js"></script>
