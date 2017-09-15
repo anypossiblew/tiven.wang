@@ -303,6 +303,20 @@ At this point, things are getting pretty crazy, so run gitk to see what's going 
 
 [stackoverflow - I can't delete a remote master branch on github](http://stackoverflow.com/questions/12208751/i-cant-delete-a-remote-master-branch-on-git)
 
+#### How to rename branch
+
+If you want to rename a branch while pointed to any branch, do:
+
+`git branch -m <oldname> <newname>`
+
+If you want to rename the current branch, you can do:
+
+`git branch -m <newname>`
+
+A way to remember this, is `-m` or long name `--move` is for "move" (or `mv`), which is how you rename files.
+
+[How do I rename a local Git branch?](https://stackoverflow.com/questions/6591213/how-do-i-rename-a-local-git-branch)
+
 #### How to merge branches
 
 `git checkout master` and `git merge dev` `git push`

@@ -16,6 +16,7 @@ references:
 ---
 
 > Autumn [Grizzly](https://en.wikipedia.org/wiki/Grizzly_bear) [Denali National Park](https://earth.google.com/web/@63.21366,-151.11581685,1529.07672297a,335251.48439207d,35y,0h,0t,0r), [Alaska](https://en.wikipedia.org/wiki/Alaska)
+{: .Notes}
 
 * TOC
 {:toc}
@@ -23,6 +24,7 @@ references:
 `spring-boot-starter-cloud-connectors` is a starter for using Spring Cloud Connectors which simplifies connecting to services in cloud platforms like Cloud Foundry and Heroku.
 
 > 下載本篇完整代碼 [Github](https://github.com/tiven-wang/try-cf/tree/spring-cloud-connectors)
+{: .Notes}
 
 ## Setup
 
@@ -43,8 +45,8 @@ references:
 
 ```xml
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-data-mongodb</artifactId>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-mongodb</artifactId>
 </dependency>
 ```
 
@@ -56,11 +58,11 @@ references:
 @Document(collection = "hero")
 public class Hero {
 
-	@Id
+  @Id
   @JsonSerialize(using = ToStringSerializer.class)
   private BigInteger id;
 
-	private String name;
+  private String name;
 
   ...
 }
@@ -84,26 +86,26 @@ public interface HeroRepository  extends CrudRepository<Hero, BigInteger> {
 @RequestMapping("/hero")
 public class HeroController {
 
-	@Autowired(required = false) HeroRepository heroRepository;
+  @Autowired(required = false) HeroRepository heroRepository;
 
   @RequestMapping("")
   Iterable<Hero> getAll() {
-      return heroRepository.findAll();
+    return heroRepository.findAll();
   }
 
   @RequestMapping(path="", method=RequestMethod.POST)
   Hero create(@RequestBody Hero hero) {
-      return heroRepository.save(hero);
+    return heroRepository.save(hero);
   }
 
   @RequestMapping("/{id}")
   Hero get(@PathVariable BigInteger id) {
-      return heroRepository.findOne(id);
+    return heroRepository.findOne(id);
   }
 
   @RequestMapping(path="/{id}", method=RequestMethod.DELETE)
   void delete(@PathVariable BigInteger id) {
-      heroRepository.delete(id);
+    heroRepository.delete(id);
   }
 }
 ```
@@ -117,17 +119,20 @@ public class HeroController {
 @ServiceScan
 @Profile("cloud")
 public class CloudConfiguration extends AbstractCloudConfig {
-
-	@Bean
-    public ApplicationInstanceInfo applicationInfo() {
-        return cloud().getApplicationInstanceInfo();
-    }
-
+  @Bean
+  public ApplicationInstanceInfo applicationInfo() {
+    return cloud().getApplicationInstanceInfo();
+  }
 }
 ```
 
 * `@ServiceScan` 註解類似Spring中的`@ComponentScan`， 它會掃描綁定在此app上的服務，並為每個服務創建一個bean
-* `@Profile("cloud")` 說明當應用運行在雲環境中時才加載此配置
+* `@Profile("cloud")` 說明當程序指定激活`cloud`配置时才加载这里的配置, 如在`manifest.yml`中指定
+```yaml
+# ...
+env:
+  SPRING_PROFILES_ACTIVE: cloud
+```
 
 ## Test
 
@@ -162,6 +167,26 @@ public class CloudConfiguration extends AbstractCloudConfig {
 `cf restart`
 
 訪問鏈接 *https://try-cf-spring-boot.cfapps.io/hero* 可以增刪查Hero啦。
+
+### Manifest
+
+或者使用 manifest 配置文件部署
+
+```yaml
+---
+applications:
+- name: try-cf-spring-boot
+  buildpack: java_buildpack
+  instances: 1
+  memory: 1G
+  host: try-cf-spring-boot
+  env:
+    APP_LOGGING_LEVEL: DEBUG
+    SPRING_PROFILES_ACTIVE: cloud
+  path: target/try-cf-spring-boot-0.0.1-SNAPSHOT.jar
+  services:
+    - try-cf-mongodb
+```
 
 [Spring Boot]:http://projects.spring.io/spring-boot/
 [spring-data/mongodb]:https://docs.spring.io/spring-data/mongodb/docs/1.10.6.RELEASE/reference/html/
