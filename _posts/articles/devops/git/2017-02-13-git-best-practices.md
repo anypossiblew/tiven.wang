@@ -346,6 +346,22 @@ would be:
   D---E---F---G master
 ```
 
+=================
+
+In case of conflict, git rebase will stop at the first problematic commit and leave conflict markers in the tree. You can use `git diff` to locate the markers (<<<<<<) and make edits to resolve the conflict. For each file you edit, you need to tell Git that the conflict has been resolved, typically this would be done with
+
+`git add <filename>`
+
+After resolving the conflict manually and updating the index with the desired resolution, you can continue the rebasing process with
+
+`git rebase --continue`
+
+Alternatively, you can undo the `git rebase` with
+
+`git rebase --abort`
+
+==================
+
 See more by `git rebase --help`
 
 #### Create Branch from Commit
@@ -436,6 +452,23 @@ Again "origin" is the name of the remote repository if you want to remove the "u
 You can use `--allow-unrelated-histories` to force the merge to happen.
 
 [Git refusing to merge unrelated histories](https://stackoverflow.com/questions/37937984/git-refusing-to-merge-unrelated-histories)
+
+### Tags
+#### How to delete a git remote tag?
+
+You just need to push an 'empty' reference to the remote tag name:
+
+`git push origin :tagname`
+
+Or, more expressively, use the `--delete` option:
+
+`git push --delete origin tagname`
+
+If you also need to delete the local tag, use:
+
+`git tag --delete tagname`
+
+[stackoverflow - How to delete a git remote tag?](https://stackoverflow.com/questions/5480258/how-to-delete-a-git-remote-tag)
 
 ## Best Practices
 [Version Control Best Practices](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices)

@@ -104,6 +104,9 @@
             {% elsif page.image.vendor == "twitter" %}
             <div class="mdl-card__media mdl-color-text--grey-50"
                  style="background-image: url('https://pbs.twimg.com{{ page.image.feature }}')">
+           {% elsif page.image.vendor == "dronestagr" %}
+           <div class="mdl-card__media mdl-color-text--grey-50"
+                style="background-image: url('http://www.dronestagr.am{{ page.image.feature }}')">
             {% else %}
             <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{ page.image.feature }}')">
             {% endif %}
