@@ -4,12 +4,12 @@ title: Microservices - Load Balancing
 excerpt: ""
 modified: 2017-08-30T11:51:25-04:00
 categories: articles
-tags: [Load Balancing, Spring Cloud, Microservices]
+tags: [Load Balancing, Scale, Spring Cloud, Microservices]
 image:
   vendor: unsplash
-  feature: /photo-1486723312829-f32b4a25211b?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=
-  credit: Matthew Kane
-  creditlink: https://unsplash.com/@matthewkane
+  feature: /photo-1485250377294-bb65ba51aa46?dpr=1.5&auto=format&fit=crop&w=1500&h=902&q=80&cs=tinysrgb&crop=
+  credit: Ishan
+  creditlink: https://unsplash.com/@seefromthesky
 comments: true
 share: true
 references:

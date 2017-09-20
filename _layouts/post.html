@@ -92,23 +92,29 @@
         <div class="blog__post demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             {% if page.image.vendor == "500px"  %}
-            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('https://drscdn.500px.org{{ page.image.feature }}')">
+            <div class="mdl-card__media mdl-color-text--grey-50"
+                 style="background-image: url('https://drscdn.500px.org{{ page.image.feature }}')">
             {% elsif page.image.vendor == "unsplash" %}
-            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('https://images.unsplash.com{{ page.image.feature }}')">
+            <div class="mdl-card__media mdl-color-text--grey-50"
+                 style="background-image: url('https://images.unsplash.com{{ page.image.feature }}')">
             {% elsif page.image.vendor == "nationalgeographic" %}
-            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('http://www.nationalgeographic.com{{ page.image.feature }}')">
+            <div class="mdl-card__media mdl-color-text--grey-50"
+                 style="background-image: url('http://www.nationalgeographic.com{{ page.image.feature }}')">
             {% elsif page.image.vendor == "yourshot.nationalgeographic" %}
-            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('http://yourshot.nationalgeographic.com{{ page.image.feature }}')">
+            <div class="mdl-card__media mdl-color-text--grey-50"
+                 style="background-image: url('http://yourshot.nationalgeographic.com{{ page.image.feature }}')">
             {% elsif page.image.vendor == "instagram" %}
-            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('https://scontent-frt3-1.cdninstagram.com{{ page.image.feature }}')">
+            <div class="mdl-card__media mdl-color-text--grey-50"
+                 style="background-image: url('https://scontent-frt3-1.cdninstagram.com{{ page.image.feature }}')">
             {% elsif page.image.vendor == "twitter" %}
             <div class="mdl-card__media mdl-color-text--grey-50"
                  style="background-image: url('https://pbs.twimg.com{{ page.image.feature }}')">
-           {% elsif page.image.vendor == "dronestagr" %}
-           <div class="mdl-card__media mdl-color-text--grey-50"
-                style="background-image: url('http://www.dronestagr.am{{ page.image.feature }}')">
+            {% elsif page.image.vendor == "dronestagr" %}
+            <div class="mdl-card__media mdl-color-text--grey-50"
+                 style="background-image: url('http://www.dronestagr.am{{ page.image.feature }}')">
             {% else %}
-            <div class="mdl-card__media mdl-color-text--grey-50" style="background-image: url('{{ page.image.feature }}')">
+            <div class="mdl-card__media mdl-color-text--grey-50"
+                 style="background-image: url('{{ page.image.feature }}')">
             {% endif %}
               <!-- Article tags -->
               <span>

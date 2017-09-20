@@ -13,6 +13,8 @@ image:
 comments: true
 share: true
 references:
+  - title: "The User Account and Authentication Service (UAA): APIs"
+    url: "http://docs.cloudfoundry.org/api/uaa/version/4.6.0/index.html"
   - title: "Cloud Foundry Documentation - Component: User Account and Authentication (UAA) Server"
     url: "https://docs.cloudfoundry.org/concepts/architecture/uaa.html"
   - title: "How Can I Try Out Cloud Foundry?"
@@ -26,9 +28,11 @@ references:
 
 See [Try CloudFoundry Series](/series/try-cloudfoundry/)
 
-The CloudFoundry User Account and Authentication (UAA) is a multi tenant identity management service, used in Cloud Foundry, but also available as a stand alone OAuth2 server. It's primary role is as an OAuth2 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users. It can also authenticate users with their Cloud Foundry credentials, and can act as an SSO service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth2 clients, as well as various other management functions.
+The CloudFoundry User Account and Authentication ([UAA][UAA]) is a multi tenant identity management service, used in [Cloud Foundry][CloudFoundry], but also available as a stand alone [OAuth2][OAuth2] server. It's primary role is as an OAuth2 provider, issuing tokens for client applications to use when they act on behalf of Cloud Foundry users. It can also authenticate users with their Cloud Foundry credentials, and can act as an [SSO][Single_sign-on] service using those credentials (or others). It has endpoints for managing user accounts and for registering OAuth2 clients, as well as various other management functions.
 
-[Introducing the UAA and Security for Cloud Foundry][uaa-intro]
+Please refer to [Introducing the UAA and Security for Cloud Foundry][uaa-intro]
+
+## Quick Start
 
 Clone the UAA sourcecode project to local:
 
@@ -36,15 +40,15 @@ Clone the UAA sourcecode project to local:
 
 Build and publish the application:
 
-```powershell
-./gradlew manifests -Dapp="try-cf-uaa" -Dapp-domain="cfapps.io"
-cf push -f build/sample-manifests/uaa-cf-application.yml
+```shell
+$ ./gradlew manifests -Dapp="try-cf-uaa" -Dapp-domain="cfapps.io"
+$ cf push -f build/sample-manifests/uaa-cf-application.yml
 ```
 
-Open the url *https://try-cf-uaa.cfapps.io/* in browser, then you can login with the pre-created UAA user/password of "marissa/koala".
+Open the url of your UAA server e.g. *https://try-cf-uaa.cfapps.io/* in browser, then you can login with the pre-created UAA user/password of "**marissa/koala**".
 
 > you can find the pre-created users that are created by `spring_profiles: default` in configuration location:
-```YAML
+```yaml
 env:
   UAA_CONFIG_YAML: |
     spring_profiles: default,hsqldb
@@ -52,7 +56,7 @@ env:
 > and the spring configuration file:
 > **uaa/src/main/webapp/WEB-INF/spring/scim-endpoints.xml**
 
-## Docker Container for UAA CLI
+### Docker Container for UAA CLI
 
 Build a docker image from Dockerfile:
 
@@ -88,7 +92,7 @@ UAAC stores the access token in the **~/.uaac.yml** file. Open the ~/.uaac.yml i
 
 Run `uaac token decode` to retrieve the token details.
 
-```powershell
+```shell
 /# uaac token decode
 
 Note: no key given to validate token signature
@@ -110,7 +114,7 @@ Note: no key given to validate token signature
 ```
 
 > you can find the pre-created clients that are created by `spring_profiles: default` in configuration location:
-```YAML
+```yaml
 env:
   UAA_CONFIG_YAML: |
     spring_profiles: default,hsqldb
@@ -153,7 +157,7 @@ database:
   minidle: 1
 ```
 
-> The **maxactive** should less than the concurrent connections in the plan of database service.
+> The **maxactive** should less than the concurrent connections in the plan of your database service.
 
 Then push the application to CloudFoundry platform:
 
@@ -260,7 +264,13 @@ postgres=# select client_id, resource_ids, identity_zone_id from oauth_client_de
 
 [Securing RESTful Web Services with OAuth2][oauth-rest]
 
+## Identity Zones
 
+
+[UAA]:https://github.com/cloudfoundry/uaa
+[CloudFoundry]:https://www.cloudfoundry.org/
+[OAuth2]:https://tools.ietf.org/html/rfc6749
+[Single_sign-on]:https://en.wikipedia.org/wiki/Single_sign-on
 [uaa-intro]:https://www.cloudfoundry.org/uaa-intro/
 [oauth-rest]:https://www.cloudfoundry.org/oauth-rest/
 

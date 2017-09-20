@@ -87,10 +87,17 @@ h2[id], h3[id], h4[id] {
 
     blockquote {
       font-family: $heading-font;
-      margin: 10px 40px;
+      padding: 10px 40px;
+      margin: 0;
+      width: 100%;
+      box-sizing: border-box;
     	@media (max-width: 479px) {
-    	  margin: 5px;
+    	  padding: 5px;
     	}
+
+      &::before {
+        left: .5em;
+      }
     }
 
     .gist {

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Try Cloud Foundry 6 - Multi Tenancy
-excerpt: "Cloud Foundry: Support Multi Tenancy using Identity Zone Management APIs of UAA"
-modified: 2017-05-26T17:00:00-00:00
+excerpt: "Multitenancy is an approach in which an instance of an application is used by different customers and thus dropping software development and deployment costs when compared to a single-tenant solution where multiple parts would need to be touched in order to provision new clients or update existing tenants. Cloud Foundry supports Multi Tenancy using Identity Zone Management APIs of UAA"
+modified: 2017-09-19T17:00:00-00:00
 categories: articles
 tags: [Multi Tenancy, Cloud Foundry, Pivotal]
 image:
@@ -34,14 +34,15 @@ There are multiple well known strategies to implement this architecture, ranging
 
 ### Data Isolation
 
-There are mainly three ways on how to provide data isolation:
+对于多租户(Multi Tenancy)进行数据隔离的方式主要有三种：
 
-* Shared schema on shared database: Tables contain a tenant discriminator column (e.g. TENANT). This appproach provides by definition the lowest isolation level: there is no authorization check at database level, restore can affect other tenants and it seems to be the least scalable approach (not appropriate for big data volumes).
-* Separate schema on shared database: Having an "tenant"-specific schema provides additional capabilities: option to secure data by tenant specific authorization checks on database level (HANA using db-access token), option to enhance schema by customer-specific additional columns / tables, and eventually the option to provide customer dedicated backup and restore service. If implemented properly this approch seems to be an economic approach.
-* Separate schema on separate database: Offers best "bad neighborhood protection" in terms of data and failure isolation as there is no resource sharing. As the maintenance and resource costs are much higher this seems to be a premium approach for larger customers willing to pay for it.
+* __Table__ 级别：Tables contain a tenant discriminator column (e.g. TENANT). This appproach provides by definition the lowest isolation level: there is no authorization check at database level, restore can affect other tenants and it seems to be the least scalable approach (not appropriate for big data volumes).
+* __Schema__ 级别：Having an "tenant"-specific schema provides additional capabilities: option to secure data by tenant specific authorization checks on database level (HANA using db-access token), option to enhance schema by customer-specific additional columns / tables, and eventually the option to provide customer dedicated backup and restore service. If implemented properly this approch seems to be an economic approach.
+* __Database__ 级别：Offers best "bad neighborhood protection" in terms of data and failure isolation as there is no resource sharing. As the maintenance and resource costs are much higher this seems to be a premium approach for larger customers willing to pay for it.
 
-## Mongodb Multi-tenancy
+## NoSQL Database Multi-tenancy
 
+我们先来看一下比较简单一些的 NoSQL 数据库的 MultiTenant 实现方式。
 使用MongoDB实现多租户(multi-tenant)应用程序时有三种方式：
 
 1. 所有租户使用同一 Schema(即Database) 和同一 Collection，以租户字段(tenant-specific fields)相互区分，如下样例
@@ -55,7 +56,7 @@ There are mainly three ways on how to provide data isolation:
       "name": "tiven wang"
   }
   ```
-2. 所有租户同一 Schema(即Database)，每个租户一个 Collection
+2. 所有租户同一 Schema(即Database)，每个租户一个 Collection（前缀加名称）
 ```yaml
 Schema: gm6kda63
   Tenant 1:
@@ -75,8 +76,7 @@ Tenant 2:
 
 不同的人推荐不同的方式，他们都有各自的理由。
 
-// TODO
-
+https://stackoverflow.com/questions/2748825/what-is-the-recommended-approach-towards-multi-tenant-databases-in-mongodb
 
 ### On Collection Level
 
@@ -189,7 +189,11 @@ public class MultiTenantMongoDbFactory implements MongoDbFactory {
 
 Database level 完整代码 [Github](https://github.com/tiven-wang/try-cf/tree/db-level)
 
-## Postgres Multi-tenancy
+References:
+
+https://medium.com/@alexantaniuk/guide-to-multi-tenancy-with-spring-boot-and-mongodb-78ea5ef89466
+
+## Relational Database Multi-tenancy
 
 上一章我们看到了针对 NoSQL 数据的 MultiTenant 程序比较简单。接下来我们再看一下对于传统的 Relational Database 如何编写 Java 语言的 MultiTenant 程序。
 
@@ -468,6 +472,8 @@ http://jannatconsulting.com/blog/?p=41
 
 Hibernate 的 DDL 自动创建表结构的工具并不支持 Multi-Tenant 方式。所以对于 Multi-Tenant 的应用程序，你需要手动执行数据库的初始化工作。
 
+// TBD
+
 http://webdev.jhuep.com/~jcs/ejava-javaee/coursedocs/content/html/jpa-entitymgrex-dbschemagen.html
 
 https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html
@@ -478,19 +484,13 @@ https://www.jp-digital.de/projects/hibernate5-ddl-maven-plugin.html
 
 
 
-[stackoverflow - Making spring-data-mongodb multi-tenant
-](https://stackoverflow.com/questions/16325606/making-spring-data-mongodb-multi-tenant)
-
-[stackoverflow - What is the recommended approach towards multi-tenant databases in MongoDB?
-](https://stackoverflow.com/questions/2748825/what-is-the-recommended-approach-towards-multi-tenant-databases-in-mongodb)
-
 ## UAA Support Multi Tenancy
 
 ### Identity Zones
 
 The UAA supports multi tenancy. This is referred to as identity zones. An identity zones is accessed through a unique subdomain. If the standard UAA responds to https://uaa.10.244.0.34.xip.io a zone on this UAA would be accessed through https://testzone1.uaa.10.244.0.34.xip.io?
 
-https://medium.com/@alexantaniuk/guide-to-multi-tenancy-with-spring-boot-and-mongodb-78ea5ef89466
+
 
 https://docs.microsoft.com/en-us/azure/sql-database/sql-database-design-patterns-multi-tenancy-saas-applications
 
