@@ -4,7 +4,7 @@ title: Microservices - Service Discovery
 excerpt: "Clients of a service use either Client-side discovery or Server-side discovery to determine the location of a service instance to which to send requests. Why use Service Discovery?"
 modified: 2017-08-10T11:51:25-04:00
 categories: articles
-tags: [Service Discovery, Scale, Spring Cloud, Microservices]
+tags: [Service Discovery, Scalability, Spring Cloud, Microservices]
 image:
   vendor: unsplash
   feature: /photo-1500479694472-551d1fb6258d?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=

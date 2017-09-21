@@ -23,6 +23,7 @@ references:
 * TOC
 {:toc}
 
+## Aliyun API Signature
 [阿里云 开发API参考 签名机制](https://help.aliyun.com/document_detail/54229.html)
 
 ```javascript
@@ -101,3 +102,8 @@ request.post({
 
 完整代码:
 <script src="https://gist.github.com/anypossiblew/46c14aa9616b8f6adad1f6f6078333e1.js"></script>
+
+
+## Aliyun MNS Signature
+
+https://help.aliyun.com/document_detail/27487.html
