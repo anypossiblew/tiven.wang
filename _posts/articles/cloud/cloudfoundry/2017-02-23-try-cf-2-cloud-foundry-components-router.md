@@ -6,7 +6,10 @@ modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [Cloud Foundry, Pivotal]
 image:
-  feature: /images/cloud/masthead-cf.jpg
+  vendor: unsplash
+  feature: /photo-1446750010813-9bcd2524083f?dpr=1.5&auto=format&fit=crop&w=1500&h=1126&q=80&cs=tinysrgb&crop=
+  credit: Aaron Burden
+  creditlink: https://unsplash.com/@aaronburden
 comments: true
 share: true
 references:
@@ -14,20 +17,11 @@ references:
     url: "https://www.cloudfoundry.org/how-can-i-try-out-cloud-foundry-2016/"
 ---
 
-> [冠斑犀鸟](https://en.wikipedia.org/wiki/Malabar_pied_hornbill)（学名：Anthracoceros coronatus）大型鸟类，体长74~78厘米。嘴具大的盔突，颜色为蜡黄色或象牙白色，盔突前面有显着的黑色斑；上体黑色，具金属绿色光泽，下体除腹为白色外，亦全为黑色，外侧尾羽具宽阔的白色末端。翅缘、飞羽先端和基部亦为白色，飞翔时极明显。喜较开阔的森林及林缘。成对或喧闹成群，振翅飞行或滑翔在树间。喜食昆虫多于果实。
 
 * TOC
 {:toc}
 
-Try CloudFoundry Series:
-
-1. [Pivotal Web Services](/articles/try-cf-1-pivotal-web-services/)
-2. [Cloud Foundry Components Router](/articles/try-cf-2-cloud-foundry-components-router/)
-3. [Cloud Foundry Components UAA](/articles/try-cf-3-cloud-foundry-components-uaa/)
-4. [Cloud Foundry Custom Domain](/articles/try-cf-4-custom-domain/)
-5. [UAA Single Sign On with OAuth2](/articles/try-cf-5-uaa-oauth2/)
-6. [Cloud Foundry Multi Tenancy](/articles/try-cf-6-multi-tenancy/)
-
+[Try CloudFoundry Series](/series/try-cloudfoundry/)
 
 [Cloud Foundry Components][cloudfoundry-concepts-architecture]
 
@@ -49,6 +43,12 @@ The router periodically queries the Diego Bulletin Board System (BBS) to determi
 ### HTTP Routing
 
 [HTTP Routing][HTTP-Routing]
+
+#### Session Affinity
+
+The CloudFoundry Gorouter supports *session affinity*, or *sticky sessions*, for incoming HTTP requests to compatible apps.
+
+With sticky sessions, when multiple instances of an app are running on CF, requests from a particular client always reach the same app instance. This allows apps to store session data specific to a user session.
 
 ## Try
 
@@ -137,7 +137,7 @@ buildpack: nodejs_buildpack
 #0   running   2017-02-24 05:37:01 AM   0.2%   23.1M of 128M   35.8M of 128M
 ```
 
-In order to test the cloud foundry router for multiple instances, you need to scale the application using `cf scale <app-name> -i 2` or set attribute `instances: 1` in application's manifest file.
+In order to test the cloud foundry router for multiple instances, you need to scale the application using `cf scale <app-name> -i 2` or set attribute `instances: 2` in application's manifest file.
 
 Retry the command `cf app <app-name>`, you will see:
 

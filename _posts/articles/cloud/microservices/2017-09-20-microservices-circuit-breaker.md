@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Microservices - Circuit Breaker
-excerpt: ""
+excerpt: "访问远程服务时, 比依赖超时时间更好一些的方式是一种叫断路器(Circuit Breaker)的模式. Circuit Breaker 就像一位交通警察, 在前方道路畅通的情况下, 他会放行; 当前方道路由于各种原因拥堵时, 他会告诉你前方道路不通请回; 如果他是个更智能的交警的话, 还会告诉你前方道路部分拥堵, 只允许部分车辆通过, 比如实行单双号."
 modified: 2017-09-20T11:51:25-04:00
 categories: articles
 tags: [Circuit Breaker, Scalability, Microservices]
@@ -13,7 +13,9 @@ image:
 comments: true
 share: true
 references:
-  - title: "Intro to Feign"
+  - title: "Martin Fowler - Circuit Breaker"
+    url: "https://martinfowler.com/bliki/CircuitBreaker.html"
+  - title: "Spring GETTING STARTED - Circuit Breaker"
     url: "https://spring.io/guides/gs/circuit-breaker/"
 ---
 
@@ -39,6 +41,9 @@ references:
 ```
 
 问题很明显, 明知服务 B 很可能在未来一段时间内都没有反应, 还要不断发送请求给它. 肯定有更好的办法处理这种情况.
+
+### Cascading Failures
+// TBD
 
 ### Circuit Breaker
 访问远程服务时, 比依赖超时时间更好一些的方式是一种叫断路器([Circuit Breaker][Circuit_breaker])的模式. 服务 A 通过断路器连接服务 B, 当断路器闭合时, 服务 A 可以连上服务 B; 当断路器打开时, 服务 A 则连不上服务 B.
@@ -83,9 +88,9 @@ references:
 
 ### Hystrix Circuit Breaker
 
-`@HystrixCommand`会被识别到，并在`@Service`的Proxy类中为此方法增加Circuit Breaker的功能
-
-`fallbackMethod = "reliable"`Circuit Breaker打开时即调用失败时执行的方法
+`@HystrixCommand`会被识别到，并在`@Service`的Proxy类中为此方法增加Circuit Breaker的功能;
+`fallbackMethod = "reliable"`Circuit Breaker打开时即调用失败时执行的方法;
+在`@HystrixCommand`所注解的方法里除了可以使用`RestTemplate`还可以使用`@FeignClient`来调用服务.
 
 ```java
 @Service
@@ -133,6 +138,9 @@ public class Application {
 String message = policeService.notify(villainId);
 System.out.println(message);
 ```
+
+> When failures exceed the configured threshold (the default is 20 failures in 5 seconds), the breaker opens the circuit. The dashboard shows the rate of short-circuited calls—calls which are going straight to the fallback method—in blue. The application is still allowing calls to the failing method at a rate of 1 every 5 seconds, as indicated in red; this is necessary to determine if calls are succeeding again and if the circuit can be closed.
+{: .Quotes}
 
 下载本文完整代码 [Github](https://github.com/tiven-wang/try-cf/tree/circuit-breaker)
 

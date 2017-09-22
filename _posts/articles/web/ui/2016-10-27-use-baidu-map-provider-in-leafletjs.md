@@ -7,7 +7,10 @@ categories: articles
 tags: [Baidu Map, 百度地图, Map, SRS]
 mathjax: true
 image:
-  feature: /images/web/masthead-web.jpg
+  vendor: unsplash
+  feature: /photo-1487581424120-18f3611a63e6?dpr=1.5&auto=format&fit=crop&w=1500&h=1033&q=80&cs=tinysrgb&crop=
+  credit: rawpixel.com
+  creditlink: https://unsplash.com/@rawpixel
 comments: true
 share: true
 ---

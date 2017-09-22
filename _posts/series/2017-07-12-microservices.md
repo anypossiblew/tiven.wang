@@ -34,4 +34,13 @@ series:
   - title: "Service Discovery"
     url: "/articles/microservices-service-discovery/"
     background: "#FF0038"
+  - title: "Load Balancing"
+    url: "/articles/microservices-load-balancing/"
+    background: "#FF0038"
+  - title: "Circuit Breaker"
+    url: "/articles/microservices-circuit-breaker/"
+    background: "#FF0038"
+  - title: "API Gateway"
+    url: "/articles/microservices-api-gateway/"
+    background: "#FF0038"
 ---

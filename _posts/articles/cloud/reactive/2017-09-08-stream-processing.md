@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Stream Processing
-excerpt: ""
+excerpt: "Stream processing is a computer programming paradigm, equivalent to dataflow programming, event stream processing, and reactive programming, that allows some applications to more easily exploit a limited form of parallel processing. The stream processing paradigm simplifies parallel software and hardware by restricting the parallel computation that can be performed. Given a sequence of data (a stream), a series of operations (kernel functions) is applied to each element in the stream. "
 modified: 2017-09-08T17:00:00-00:00
 categories: articles
 tags: [Streams, Reactive]
@@ -28,3 +28,7 @@ references:
 {:toc}
 
 // TODO
+
+Streams Processing Language (SPL)
+
+[Spark Streaming](https://spark.apache.org/streaming/)
