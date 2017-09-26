@@ -65,5 +65,13 @@
   series: /series/web-fundamentals
   posts:
     - title: HTTP/2
-      description: 
+      description:
       link: /articles/web-fundamentals-http2/
+
+- title: Data-Intensive
+  background: https://images.unsplash.com/photo-1504461154005-31b435e687ed?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
+  series: /series/data-intensive
+  posts:
+    - title: SAP HANA Database
+      description:
+      link: /articles/sap-hana-database/
