@@ -458,3 +458,13 @@ blockquote {
   }
 
 }
+
+// Series blogs
+.series.mdl-grid {
+  .mdl-card__title {
+    min-height: 200px;
+    background-image: url('/images/so-simple-sample-image-7.jpg');
+    background-repeat: round;
+    color: white;
+  }
+}

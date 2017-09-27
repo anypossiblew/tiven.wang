@@ -1,5 +1,5 @@
 - title: Try Cloud Foundry
-  background: https://drscdn.500px.org/photo/221057513/q%3D80_m%3D2000/v2?user_id=15281525&webp=true&sig=60aff417e3a09b742e25817d38e1434edcde82324f3b51ad969164e0b129a274
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/try-cloudfoundry
   posts:
     - title: 1 - Pivotal Web Services
@@ -13,7 +13,7 @@
       link: /articles/try-cf-3-cloud-foundry-components-uaa/
 
 - title: Microservices
-  background: https://pbs.twimg.com/media/DI-OJIuXgAAAFHJ.jpg:large
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/microservices
   posts:
     - title: Architecture
@@ -27,7 +27,7 @@
       link: /articles/microservices-restful-api-hateoas/
 
 - title: Reactive Design Patterns
-  background: https://images.unsplash.com/photo-1490645935967-10de6ba17061?dpr=1.5&auto=format&fit=crop&w=1080&h=735&q=80&cs=tinysrgb&crop=
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/reactive-design-patterns
   posts:
     - title: Reactive Manifesto
@@ -41,27 +41,27 @@
       link: /articles/reactive-design-patterns-spring-boot-messaging/
 
 - title: Machine Learning
-  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/machine-learning
   posts:
 
 - title: JavaScript
-  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/javascript
   posts:
 
 - title: HANA
-  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/hana
   posts:
 
 - title: SAP Cloud Platform
-  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDtpPUzKu2MvBBtJImfqzIi1sE7s7CIDaMLJVYkmaG-q9cHOmCh9OXedriWaO_QgZQxP5zMawBJfMyhOMaHXSIJq_wem-bQiXMLi-P18c_1fk7PtVkJFxnG71qT-s7lSuWFEFOL2BpdYtpnxIMhP5H_6eQK9QoTcicepOuiXCRjs/
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/scp
   posts:
 
 - title: Web Fundamentals
-  background: http://yourshot.nationalgeographic.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNeZgL7slPxjZIiombl5-bW2HBqmzLhARbUNJsrRqjWV6IMFYQTIEzP6MKTY0DaknXmuusRLZQK0kLI_OZBklbFVkTdTM6DiWwEaAzWIQMaMX89UXOOIYE2dgSC23mc5NE4ICH7AIdrNiMgvK58RsD4NDIO2GvuxP32XlbYJWq4Ew/
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/web-fundamentals
   posts:
     - title: HTTP/2
@@ -69,7 +69,7 @@
       link: /articles/web-fundamentals-http2/
 
 - title: Data-Intensive
-  background: https://images.unsplash.com/photo-1504461154005-31b435e687ed?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
+  background: /images/so-simple-sample-image-6.jpg
   series: /series/data-intensive
   posts:
     - title: SAP HANA Database
