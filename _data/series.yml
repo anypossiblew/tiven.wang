@@ -1,6 +1,10 @@
 - title: Try Cloud Foundry
-  background: /images/so-simple-sample-image-6.jpg
   series: /series/try-cloudfoundry
+  image:
+    vendor: unsplash
+    feature: /photo-1427434991195-f42379e2139d?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
+    credit: Vladimir Kudinov
+    creditlink: https://unsplash.com/@madbyte
   posts:
     - title: 1 - Pivotal Web Services
       description: Try Pivotal Cloud Foundry Web Services
@@ -13,8 +17,12 @@
       link: /articles/try-cf-3-cloud-foundry-components-uaa/
 
 - title: Microservices
-  background: /images/so-simple-sample-image-6.jpg
   series: /series/microservices
+  image:
+    vendor: instagram
+    feature: /t51.2885-15/e35/21371957_343797492726746_672750594775056384_n.jpg
+    credit: natgeoyourshot
+    creditlink: https://www.instagram.com/natgeoyourshot/
   posts:
     - title: Architecture
       description: Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services. These services are isolated and autonomous yet communicate to provide some piece of business functionality. Microservices are typically implemented and operated by small teams with enough autonomy that each team and service can change its internal implementation details (including replacing it outright!) with minimal impact across the rest of the system.
@@ -27,8 +35,12 @@
       link: /articles/microservices-restful-api-hateoas/
 
 - title: Reactive Design Patterns
-  background: /images/so-simple-sample-image-6.jpg
   series: /series/reactive-design-patterns
+  image:
+    vendor: unsplash
+    feature: /photo-1490645935967-10de6ba17061?dpr=1.5&auto=format&fit=crop&w=1080&h=735&q=80&cs=tinysrgb&crop=
+    credit: Brooke Lark
+    creditlink: https://unsplash.com/@brookelark
   posts:
     - title: Reactive Manifesto
       description: 以响应式系统方式构建的系统更加灵活，松耦合和可扩展。这使得它们更容易被开发，而且经得起变化的考验。它们对于系统失败表现出显著的包容性，并且当失败真的发生时，它们能用优雅的方式去应对，而不是放任灾难的发生。响应式系统是高度灵敏的，能够给用户以有效的交互式的反馈
@@ -61,16 +73,24 @@
   posts:
 
 - title: Web Fundamentals
-  background: /images/so-simple-sample-image-6.jpg
   series: /series/web-fundamentals
+  image:
+    vendor: yourshot.nationalgeographic
+    feature: /u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNeZgL7slPxjZIiombl5-bW2HBqmzLhARbUNJsrRqjWV6IMFYQTIEzP6MKTY0DaknXmuusRLZQK0kLI_OZBklbFVkTdTM6DiWwEaAzWIQMaMX89UXOOIYE2dgSC23mc5NE4ICH7AIdrNiMgvK58RsD4NDIO2GvuxP32XlbYJWq4Ew/
+    credit: Md. Tanveer Hassan Rohan
+    creditlink: http://yourshot.nationalgeographic.com/profile/190415/
   posts:
     - title: HTTP/2
       description:
       link: /articles/web-fundamentals-http2/
 
 - title: Data-Intensive
-  background: /images/so-simple-sample-image-6.jpg
   series: /series/data-intensive
+  image:
+    vendor: unsplash
+    feature: /photo-1504461154005-31b435e687ed?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
+    credit: Austin Neill
+    creditlink: https://unsplash.com/@arstyy
   posts:
     - title: SAP HANA Database
       description:

@@ -79,35 +79,29 @@
       {% include drawer.html %}
 
       <main class="mdl-layout__content">
+        <a name="top"></a>
 
         <div class="mdl-grid series">
           {% for post in page.series %}
             <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                <!-- <div class="mdl-card__media" style="background-image: url('{{ post.background }}');">
-                    <img class="article-image" src="{{ post.background }}" border="0" alt="">
-                </div> -->
-                <div class="mdl-card__title"
-                {% if post.background %}
-                style="background-image: url('{{ post.background }}');"
-                {% endif %}
-                >
-                    <h2 class="mdl-card__title-text">{{ post.title }}</h2>
-                </div>
+                {% include card-media.html %}
                 <div class="mdl-card__supporting-text">
                     {{ post.excerpt }}
                 </div>
                 <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio-example01.html">Read more</a>
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                        href="{{ post.url }}">Read more</a>
                 </div>
             </div>
           {% endfor %}
         </div>
-        
+
         {{ content }}
       </main>
 
     </div>
-    <a href="https://github.com/google/material-design-lite/blob/mdl-1.x/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
+    <a href="#top" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Back to Top</a>
+
     {% include scripts.html %}
   </body>
 </html>

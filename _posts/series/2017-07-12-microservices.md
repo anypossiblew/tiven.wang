@@ -13,6 +13,12 @@ series:
   - title: "Architecture"
     url: "/articles/microservices-architecture/"
     excerpt: "Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services. These services are isolated and autonomous yet communicate to provide some piece of business functionality. Microservices are typically implemented and operated by small teams with enough autonomy that each team and service can change its internal implementation details (including replacing it outright!) with minimal impact across the rest of the system."
+    tags: [Microservices]
+    image:
+      vendor: instagram
+      feature: /t51.2885-15/e35/21371957_343797492726746_672750594775056384_n.jpg
+      credit: natgeoyourshot
+      creditlink: https://www.instagram.com/natgeoyourshot/
   - title: "Documenting Restful API"
     url: "/articles/microservices-restful-api-documenting/"
   - title: "Restful API Exceptions Handler"

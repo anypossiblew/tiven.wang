@@ -118,25 +118,6 @@ h2[id], h3[id], h4[id] {
       }
     }
 
-    /**
-     * card media
-     */
-    .mdl-card__media {
-      position: relative;
-      cursor: default;
-      // credit link
-      .credit {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        text-decoration: none;
-        font-weight: 200;
-        font-size: 10px;
-        padding: 0 5px;
-      }
-    }
-
-
     .mdl-card__supporting-text {
       @media (max-width: 479px) {
         padding: 15px;
@@ -461,10 +442,28 @@ blockquote {
 
 // Series blogs
 .series.mdl-grid {
-  .mdl-card__title {
+  .mdl-card__media {
     min-height: 200px;
     background-image: url('/images/so-simple-sample-image-7.jpg');
-    background-repeat: round;
-    color: white;
+    h3 {
+      font-size: 1.2em;
+    }
+  }
+}
+
+// Card media
+.demo-blog {
+  .mdl-card__media {
+    position: relative;
+    cursor: default;
+    .credit {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        text-decoration: none;
+        font-weight: 200;
+        font-size: 10px;
+        padding: 0 5px;
+    }
   }
 }
