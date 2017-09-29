@@ -18,3 +18,9 @@ references:
 {:toc}
 
 [Gitbooks - Awesome-Kubernetes](https://ramitsurana.gitbooks.io/awesome-kubernetes/)
+
+https://kubernetes.io/
+
+https://github.com/kubernetes/kube-ui
+
+https://github.com/kubernetes/minikube
