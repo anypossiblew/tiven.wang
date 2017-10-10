@@ -21,6 +21,9 @@ references:
     url: "https://www.sitepoint.com/promises-in-javascript-unit-tests-the-definitive-guide/"
   - title: "JavaScript unit test tools for TDD"
     url: "https://stackoverflow.com/questions/300855/javascript-unit-test-tools-for-tdd"
+  - title: "Service Level Agreements in the Cloud: Who cares?"
+    url: "https://www.wired.com/insights/2011/12/service-level-agreements-in-the-cloud-who-cares/"
+
 ---
 
 * TOC
@@ -81,7 +84,7 @@ User.prototype.save = function (callback) {
 module.exports = User;
 ```
 
-然后使用Mocha写的测试程序如下，这里回调函数__done__是告诉框架本段测试已经结束，异步任务完成，不需要再等待异步任务了。并且如果有错误发生会传给它:
+然后使用Mocha写的测试程序如下，这里回调函数 __done__ 是告诉框架本段测试已经结束，异步任务完成，不需要再等待异步任务了。并且如果有错误发生会传给它:
 
 ```javascript
 ...
@@ -170,15 +173,127 @@ describe('User', function() {
 });
 ```
 
-### Async/Wait
+### Async/await
+
+[Async/await][async_function] 特性需要运行时引擎支持，最新的 Node 已经默认支持它。
+
+> Async/await support in Node 7.6 comes from updating V8, Chromium’s JavaScript engine, to version 5.5. This means async/await is not considered experimental anymore and can be used without specifying the --harmony flag, which can be used to enable almost-completed features that the V8 team does not consider stable yet.<br>
+--> https://www.infoq.com/news/2017/02/node-76-async-await
+{: .Quotes}
+
+另外一种方式是使用 Typescript 来编写Javascript程序， Typescript 支持 Async/await 特性。关于如何把 Typescript 编译成 ES5 的 Javascript 代码请参考 [Compile to ES5](/articles/to-es5-compiler/)
+
+假如还有个删除方法是
+
+```javascript
+User.prototype.delete = function () {
+  return new Promise((resolve, reject) => {
+    setTimeout(()=> {
+      resolve('deleted');
+    }, 1000);
+  });
+};
+```
+
+使用async/await特性书写测试程序如下:
+
+```javascript
+// Async/Await async work/test
+describe('User', function() {
+  describe('#delete()', function() {
+    let user;
+    before(function() {
+      user = new User('Tiven');
+    });
+
+    it('should delete without error', async function() {
+      let status = await user.delete();
+      assert.equal(status, "deleted", "User should be deleted");
+    });
+
+  });
+});
+```
+
+### Testing Asynchronous Service Timeout
+除了要测试异步服务能否返回正确的结果之外, 另一个指标也很重要, 那就是服务超时时间. 当一个服务在一定时间内没有返回结果, 那么我们就认为此服务超时, 不再等待. 在测试时可以设置超时时间, 用来测试服务的时间性能.
+
+例如我们的 User 在5秒内没有醒来, 则此服务测试会失败:
+
+```javascript
+it('should waking without timeout', async function(){
+  this.timeout(5000);
+  let status = await user.sleep();
+  assert.equal(status, "waking", "User should be waking");
+});
+```
+
+### Testing Service-Level Agreements
+
+> A [service level agreement (SLA)][service-level-agreement-sla] is a contract between a service provider (either internal or external) and the end user that defines the level of service expected from the service provider.
+{: .Quotes}
+
+SLA 在不同的领域都有应用，SLA 在计算机领域应用广泛，特别是云计算(Cloud Computing)方面 SLA 至关重要。有很多指标去衡量 SLA，
+比如
+
+* [__Availability__][High_availability] (e.g. 99.99% during work days, 99.9% for nights/weekends)
+* __Performance__ (e.g. maximum response times)
+* __Security / privacy__ of the data (e.g. encrypting all stored and transmitted data)
+* __Disaster Recovery expectations__ (e.g. worse case recovery commitment)
+
+等。
+
+那么在测试程序中就要对 SLA 一些指标进行测试，虽然这并不像单元测试那么样有明确的结果。
+假设我们有一个方法会以不同的时间返回结果，为了模拟不同的 response 时间我们为 setTimeout 设置 Math.random()\*1000 随机时间
+
+```javascript
+User.prototype.eat = function () {
+  return new Promise((resolve, reject) => {
+    setTimeout(()=> {
+      resolve('eaten');
+    }, Math.random()*1000);
+  });
+};
+```
+
+在测试程序中并行发出`N`个请求，每个请求会记录开始结束时间，最后再计算`95%`的请求响应时间是在一定的时间`latency`内
+
+```javascript
+it('should eaten within latency', function(done){
+  // this.timeout(10000);
+  let n = 200, times = n, latency = 950;
+  let timings = [];
+  while(times > 0) {
+    let start = Date.now();
+    user.eat().then(()=> {
+      let stop = Date.now();
+      timings.push(stop - start);
+      if(timings.length == n) {
+        timings.sort();
+        // console.log(timings[Math.ceil(95/100*timings.length)-1]);
+        assert.ok(timings[Math.ceil(95/100*timings.length)-1] < latency);
+        done();
+      }
+    });
+    times--;
+  }
+});
+```
 
 
+完整代码请参考 [Github](https://github.com/tiven-wang/reactive-design-patterns/tree/test-async-js)
 
 ## Testing Elasticity
 
+// TBD
+
 ## Testing Resilience
 
+// TBD
+
 ## Testing Responsiveness
+
+// TBD
 
 [mochajs]:https://mochajs.org/
 [nodejs]:http://nodejs.org/
@@ -188,3 +303,8 @@ describe('User', function() {
 
 [setTimeout]:https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
 [Promise]:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[async_function]:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+
+[service-level-agreement-sla]:https://www.paloaltonetworks.com/cyberpedia/what-is-a-service-level-agreement-sla
+[High_availability]:https://en.wikipedia.org/wiki/High_availability
+[RAS]:https://en.wikipedia.org/wiki/Reliability,_availability_and_serviceability
