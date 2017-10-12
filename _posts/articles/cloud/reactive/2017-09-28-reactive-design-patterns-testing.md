@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Testing Reactive Applications
-excerpt: ""
+excerpt: "How to verify that the Reactive applications you build are elastic, resilient, and responsive. Testing is covered first because of the importance of proving Reactive capabilities. Just as Test-Driven Design (TDD) allows you to ensure that you are writing logic that meets your requirements from the outset, you must focus on putting into place the infrastructure required to verify elasticity, resilience, and responsiveness."
 modified: 2017-09-28T17:00:00-00:00
 categories: articles
 tags: [Testing, Reactive]
@@ -35,7 +35,7 @@ references:
 
 ## Testing Asynchronously
 
-我们来看一下针对Javascript语言的异步机制如果进行单元测试。 在众多的Javascript单元测试框架中我们选用[Mocha][mochajs], 他是一款原生支持测试异步程序的框架。
+我们来看一下针对Javascript语言的异步机制如果进行单元测试。 在众多的Javascript单元测试框架中我们选用[Mocha][mochajs], 它是一款原生支持异步程序测试的框架。
 
 > Mocha is a feature-rich JavaScript test framework running on [Node.js][nodejs] and in the browser, making asynchronous testing __simple__ and __fun__. Mocha tests run serially, allowing for flexible and accurate reporting, while mapping uncaught exceptions to the correct test cases. Hosted on [GitHub][mochajs/mocha].
 
@@ -178,7 +178,7 @@ describe('User', function() {
 [Async/await][async_function] 特性需要运行时引擎支持，最新的 Node 已经默认支持它。
 
 > Async/await support in Node 7.6 comes from updating V8, Chromium’s JavaScript engine, to version 5.5. This means async/await is not considered experimental anymore and can be used without specifying the --harmony flag, which can be used to enable almost-completed features that the V8 team does not consider stable yet.<br>
---> https://www.infoq.com/news/2017/02/node-76-async-await
+--> [https://www.infoq.com/news/2017/02/node-76-async-await](https://www.infoq.com/news/2017/02/node-76-async-await)
 {: .Quotes}
 
 另外一种方式是使用 Typescript 来编写Javascript程序， Typescript 支持 Async/await 特性。关于如何把 Typescript 编译成 ES5 的 Javascript 代码请参考 [Compile to ES5](/articles/to-es5-compiler/)
