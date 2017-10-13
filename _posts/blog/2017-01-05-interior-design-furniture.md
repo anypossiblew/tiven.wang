@@ -11,6 +11,9 @@ comments: true
 share: true
 ---
 
+* TOC
+{:toc}
+
 ## 木
 
 [知乎 - 木蜡油是否真的环保？][木蜡油是否真的环保]

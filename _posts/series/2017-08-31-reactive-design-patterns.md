@@ -34,4 +34,12 @@ series:
       feature: /photo-1502741338009-cac2772e18bc?dpr=1.5&auto=format&fit=crop&w=1500&h=1001&q=80&cs=tinysrgb&crop=
       credit: Joanna Kosinska
       creditlink: https://unsplash.com/@joannakosinska
+  - title: "Testing Reactive Applications"
+    url: "/articles/reactive-design-patterns-testing/"
+    tags: [Testing, Reactive]
+    image:
+      vendor: unsplash
+      feature: /photo-1481930703900-9007d48152b1?dpr=1.5&auto=format&fit=crop&w=1500&h=972&q=80&cs=tinysrgb&crop=
+      credit: Brooke Lark
+      creditlink: https://unsplash.com/@brookelark
 ---

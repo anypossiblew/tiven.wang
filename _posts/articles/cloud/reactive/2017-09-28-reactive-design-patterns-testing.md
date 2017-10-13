@@ -280,8 +280,18 @@ it('should eaten within latency', function(done){
 });
 ```
 
+更多高级测试请参考 The [Apache JMeter™](http://jmeter.apache.org/)
 
 完整代码请参考 [Github](https://github.com/tiven-wang/reactive-design-patterns/tree/test-async-js)
+
+### Mock vs Stub
+
+[Sinon.JS](http://sinonjs.org/)
+
+Unit Testing with Mocks in Node <br>
+http://vansande.org/2015/03/22/unit_testing_with_mocks_in_node_js/
+
+[stackoverflow - What's the difference between a mock & stub?](https://stackoverflow.com/questions/3459287/whats-the-difference-between-a-mock-stub)
 
 ## Testing Elasticity
 
