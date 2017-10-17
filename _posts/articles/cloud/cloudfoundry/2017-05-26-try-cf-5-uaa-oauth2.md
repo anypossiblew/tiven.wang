@@ -6,7 +6,10 @@ modified: 2017-06-02T17:00:00-00:00
 categories: articles
 tags: [OAuth2, Cloud Foundry, Pivotal]
 image:
-  feature: /images/cloud/masthead-cf.jpg
+  vendor: twitter
+  feature: /media/DLOz8nIW4AAK54A.jpg:large
+  credit: Nat Geo Photography‏
+  creditlink: https://twitter.com/NatGeoPhotos
 comments: true
 share: true
 references:
