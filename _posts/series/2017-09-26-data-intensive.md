@@ -19,4 +19,32 @@ series:
       feature: /photo-1504461154005-31b435e687ed?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
       credit: Austin Neill
       creditlink: https://unsplash.com/@arstyy
+  - title: Redis
+    url: /articles/redis/
+    excerpt: ""
+    tags: [Redis, Cache, Scalable]
+    image:
+      vendor: unsplash
+      feature: /photo-1494247622028-9a5bbfbf529a?dpr=1.5&auto=format&fit=crop&w=1500&h=998&q=80&cs=tinysrgb&crop=
+      credit: Ray Hennessy
+      creditlink: https://unsplash.com/@rayhennessy
+  - title: Postgres Database
+    url: /articles/postgres/
+    excerpt: ""
+    tags: [Postgres]
+    image:
+      vendor: unsplash
+      feature: /photo-1466721591366-2d5fba72006d?dpr=1.5&auto=format&fit=crop&w=1500&h=1059&q=80&cs=tinysrgb&crop=
+      credit: joel herzog
+      creditlink: https://unsplash.com/@joel_herzog
+  - title: Postgres Database
+    url: /articles/hadoop/
+    excerpt: ""
+    tags: [Hadoop, Bigdata]
+    image:
+      vendor: unsplash
+      feature: /photo-1504433374832-4fcf45f40967?dpr=1.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=
+      credit: Samuel Scrimshaw
+      creditlink: https://unsplash.com/@samscrim
+
 ---

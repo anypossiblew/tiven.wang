@@ -23,25 +23,12 @@ references:
     url: "https://www.cloudfoundry.org/oauth-rest/"
   - title: "How to Integrate an Application with Cloud Foundry using OAuth2"
     url: "https://www.cloudfoundry.org/how-to-integrate-an-application-with-cloud-foundry-using-oauth2-2/"    
-
-
 ---
 
-> [冠斑犀鸟](https://en.wikipedia.org/wiki/Malabar_pied_hornbill)（学名：Anthracoceros coronatus）大型鸟类，体长74~78厘米。嘴具大的盔突，颜色为蜡黄色或象牙白色，盔突前面有显着的黑色斑；上体黑色，具金属绿色光泽，下体除腹为白色外，亦全为黑色，外侧尾羽具宽阔的白色末端。翅缘、飞羽先端和基部亦为白色，飞翔时极明显。喜较开阔的森林及林缘。成对或喧闹成群，振翅飞行或滑翔在树间。喜食昆虫多于果实。
-{: .Warning}
+[Try CloudFoundry Series](/series/try-cloudfoundry/)
 
 * TOC
 {:toc}
-
-Try CloudFoundry Series:
-
-1. [Pivotal Web Services](/articles/try-cf-1-pivotal-web-services/)
-2. [Cloud Foundry Components Router](/articles/try-cf-2-cloud-foundry-components-router/)
-3. [Cloud Foundry Components UAA](/articles/try-cf-3-cloud-foundry-components-uaa/)
-4. [Cloud Foundry Custom Domain](/articles/try-cf-4-custom-domain/)
-5. [UAA Single Sign On with OAuth2](/articles/try-cf-5-uaa-oauth2/)
-6. [Cloud Foundry Multi Tenancy](/articles/try-cf-6-multi-tenancy/)
-
 
 ## Setup UAA service
 

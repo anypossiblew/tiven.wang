@@ -14,7 +14,8 @@ share: true
 * TOC
 {:toc}
 
-## 木
+## 板材
+### 木
 
 [知乎 - 木蜡油是否真的环保？][木蜡油是否真的环保]
 
@@ -22,6 +23,12 @@ share: true
 木蜡油
 
 [osmo shop][osmoshop]
+
+### 板材
+
+[百强tmall旗舰店](https://baiqiangjj.tmall.com/)
+
+[平口50mm封边条pvc](https://detail.tmall.com/item.htm?id=38582757337)
 
 ## 家具
 
@@ -71,19 +78,48 @@ share: true
 
 [木相框]:https://item.taobao.com/item.htm?spm=a1z10.1-c.w5003-14807654816.14.6QxDv9&id=45672554385&scene=taobao_shop
 
+### 黑胡桃餐桌
 
-## 五金配件
+![铜木主义](https://img.alicdn.com/imgextra/i3/1758914218/TB2CNEABolnpuFjSZFjXXXTaVXa_!!1758914218.jpg)
+
+源自[铜师傅天猫店](https://detail.tmall.com/item.htm?spm=a1z10.1-b-s.w11916973-16555737280.1.2c00ea6e6Ywlfh&id=555200093799&scene=taobao_shop)
+
+### 店
+
+[梵几](http://fnji.com/furniture)
+
+[光阴木器](https://shop72382188.taobao.com/) 北欧简约，苗条圆润的线条
+
+[秋山匠人](https://qiushanjiangren.taobao.com) 简欧日式都有的个人作坊
+
+[EVITA HOME 复古](https://evitahome.jiyoujia.com) 美式欧式 皮布工艺 原木现代风 美式工业风
+
+[Hancock Home 涵客家居](https://hancockhome.jiyoujia.com) 美式欧式 皮布工艺 原木现代风 美式工业风
+
+[LIVIN'利物因](https://livinhouse.taobao.com/) 简欧与现代风融合
+
+[木时代家居工厂店](https://mushidai.jiyoujia.com/) 中国古典漆艺
+
+[愫居生活家具](https://sujuonline.taobao.com/) 日式
+
+[二黑木作](https://store.taobao.com/?shop_id=113767108) 简欧日式
+
+[治木工坊旗舰店](https://store.taobao.com/?shop_id=73402183)
+
+### 五金配件
 
 [黄铜拉手][黄铜拉手]
 
 [黄铜拉手]:https://item.taobao.com/item.htm?spm=a230r.1.14.24.lp13hL&id=540071956736&ns=1&abbucket=19#detail
 
-## 店
 
-[梵几][梵几]
+## 生活家居
 
-[梵几]:http://fnji.com/furniture
+[旧瓷社陶艺生活馆](https://jiucishe.taobao.com)
 
+[朵颐家居](https://doeasyhome.jiyoujia.com)
+
+[苏黎世家居](https://zurich-house.jiyoujia.com)
 
 [osmoshop]:http://shop.osmochina.com/
 [木蜡油是否真的环保]:https://www.zhihu.com/question/24190620
