@@ -159,6 +159,8 @@ buildpack: nodejs_buildpack
 #1   running   2017-02-24 11:09:45 AM   0.2%   23.6M of 128M   35.8M of 128M
 ```
 
+Refer more [tips for Node.js applications on CF platform](https://docs.cloudfoundry.org/buildpacks/node/node-tips.html)
+
 ### Test
 
 Open the url of your application: *https://try-cloud-foundry.cfapps.io/api/router* in browser, you can get the response as

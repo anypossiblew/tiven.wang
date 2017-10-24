@@ -24,4 +24,13 @@ references:
 {:toc}
 
 ## Cloud-native
-Organizations require a platform for building and operating cloud-native applications and services that automates and integrates the concepts of DevOps, continuous delivery, microservices, and containers:
+本文开头引用的一段话是 Pivotal 公司网站上对 Cloud-native 的介绍，我们不看这种很官方很抽象的概念。就像“卖保健品的要搞养生”一样，Pivotal 在伴随着 CloudFoundry 产品推出时提出了 Cloud-native 的概念。那么 Cloud-native 在技术层面代表着什么呐？ Pivotal 网站这么说道：
+> Organizations require a platform for building and operating cloud-native applications and services that automates and integrates the concepts of DevOps, continuous delivery, microservices, and containers:
+>
+![](https://d1fto35gcfffzn.cloudfront.net/images/topics/cloudnative/diagram-cloud-native.png)
+
+这里提到了四个概念：DevOps, continuous delivery, microservices, 和 containers. 这些基本上是当今应用程序编程领域最流行的概念，那么可以说 Cloud-native 是集大成者嘛。不不，不能简单地这么认为，顾名思义 Cloud-native 侧重的是 Cloud 的应用程序开发，而这四个流行概念却不是针对 Cloud 独有的。也就是说 Cloud-native 是抽取出了这些概念里的适应 Cloud 端的特性，摒弃了非 Cloud 端的属性。具体哪些特性呐？
+
+### 12-factor principles
+
+the [12-factor](https://12factor.net/) principles
