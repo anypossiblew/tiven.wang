@@ -4,7 +4,7 @@ title: Reactive Design Patterns - Reactive Manifesto
 excerpt: "以响应式系统方式构建的系统更加灵活，松耦合和可扩展。这使得它们更容易被开发，而且经得起变化的考验。它们对于系统失败表现出显著的包容性，并且当失败真的发生时，它们能用优雅的方式去应对，而不是放任灾难的发生。响应式系统是高度灵敏的，能够给用户以有效的交互式的反馈。"
 modified: 2017-08-23T17:00:00-00:00
 categories: articles
-tags: [Reactive]
+tags: [Reactive, Responsive, Resilience, Elastic, Message-driven]
 image:
   vendor: unsplash
   feature: /photo-1490645935967-10de6ba17061?dpr=1.5&auto=format&fit=crop&w=1080&h=735&q=80&cs=tinysrgb&crop=

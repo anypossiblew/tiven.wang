@@ -14,8 +14,15 @@ share: true
 * TOC
 {:toc}
 
-## 板材
-### 木
+## 木工
+
+https://jiatingmugong.com/
+
+### 书籍
+
+《彼得·科恩木工基础 [Woodworking Basics]》
+
+### 工具
 
 [知乎 - 木蜡油是否真的环保？][木蜡油是否真的环保]
 
@@ -23,6 +30,22 @@ share: true
 木蜡油
 
 [osmo shop][osmoshop]
+
+#### 铣刀
+
+#### 木工胶
+
+美国太棒胶
+
+http://walwoodshop.blogspot.in/2015/09/titebond.html
+
+https://shangmushiguang.taobao.com/index.htm
+
+#### 榫卯
+
+燕尾榫 燕尾槽铣刀
+
+
 
 ### 板材
 
@@ -86,6 +109,8 @@ share: true
 
 ### 店
 
+[苏州世鉴家具有限公司](http://ks-treasure.com/)
+
 [梵几](http://fnji.com/furniture)
 
 [光阴木器](https://shop72382188.taobao.com/) 北欧简约，苗条圆润的线条
@@ -106,12 +131,21 @@ share: true
 
 [治木工坊旗舰店](https://store.taobao.com/?shop_id=73402183)
 
+[norhor旗舰店](https://norhor.tmall.com/index.htm)
+
 ### 五金配件
 
 [黄铜拉手][黄铜拉手]
 
 [黄铜拉手]:https://item.taobao.com/item.htm?spm=a230r.1.14.24.lp13hL&id=540071956736&ns=1&abbucket=19#detail
 
+### 明清家具
+
+## 橱柜
+
+打造全实木灶台 — 橱柜完全DIY分享
+
+https://post.smzdm.com/p/386844/
 
 ## 生活家居
 
@@ -120,6 +154,9 @@ share: true
 [朵颐家居](https://doeasyhome.jiyoujia.com)
 
 [苏黎世家居](https://zurich-house.jiyoujia.com)
+
+[kens旗舰店](https://kens.tmall.com/index.htm) 竹编家居
+
 
 [osmoshop]:http://shop.osmochina.com/
 [木蜡油是否真的环保]:https://www.zhihu.com/question/24190620
