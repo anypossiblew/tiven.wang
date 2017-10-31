@@ -4,7 +4,7 @@ title: Try Cloud Foundry 11 - Autoscaler
 excerpt: "Autoscaler"
 modified: 2017-09-05T17:00:00-00:00
 categories: articles
-tags: [Autoscaler, Cloud Foundry]
+tags: [Scalability, Cloud Foundry]
 image:
   vendor: twitter
   feature: /media/DMCGHYyXkAI5vDb.jpg:large
