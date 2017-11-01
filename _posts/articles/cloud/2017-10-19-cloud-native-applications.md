@@ -57,6 +57,8 @@ the [12-factor](https://12factor.net/) principles
 
 ### Configuration, Credentials and Code
 
+Please refer to [Try Cloud Foundry 12 - Config Server](/articles/try-cf-12-config-server/)
+
 ### Logs
 
 ### Disposability
