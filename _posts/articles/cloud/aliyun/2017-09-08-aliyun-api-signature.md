@@ -44,6 +44,16 @@ const crypto = require('crypto');
 
   > 注：一般支持 URL 编码的库（比如 Java 中的 java.net.URLEncoder）都是按照 application/x-www-form-urlencoded 的 MIME 类型的规则进行编码的。实现时可以直接使用这类方式进行编码，把编码后的字符串中加号（+）替换成 %20、星号（\*）替换成 %2A、%7E 替换回波浪号（~），即可得到上述规则描述的编码字符串。
 
+  > 对于 Javascript 语言，网络上常见代码都有一些问题： encodeURIComponent 函数转码后还要再转几个字符才复合要求
+  {: .Warn}
+
+  ```javascript
+  function percentEncode(value) {
+    var encoded = encodeURIComponent(value);
+    return encoded.replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').replace(/\)/g, '%29').replace(/\*/g, '%2A');
+  }
+  ```
+
   c. 对编码后的参数名称和值使用半角的等号（=）进行连接。
 
   d. 再把半角的等号连接得到的字符串按参数名称的字典顺序依次使用 “&” 符号连接，即得到规范化请求字符串。
@@ -54,7 +64,7 @@ signature: function(params, accessKeySecret) {
   var oa = Object.keys(params).sort();
   for (var i = 0; i < oa.length; i++) {
       var key = oa[i];
-      queryParams.push(encodeURIComponent(key) + '=' + encodeURIComponent(params[key]));
+      queryParams.push(percentEncode(key) + '=' + percentEncode(params[key]));
   }
   canonicalizedQueryString = queryParams.join('&');
   ...
@@ -75,7 +85,7 @@ percentEncode(“/”)是按照 1.b 中描述的 URL 编码规则对字符 “/�
 percentEncode (CanonicalizedQueryString) 是对第 1 步中构造的规范化请求字符串按 1.b 中描述的 URL 编码规则编码后得到的字符串。
 
 ```javascript
-var stringToSign = 'POST' + '&' + encodeURIComponent('/') + '&' + encodeURIComponent(canonicalizedQueryString);
+var stringToSign = 'POST' + '&' + percentEncode('/') + '&' + percentEncode(canonicalizedQueryString);
 accessKeySecret = accessKeySecret + '&';
 ```
 
