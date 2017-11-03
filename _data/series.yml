@@ -57,11 +57,24 @@
   series: /series/machine-learning
   posts:
 
-- title: JavaScript
+- title: Training JavaScript
   background: /images/so-simple-sample-image-6.jpg
-  series: /series/javascript
+  series: /series/training-javascript
+  image:
+    vendor: twitter
+    feature: /media/DMgx7CEW0AA3RWk.jpg:large
+    credit: Nat Geo Photography‏
+    creditlink: https://twitter.com/NatGeoPhotos
   posts:
-
+    - title: JavaScript Foundation
+      link: /articles/training-javascript-1-foundation/
+      description:
+    - title: JavaScript - Create Server by Node.js (JavaScript version)
+      link: /articles/training-javascript-2-server-javascript/
+      description:
+    - title: JavaScript - Angular for Frontend Development
+      link: /articles/training-javascript-3-frontend-angular/
+      description:
 - title: HANA
   background: /images/so-simple-sample-image-6.jpg
   series: /series/hana

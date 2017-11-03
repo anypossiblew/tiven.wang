@@ -6,7 +6,10 @@ modified: 2017-06-05T17:00:00-00:00
 categories: articles
 tags: [Node.js, TypeScript, JavaScript]
 image:
-  feature: /images/nationalgeographic/Strutting-Stork.jpg
+  vendor: twitter
+  feature: /media/DNLg5LvXcAEYo9h.jpg:large
+  credit: Nat Geo Photography‏
+  creditlink: https://twitter.com/NatGeoPhotos
 comments: true
 share: true
 references:

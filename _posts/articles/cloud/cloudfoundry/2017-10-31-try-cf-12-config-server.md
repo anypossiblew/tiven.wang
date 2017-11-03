@@ -51,6 +51,20 @@ service plan   description     free or paid
 standard       Standard Plan   free
 ```
 
+假设存放配置的Git库地址是 https://github.com/spring-cloud-samples/config-repo;
+Config Server 还可以单独为某个指定配置库例如：为以 cook 开头的应用指定配置库 https://github.com/spring-cloud-services-samples/cook-config; `count`是说明为此 Config Server 提供几个实例。
+
 ```
 $ cf create-service -c '{"git": { "uri": "https://github.com/spring-cloud-samples/config-repo", "repos": { "cook": { "pattern": "cook*", "uri": "https://github.com/spring-cloud-services-samples/cook-config" } } }, "count": 3 }' p-config-server standard config-server
+
+FAILED
+Invalid configuration provided for -c flag. Please provide a valid JSON object or path to a file containing a valid JSON object.
+```
+
+```
+$ cf create-service p-config-server standard config-server
+Creating service instance config-server in org tiven.wang / space development as i.tiven.wang@gmail.com...
+OK
+
+Create in progress. Use 'cf services' or 'cf service config-server' to check operation status.
 ```
