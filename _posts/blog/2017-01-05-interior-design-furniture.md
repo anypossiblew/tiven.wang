@@ -147,6 +147,60 @@ https://shangmushiguang.taobao.com/index.htm
 
 https://post.smzdm.com/p/386844/
 
+### 五金
+
+液压阻尼缓冲铰链
+
+柜门反弹器
+
+液压支撑杆
+
+随意停
+
+抽屉缓冲静音轨道
+
+反弹轨道
+
+骑马抽
+
+三节抽轨道
+
+德国Simonswerk 暗合页 隐藏铰链
+
+三合一连接件
+
+千秋铰
+
+#### 骑马抽
+
+低帮 中帮 高帮
+
+#### 拉篮
+
+拉篮碗碟篮
+
+拉篮调味篮
+
+#### 拉手
+
+隐形拉手
+
+意大利 DND门锁执手把
+
+### 辅料
+
+铝箔贴纸
+
+### 品牌
+
+[奥地利 blum 百隆](https://www.blum.com/)
+
+[德国海蒂诗](https://www.hettich.com/cn_ZH/home.html) 安装的标尺卡片
+
+## 五金
+
+[欧洲高端五金](https://sepcfsb.taobao.com/)
+
 ## 生活家居
 
 [旧瓷社陶艺生活馆](https://jiucishe.taobao.com)
