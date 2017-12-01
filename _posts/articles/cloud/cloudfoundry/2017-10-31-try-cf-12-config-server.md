@@ -161,7 +161,7 @@ services:
   - config-server
 ```
 
-那么 CloudFoundry 就会 set 这样的环境变量：使用命令 `cf env cook` 获取应用的环境变量
+这样 CloudFoundry 就会为此服务设置环境变量：使用命令 `cf env cook` 获取该应用的环境变量
 
 ```
 $ cf env cook
@@ -227,8 +227,25 @@ No running env variables have been set
 No staging env variables have been set
 ```
 
+**VCAP_SERVICES**　节点下代表所有服务的环境配置，其中 **p-config-server** 就是我们创建的配置服务器。
+
 接下来该做的就是应用程序把这些信息拿去用。
 
 #### Spring Cloud® Connectors
 
-在 CloudFoundry 平台上为了从客户端应用里连接 Config Server，Spring Cloud Services 使用 [Spring Cloud Connectors](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html) 里的 [Spring Cloud Cloud Foundry Connector](http://cloud.spring.io/spring-cloud-connectors/spring-cloud-cloud-foundry-connector.html) 去发现绑定到应用程序上的服务。
+在 CloudFoundry 平台上为了从客户端应用里连接 Config Server，[Spring Cloud Services][spring-cloud-services] 使用 [Spring Cloud Connectors][spring-cloud-connectors] 里的 [Spring Cloud Cloud Foundry Connector][spring-cloud-cloud-foundry-connector] 去发现绑定到应用程序上的服务。
+
+![Image: spring-cloud-connectors-design](http://cloud.spring.io/spring-cloud-connectors/images/spring-cloud-connectors-design.png)
+
+CloudConnector 实例会决定当前运行的云环境；
+ServiceConnectorCreator 或者 ServiceInfoCreator 实例会根据Service的tags决定是否属于自己，然后创建相应的 ServiceConnector 或者 ServiceInfo
+
+创建的ServiceInfo会被相应的ServiceInfoPropertySourceAdapter组装成PropertySource添加到spring的ConfigurableEnvironment环境中，
+继而被相关组件使用。
+
+
+
+
+[spring-cloud-connectors]:http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html
+[spring-cloud-cloud-foundry-connector]:http://cloud.spring.io/spring-cloud-connectors/spring-cloud-cloud-foundry-connector.html
+[spring-cloud-services]:http://docs.pivotal.io/spring-cloud-services/1-4/common/

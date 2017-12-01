@@ -1,17 +1,26 @@
 ---
 layout: post
-title: Compile to ES5
+title: ES6, ES2016, ES2017
 excerpt: ""
 modified: 2017-06-14T17:00:00-00:00
 categories: articles
 tags: [ES6, JavaScript]
 image:
-  feature: /images/nationalgeographic/Strutting-Stork.jpg
+  vendor: twitter
+  feature: /media/DNt2jzxX4AAtXkd.jpg:large
+  credit: Nat Geo Photography‏
+  creditlink: https://twitter.com/NatGeoPhotos
 comments: true
 share: true
 references:
   - title: "Using Traceur with Node.js"
     url: "https://github.com/google/traceur-compiler/wiki/Using-Traceur-with-Node.js"
+  - title: "Exploring ES2016 and ES2017"
+    url: "http://exploringjs.com/es2016-es2017/"
+  - title: "ECMAScript compatibility table"
+    url: "http://kangax.github.io/compat-table/es5/"
+  - title: "Medium - ES6, ES2016, ES2017 A Whole New JavaScript"
+    url: "https://medium.com/@_alexray/es2015-es6-es7-a-whole-new-javascript-23008fd28108"
 ---
 
 * TOC

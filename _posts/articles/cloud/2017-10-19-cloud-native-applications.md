@@ -78,3 +78,5 @@ Please refer to [Try Cloud Foundry 12 - Config Server](/articles/try-cf-12-confi
 ### Telemetry
 
 ### Authentication and Authorization
+
+http://presos.dsyer.com/decks/spring-cloud-dev-experience.html

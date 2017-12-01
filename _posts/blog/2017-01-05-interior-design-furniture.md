@@ -46,7 +46,6 @@ https://shangmushiguang.taobao.com/index.htm
 燕尾榫 燕尾槽铣刀
 
 
-
 ### 板材
 
 [百强tmall旗舰店](https://baiqiangjj.tmall.com/)
@@ -54,6 +53,10 @@ https://shangmushiguang.taobao.com/index.htm
 [平口50mm封边条pvc](https://detail.tmall.com/item.htm?id=38582757337)
 
 ## 家具
+
+### 木材
+
+[如何区别白橡和红橡？](https://www.douban.com/note/344031931/)
 
 ### 黄铜挂衣钩
 
@@ -109,11 +112,13 @@ https://shangmushiguang.taobao.com/index.htm
 
 ### 店
 
+[依美诺家具旗舰店](https://yimeinuojj.tmall.com/)
+
 [苏州世鉴家具有限公司](http://ks-treasure.com/)
 
 [梵几](http://fnji.com/furniture)
 
-[光阴木器](https://shop72382188.taobao.com/) 北欧简约，苗条圆润的线条
+[光阴木器](https://koin-furniture.taobao.com/) 北欧简约，苗条圆润的线条
 
 [秋山匠人](https://qiushanjiangren.taobao.com) 简欧日式都有的个人作坊
 
@@ -127,11 +132,24 @@ https://shangmushiguang.taobao.com/index.htm
 
 [愫居生活家具](https://sujuonline.taobao.com/) 日式
 
-[二黑木作](https://store.taobao.com/?shop_id=113767108) 简欧日式
+[二黑木作](https://tooblack.taobao.com/) 简欧日式
 
 [治木工坊旗舰店](https://store.taobao.com/?shop_id=73402183)
 
 [norhor旗舰店](https://norhor.tmall.com/index.htm)
+
+[檀创旗舰店](https://tanchuang.tmall.com/) 禅意
+
+[墨印MOYIN](https://dumutang.jiyoujia.com/) 禅意
+
+[春沐家](https://chunmu-jia.jiyoujia.com/)
+
+[凡屋 Fun House](https://thefunhouse.taobao.com/)
+
+<a href="https://www.made.com/" style="width: 128px;height: 36px;">
+  <img src="//theme.made.com/skin/frontend/responsive/default/images/svg/madeLogo.svg" onerror="this.src='//made.com/skin/frontend/responsive/default/images/svg/madeLogo.png';this.onerror=null;"
+  style="width: 128px;height: 36px;">
+</a>
 
 ### 五金配件
 
@@ -171,6 +189,8 @@ https://post.smzdm.com/p/386844/
 
 千秋铰
 
+[佰瑞特旗舰店](https://bairuite.tmall.com) 螺丝 紧固件
+
 #### 骑马抽
 
 低帮 中帮 高帮
@@ -197,9 +217,28 @@ https://post.smzdm.com/p/386844/
 
 [德国海蒂诗](https://www.hettich.com/cn_ZH/home.html) 安装的标尺卡片
 
+[simtone旗舰店](https://simtone.tmall.com) 止逆阀 地漏 角阀 紧固配件
+
 ## 五金
 
 [欧洲高端五金](https://sepcfsb.taobao.com/)
+
+## 装潢
+
+[家博士装潢旗舰店](https://jieboshizh.tmall.com/)
+
+## 漆工
+
+[芬琳旗舰店](https://fenlin.tmall.com/) 漆
+
+[Flugger 福乐阁涂料旗舰店](https://flugger.tmall.com/) 漆
+
+[碧欧旗舰店](https://biohousejiaju.tmall.com/) 木蜡油
+
+[Alpina阿尔贝娜]()
+
+[黑胡桃书桌+芬琳木蜡油---木器清漆的DIY过程](https://www.chiphell.com/thread-1591389-1-1.html)
+
 
 ## 生活家居
 
@@ -211,6 +250,7 @@ https://post.smzdm.com/p/386844/
 
 [kens旗舰店](https://kens.tmall.com/index.htm) 竹编家居
 
+https://wap.libaclub.com/t_8_9288967_1.htm
 
 [osmoshop]:http://shop.osmochina.com/
 [木蜡油是否真的环保]:https://www.zhihu.com/question/24190620

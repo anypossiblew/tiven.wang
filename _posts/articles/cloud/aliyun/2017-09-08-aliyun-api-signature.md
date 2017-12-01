@@ -15,6 +15,8 @@ share: true
 references:
   - title: "Node.js v8.4.0 Documentation - Crypto"
     url: "https://nodejs.org/api/crypto.html"
+  - title: "Github - aliyun/mns-nodejs-sdk"
+    url: "https://github.com/aliyun/mns-nodejs-sdk"
   - title: "阿里云短信发送接口nodejs版本 aliyun-nodejs-sdk-smsV1"
     url: "http://ian.wang/296.htm"
 
