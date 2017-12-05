@@ -4,7 +4,7 @@ title: Try Cloud Foundry 12 - Config Server
 excerpt: "Config Server for Pivotal Cloud Foundry (PCF) is an externalized application configuration service, which gives you a central place to manage an application’s external properties across all environments."
 modified: 2017-10-31T17:00:00-00:00
 categories: articles
-tags: [Scalability, Cloud Foundry]
+tags: [Scalability, Cloud Native, Cloud Foundry]
 image:
   vendor: twitter
   feature: /media/DMxA2Z-XcAAqI1_.jpg:large
@@ -15,6 +15,10 @@ share: true
 references:
   - title: "Config Server for Pivotal Cloud Foundry"
     url: "http://docs.pivotal.io/spring-cloud-services/1-4/common/config-server/"
+  - title: "Project Configuration with Spring"
+    url: "http://www.baeldung.com/project-configuration-with-spring"
+  - title: "Cloud Foundry Environment Variables"
+    url: "https://docs.pivotal.io/pivotalcf/1-12/devguide/deploy-apps/environment-variable.html"
 ---
 
 * TOC
@@ -235,13 +239,55 @@ No staging env variables have been set
 
 在 CloudFoundry 平台上为了从客户端应用里连接 Config Server，[Spring Cloud Services][spring-cloud-services] 使用 [Spring Cloud Connectors][spring-cloud-connectors] 里的 [Spring Cloud Cloud Foundry Connector][spring-cloud-cloud-foundry-connector] 去发现绑定到应用程序上的服务。
 
+Spring Cloud Connectors 框架的总体架构如下图所示：
+
 ![Image: spring-cloud-connectors-design](http://cloud.spring.io/spring-cloud-connectors/images/spring-cloud-connectors-design.png)
 
 CloudConnector 实例会决定当前运行的云环境；
-ServiceConnectorCreator 或者 ServiceInfoCreator 实例会根据Service的tags决定是否属于自己，然后创建相应的 ServiceConnector 或者 ServiceInfo
+ServiceConnectorCreator 和 ServiceInfoCreator 实例会根据 Service 的 tags 决定是否属于自己，然后创建相应的 ServiceConnector 和 [ServiceInfo][ServiceInfo]；
+ServiceConnector 指的是不同的服务自己不同的 Connector 类型，如 Database 的 DataSource 。
 
-创建的ServiceInfo会被相应的ServiceInfoPropertySourceAdapter组装成PropertySource添加到spring的ConfigurableEnvironment环境中，
+> Spring Cloud Connectors uses the [Java SPI][java-SPI] to discover available connectors.
+{: .Notes}
+
+接下来，例如 Spring Cloud Config 组件中，创建的 [ServiceInfo][ServiceInfo] 会被相应的 [ServiceInfoPropertySourceAdapter][ServiceInfoPropertySourceAdapter] 组装成 [PropertySource][PropertySource] 添加到 Spring 的 [ConfigurableEnvironment][ConfigurableEnvironment] 环境中，
 继而被相关组件使用。
+
+例如：Spring Cloud Config 会使用注解来把 [ConfigurableEnvironment][ConfigurableEnvironment] 环境中的变量识别成对象
+`@ConfigurationProperties("spring.cloud.config")`
+然后会自动配置利用，进行Config server client的创建。
+
+#### Spring Cloud Config Client
+
+Spring Cloud Config Client 组件会根据环境变量自动配置一个 ConfigServicePropertySourceLocator 实例进行 Config Server 的读取操作，然后把读取到的配置信息塞到 Spring ConfigurableEnvironment 的 PropertySources 里去；
+
+Spring Cloud Config Client 组件同时还支持调用接口重试能力，它是通过 Spring Retry 项目组件来做的；
+
+还可以通过 [HealthIndicator][HealthIndicator] 做 Health Check；
+
+还可以通过配置 Spring Cloud Service Discovery 组件来自动获取 Config Server 的服务地址。
+
+详细逻辑可以通过研读源代码获得了解。
+
+## Trying It Out
+
+1. 打包此 Maven 项目 `mvn package`;
+2. 部署之前更改 _manifest.yml_ 中的`host`成你自己的应用程序地址
+3. 通过命令部署 `cf push -p ./target/cook-0.0.1-SNAPSHOT.jar`
+4. 应用程序成功部署后可以打开链接 _http://try-cf-cookie.cfapps.io/restaurant_ 查看返回结果以校验配置正确：我们配置配置的 Spring Profile 是 **dev** 所以得到的结果是 "_Today's special is: Pickled Cactus_"。
+
+如果在 _manifest.yml_ 中把 `env` 配置成 `SPRING_PROFILES_ACTIVE: production` 或者在 _application.yml_ 把配置改成
+```
+spring:
+  profiles: production
+```
+重新部署后再此访问可以看到结果的变化:
+首先就要输入用户名密码，因为 Spring Cloud Config Client starter 包含了一个 [Spring Security][spring-security] 依赖包，默认会使用 HTTP Basic authentication 来保护你的所有的应用程序 endpoints ，除非你配置成其他的安全设置。[如何配置?](http://docs.pivotal.io/spring-cloud-services/1-4/common/config-server/writing-client-applications.html#disable-http-basic-auth) 默认用户名为 **user** ，随机密码在 console 打印中有，形式如下
+```
+Using default security password: 78fa095d-3f4c-48b1-ad50-e24c31d5cf35
+```
+登录后可以看到输出结果变为了 "_Today's special is: Cake a la mode_" 。
+
 
 
 
@@ -249,3 +295,12 @@ ServiceConnectorCreator 或者 ServiceInfoCreator 实例会根据Service的tags�
 [spring-cloud-connectors]:http://cloud.spring.io/spring-cloud-connectors/spring-cloud-connectors.html
 [spring-cloud-cloud-foundry-connector]:http://cloud.spring.io/spring-cloud-connectors/spring-cloud-cloud-foundry-connector.html
 [spring-cloud-services]:http://docs.pivotal.io/spring-cloud-services/1-4/common/
+[ServiceInfo]:https://docs.spring.io/autorepo/docs/spring-cloud/1.1.1.RELEASE/api/org/springframework/cloud/service/ServiceInfo.html
+[ConfigurableEnvironment]:https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/env/ConfigurableEnvironment.html
+[ServiceInfoPropertySourceAdapter]:https://docs.spring.io/autorepo/docs/spring-cloud-services-connector/1.1.0.RELEASE/api/io/pivotal/spring/cloud/config/java/ServiceInfoPropertySourceAdapter.html
+[PropertySource]:https://docs.spring.io/autorepo/docs/spring/4.1.6.RELEASE/javadoc-api/org/springframework/context/annotation/PropertySource.html
+[HealthIndicator]:https://docs.spring.io/spring-boot/docs/current/api/org/springframework/boot/actuate/health/HealthIndicator.html
+
+[java-SPI]:https://docs.oracle.com/javase/tutorial/sound/SPI-intro.html
+
+[spring-security]:http://projects.spring.io/spring-security/

@@ -16,6 +16,8 @@ references:
   - id: 1
     title: "Cloud-Native Applications"
     url: "https://pivotal.io/cloud-native"
+  - title: "The Twelve-Factor App"
+    url: "https://12factor.net/zh_cn/"
 ---
 
 > Cloud-native is an approach to building and running applications that fully exploits the advantages of the cloud computing delivery model. Cloud-native is about how applications are created and deployed, not where. While today public cloud impacts the thinking about infrastructure investment for virtually every industry, a cloud-like delivery model isn’t exclusive to public environments. It's appropriate for both public and private clouds. Most important is the ability to offer nearly limitless computing power, on-demand, along with modern data and application services for developers. When companies build and operate applications in a cloud-native fashion, they bring new ideas to market faster and respond sooner to customer demands. [[1](#reference-1)]
@@ -41,7 +43,7 @@ Continuous Delivery, enabled by **Agile** product development practices, is all 
 
 技术层面上来讲具体哪些特性呐？
 
-## 12-factor principles
+## Beyond 12-Factor Principles
 
 the [12-factor](https://12factor.net/) principles
 
@@ -56,12 +58,46 @@ the [12-factor](https://12factor.net/) principles
 ### Design Build Release and Run
 
 ### Configuration, Credentials and Code
+通常应用程序的配置包括数据库连接、后端服务、第三方服务认证信息、每份部署的特定配置如域名等。初级阶段是把这些配置尽量写在程序代码常量里，但这并不符合我们的原则。检验配置是否完全从代码中剥离出来的一种方式是 __你的代码是否可以开源__。很显然如果代码里还有你特有的配置，那么它并不适合开源出来。
 
-Please refer to [Try Cloud Foundry 12 - Config Server](/articles/try-cf-12-config-server/)
+另外一种方式是使用配置文件，但这仍然不是最好的方式，配置文件很容易以不同的方式分散在项目代码的不同地方，难以统一管理。而且仍然是和代码一块放在repository里。
+
+[The Twelve-Factor App][12-factor-config] __把配置存储在环境变量里__。在以往的应用程序开发中用环境变量存储配置并不是一种普遍的方式，为什么在云原生应用中又被推出来呐？云原生应用火起来的一个重要因素是 __容器化__( Containerization )，容器化可以使云不依赖任何一种开发语言和任何一种操作系统地创建和销毁（即伸缩 Scale）容器（指操作系统容器，一般是 Linux 系统）。容器化使得我们将原来关注应用服务器（包括Tomcat，WebLogic，JBoss等）的管理转变到关注操作系统容器的管理上来了，那么相应的原来我们想法设法在应用服务器上找到配置的最好管理方式也就变成了在操作系统容器上管理配置了，显然环境变量（env vars ， env）是操作系统系统级别最简单最直接的方式。
+
+在原生云应用实际开发中，容器的环境变量只是传递配置给应用的方式，不同部署的不同配置还需要一种集中管理的方式。这里当然少不了 Spring 的努力
+
+> [Spring Cloud Config][spring-cloud-config] provides server and client-side support for externalized configuration in a distributed system. With the Config Server you have a central place to manage external properties for applications across all environments.
+{: .Quotes}
+
+Spring Cloud Config Server 可以配置 git Repository 作为其配置库，这样方便了项目中使用持续交付(CD Continuous Delivery)工具链进行多环境的自动部署任务，这样就能更好地支持另外一个因素[环境平等(Environment Parity)](#environment-parity)。
+
+关于 [Spring Cloud Config][spring-cloud-config] 在 [Pivotal Cloud Foundry][pivotal-cf] (PCF) 和 Java 语言中的具体应用请参考另外一篇 [Try Cloud Foundry 12 - Config Server](/articles/try-cf-12-config-server/) 。
+
+由于现代社会对个人隐私和商业机密的高度重视， Credentials 和一般的 Configuration 安全级别完全不同，所以在 Kevin Hoffman 的《 Beyond the Twelve-Factor App 》里指出
+
+> 把 Configuration，Credentials 和 Code 看作不稳定物质，放在一块就会爆炸。
+{: .Quotes}
+
+一般云平台都会有一个单独的安全级别更高的服务来存储 Credentials 以区别一般的 Configuration 。
 
 ### Logs
 
+日志（ Logs ）应该被当作事件流（ event streams ），就是从一个应用程序发出的按时间排序的事件序列。在传统基于服务器的环境中日志通常被以某种文本格式写入硬盘文件，或者其他的存储方式。作为一个真正 Cloud-Native 的应用程序处理日志的关键原则是 “__你不要管这些破事__”。
+
+云应用程序不能保证会被运行在同一文件系统上，实际上对于云应用来说文件系统只是短暂的（ ephemeral ），云应用随时都可能被销毁或者又被创建。一个 Cloud-Native 的应用会把日志写入 **stdout** 和 **stderr** ，然后聚合，处理和存储日志交由云平台或者云平台提供的后端服务（ [backing services](#backing-services) ）来负责。有很多优秀的工具可以帮助你收集和分析日志，例如 ELK stack (ElasticSearch, Logstash, and Kibana), Splunk, Sumologic 等。
+
+这符合 Cloud-Native 对程序员的原则
+
+> __“溺爱”__ ：“一切跟代码无关事情都不需要你来做”。
+{: .Tips}
+
+还有一个云应用不应该控制日志管理的重要原因是，**为了弹性可扩展(elastic scalability)** 。对于云应用这是一项很重要的指标。假如你有固定数量的服务器和固定数量的应用实例，那么应用程序管理日志还可以接受。当云应用会动态地从1个实例增加到100个时，再由应用程序管理日志显然是不合理的，必须把这些不确定数量的实例的日志收集到一个统一的日志管理系统里，并进行详细地高级地分析。
+
+关于如何在 CloudFoundry 平台上配置日志管理服务请参见 [Try Cloud Foundry 13 - Logs](/articles/try-cf-13-logs/)
+
 ### Disposability
+
+[易处理](https://12factor.net/zh_cn/disposability)
 
 ### Backing Services
 
@@ -80,3 +116,10 @@ Please refer to [Try Cloud Foundry 12 - Config Server](/articles/try-cf-12-confi
 ### Authentication and Authorization
 
 http://presos.dsyer.com/decks/spring-cloud-dev-experience.html
+
+http://blog.didispace.com/12factor-zh-cn/
+
+[12-factor]:https://12factor.net/
+[12-factor-config]:https://12factor.net/config
+[spring-cloud-config]:http://cloud.spring.io/spring-cloud-config/single/spring-cloud-config.html
+[pivotal-cf]:https://network.pivotal.io/products/pivotal-cf
