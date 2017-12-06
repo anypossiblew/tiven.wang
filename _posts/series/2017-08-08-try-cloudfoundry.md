@@ -98,4 +98,22 @@ series:
       feature: /media/DMCGHYyXkAI5vDb.jpg:large
       credit: Nat Geo Photography‏
       creditlink: https://twitter.com/NatGeoPhotos
+  - title: "Try Cloud Foundry 12 - Config Server"
+    url: /articles/try-cf-12-config-server/
+    background: "#FF0038"
+    excerpt: "Config Server for Pivotal Cloud Foundry (PCF) is an externalized application configuration service, which gives you a central place to manage an application’s external properties across all environments."
+    image:
+      vendor: twitter
+      feature: /media/DMxA2Z-XcAAqI1_.jpg:large
+      credit: Nat Geo Photography‏
+      creditlink: https://twitter.com/NatGeoPhotos
+  - title: "Try Cloud Foundry 13 - Logs"
+    url: /articles/try-cf-13-logs/
+    background: "#FF0038"
+    excerpt: "Loggregator is the next generation system for aggregating and streaming logs and metrics from all of the user apps and system components in an Elastic Runtime deployment. Loggregator uses Google's protocol buffers along with gRPC to deliver logs."
+    image:
+      vendor: twitter
+      feature: /media/DNUNBsxXUAEicvV.jpg:large
+      credit: Nat Geo Photography‏
+      creditlink: https://twitter.com/NatGeoPhotos
 ---
