@@ -21,7 +21,7 @@ references:
 
 ## 基于地理空间的大数据分析
 
-![Esri HANA Image]({{ site.url }}/images/hana-spatial/esri-hana.jpg)
+![Esri HANA Image](/images/hana-spatial/esri-hana.jpg)
 {: .pull-right}
 
 得益于GPS卫星、手机信号塔和物联网的发展，我们很容易能够精确跟踪到人或物体的位置信息，在日常生活中我们每天都会产生和收集大量这样的地理位置数据。但这些地理空间数据是非常庞大的，要分析起来谈何容易。<br>地理空间信息的大数据分析分为三个过程：存储、分析和展示。
@@ -37,7 +37,7 @@ references:
 
 * 对于表示物体的点，线串和多边形SAP HANA提供了不同于一般数据库字段类型的spatial data type如ST_Point和ST_Polygon
 
-![Spatial Data Type Image]({{ site.url }}/images/hana-spatial/spatial-data-type.jpg)
+![Spatial Data Type Image](/images/hana-spatial/spatial-data-type.jpg)
 {: .pull-right}
 <br>如图所示，HANA Spatial Data Types
 <br>Spatial Data Type Syntax:
@@ -58,7 +58,7 @@ SELECT NEW ST_Point('POINT (0 0)', 1000004326).ST_Distance( NEW ST_Point('POINT 
 
 如果想要学习HANA Spatial的基本知识可以参考HANA官方demo [SAP HANA INteractive Education (SHINE)](https://github.com/SAP/hana-shine/tree/master/Tutorials/SHINE-SpatialScenario)。
 <figure>
-	<img src="{{ site.url }}/images/hana-spatial/spatial2.png" alt="SHINE-SpatialScenario Business Partners">
+	<img src="/images/hana-spatial/spatial2.png" alt="SHINE-SpatialScenario Business Partners">
 	<figcaption>HANA Spatial应用-SAP HANA SHINE-SpatialScenario的Business Partners界面</figcaption>
 </figure>
 
@@ -75,14 +75,14 @@ SELECT NEW ST_Point('POINT (0 0)', 1000004326).ST_Distance( NEW ST_Point('POINT 
 
 ## SAP Hybris Marketing
 作为精准营销重要的产品，SAP [Hybris Marketing](https://www.hybris.com/zh/marketing)支持用户开展基于情境的实时营销。通过开展个性化的营销活动，使你可以吸引客户，让客户满意，并培养品牌关系。
-![Hybris Marketing]({{ site.url }}/images/hybris-marketing/resource-management-solutions.svg)
+![Hybris Marketing](/images/hybris-marketing/resource-management-solutions.svg)
 
 ### 细分人群
 hybris 细分营销 通过利用HANA内存数据库的能力能够实时高效地细分任意数据源中的目标受众。这样，你就可以针对营销计划确定合适的目标受众，在多个渠道提供个性化的营销信息。
 
 而目标受众的地理位置是其细分的一项重要的数据。Hybris Marketing的细分可以通过地理空间元素如圆和多边形快速建立细分模型，并进一步创建目标人群进行精准营销。
 <figure>
-	<img src="{{ site.url }}/images/hybris-marketing/segmentation-geolocation.png" alt="Hybris Marketing Segmentation">
+	<img src="/images/hybris-marketing/segmentation-geolocation.png" alt="Hybris Marketing Segmentation">
 	<figcaption>Hybris Marketing通过地理空间进行细分人群</figcaption>
 </figure>
 
@@ -92,7 +92,7 @@ hybris 细分营销 通过利用HANA内存数据库的能力能够实时高效�
 如此复杂的计算，Hybris Marketing可以利用HANA的扩展库PAL(Predictive Analysis Library)定制开发相应的预测模型进行计算人群的购买倾向等一系列关键指标。
 
 <figure>
-	<img src="{{ site.url }}/images/hybris-marketing/predictive-model.png" alt="Hybris Marketing Predictive Model">
+	<img src="/images/hybris-marketing/predictive-model.png" alt="Hybris Marketing Predictive Model">
 	<figcaption>Hybris Marketing建立预测模型进行计算人群关键指标</figcaption>
 </figure>
 

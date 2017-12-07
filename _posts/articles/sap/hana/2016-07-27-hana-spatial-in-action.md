@@ -34,10 +34,10 @@ references:
 对于地图来说，每一种地图都是一种空间实体，都会对应一个空间参考系统标识（Spatial Reference Identifier (SRID)），每一个SRID对应的空间参考系统（Spatial Reference System (SRS)）都是基于两种椭球映射：平面地球和圆形地球。
 
 * 圆形地球映射
-![Round Earth Mapping]({{ site.url }}/images/hana-spatial/round-earth-mapping.png)
+![Round Earth Mapping](/images/hana-spatial/round-earth-mapping.png)
 
 * 平面地球映射
-![Flat Earth Mapping]({{ site.url }}/images/hana-spatial/flat-earth-mapping.jpg)
+![Flat Earth Mapping](/images/hana-spatial/flat-earth-mapping.jpg)
 
 ### SRID
 两种类型的映射坐标参考系统都有一些属性如本初子午线即0度经线，距离单位，角度单位，坐标范围等，设置不同的属性可以建立不同的空间参考系统（SRS）。大部分数据库都建立了SRID或者引用了权威机构制定的SRID，权威机构如[European Petroleum Survey Group (EPSG)](http://www.epsg.org/)，可以在网站[http://spatialreference.org/](http://spatialreference.org/)查询其SRS列表。
@@ -55,7 +55,7 @@ HANA提供原生库HANA Spatial对空间参考系统支持。详情参见官方�
 ### Data Type
 HANA Spatial使用的SRS默认是0，另外提供WGS84 - SRID 4326和WGS 84 (planar) - SRID 1000004326。HANA Spatial还提供多种拥有面向对象的属性的空间数据类型，如：
 
-![HANA Spatial Data Type Image]({{ site.url }}/images/hana-spatial/spatial-data-type.jpg)
+![HANA Spatial Data Type Image](/images/hana-spatial/spatial-data-type.jpg)
 
 语法举例：
 

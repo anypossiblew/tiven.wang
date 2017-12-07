@@ -99,6 +99,10 @@ h2[id], h3[id], h4[id] {
       &::before {
         left: .5em;
       }
+
+      p { // The font size of blockquote text is smaller than body text
+        font-size: 14px !important;
+      }
     }
 
     .gist {
@@ -132,8 +136,23 @@ h2[id], h3[id], h4[id] {
         margin: 16px 0
       }
 
-      figure.center, p.center {
-        margin: 0 auto;
+      figure, p {
+        &.center {
+          margin: 0 auto;
+        }
+        &.middle {
+          img {
+            max-width: 500px;
+          }
+        }
+        &.pull-right {
+          
+        }
+
+        figcaption {
+          margin: 0 auto;
+          max-width: 300px;
+        }
       }
     }
 
@@ -161,9 +180,6 @@ h2[id], h3[id], h4[id] {
         margin-top: -15px;
       }
 
-      p {
-        //font-size: $main-body-font-size;
-      }
     }
 
     h2[id] {
@@ -399,6 +415,7 @@ table, .table {
 }
 
 blockquote {
+
   &.Warning {
     &::before {
       content: "Warning";

@@ -66,8 +66,8 @@ references:
 凡事都具有两面性，一方面 Java EE 提供了标准的模式，另一方面它也你很少去重新思考应用系统的架构。
 
 ![Image: Classical Java EE architecture](/images/cloud/microservices/Classical Java EE architecture.png)
-{: .center}
-<style>.center img {max-width: 500px !important; border: 1px solid lightgrey;}</style>
+{: .center.middle}
+<style>.center img{border: 1px solid lightgrey;}</style>
 
 不可否认，在软件架构领域我们从来都没停止过思考，来寻找更好的思路。例如运行多台应用程序实例，然后通过负载均衡器分发请求给它们，以增加程序的处理能力。这样就需要一些交叉关注点，例如 Single Sign-On (SSO), Logging, Monitoring, Databases 等中心化企业级的基础设施。一切看起来还是太耦合，一个小小的改动都需要从头到尾的小心翼翼的测试，发布一个新的程序版本可能需要几个月甚至一两年。同时部署配置文件、服务器配置文件还有第三方组件的配置参数等大量的配置需要小心谨慎。
 
@@ -171,6 +171,16 @@ microservices applications share some important characteristics:
 #### Asynchronous Messaging-Passing
 
 // TODO
+
+### Service Discovery
+
+### Service Deployment
+
+### Service Testing
+
+### Service Monitoring
+
+#### Circuit Breakers
 
 ## Conclusion
 
