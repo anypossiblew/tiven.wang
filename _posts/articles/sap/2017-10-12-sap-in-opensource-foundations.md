@@ -44,6 +44,9 @@ Service Fabrik
 
 > The [Linux Foundation][linux-foundation] hosts many of the most important open source projects in the world, including Linux. With hundreds of companies backing tens of thousands of active developers, our projects harness the power of open source development to fuel innovation at unmatched speed and scale.
 
+Hyperledger Welcomes SAP as **Premier** Member https://www.hyperledger.org/announcements/2017/03/22/hyperledger-welcomes-sap-as-premier-member
+
+
 [cncf]:https://www.cncf.io/
 [nodejs-foundation]:https://nodejs.org/en/foundation/
 [cf-foundation]:https://www.cloudfoundry.org/
