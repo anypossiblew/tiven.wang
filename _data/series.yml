@@ -123,3 +123,18 @@
     - title: Firebase - Hello world
       description:
       link: /articles/serverless-firebase/
+
+- title: Apache Camel
+  series: /series/camel
+  image:
+    vendor: twitter
+    feature: /media/DQyBpK5UMAAi9Bc.jpg:large
+    credit: 500px
+    creditlink: https://twitter.com/500px
+  posts:
+    - title: Spring Boot - Apache Camel
+      description:
+      link: /articles/spring-boot-camel/
+    - title: Camel - Testing
+      description:
+      link: /articles/camel-testing/

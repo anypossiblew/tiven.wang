@@ -26,6 +26,21 @@ references:
 {:toc}
 
 ## Backgrounds
+### BPMN
+A standard [Business Process Model and Notation (BPMN)](http://www.bpmn.org/) will provide businesses with the capability of understanding their internal business procedures in a graphical notation and will give organizations the ability to communicate these procedures in a standard manner. Furthermore, the graphical notation will facilitate the understanding of the performance collaborations and business transactions between the organizations. This will ensure that businesses will understand themselves and participants in their business and will enable organizations to adjust to new internal and B2B business circumstances quickly.
+
+[BPMN Tutorial: Get started with Process Modeling using BPMN](https://camunda.com/bpmn/)
+
+#### Catify BPMN Engine
+
+> The catify bpmn engine is based on Akka (http://akka.io/) and Neo4j (http://neo4j.com/) and is fully compatible to BPMN 2.0. It can handle millions of long running processes out of the box. Though not yet feature complete, it is easy to extend via different service provider interfaces.
+>
+> You can easily integrate the engine into your infrastructure. Via the Integration SPI you can access it by the integration framework of your choice. Out of the box it comes with Apache Camel (http://camel.apache.org/) and therefore all of its strenghts.
+
+
+#### List of BPMN 2.0 engines
+
+[List of BPMN 2.0 engines](https://en.wikipedia.org/wiki/List_of_BPMN_2.0_engines)
 
 ### Apache Camel
 [Apache Camel][Apache-Camel] ™ is a versatile open-source integration framework based on known [Enterprise Integration Patterns][Enterprise-Integration-Patterns].
@@ -75,11 +90,7 @@ The **message’s container** during routing
 Store data in the message header and in the properties of the exchange. Retrieve data from header and properties to build the reply message
 
 
-## BPMN
 
-A standard [Business Process Model and Notation (BPMN)](http://www.bpmn.org/) will provide businesses with the capability of understanding their internal business procedures in a graphical notation and will give organizations the ability to communicate these procedures in a standard manner. Furthermore, the graphical notation will facilitate the understanding of the performance collaborations and business transactions between the organizations. This will ensure that businesses will understand themselves and participants in their business and will enable organizations to adjust to new internal and B2B business circumstances quickly.
-
-[BPMN Tutorial: Get started with Process Modeling using BPMN](https://camunda.com/bpmn/)
 
 
 [Apache-Camel]:http://camel.apache.org/
