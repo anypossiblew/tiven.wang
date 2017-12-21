@@ -124,6 +124,24 @@
       description:
       link: /articles/serverless-firebase/
 
+- title: Spring Boot
+  series: /series/spring-boot
+  image:
+    vendor: twitter
+    feature: /media/DQyBpK5UMAAi9Bc.jpg:large
+    credit: 500px
+    creditlink: https://twitter.com/500px
+  posts:
+    - title: Spring Boot - Cache
+      description:
+      link: /articles/spring-boot-cache/
+    - title: Spring Boot - Apache Camel
+      description:
+      link: /articles/spring-boot-camel/
+    - title: Spring Boot - Testing
+      description:
+      link: /articles/spring-boot-testing/
+
 - title: Apache Camel
   series: /series/camel
   image:

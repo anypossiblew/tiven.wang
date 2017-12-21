@@ -93,4 +93,21 @@ public void testBook() {
 }
 ```
 
+截至此步骤完整代码 [Github](https://github.com/tiven-wang/EIP-Camel/tree/testing/direct)
+
+### Mock Endpoint
+
+```java
+@EndpointInject(uri = "mock:result")     
+protected MockEndpoint result;
+
+@Test
+public void testBook() throws InterruptedException {
+  ...
+  result.setExpectedMessageCount(9);
+  result.assertIsSatisfied();
+}
+
+```
+
 本篇完整代码 [Github](https://github.com/tiven-wang/EIP-Camel/tree/testing/direct)

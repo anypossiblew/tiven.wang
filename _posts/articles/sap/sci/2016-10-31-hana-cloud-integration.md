@@ -1,12 +1,15 @@
 ---
 layout: post
-title: HANA Cloud Integration
+title: SAP HANA Cloud Integration SCI/HCI
 excerpt: " SAP HANA Cloud Integration easily exchange data in real-time with SAP HANA Cloud Platform, integration services. Integrate processes and data between cloud apps, 3rd party applications and on-premises solutions with this open, flexible, on-demand integration system running as a core service on SAP HANA Cloud Platform."
 modified: 2016-10-31T17:00:00-00:00
 categories: articles
 tags: [HCP, HANA, Cloud, Integration, HCI]
 image:
-  feature: /images/cloud/mashheader-cloud.jpg
+  vendor: twitter
+  feature: /media/DRBYr3MX0AAsiT8.jpg:large
+  credit: Nat Geo Photography‏
+  creditlink: https://twitter.com/NatGeoPhotos
 comments: true
 share: true
 references:
@@ -29,7 +32,11 @@ references:
 ### BPMN
 A standard [Business Process Model and Notation (BPMN)](http://www.bpmn.org/) will provide businesses with the capability of understanding their internal business procedures in a graphical notation and will give organizations the ability to communicate these procedures in a standard manner. Furthermore, the graphical notation will facilitate the understanding of the performance collaborations and business transactions between the organizations. This will ensure that businesses will understand themselves and participants in their business and will enable organizations to adjust to new internal and B2B business circumstances quickly.
 
+[BPMN Quick Guide](http://www.bpmnquickguide.com/view-bpmn-quick-guide/)
+
 [BPMN Tutorial: Get started with Process Modeling using BPMN](https://camunda.com/bpmn/)
+
+Wikipedia - [Business Process Model and Notation (BPMN) ](https://en.wikipedia.org/wiki/Business_Process_Model_and_Notation)
 
 #### Catify BPMN Engine
 
@@ -41,6 +48,14 @@ A standard [Business Process Model and Notation (BPMN)](http://www.bpmn.org/) wi
 #### List of BPMN 2.0 engines
 
 [List of BPMN 2.0 engines](https://en.wikipedia.org/wiki/List_of_BPMN_2.0_engines)
+
+#### BPEL
+
+[BPEL][BPEL] (Business Process Execution Language)
+
+[Service choreography](https://en.wikipedia.org/wiki/Service_choreography#Web_Service_Choreography) and [service orchestration](https://en.wikipedia.org/wiki/Orchestration_(computing))
+
+[Business process modeling (BPM)](https://en.wikipedia.org/wiki/Business_process_modeling)
 
 ### Apache Camel
 [Apache Camel][Apache-Camel] ™ is a versatile open-source integration framework based on known [Enterprise Integration Patterns][Enterprise-Integration-Patterns].
@@ -96,5 +111,7 @@ Store data in the message header and in the properties of the exchange. Retrieve
 [Apache-Camel]:http://camel.apache.org/
 [Enterprise-Integration-Patterns]:http://camel.apache.org/enterprise-integration-patterns.html
 [amazon-Enterprise-Integration-Patterns]:http://www.amazon.com/exec/obidos/search-handle-url/105-9796798-8100401?%5Fencoding=UTF8&search-type=ss&index=books&field-author=Gregor%20Hohpe
+
+[BPEL]:https://en.wikipedia.org/wiki/Business_Process_Execution_Language
 
 [1]:https://launchpad.support.sap.com
