@@ -127,10 +127,10 @@
 - title: Spring Boot
   series: /series/spring-boot
   image:
-    vendor: twitter
-    feature: /media/DQyBpK5UMAAi9Bc.jpg:large
-    credit: 500px
-    creditlink: https://twitter.com/500px
+    vendor: nationalgeographic
+    feature: /content/dam/photography/PROOF/2017/November/animals-from-above-yourshot/01-animals-from-above-prod-yourshot-230366-11044091.adapt.1190.1.jpg
+    credit: Phillip Chang
+    creditlink: http://yourshot.nationalgeographic.com/profile/230366/
   posts:
     - title: Spring Boot - Cache
       description:

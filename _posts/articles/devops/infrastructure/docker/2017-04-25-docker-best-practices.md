@@ -162,6 +162,12 @@ Pushing:
 
 `docker run --rm -it -w /workspace -v C:/dev/works/onlingo:/workspace -v C:/Users/C5235715/.m2/repository:/root/.m2/repository maven:3.5.0-jdk-8 mvn archetype:generate -DinteractiveMode=false -Dversion=1.0.0-SNAPSHOT -DgroupId=com.sample -DartifactId=my-car-service -DarchetypeGroupId=org.apache.olingo -DarchetypeArtifactId=olingo-odata2-sample-cars-annotation-archetype -DarchetypeVersion=2.0.0`
 
+### Running RabbitMQ
+
+[rabbitmq](https://hub.docker.com/_/rabbitmq/)
+
+`$ docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3`
+
 ## Issues
 
 ### "New state of 'nil' is invalid"

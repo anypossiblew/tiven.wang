@@ -182,6 +182,12 @@ microservices applications share some important characteristics:
 
 #### Circuit Breakers
 
+### Service Security
+
+JSON Web Token
+
+[Secure a Spring Boot REST API With JSON Web Token + Reference to Angular Integration](https://medium.com/@nydiarra/secure-a-spring-boot-rest-api-with-json-web-token-reference-to-angular-integration-e57a25806c50)
+
 ## Conclusion
 
 微服务让我们像组织团队一样地组织我们的应用系统，划分组织成员的职责，可以保证他们的工作自由。微服务使得系统开发被由大型核心团队负责划分到更小更能理解他们负责的软件的团队。

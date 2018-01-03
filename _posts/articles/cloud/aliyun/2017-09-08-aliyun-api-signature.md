@@ -40,7 +40,7 @@ const crypto = require('crypto');
 
   b. 对每个请求参数的名称和值进行编码。名称和值要使用 UTF-8 字符集进行 URL 编码，URL 编码的编码规则是：
   * 对于字符 A-Z、a-z、0-9 以及字符 “-”、“\_”、“.”、“~” 不编码;
-  * 对于其他字符编码成 %XY 的格式，其中 XY 是字符对应 ASCII 码 的 16 进制表示。比如半角的双引号（”）对应的编码就是 %22；
+  * 对于其他字符编码成 %XY 的格式，其中 XY 是字符对应 [ASCII][ascii] 码 的 16 进制表示。比如半角的双引号（”）对应的编码就是 %22；
   * 对于扩展的 UTF-8 字符，编码成 %XY%ZA… 的格式;
   * 需要说明的是半角的空格（ ）要被编码是 %20，而不是加号（+）。
 
@@ -119,3 +119,5 @@ request.post({
 ## Aliyun MNS Signature
 
 https://help.aliyun.com/document_detail/27487.html
+
+[ascii]:https://ascii.cl/
