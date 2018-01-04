@@ -28,6 +28,13 @@ references:
 * 数据格式转换 Data format transformation - 消息体的数据格式从一种转换成另外一种，例如CSV格式转换成XML格式
 * 数据类型转换 Data type transformation - 消息体的数据类型从一种转换成另外一种，例如 java.lang.String 转换成 javax.jms.TextMessage
 
+Camel 对数据格式和数据类型的转换有几种方式：
+
+* Data formats - XML, JSON ...
+* Expression - Languages
+* Java - Processor, Bean, Content Enricher
+* Templates - XSLT,  Apache Velocity ...
+
 ## Data formats
 [Data formats][camel-data-format] 在 Camel 里以可插拔的转换器形式存在。每个 data format 实现了接口 [`org.apache.camel.spi.DataFormat`][DataFormat] 并包含两个方法：
 
@@ -101,63 +108,156 @@ from("direct:unmarshalInline")
 更多设置参见[Apache Camel > Documentation > Architecture > Data Format > XmlJson][camel-xmljson]
 
 ## Expression
+[Expressions][camel-expression] and [Predicates][camel-predicate] (expressions that evaluate to true or false) can then be used to create the various [Enterprise Integration Patterns][camel-eips] in the DSL or Xml Configuration like the Recipient List.
 
-http://camel.apache.org/languages.html
+To support dynamic rules Camel supports pluggable [Expression][Expression] strategies using a variety of different [Languages][camel-languages].
 
-Spring Expression Language (SpEL)
+表达式 Expression 是使用不同的语言 [Languages][camel-languages] 书写，常用的语言例如：Simple Language, XPath, Scripting Languages, Constant 等等。
+
+例如 [Simple Language][camel-simple] 书写的表达式： `Hello ${body}` ，也可以用作断言如 `${body} == 'Camel'`, `${header.zip} between '30000..39999'` 。
+
+通常表达式会作为获取 Message Body Header Properties 值的方式，断言会作为 Route 判断的依据。
 
 ### Transform
+Transform 是 Camel route DSL 中的一个方法，它接受一个 Expression 作为参数，执行表达式的结果作为转换后的 Message Body 。Transform 可以用在 Java DSL 和 XML DSL 中，例如在 Java DSL 中使用 Transform 与 Simple language：
 
+```java
+from("direct:start")
+  .transform().simple("Hello ${body}!")
+    .to("mock:result");
+```
+
+如果是使用 JavaScript 语言的表达式:
+
+```java
+from("direct:start")
+  .transform().javaScript("'Hello ' + request.body + '!'")
+    .to("mock:result");
+```
 
 ## Java
+如果 Camel 提供的 Data formats 和 Expression 不能满足你所需要的逻辑书写的话，你可以还需要写一些 Java 逻辑。
+可以编写 Java 逻辑的方式有几种：
+
+* Processor
+* Beans
+* Content Enricher
+
 ### Processor
+The Camel `Processor` is an interface defined in `org.apache.camel.Processor` with a
+single method:
+`public void process(Exchange exchange) throws Exception;`
+
+它可以任意处理传入的 Exchange 对象。
+
+```java
+from("direct:start")
+ .process(new Processor() {
+  public void process(Exchange exchange) throws Exception {
+    exchange.getIn().setBody("Hello " + exchange.getIn().getBody() + "!");
+  }
+ })
+ .to("mock:result");
+```
 
 ### Beans
+
 ### Content Enricher
+Content Enricher 模式是一种 Message Transformation 模式。
+
+![Image: DataEnricher](http://www.enterpriseintegrationpatterns.com/img/DataEnricher.gif)
+
+它分为 Poll enrich 和 Enrich 两种方式。
+
 #### Pollenrich
+
+```java
+from("quartz://report?cron=0+0+6+*+*+?")
+ .to("http://riders.com/orders/cmd=received")
+ .process(new OrderToCSVProcessor())
+ .pollEnrich("ftp://riders.com/orders/?username=rider&password=secret",
+   new AggregationStrategy() {
+    public Exchange aggregate(Exchange oldExchange, Exchange newExchange) {
+      if (newExchange == null) {
+        return oldExchange;
+      }
+      String http = oldExchange.getIn().getBody(String.class);
+      String ftp = newExchange.getIn().getBody(String.class);
+      String body = http + "\n" + ftp;
+      oldExchange.getIn().setBody(body);
+      return oldExchange;
+    }
+  })
+  .to("file://riders/orders");
+```
 
 #### Enrich
 
+
 ## Templates
+对于更高级的数据转换我们还可以使用 Template 技术，如 XSLT, Apache Velocity, FreeMarker 等。
+
 ### XSLT
-### Velocity
-### FreeMarker
+> [XSLT][XSLT] (Extensible Stylesheet Language Transformations) ) is a language for transforming XML documents into other XML documents or other formats such as HTML for web pages, plain text or XSL Formatting Objects, which may subsequently be converted to other formats, such as PDF, PostScript and PNG.[2] XSLT 1.0 is widely supported in modern web browsers.
 
+XSLT 是一个 Camel 组件，所以使用其 endpoint uri：
 
-
-
-Transformer
-
-Component JacksonXML
-
-camel-xmljson
-
-[XQuery][camel-example-spring-xquery]
-
-Message Translator
-
-XSLT
-
-Content Enricher
-
-
-```xml
-<dependency>
-  <groupId>org.apache.camel</groupId>
-  <artifactId>camel-jacksonxml</artifactId>
-</dependency>
+```java
+from("file://rider/inbox")
+ .to("xslt://camelinaction/transform.xsl")
+ .to("activemq:queue:transformed")
 ```
 
-https://github.com/apache/camel/blob/master/components/camel-jacksonxml/src/main/docs/jacksonxml-dataformat.adoc
+### Velocity
+> [Apache Velocity][Apache_Velocity] is a Java-based template engine that provides a template language to reference objects defined in Java code. It aims to ensure clean separation between the presentation tier and business tiers in a Web application (the model–view–controller design pattern).
+
+## Camel Type Converters
+
+Camel 有一套数据类型转换系统，当 Camel 遇到 From Type 和 To Type 不同时，会去 Type Converters 注册系统查找相应的 Converter ，如果存在相应的 Converter 则使用其转换数据类型，否则会报出异常。
+
+自定义的 Converter 如下：
+
+```java
+@Converter
+public final class PurchaseOrderConverter {
+
+	@Converter
+	public static PurchaseOrder toPurchaseOrder(byte[] data, Exchange exchange) {
+		TypeConverter converter = exchange.getContext().getTypeConverter();
+		String s = converter.convertTo(String.class, data);
+		if (s == null || s.length() < 30) {
+			throw new IllegalArgumentException("data is invalid");
+		}
+		s = s.replaceAll("##START##", "");
+		s = s.replaceAll("##END##", "");
+		String name = s.substring(0, 9).trim();
+		String s2 = s.substring(10, 19).trim();
+		BigDecimal price = new BigDecimal(s2);
+		price.setScale(2);
+		String s3 = s.substring(20).trim();
+		Integer amount = converter.convertTo(Integer.class, s3);
+		return new PurchaseOrder(name, price, amount);
+	}
+}
+```
+
+本文相关代码完整项目 [Github](https://github.com/tiven-wang/EIP-Camel/tree/transforming)
+
+
 
 [camel-example-spring-xquery]:https://github.com/apache/camel/tree/master/examples/camel-example-spring-xquery
-
-Apache Camel Transforming Message using Simple Expression:
-http://www.javarticles.com/2015/06/apache-camel-transforming-using-simple-expression.html
-
 
 [ESB]:https://en.wikipedia.org/wiki/Enterprise_service_bus
 [camel-data-format]:http://camel.apache.org/data-format.html
 [camel-xmljson]:http://camel.apache.org/xmljson.html
+[camel-expression]:http://camel.apache.org/expression.html
+[camel-predicate]:http://camel.apache.org/predicate.html
+[camel-eips]:http://camel.apache.org/enterprise-integration-patterns.html
+[camel-languages]:http://camel.apache.org/languages.html
+[camel-simple]:http://camel.apache.org/simple.html
 
 [DataFormat]:https://camel.apache.org/maven/camel-2.15.0/camel-core/apidocs/org/apache/camel/spi/DataFormat.html
+[Expression]:http://camel.apache.org/maven/current/camel-core/apidocs/org/apache/camel/Expression.html
+
+[XSLT]:https://en.wikipedia.org/wiki/XSLT
+[Apache_Velocity]:https://en.wikipedia.org/wiki/Apache_Velocity
