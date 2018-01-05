@@ -26,7 +26,7 @@ references:
 {:toc}
 
 ## Cloud-native
-本文开头引用的一段话是 Pivotal 公司网站上对 Cloud-native 的介绍，我们不看这种很官方很抽象的概念。就像“卖保健品的要搞养生”一样，Pivotal 在伴随着 CloudFoundry 产品推出时提出了 Cloud-native 的概念。那么 Cloud-native 在技术层面代表着什么呐？ Pivotal 网站这么说道：
+本文开头引用的一段话是 Pivotal 公司网站上对 Cloud-native 的介绍，我们暂且不看这种很官方很抽象的概念。就像“卖保健品的要搞养生”一样，Pivotal 在伴随着 CloudFoundry 产品推出时提出了 Cloud-native 的概念。那么 Cloud-native 在技术层面代表着什么呐？ Pivotal 网站这么说道：
 > Organizations require a platform for building and operating cloud-native applications and services that automates and integrates the concepts of DevOps, continuous delivery, microservices, and containers:
 
 ![Image: Cloud Native diagram](https://d1fto35gcfffzn.cloudfront.net/images/topics/cloudnative/diagram-cloud-native.png)
@@ -67,7 +67,7 @@ __Decompose__ => __Isolation__ => __Loose Coupling__ => __Scalability__ => __Hig
 
 另外一种方式是使用配置文件，但这仍然不是最好的方式，配置文件很容易以不同的方式分散在项目代码的不同地方，难以统一管理。而且仍然是和代码一块放在repository里。
 
-[The Twelve-Factor App][12-factor-config] __把配置存储在环境变量里__。在以往的应用程序开发中用环境变量存储配置并不是一种普遍的方式，为什么在云原生应用中又被推出来呐？云原生应用火起来的一个重要因素是 __容器化__(Containerization)，容器化可以使云不依赖任何一种开发语言和任何一种操作系统地创建和销毁（即伸缩 Scale）容器（指操作系统容器，一般是 Linux 系统）。容器化使得我们将原来关注应用服务器（包括Tomcat，WebLogic，JBoss等）的管理转变到关注操作系统容器的管理上来了，那么相应的原来我们想法设法在应用服务器上找到配置的最好管理方式也就变成了在操作系统容器上管理配置了，显然环境变量（env vars ， env）是操作系统级别最简单最直接的方式。
+[The Twelve-Factor App][12-factor-config] __把配置存储在环境变量里__。在以往的应用程序开发中用环境变量存储配置并不是一种普遍的方式，为什么在云原生应用中又被推出来呐？云原生应用火起来的一个重要因素是 __容器化__(Containerization)，容器化可以使云不依赖任何一种开发语言和任何一种操作系统地创建和销毁（即伸缩 Scale）容器（指操作系统容器，一般是 Linux 系统）。容器化使得我们将原来关注应用服务器（包括Tomcat，WebLogic，JBoss等）的管理转变到关注操作系统容器的管理上来了，那么相应的我们原来想方设法在应用服务器上找到配置的最好管理方式也就变成了在操作系统上管理配置了，显然环境变量（env vars ， env）是操作系统级别最简单最直接的方式。
 
 在原生云应用实际开发中，容器的环境变量只是传递配置给应用的方式，不同部署的不同配置还需要一种集中管理的方式。这里当然少不了 Spring 的努力
 
@@ -104,7 +104,7 @@ Spring Cloud Config Server 可以配置 git Repository 作为其配置库，这�
 
 [易处理](https://12factor.net/zh_cn/disposability)(Disposability) 是说原生云应用的进程可以迅速地开启或停止。在这个时代云应用讲究的就是 **快** 字，只有快速启动和优雅终止才能有利于更快地弹性伸缩应用，迅速部署变化的代码或配置，和稳健的部署应用。
 
-在传统的企业应用开发中使用的应用程序容器或者大型 web 服务器通常要花很长时间（以分钟计）启动，例如运行 Java 语言应用程序的 Weblogic，Jboss。而 Tomcat 只是开发人员用来本地测试的小工具或者入门学习的，但在云原生应用最受欢迎的 Spring Boot 程序中它已经作为默认嵌入的 servlet 容器了。除此之外还有像 Jetty， Undertow 等小型 servlet 容器在云原生应用中发挥更积极的作用。
+在传统的企业应用开发中使用的应用程序容器或者大型 web 服务器通常要花很长时间（以分钟计）启动，例如运行 Java 语言应用程序的 Weblogic，Jboss。而 Tomcat 只是开发人员用来本地测试的小工具或者入门学习的，但在云原生应用最受欢迎的 Spring Boot 程序中它已经作为默认嵌入式 servlet 容器了。除此之外还有像 Jetty， Undertow 等轻量级（Lightweight） servlet 容器在云原生应用中发挥更积极的作用。
 
 你肯定会问 “原来功能齐全大型企业级应用服务器为什么能被小而简单的 servlet 容器所替代，很多功能都不需要了吗？”。 这就是我所说的云原生应用平台接管了几乎所有的应用服务器的功能，包括 Load Balancer，Clustering，Routing，Logging，Monitoring 等，可以说云原生应用平台部分可称为云版本的应用程序服务器。我们说接管了几乎所有的并不是所有的，因为云原生应用平台不仅是适用 Java 语言环境，他是一个通用的平台并不限定于某种运行语言的某种容器。那么这就引出了支持云原生应用做到易处理的另外一项更重要的技术 __容器化__([Containerization][an-overview-of-containerization]).
 

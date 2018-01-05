@@ -7,7 +7,7 @@ categories: articles
 tags: [JavaScript, Camel, EIP]
 image:
   vendor: twitter
-  feature: /media/DQXk0qYW4AEEQC7.jpg:large
+  feature: /media/DMfT2TXX4AAFZJH.jpg:large
   credit: 500px
   creditlink: https://twitter.com/500px
 comments: true

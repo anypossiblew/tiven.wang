@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apache Camel - Component - Quartz
-excerpt: "."
+excerpt: "The quartz: component provides a scheduled delivery of messages using the Quartz Scheduler 1.x . Each endpoint represents a different timer (in Quartz terms, a Trigger and JobDetail)."
 modified: 2017-12-22T17:00:00-00:00
 categories: articles
 tags: [Camel, EIP]

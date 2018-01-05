@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apache Camel - Transforming Data
-excerpt: "."
+excerpt: "Camel 是企业系统之间的数据交换中心，面对繁杂的多种多样的数据类型自然会有一套数据转换的能力。Camel 支持不同的数据转换方式，它提供了很多现成的组件对常见数据类型进行转换"
 modified: 2017-12-29T17:00:00-00:00
 categories: articles
 tags: [Json, XML, Camel, EIP]
@@ -161,6 +161,47 @@ from("direct:start")
 ```
 
 ### Beans
+Camel 使用了类似于 Spring Framework POJO 的轻量级 Bean 管理容器。Camel 的 Bean 管理注册表（registry）是一个 Service Provider Interface (SPI)，它实现了接口 `org.apache.camel.spi.Registry`。常见的实现有：
+
+* __SimpleRegistry__ - A simple implementation to be used when unit testing or running Camel in the Google App engine, where only a limited number of JDK classes are available.
+* __JndiRegistry__ - An implementation that uses an existing Java Naming and Directory Interface (JNDI) registry to look up beans.
+* __ApplicationContextRegistry__ - An implementation that works with Spring to look up beans in the Spring ApplicationContext. This implementation is automatically used when you’re using Camel in a Spring environment.
+* __OsgiServiceRegistry__ - An implementation capable of looking up beans in the OSGi service reference registry. This implementation is automatically used when using Camel in an OSGi environment.
+
+在 Java DSL 中使用 Bean，指定 Bean 的标识和想要调用的方法名称：
+
+```java
+public void configure() throws Exception {
+  from("direct:hello").beanRef("helloBean", "hello");
+}
+```
+
+也可以只指定 Bean 的 Class，Camel 会在 startup 时初始化 Bean，并在调用时根据 Message Body data type 去匹配方法的参数类型并决定实际调用哪个方法：
+
+```java
+public void configure() throws Exception {
+  from("direct:hello").bean(HelloBean.class);
+}
+```
+
+Camel 调用 Bean 时还支持很多 Camel annotations
+
+```java
+public String orderStatus(@Body Integer orderId, @Headers Map headers) {
+  Integer customerId = (Integer) headers.get("customerId");
+  String customerType = (String) headers.get("customerType");
+  ...
+}
+```
+
+和 Camel language annotations
+
+```java
+public Document handleIncomingOrder( @Body Document xml,
+  @XPath("/order/@customerId") int customerId,
+  @Bean(ref = "guid", method="generate") int orderId );
+```
+
 
 ### Content Enricher
 Content Enricher 模式是一种 Message Transformation 模式。
