@@ -145,8 +145,13 @@ h2[id], h3[id], h4[id] {
             max-width: 500px;
           }
         }
+        &.small {
+          img {
+            max-width: 300px;
+          }
+        }
         &.pull-right {
-          
+
         }
 
         figcaption {

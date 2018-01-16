@@ -207,7 +207,7 @@ Here are some of the options it expose which you can use
 
 `git commit -m "First commit"`
 
-`git remote add origin remote repository URL`
+`git remote add origin [remote repository URL]`
 
 `git remote -v`
 

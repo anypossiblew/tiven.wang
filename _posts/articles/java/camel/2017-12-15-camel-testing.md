@@ -18,6 +18,8 @@ references:
 
 ---
 
+[Mock]() [ProducerTemplate]()
+
 * TOC
 {:toc}
 
@@ -95,19 +97,28 @@ public void testBook() {
 
 截至此步骤完整代码 [Github](https://github.com/tiven-wang/EIP-Camel/tree/testing/direct)
 
-### Mock Endpoint
+### Endpoint Inject
+除了使用 CamelContext 创建 ProducerTemplate 外还可以通过注解 `@EndpointInject` 来自动注入特定的 `ProducerTemplate` 对象或者 `MockEndpoint` 对象。
 
 ```java
+@EndpointInject(uri = "direct:book")
+private ProducerTemplate book;
+
 @EndpointInject(uri = "mock:result")     
 protected MockEndpoint result;
 
 @Test
 public void testBook() throws InterruptedException {
   ...
-  result.setExpectedMessageCount(9);
+  result.expectedMessageCount(1);
+
+  exchange = book.send(exchange);
+
   result.assertIsSatisfied();
 }
-
 ```
+
+## Simulate Errors
+
 
 本篇完整代码 [Github](https://github.com/tiven-wang/EIP-Camel/tree/testing/direct)

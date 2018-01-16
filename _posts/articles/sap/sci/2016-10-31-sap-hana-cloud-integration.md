@@ -1,10 +1,10 @@
 ---
 layout: post
-title: SAP HANA Cloud Integration SCI/HCI
-excerpt: " SAP HANA Cloud Integration easily exchange data in real-time with SAP HANA Cloud Platform, integration services. Integrate processes and data between cloud apps, 3rd party applications and on-premises solutions with this open, flexible, on-demand integration system running as a core service on SAP HANA Cloud Platform."
-modified: 2016-10-31T17:00:00-00:00
+title: SAP Cloud Integration - Overview
+excerpt: " SAP HANA Cloud Integration easily exchange data in real-time with SAP HANA Cloud Platform, integration services SCI(HCI). Integrate processes and data between cloud apps, 3rd party applications and on-premises solutions with this open, flexible, on-demand integration system running as a core service on SAP HANA Cloud Platform."
+modified: 2018-01-16T17:00:00-00:00
 categories: articles
-tags: [HCP, HANA, Cloud, Integration, HCI]
+tags: [SCI, iPaaS, Cloud, Integration]
 image:
   vendor: twitter
   feature: /media/DRBYr3MX0AAsiT8.jpg:large
@@ -71,7 +71,7 @@ Wikipedia - [Business Process Model and Notation (BPMN) ](https://en.wikipedia.o
 
 ### Message
 ![Image Camel Message](/images/cloud/hcp/hci/camel-message.jpg)
-{: .pull-right}
+{: .center.middle}
 
 Fundamental entity **containing the data** being carried and routed in Camel
 
@@ -87,7 +87,7 @@ Fundamental entity **containing the data** being carried and routed in Camel
 
 ### Exchange
 ![Image Camel Message](/images/cloud/hcp/hci/camel-exchange.jpg)
-{: .pull-right}
+{: .center.middle}
 
 The **message’s container** during routing
 
@@ -103,6 +103,42 @@ The **message’s container** during routing
 
 ### Goals
 Store data in the message header and in the properties of the exchange. Retrieve data from header and properties to build the reply message
+
+
+## iPaaS
+
+[Cloud-based integration](https://en.wikipedia.org/wiki/Cloud-based_integration)
+
+Enterprise Integration Platform as a Service
+
+### What is iPaaS?
+什么是 iPaaS ?
+
+MuleSoft 这样说 [What is iPaaS?](https://www.mulesoft.com/resources/cloudhub/what-is-ipaas-gartner-provides-reference-model)
+
+Dell 这样说 [What is iPaaS?](https://boomi.com/integration/what-is-ipaas/)
+
+Informatica 这样说 [What is iPaaS?](https://www.informatica.com/products/integration-platform-as-a-service.html)
+
+
+### iPaaS vs ESB
+
+[iPaaS vs ESB: Understanding the Difference](https://www.liaison.com/blog/2017/03/31/ipaas-vs-esb-understanding-difference/)
+
+### iPaaS Replace ESB
+
+[When Does iPaaS Finally Get To Replace Enterprise Service Bus?](https://www.elastic.io/when-ipaas-replace-enterprise-service-bus/)
+
+### Products
+
+Gartner 在2017年关于 iPaaS 的魔力象限
+
+![Image: Gartner-Magic-iPaaS-Quadrant-2017](http://ap-verlag.de/clickandbuilds/WordPress/MyCMS4/wp-content/uploads/2017/05/grafik-gartner-ipaas-plattformen.jpg)
+{: .center.middle}
+
+[Oracle Integration Cloud Service](https://cloud.oracle.com/integration)
+
+[Dell Boomi](https://boomi.com/)
 
 
 

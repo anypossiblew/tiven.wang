@@ -109,7 +109,7 @@ references:
 > — [The Reactive Manifesto](http://www.reactivemanifesto.org/)
 {: .Quotes}
 
-Reactive 原则与 Microservices 理论的结合在当今 Cloud 环境下开发会发挥更积极更重要的效果。
+Reactive 原则与 Microservices 理论的结合在当今 Cloud 环境下开发会发挥更积极更重要的作用。
 
 更多关于 Reactive 编程的讨论可以参考系列[Reactive Design Patterns](/series/reactive-design-patterns).
 
@@ -171,6 +171,19 @@ microservices applications share some important characteristics:
 #### Asynchronous Messaging-Passing
 
 // TODO
+
+#### Eventual Consistency
+
+Distributed Transactions
+
+local transactions, and rely on the concept of eventual consistency? These systems are much easier to build and scale
+
+Consistency in "CAP Theorem"
+
+Consistency in "ACID"
+
+
+
 
 ### Service Discovery
 

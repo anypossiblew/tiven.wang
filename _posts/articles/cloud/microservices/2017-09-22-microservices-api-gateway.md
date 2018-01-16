@@ -27,5 +27,6 @@ references:
 
 [Netflix Zuul][zuul]
 
+[Building Microservices: Using an API Gateway](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
 
 [zuul]:https://github.com/Netflix/zuul

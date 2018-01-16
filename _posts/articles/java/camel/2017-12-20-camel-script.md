@@ -117,6 +117,14 @@ if (typeof importClass != "function") {
 
 jdk8 replaces Rhino based jsr-223 script engine with nashorn based jsr-223 script engine. You can check out the [Rhino Migration Guide](https://wiki.openjdk.java.net/display/Nashorn/Rhino+Migration+Guide)
 
+## Groovy Script
+
+### Groovy Json
+http://groovy-lang.org/json.html
+
+### Groovy XML
+http://groovy-lang.org/processing-xml.html
+
 本文完整代码 [Github](https://github.com/tiven-wang/EIP-Camel/tree/scripting)
 
 
