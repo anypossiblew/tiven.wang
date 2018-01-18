@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SAP Cloud Integration - Overview
+title: SAP Cloud Platform Integration - Overview
 excerpt: " SAP HANA Cloud Integration easily exchange data in real-time with SAP HANA Cloud Platform, integration services SCI(HCI). Integrate processes and data between cloud apps, 3rd party applications and on-premises solutions with this open, flexible, on-demand integration system running as a core service on SAP HANA Cloud Platform."
 modified: 2018-01-16T17:00:00-00:00
 categories: articles
@@ -139,6 +139,18 @@ Gartner 在2017年关于 iPaaS 的魔力象限
 [Oracle Integration Cloud Service](https://cloud.oracle.com/integration)
 
 [Dell Boomi](https://boomi.com/)
+
+
+## My Researches
+记录在使用 SAP Cloud Platform Integration 产品过程中总结下来的经验和模式。
+
+### Message Mapping
+这一篇介绍 Message Mapping 基本原理和如何应用自定义函数处理复杂的一对多，多对一的映射逻辑。<br>
+[SAP Cloud Platform Integration - Message Mapping](/articles/sci-message-mapping/)
+
+### Content Enricher
+这一篇总结了使用 MultiCast + Request-Reply + Join + Gather 来构建 Content Enricher 模式，以解决和弥补内置 Content Enricher 功能的不足。<br>
+[SAP Cloud Platform Integration - Content Enricher](/articles/sci-content-enricher/)
 
 
 
