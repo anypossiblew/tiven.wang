@@ -14,7 +14,7 @@ comments: true
 share: true
 references:
   - id: 1
-    title: "SAP Log - Message Mapping Simulation in SAP Cloud Platform Integration"
+    title: "SAP Blogs - Message Mapping Simulation in SAP Cloud Platform Integration"
     url: "https://blogs.sap.com/2017/05/26/message-mapping-simulation-in-sap-cloud-platform-integration/"
 ---
 
@@ -174,6 +174,17 @@ def void customKpis(String[] kpis, Output numberOfClicks, Output numberOfImpress
 上面我们讲到的设计到一对一和一对多的映射，那么对于多对一的映射有一些特殊设置。
 
 例如我们需要将路径 `/body/data/id` 指向的值连接起来放在目标结构的 CampaignId 里，这里就涉及一个问题，路径 `/body/data` 映射的目标路径是 `/Campaigns/Campaign/Success`， 而现在要将 `/body/data/id` 映射到 `/Campaigns/Campaign/CampaignId` 上，`/body/data/id` 的取值要跨 `/body/data` List 。这里就需要将 `/body/data/id` 的属性里的 Context 设置为 `body` 而不是原来的 `data`。
+
+### One to Many
+对于一对多的映射有一个特殊情景，当一是某个 Node 而多是此 Node 的 Subtree 对应的 NodeList 时，例如一个 Document 的 Header 属性要映射到目标结构 TargetDocument 的 Items 下的某个属性上，这时就需要一个特别的函数 `useOneAsMany`。
+
+它的文档是这么说明的：Use first argument as it is on the same level as third one. The second argument defines when the next value of first argument should be taken. 解释一下是，First argument 对应源结构的某个 Node ，Third argument 对应 Subtree 下的某个 Node ，Second argument 对应 Subtree 的 Node 。用计算机语言表达为
+
+```
+loop input2
+  when isLevelOfTarget(input3)
+    yeild input1
+```
 
 ## Simulation
 

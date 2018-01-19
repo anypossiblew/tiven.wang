@@ -14,7 +14,7 @@ comments: true
 share: true
 references:
   - id: 1
-    title: "SAP Log - Content Enricher Pattern in Integration Flows"
+    title: "SAP Blogs - Content Enricher Pattern in Integration Flows"
     url: "https://blogs.sap.com/2015/01/16/blog-5-content-enricher-pattern-in-integration-flows/"
 ---
 

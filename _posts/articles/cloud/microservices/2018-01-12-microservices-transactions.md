@@ -6,10 +6,10 @@ modified: 2018-01-12T11:51:25-04:00
 categories: articles
 tags: [Eventual Consistency, CAP, Transactions, Scalability, Microservices]
 image:
-  vendor: unsplash
-  feature: /photo-1456086272160-b28b0645b729?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
-  credit: russn_fckr
-  creditlink: https://unsplash.com/@russn_fckr
+  vendor: twitter
+  feature: /media/DRlb0PRX4AATXgm.jpg:large
+  credit: Nat Geo Photography
+  creditlink: https://twitter.com/NatGeoPhotos
 comments: true
 share: true
 ---

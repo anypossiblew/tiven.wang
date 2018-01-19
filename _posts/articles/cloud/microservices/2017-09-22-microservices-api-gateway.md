@@ -30,3 +30,10 @@ references:
 [Building Microservices: Using an API Gateway](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
 
 [zuul]:https://github.com/Netflix/zuul
+
+## How API Gateway can perform services composition?
+Typically, you need to write code that handles each incoming request by invoking the various backend services and combining the results.
+
+The API Gateway needs to be implemented using a scalable server technology that has a 'scripting language', e.g. NodeJS, NGINX, Java NIO based server such as Vertx, ...
+
+Ideally the API gateway should invoke the backend services concurrently. But you want to avoid callback hell. Here is an presentation that I gave on this topic: https://www.slideshare.net/chris.e.richardson/futures-and-rx-observables-powerful-abstractions-for-consuming-web-services-asynchronously-springone-s2gx

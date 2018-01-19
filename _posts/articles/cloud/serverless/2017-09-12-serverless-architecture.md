@@ -21,3 +21,5 @@ references:
 
 * TOC
 {:toc}
+
+https://github.com/anaibol/awesome-serverless
