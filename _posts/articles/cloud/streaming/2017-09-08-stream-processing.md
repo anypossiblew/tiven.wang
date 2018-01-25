@@ -31,4 +31,31 @@ references:
 
 Streams Processing Language (SPL)
 
+[Functional reactive programming][Functional_reactive_programming] could be considered stream processing in a broad sense.
+
+Batch File Based Processing (emulates some of actual stream processing, but much lower performance in general)
+
+* Apache Kafka
+* Apache Flink
+* Apache Storm
+* Apache Apex
+* Apache Spark
+
+Stream Processing Services:
+
+* Amazon Web Services - Kinesis
+* Google Cloud - Dataflow
+* Microsoft Azure - Stream Analytics
+
+http://www.reactive-streams.org/
+
+https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html
+
+https://docs.spring.io/spring/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html
+
+
 [Spark Streaming](https://spark.apache.org/streaming/)
+
+
+
+[Functional_reactive_programming]:https://en.wikipedia.org/wiki/Functional_reactive_programming

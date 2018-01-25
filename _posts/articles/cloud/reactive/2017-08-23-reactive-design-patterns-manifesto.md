@@ -83,8 +83,22 @@ references:
 
 // TODO
 
+## Products
+
+### ReactiveX
+
+http://reactivex.io/
+
+### Reactive Streams
+http://www.reactive-streams.org/
 
 https://blog.redelastic.com/a-journey-into-reactive-streams-5ee2a9cd7e29
+
+https://docs.spring.io/spring/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html
+
+
+
+
 
 [Actor_model]:https://en.wikipedia.org/wiki/Actor_model
 [JDK_9_Flow_API]:https://community.oracle.com/docs/DOC-1006738

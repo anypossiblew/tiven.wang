@@ -139,6 +139,8 @@ Spring Cloud Config Server 可以配置 git Repository 作为其配置库，这�
 
 ### Telemetry
 
+云平台的遥测系统与 Streaming Data system 概念的关系，遥测系统并不需要应用程序开发者开发，这里只是提到这个概念，会另外在 Stream Processing 中单独分析。
+
 ### Authentication and Authorization
 
 http://presos.dsyer.com/decks/spring-cloud-dev-experience.html
