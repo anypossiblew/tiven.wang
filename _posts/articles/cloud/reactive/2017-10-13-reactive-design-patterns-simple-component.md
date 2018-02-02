@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Simple Component Pattern
+title: Reactive Design Patterns - Simple Component Pattern
 excerpt: "The single responsibility principle."
 modified: 2017-10-16T17:00:00-00:00
 categories: articles
@@ -27,7 +27,7 @@ references:
 > The **S**ingle **R**esponsibility **P**rinciple (**SRP**) is a computer programming principle that states that every module or class should have responsibility over a single part of the functionality provided by the software, and that responsibility should be entirely encapsulated by the class. All its services should be narrowly aligned with that responsibility. Robert C. Martin expresses the principle as, "A class should have only one reason to change."[[1](#reference-1)]
 {: .Quotes}
 
-分而治之 ([Divide and Conquer](https://en.wikipedia.org/wiki/Divide_and_rule))策略讲的是把大的问题分割成更小的问题，进而找到每个小问题的方位和责任。通过这种责任划分的过程你可以更轻松的解决看似很庞大的但具有层级结构的问题。这就涉及到划分到什么程度才是合适的，SRP给出的答案是每个task（e.g. modular, class）应该具有完整的不可分割的单独的责任，或者用 Robert C. Martin 的话说，"一个类应该只有一个改变的理由。"。
+分而治之 ([Divide and Conquer](https://en.wikipedia.org/wiki/Divide_and_rule))策略讲的是把大的问题分割成更小的问题，进而找到每个小问题的方位和责任。通过这种责任划分的过程你可以更轻松的解决看似很庞大的但具有层级结构的问题。这就涉及到划分到什么程度才是合适的，SRP给出的答案是每个task（e.g. modular, class）应该具有完整的不可分割的单独的责任，或者用 Robert C. Martin 的话说，"一个类应该只有一个改变的理由。"
 
 ## Applying SRP in Reactive Application
 
