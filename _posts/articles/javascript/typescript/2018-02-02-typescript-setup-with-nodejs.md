@@ -43,17 +43,22 @@ Now you can use all the built in node modules (e.g. `import fs = require('fs');`
 
 > 如果你的 TypeScript 安装在 global 则可以直接使用命令 `tsc -p ./`
 
+#### Publishing
+
+[TypeScript NPM Publishing][typescript-declaration-files] 有两种方式：
+
+* 通过指定 *package.json* 文件中的参数 `"types": "./lib/main.d.ts"` 来说明本项目中 TypeScript 文件
+* 发布到 [@types organization][npmjs-types] on npm.
+
+所以在 `tsc` 编译时也会从这两个方面查找 TypeScript 的依赖包。
+
 #### @types
 
 为了大量现有的 JavaScript 库，有一个项目叫 [DefinitelyTyped][DefinitelyTyped] 专门为现有 JavaScript 定义相应的 TypeScript 类型。例如你想要在你的 TypeScript 程序中使用 jQuery 库，你就可以导入 jQuery 的 TypeScript 类型包 `npm install @types/jquery --save-dev`，然后就可以在代码中引入它 `import * as jQuery from 'jquery';`。
 
 这样在编译的时候有两个选项可以为[DefinitelyTyped][DefinitelyTyped]灵活配置，`typeRoots` 和 `types`
 
-
-
 [@types, typeRoots and types](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html#types-typeroots-and-types)
-
-
 
 ### Live compile + run
 
@@ -77,8 +82,9 @@ Now you can use all the built in node modules (e.g. `import fs = require('fs');`
 这样运行命令 `npm start` 则会时时监控文件更改而编译成 JavaScript 文件，然后运行入口文件程序
 
 
+## Gulp
 
-
+https://www.typescriptlang.org/docs/handbook/gulp.html
 
 ## Hello world
 
@@ -110,3 +116,5 @@ rl.question('Please type your name:', (username) => {
 [nodejs]:http://nodejs.org/
 [npx]:https://www.npmjs.com/package/npx
 [DefinitelyTyped]:http://definitelytyped.org/
+[typescript-declaration-files]:https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html
+[npmjs-types]:https://www.npmjs.com/~types

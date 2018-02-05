@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Async JavaScript and ReactiveX RxJS
+title: JavaScript Asynchronous
 excerpt: "RxJS is a library for reactive programming using Observables, to make it easier to compose asynchronous or callback-based code."
 modified: 2017-06-12T17:00:00-00:00
 categories: articles
