@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600');
+.mdl-card__supporting-text.blog__post-body, blockquote p, .demo-references .mdl-list__item-primary-content
+{
+  font-family: 'Josefin Sans', "Comfortaa", cursive,"Arial",sans-serif;
+}

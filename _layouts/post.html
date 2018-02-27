@@ -76,6 +76,9 @@
       }
     }
     </style>
+    {% if page.theme %}
+    <link rel="stylesheet" href="/assets/css/themes/{{ page.theme }}.css">
+    {% endif %}
   </head>
   <body>
     {% include scripts.html %}

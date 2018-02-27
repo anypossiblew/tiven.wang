@@ -1,5 +1,6 @@
 ---
 layout: post
+theme: Josefin-Sans
 title: TypeScript - Setup with Node.js
 excerpt: ""
 modified: 2018-02-02T17:00:00-00:00
@@ -79,12 +80,40 @@ Now you can use all the built in node modules (e.g. `import fs = require('fs');`
 > windows system 请使用格式 `nodemon --exec .\node_modules\.bin\ts-node -- .\index.ts`
 {: .Notes}
 
-这样运行命令 `npm start` 则会时时监控文件更改而编译成 JavaScript 文件，然后运行入口文件程序
+这样运行命令 `npm start` 则会实时监控文件更改而编译成 JavaScript 文件，然后运行入口文件程序
+
+除了使用 `ts-node` 实时编译和运行 TypeScript 程序外还可以使用 Gulp 工具 Build TypeScript 项目包括编译打包等任务。
 
 
 ## Gulp
 
-https://www.typescriptlang.org/docs/handbook/gulp.html
+> [gulp][gulpjs] is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something.
+
+首先要在全局安装 gulp 命令行工具包
+
+`npm install -g gulp-cli`
+
+然后安装 gulp 包和 gulp-typescript 包为开发依赖
+
+`npm install --save-dev gulp gulp-typescript`
+
+在项目根目录下创建文件 `gulpfile.js`
+
+```javascript
+var gulp = require("gulp");
+var ts = require("gulp-typescript");
+var tsProject = ts.createProject("tsconfig.json");
+
+gulp.task("default", function () {
+    return tsProject.src()
+        .pipe(tsProject())
+        .js.pipe(gulp.dest("dist"));
+});
+```
+
+运行命令 `gulp` 即可编译 TypeScript 代码到目标目录 dist 下。
+
+参考官方文档 https://www.typescriptlang.org/docs/handbook/gulp.html
 
 ## Hello world
 
@@ -118,3 +147,4 @@ rl.question('Please type your name:', (username) => {
 [DefinitelyTyped]:http://definitelytyped.org/
 [typescript-declaration-files]:https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html
 [npmjs-types]:https://www.npmjs.com/~types
+[gulpjs]:https://gulpjs.com/

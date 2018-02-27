@@ -1,6 +1,6 @@
 ---
 layout: post
-title: RxJS
+title: RxJS Basic
 excerpt: ""
 modified: 2018-02-05T17:00:00-00:00
 categories: articles
@@ -20,6 +20,8 @@ references:
 * TOC
 {:toc}
 
+[RxJS][rxjs] 是当前 web 开发中最热门的库之一。它提供强大的功能性方法来处理事件，并将集成点集中到越来越多的框架、库和实用程序中，这一切使得学习 Rx 变得前所未有的吸引人。并且它还有能力利用你之前所掌握的语言知识，因为它几乎涵盖了所有语言。如果熟练掌握响应式编程 (reactive programming) 的话，那它所提供的一切似乎都可以变得很容易。
+
 ## Setup with Node.js
 
 在 Node.js 项目中安装 RxJS 模块。
@@ -30,7 +32,7 @@ references:
 
 使用 ES6 语法导入 RxJS ：
 
-```JavaScript
+```javascript
 import Rx from 'rxjs/Rx';
 
 Rx.Observable.of(1,2,3)
@@ -46,7 +48,7 @@ Rx.Observable.of(1,2,3)
 
 还可以使用 [Node Module system][modules] 即 [CommonJS][commonjs] 语法导入 RxJS 模块
 
-```JavaScript
+```javascript
 var Rx = require('rxjs/Rx');
 
 Rx.Observable.of(1,2,3); // etc
@@ -79,7 +81,7 @@ ob.subscribe(x=>console.log(x));
 ```
 
 在编译 TypeScript 时如果遇到错误 `error TS2304: Cannot find name 'Promise'` 或者 `error TS2304: Cannot find name 'Iterable'`
-可以安装 `npm install @types/es6-shim` 以解决。
+可以安装 `npm install @types/es6-shim -D` 以解决。
 
 如果遇到编译错误：
 
@@ -101,7 +103,6 @@ ob.subscribe(x=>console.log(x));
 > 为了突出主题不引入过多额外学习成本，本系列 RxJS 教程使用 `@reactivex/rxjs@5.5.6` 和 ES5 做代码演示。
 {: .Notes}
 
-## 
 
 
 ## Related Productions
@@ -111,7 +112,7 @@ https://github.com/redux-observable/redux-observable
 
 
 
-
+[rxjs]:https://github.com/ReactiveX/rxjs
 [esm]:https://nodejs.org/docs/latest-v9.x/api/esm.html
 [babeljs]:https://babeljs.io/
 [commonjs]:http://requirejs.org/docs/commonjs.html

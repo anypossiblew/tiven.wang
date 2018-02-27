@@ -1,5 +1,6 @@
 ---
 layout: post
+theme: Josefin-Sans
 title: TypeScript Language Overview
 excerpt: "TypeScript is a superset of JavaScript which primarily provides optional static typing, classes and interfaces. One of the big benefits is to enable IDEs to provide a richer environment for spotting common errors as you type the code. For a large JavaScript project, adopting TypeScript might result in more robust software, while still being deployable where a regular JavaScript application would run."
 modified: 2017-06-22T17:00:00-00:00
@@ -20,13 +21,6 @@ references:
 
 * TOC
 {:toc}
-
-<style>
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600');
-.mdl-card__supporting-text.blog__post-body {
-  font-family: 'Josefin Sans', sans-serif;
-}
-</style>
 
 ## what others say
 

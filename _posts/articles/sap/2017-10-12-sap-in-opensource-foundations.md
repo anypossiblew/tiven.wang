@@ -47,18 +47,6 @@ Service Fabrik
 Hyperledger Welcomes SAP as **Premier** Member https://www.hyperledger.org/announcements/2017/03/22/hyperledger-welcomes-sap-as-premier-member
 
 
-[SAP Named a Leader in Translytical Data Platforms by Forrester](https://news.sap.com/independent-research-firm-names-sap-a-leader-in-translytical-data-platforms/)
-
-![Image: The Forrester Wave™: Translytical Data Platforms, Q4 2017](https://2s7gjr373w3x22jf92z99mgm5w-wpengine.netdna-ssl.com/wp-content/uploads/2017/12/Screen-Shot-2017-12-06-at-11.08.12-AM.png)
-{: .center.middle}
-
-参见 [Translytical Databases Hit the Ground Running](https://www.datanami.com/2017/12/06/translytical-databases-hit-ground-running/)
-
-> According to Forrester analyst Mike Gualtieri, a **translytical database** is a “single unified database that supports transaction and analytics in real time without sacrificing transactional integrity, performance, and scale.”  <br>
- -- [https://www.voltdb.com/blog/2017/09/27/translytics-translytical-database/](https://www.voltdb.com/blog/2017/09/27/translytics-translytical-database/)
-
-
-
 
 
 
