@@ -412,18 +412,20 @@ table, .table {
 .warning {
   font-size: 10px;
   color: #ff4081;
+  font-style: normal;
 }
 
 .quotes {
   font-size: 10px;
   color: #6ab344;
+  font-style: normal;
 }
 
 blockquote {
 
   &.Warning {
     &::before {
-      content: "Warning";
+      content: "⚡Warning";
       @extend .warning;
     }
     &::after {
@@ -433,7 +435,7 @@ blockquote {
 
   &.Tips {
     &::before {
-      content: "Tips";
+      content: "💡Tips";
       @extend .warning;
     }
     &::after {
@@ -443,8 +445,8 @@ blockquote {
 
   &.Notes {
     &::before {
-      content: "Notes";
-      @extend .warning;
+      content: "📝Notes";
+      @extend .quotes;
     }
     &::after {
       content: none;
@@ -453,7 +455,7 @@ blockquote {
 
   &.Quotes {
     &::before {
-      content: "Quotes";
+      content: "📖Quotes";
       @extend .quotes;
     }
     &::after {

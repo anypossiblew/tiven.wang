@@ -10,19 +10,18 @@ image:
 comments: true
 share: true
 references:
-  - title: "The ReactiveX library for JavaScript"
-    url: "http://reactivex.io/rxjs/"
-  - title: "Github - ReactiveX/rxjs"
-    url: "https://github.com/ReactiveX/rxjs"
-  - title: "GitBook - Learn RxJS"
-    url: "https://www.learnrxjs.io/"
+  - title: "Callbacks vs Promises vs RxJS vs async/await"
+    url: "https://www.academind.com/learn/javascript/callbacks-vs-promises-vs-rxjs-vs-async-awaits/"
   - title: "Gist - Reactive Programming you've been missing"
     url: "https://gist.github.com/staltz/868e7e9bc2a7b8c1f754"
   - title: "ruanyifeng.com - ECMAScript 6 入门"
     url: "http://es6.ruanyifeng.com/"
   - title: "Google web developers - JavaScript Promises"
     url: "https://developers.google.com/web/fundamentals/getting-started/primers/promises"
-
+  - title: "The ReactiveX library for JavaScript"
+    url: "http://reactivex.io/rxjs/"
+  - title: "Github - ReactiveX/rxjs"
+    url: "https://github.com/ReactiveX/rxjs"
 ---
 
 > 落基山羊 又名白山羊（[Mountain Goat](https://en.wikipedia.org/wiki/Mountain_goat)）是北美洲一种类似山羊的动物，它不是真正的山羊，但归入山羚羊一类。原产地在阿拉斯加东南部往华盛顿州、爱达荷州及蒙大拿州一带，后被引入其它州。 落基山羊十分敏捷，是攀岩、跳跃的能手。它们的蹄上有一圈突出的外缘和一块儿柔软的内垫，使其能在光滑的表面产生足够的摩擦力。列入《世界自然保护联盟》（IUCN） 2008年濒危物种红色名录ver 3.1——低危（LC）。
