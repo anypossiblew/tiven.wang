@@ -88,7 +88,7 @@ h2[id], h3[id], h4[id] {
 
     blockquote {
       font-family: $heading-font;
-      padding: 10px 40px;
+      padding: 20px 40px 0;
       margin: 0;
       width: 100%;
       box-sizing: border-box;
@@ -215,6 +215,15 @@ h2[id], h3[id], h4[id] {
 
     h4::after {
       content: '###';
+      margin: 0 5px;
+      opacity: 0.3;
+    }
+
+    h5 {
+      font-size: 1.3em;
+    }
+    h5::after {
+      content: '####';
       margin: 0 5px;
       opacity: 0.3;
     }

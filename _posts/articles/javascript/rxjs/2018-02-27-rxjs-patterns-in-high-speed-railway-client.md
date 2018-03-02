@@ -202,7 +202,7 @@ After
 Err:异常信息
 */
 ```
-即使目前看使用 try/catch 可以捕捉到异常，error 函数也被调用了，程序也没有中断。但你把 **throw** 用在异步回调函数里时 try/catch 也是无能为力的。
+即使目前看使用 try/catch 可以捕捉到异常，error 函数也被调用了，程序也没有中断。但如果你把 **throw** 用在异步回调函数里时 try/catch 也是无能为力的。
 
 ```typescript
 try {
@@ -266,9 +266,239 @@ function queryLeftTicket(trainDate: string, fromStation: string, toStation: stri
 }
 ```
 
-#### Operator catch
-到目前为止我们了解了响应式编程正确的异常处理机制，接下来我们看一下在 RxJS 里 Operator [catch][rxjs-Observable~catch] 是怎么帮助在数据流中捕获并处理异常的。
 
+> 你如果发现在 operator map 里 throw 一个异常它可以被正确地传播到 error function 并不会抛出异常，那是因为在 map 函数的代码里已经使用 try/catch 捕捉了异常并调用了 observer.error() 函数。
+{: .Warning}
+
+> RxJS 基本的 Operators 都已经使用 try/catch 转换异常到 error 函数了。
+{: .Tips}
+
+#### Operator catch
+到目前为止我们了解了响应式编程正确的异常处理机制，接下来我们看一下在 RxJS 里 Operator [catch][rxjs-Observable~catch] 是怎么帮助在数据流中捕获并处理异常的。上面我们讲了要把思维方式从命令式编程转变到函数式编程和响应式编程上来，传统的 try/catch/finally 就被 error, catch 和 finally 函数替代了。
+
+本质上 catch 函数是捕获的 error 函数中传输的错误信息，它是在错误传播到 Subscriber 之前提前 catch 到 error 信息并做相应处理，要嘛传出正常结果给后续 Operators，要嘛继续传播错误给到 Subscriber。
+
+```typescript
+
+queryLeftTicket('2018-03-01', 'TBP', 'JGK')
+  .catch((err)=>{
+    console.log('发现错误，该怎么办呢');
+    return Observable.of({result:[]});
+  })
+  .subscribe((data:any)=> console.log(data.result[0]), (err:string)=> setTimeout(()=>console.log("Err:"+err)));
+
+console.log("After");
+//Output:
+/**
+After
+发现错误，该怎么办呢
+undefined
+*/
+```
+#### Retry Patterns
+有些错误信息需要编写逻辑进行处理，但有些错误只需要重新调用就可以解决的，比如网络问题，连接超时，系统繁忙，特别是像订票系统这种在负载非常大的时候就更需要多试几次调用，才能做到 **抢**。
+
+RxJS 提供了 Operators [retry][rxjs-Observable~retry], [retryWhen][rxjs-Observable~retryWhen] 方便了我们重试操作。
+
+```typescript
+queryLeftTicket(new Date(new Date()-1000*60*60*24).toJSON().slice(0,10), 'TBP', 'JGK')
+  .retry(3)
+  .catch((err)=>{
+    console.log('发现错误，该怎么办呢');
+    return Observable.of({result:[]});
+  })
+  .subscribe((data:any)=> console.log(data.result[0]), (err:string)=> console.log("Err:"+err));
+
+function queryLeftTicket(trainDate: string, fromStation: string, toStation: string): Observable<any> {
+  ...
+  return Observable.create((observer: Observer<any>)=> {
+    console.log("request leftTicket...")
+    request(url, (error, response, body)=> {
+      ...
+    });
+  });
+}
+//Output:
+/**
+request leftTicket...
+request leftTicket...
+request leftTicket...
+request leftTicket...
+发现错误，该怎么办呢
+undefined
+*/
+```
+为一个 Observable 对象添加了 [retry][rxjs-Observable~retry] 操作，当遇到 error 时 retry 会为后续操作重新订阅 subscribe 此 Observable 对象以做到重试功能。所以 retry(3) 你会发现重试三次，加上第一次总共四次调用。
+
+如果这是你自己的系统就不应该这么暴力了，应该选择一种退避策略(backoff strategy)，例如固定间隔，线性增长间隔，指数增长间隔，随机间隔 jitter。
+
+##### Retry Constant Backoff
+另一个 Operator [retryWhen][rxjs-Observable~retryWhen] 能使我们更精确地控制什么时候怎么样进行重试。例如要在固定时间间隔后进行充实，则可以使用 retryWhen + delay 来做到。
+
+```typescript
+queryLeftTicket(new Date(new Date()-1000*60*60*24).toJSON().slice(0,10), 'TBP', 'JGK')
+  .retryWhen(error$ => error$.delay(2000))
+  .subscribe((data:any)=> console.log(data.result[0]), (err:string)=> console.log("Err:"+err));
+//Output:
+/**
+request leftTicket...
+// 等待 2 秒
+request leftTicket...
+// 等待 2 秒
+request leftTicket...
+// 等待 2 秒
+...
+*/
+```
+如果还想加上最大重试次数的限制呐，那就在 retryWhen 函数返回的 Observable 对象上添加 Operator 逻辑来实现，你可以看到 Observable 对象的强大。Operator [scan][rxjs-Observable~scan] 可以把一个 Observable 对象上发出的事件累加起来，如同 [MapReduce][MapReduce] 里的 reduce。所以我们可以利用 scan 做到计数器功能。
+
+> **scan**: It's like [reduce][rxjs-Observable~reduce], but emits the current accumulation whenever the source emits a value.
+{: .Quotes}
+
+```typescript
+const maxRetries = 3;
+
+queryLeftTicket(new Date(new Date()-1000*60*60*24).toJSON().slice(0,10), 'TBP', 'JGK')
+  .retryWhen(error$ =>
+      error$.delay(2000)
+        .scan((errorCount, err)=> {
+          if(errorCount >= maxRetries) {
+            throw err;
+          }
+          return errorCount + 1;
+        }, 0)
+  )
+  .catch((err)=>{
+    console.error(err);
+    console.log('发现错误，该怎么办呢');
+    return Observable.of({result:[]});
+  })
+  .subscribe((data:any)=> console.log(data.result[0]), (err:string)=> console.log("Err:"+err));
+// Output:
+/**
+request leftTicket...
+// 等待 2 秒
+request leftTicket...
+// 等待 2 秒
+request leftTicket...
+// 等待 2 秒
+request leftTicket...
+系统繁忙!
+发现错误，该怎么办呢
+undefined
+*/
+```
+
+总结：**固定间隔限定次数重试模式** = **Observable** + [ **retryWhen** + **deply** + **scan** ]
+
+##### Retry Linear Backoff
+固定的时间间隔去重试服务调用显然是最直接的方式，但在实际中更有效的一个重试策略是按线性增长的时间间隔重试远程服务调用。这种技术应用在现代的 web 网站上已经很成熟了，第一次重试操作立马进行，再失败的话就要增加下次调用前的时间间隔，依次类推。
+
+现在问题就是要为定时器创建一个线性增长的时间事件序列，Observable [range][rxjs-Observable~range] 可以生成数字序列。例如
+
+```typescript
+const maxRetries = 3;
+Observable.range(0, maxRetries)
+  .subscribe(val=>console.log(val));
+// 0,1,2
+```
+接下来就是如何把这个序列 one to one 分配给 error$ 事件序列，如果 error$ 序列是 error1,error2,error3 的话，那么我们想要得到的效果就是 [error1,0],[error2,1],[error3,2] 这样的一个序列。RxJS 为我们准备了完备的 Operator 工具箱，里面有一个 [zip][rxjs-Observable~zip] 就是为此准备的。
+
+```typescript
+const maxRetries = 3;
+Observable.range(0, maxRetries)
+  .zip(Observable.of('error1', 'error2', 'error3', 'error4'))
+  .subscribe(val=>console.log(val));
+// Output:
+/**
+[ 0, 'error1' ]
+[ 1, 'error2' ]
+[ 2, 'error3' ]
+*/
+```
+
+整合到 retryWhen 里面去
+
+```typescript
+const maxRetries = 3;
+
+queryLeftTicket(new Date(new Date()-1000*60*60*24).toJSON().slice(0,10), 'TBP', 'JGK')
+  .retryWhen(error$ =>
+      Observable.range(0, maxRetries)
+        .zip(error$)
+        .mergeMap(([i, err])=>
+          Observable.timer(i * 1000)
+            .do(()=> console.log(`Retrying after ${i} second(s)...`))
+        )
+  )
+  .catch((err)=>{
+    console.error(err);
+    console.log('发现错误，该怎么办呢');
+    return Observable.of({result:[]});
+  })
+  .subscribe((data:any)=> console.log(data.result[0]), (err:string)=> console.log("Err:"+err));
+// Output:
+/**
+request leftTicket...
+Retrying after 0 second(s)...
+request leftTicket...
+Retrying after 1 second(s)...
+request leftTicket...
+Retrying after 2 second(s)...
+request leftTicket...
+*/
+```
+
+最后错误呐？漏掉了，当时间序列被用完时，error$ 序列再产生的事件就无处可去了，丢掉了。所以在创建定时器时要判断一下如果已经用过了最后一个机会那么就抛出此错误。
+
+```typescript
+const maxRetries = 3;
+
+queryLeftTicket(new Date(new Date()-1000*60*60*24).toJSON().slice(0,10), 'TBP', 'JGK')
+  .retryWhen(error$ =>
+      Observable.range(0, maxRetries+1)
+        .zip(error$)
+        .mergeMap(([i, err])=> {
+          if(i === maxRetries) {
+            return Observable.throw(err);
+          }
+          return Observable.timer(i * 1000)
+                  .do(()=> console.log(`Retrying after ${i} second(s)...`))
+        })
+  )
+  .catch((err)=>{
+    console.error(err);
+    console.log('发现错误，该怎么办呢');
+    return Observable.of({result:[]});
+  })
+  .subscribe((data:any)=> console.log(data.result[0]), (err:string)=> console.log("Err:"+err));
+// Output:
+/**
+request leftTicket...
+Retrying after 0 second(s)...
+request leftTicket...
+Retrying after 1 second(s)...
+request leftTicket...
+Retrying after 2 second(s)...
+request leftTicket...
+系统返回无数据
+发现错误，该怎么办呢
+undefined
+*/
+```
+
+总结：**线性指数增长间隔限定次数重试模式** = **Observable** + [ **retryWhen** + [ **range** + **zip** + **mergeMap** + **timer** ]]
+
+##### Retry Exponential Backoff
+如果是指数性增长的时间间隔，则只需要稍微更改一下时间事件流逻辑即可，如
+
+```typescript
+const maxRetries = 4;
+Observable.range(0, maxRetries)
+  .map(val=>val*val)
+  .subscribe((data:any)=> console.log(data), (err:string)=> console.log("Err:"+err));
+// 0,1,4,9
+```
 
 ### Data Processing
 
@@ -288,6 +518,7 @@ http://brianflove.com/2017/11/01/ngrx-anti-patterns/
 Efficient design patterns for event handling with RxJS
 https://medium.com/@OlegVaraksin/efficient-design-patterns-for-event-handling-with-rxjs-d49b56d2ae36
 
+Exponential Backoff Circuit Breaker
 
 
 
@@ -306,3 +537,12 @@ https://medium.com/@OlegVaraksin/efficient-design-patterns-for-event-handling-wi
 [rxjs-Observer]:http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html
 [rxjs-Observer~error]:http://reactivex.io/rxjs/class/es6/MiscJSDoc.js~ObserverDoc.html#instance-method-error
 [rxjs-Observable~catch]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-catch
+[rxjs-Observable~retry]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-retry
+[rxjs-Observable~retryWhen]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-retryWhen
+[rxjs-Observable~scan]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-scan
+[rxjs-Observable~reduce]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-reduce
+[rxjs-Observable~range]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-range
+[rxjs-Observable~zip]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-zip
+
+[Exponential_backoff]:https://en.wikipedia.org/wiki/Exponential_backoff
+[MapReduce]:https://en.wikipedia.org/wiki/MapReduce

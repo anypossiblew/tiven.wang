@@ -77,9 +77,6 @@ Now you can use all the built in node modules (e.g. `import fs = require('fs');`
 },
 ```
 
-> windows system 请使用格式 `nodemon --exec .\node_modules\.bin\ts-node -- .\index.ts`
-{: .Notes}
-
 这样运行命令 `npm start` 则会实时监控文件更改而编译成 JavaScript 文件，然后运行入口文件程序
 
 除了使用 `ts-node` 实时编译和运行 TypeScript 程序外还可以使用 Gulp 工具 Build TypeScript 项目包括编译打包等任务。
