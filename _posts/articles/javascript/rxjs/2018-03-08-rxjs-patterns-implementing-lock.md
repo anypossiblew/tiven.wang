@@ -16,7 +16,7 @@ share: true
 references:
   - title: "The Node.js Event Loop, Timers, and process.nextTick()"
     url: "https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/"
-  - title: "The Node.js Event Loop, Timers, and process.nextTick()"
+  - title: "What you should know to really understand the Node.js Event Loop"
     url: "https://medium.com/the-node-js-collection/what-you-should-know-to-really-understand-the-node-js-event-loop-and-its-metrics-c4907b19da4c"
   - title: "The introduction to Reactive Programming you've been missing"
     url: "https://gist.github.com/staltz/868e7e9bc2a7b8c1f754"
