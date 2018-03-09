@@ -15,6 +15,8 @@ share: true
 references:
   - title: "GitBook - TypeScript Deep Dive - TypeScript with Node.js"
     url: "https://basarat.gitbooks.io/typescript/docs/quick/nodejs.html"
+  - title: "RxJS v4.0"
+    url: "https://xgrommx.github.io/rx-book/index.html"
 ---
 
 * TOC

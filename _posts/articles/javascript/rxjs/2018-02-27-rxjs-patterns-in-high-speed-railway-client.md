@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: Josefin-Sans
-title: RxJS - Patterns in High Speed Railway Client
+title: RxJS - Error Handling Patterns in High Speed Railway Client
 excerpt: "RxJS 多种模式在高铁客户端中的应用"
 modified: 2018-02-27T17:00:00-00:00
 categories: articles
@@ -14,8 +14,13 @@ image:
 comments: true
 share: true
 references:
-  - title: ""
-    url: ""
+  - title: "Top 7 RxJS Patterns for Angular Development"
+    url: "https://angularfirebase.com/lessons/top-7-rxjs-patterns-for-angular-development/"
+  - title: "Efficient design patterns for event handling with RxJS"
+    url: "https://medium.com/@OlegVaraksin/efficient-design-patterns-for-event-handling-with-rxjs-d49b56d2ae36"
+  - title: "mergeMap vs flatMap vs concatMap vs switchMap"
+    url: "https://tolikcode.github.io/post/rxjsMap/"    
+
 ---
 
 * TOC
@@ -505,9 +510,11 @@ Observable.range(0, maxRetries)
 
 ## Share Data Flow
 
+## RxJS Study Tools
 
-Top 7 RxJS Patterns for Angular Development
-https://angularfirebase.com/lessons/top-7-rxjs-patterns-for-angular-development/
+[RxJS Marbles](http://rxmarbles.com)
+[Rx Visualizer](https://rxviz.com/)
+
 
 RxJS is great. So why have I moved on?
 https://medium.com/@puppybits/rxjs-is-great-so-why-have-i-moved-on-534c513e7af3
@@ -515,8 +522,7 @@ https://medium.com/@puppybits/rxjs-is-great-so-why-have-i-moved-on-534c513e7af3
 RxJS Antipatterns
 http://brianflove.com/2017/11/01/ngrx-anti-patterns/
 
-Efficient design patterns for event handling with RxJS
-https://medium.com/@OlegVaraksin/efficient-design-patterns-for-event-handling-with-rxjs-d49b56d2ae36
+
 
 Exponential Backoff Circuit Breaker
 
