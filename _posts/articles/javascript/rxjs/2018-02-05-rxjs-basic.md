@@ -1,7 +1,7 @@
 ---
 layout: post
 title: RxJS Basic
-excerpt: ""
+excerpt: "本文介绍 RxJS 项目基础安装步骤"
 modified: 2018-02-05T17:00:00-00:00
 categories: articles
 tags: [RxJS, TypeScript, JavaScript]
