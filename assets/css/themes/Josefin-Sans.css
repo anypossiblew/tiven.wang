@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600');
-.mdl-card__supporting-text.blog__post-body, blockquote p, .demo-references .mdl-list__item-primary-content
+@import url('https://fonts.googleapis.com/css?family=Kalam:400,700');
+.mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content
 {
-  font-family: 'Josefin Sans', "Comfortaa", cursive,"Arial",sans-serif;
+  font-family: 'Josefin Sans', "Comfortaa", cursive, "Arial", sans-serif;
+}
+
+.demo-blog .blog__post .mdl-card__supporting-text blockquote p {
+  font-family: 'Kalam', cursive;
+  font-size: 14px !important;
 }

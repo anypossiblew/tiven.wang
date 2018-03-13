@@ -3,7 +3,7 @@ layout: post
 theme: Josefin-Sans
 title: RxJS - Error Handling Patterns in High Speed Railway Client
 excerpt: "RxJS 多种模式在高铁客户端中的应用"
-modified: 2018-02-27T17:00:00-00:00
+modified: 2018-03-13T17:00:00-00:00
 categories: articles
 tags: [RxJS, TypeScript, JavaScript]
 image:
@@ -20,7 +20,8 @@ references:
     url: "https://medium.com/@OlegVaraksin/efficient-design-patterns-for-event-handling-with-rxjs-d49b56d2ae36"
   - title: "mergeMap vs flatMap vs concatMap vs switchMap"
     url: "https://tolikcode.github.io/post/rxjsMap/"    
-
+  - title: "RxJS Antipatterns"
+    url: "http://brianflove.com/2017/11/01/ngrx-anti-patterns//"
 ---
 
 * TOC
@@ -30,7 +31,10 @@ references:
 
 对于普通的异常处理 JavaScript 可以使用 `try catch` 来捕获和处理, 但 Error Handling 用在异步函数上则情况更加复杂一些，特别是异步调用远程连接即 Remote HTTP call 时会出现更复杂的情况，如 网络异常、远程服务器错误、连接超时、系统忙、数据不存在、CDN 类错误等等问题。如果对类似这些错误处理不好，你的代码逻辑将陷入紊乱之中。如果你找一个公开的远程系统来做 RxJS 编程练习的话，没有哪个系统比火车票订票系统更合适的了。它把远程服务调用 Remote HTTP call 会出现的错误场景演绎的淋漓尽致，几十个 API 之间数据相互流转让你有足够的余地发挥 RxJS Data Processing Stream 的能力。
 
-本篇将介绍我在拿订票系统做 RxJS 练习时用到的一些模式，包括 Error Handling、Coordinating business processes 等相关的。
+本篇将介绍我在拿订票系统做 RxJS 练习时用到的一些模式，包括 Async Call, Error Handling, retry, Backoff strategy 等相关的。
+
+> 本文完整代码可下载自 [Github](https://github.com/tiven-wang/rxjs-tutorial/tree/railway-patterns)
+{: .Tips}
 
 ## Remote HTTP call
 远程 HTTP 调用如 普通 http、RESTFul API、SOAP、OData、GraphQL等在当下的软件开发过程中占据重要位置，不管是 [SOA][soa] 还是 [Microservices](/articles/microservices-architecture/) 理论中对 HTTP services 的处理都要给予重点关注。
@@ -505,10 +509,6 @@ Observable.range(0, maxRetries)
 // 0,1,4,9
 ```
 
-### Data Processing
-
-
-## Share Data Flow
 
 ## RxJS Study Tools
 
@@ -516,15 +516,6 @@ Observable.range(0, maxRetries)
 [Rx Visualizer](https://rxviz.com/)
 
 
-RxJS is great. So why have I moved on?
-https://medium.com/@puppybits/rxjs-is-great-so-why-have-i-moved-on-534c513e7af3
-
-RxJS Antipatterns
-http://brianflove.com/2017/11/01/ngrx-anti-patterns/
-
-
-
-Exponential Backoff Circuit Breaker
 
 
 

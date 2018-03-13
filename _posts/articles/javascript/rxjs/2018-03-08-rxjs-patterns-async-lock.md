@@ -1,16 +1,16 @@
 ---
 layout: post
 theme: Josefin-Sans
-title: RxJS Patterns - Implementing Lock with Observable Subject
-excerpt: "RxJS 中通过 Observable 和 Subject 实现锁的机制"
-modified: 2018-03-08T17:00:00-00:00
+title: RxJS Patterns - Implementing Async Lock
+excerpt: "RxJS 中通过 Observable 和 Subject 实现异步锁的机制"
+modified: 2018-03-13T17:00:00-00:00
 categories: articles
 tags: [RxJS, TypeScript, JavaScript]
 image:
-  vendor: twitter
-  feature: /media/DW0bAaPVoAAce9s.jpg:large
-  credit: Nat Geo Photography‏
-  creditlink: https://twitter.com/NatGeoPhotos/status/967459192129847296
+  vendor: yourshot.nationalgeographic
+  feature: /u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNfNHPnVooiA8n5vE0-cAR15tNTA-kJQmkOJJQ3pUh29FLhiRIAue1X5mY_HEakGQW3u2qj1gappgadEl86J1EngUipsJriseu4q94H5luZ6y2TFfBO0qrNWI-CmtrikL8JN1wbJfJ_vnu6TJFkXZx95AAgNCGJo7-pbjIfw3QSkvtGvQ/
+  credit: Dong Giang
+  creditlink: https://yourshot.nationalgeographic.com/profile/1423443
 comments: true
 share: true
 references:
@@ -20,6 +20,8 @@ references:
     url: "https://medium.com/the-node-js-collection/what-you-should-know-to-really-understand-the-node-js-event-loop-and-its-metrics-c4907b19da4c"
   - title: "The introduction to Reactive Programming you've been missing"
     url: "https://gist.github.com/staltz/868e7e9bc2a7b8c1f754"
+  - title: "What are schedulers in RxJS"
+    url: "https://blog.strongbrew.io/what-are-schedulers-in-rxjs/"
 
 ---
 
@@ -28,7 +30,10 @@ references:
 
 JavaScript 语言本身是单线程的，Nodejs 在单线程内是通过 event loop 机制执行非阻塞 I/O 操作的。在 event loop 的一个 callback 程序中代码执行是不会被打断的，所以并不需要加锁(locking)。但如果你的事务操作或者临界区是含有异步代码（file I/O, timer等）或者称为跨越多个 event loop callback 的，那么它就不是并发安全的，就需要 locking 机制来进行保护。
 
-## Implementing with JavaScript
+> 本文完整代码可下载自 [Github](https://github.com/tiven-wang/rxjs-tutorial/tree/railway-patterns)
+{: .Tips}
+
+## Lock
 例如考虑下面的代码
 ```javascript
 redis.get('key', function(err, value) {
@@ -106,54 +111,73 @@ lock.acquire((done)=> {
 拿我们这个问题举例，我们可以把加锁和解锁看成异步数据流，当消费者程序请求加锁时，这个请求被当作一个事件发送给加锁数据流。加锁程序在得到此事件后会做出响应，做进一步数据处理。相应地解锁也看成一个事件发送到解锁数据流，然后锁程序会做出响应处理。
 
 ### Observable Operator zip
-我们来详细分析如何通过异步数据流做到加锁加锁机制。当消费端程序1请求加锁，那么一个请求加锁事件 **lock event** 会发送到加锁数据流。锁程序得到此事件后就会判断当前手里有没有锁或者锁是否已经被另外的消费端程序拿走，如果手里有锁自然就给他行了，如果锁已经被消费端程序2拿走那就要知道他什么时候还。上面我们讲到释放锁是可以通过 callback 方式或者 Promise 方式实现，但这不够响应式(Reactive)。所以我们把释放锁也看作一个异步数据流，当锁程序得到消费端程序2释放锁的事件 **release lock event** 时要和消费端程序1的请求加锁事件 **lock event** 匹配上。在异步数据流里如何做到呐？
+我们来详细分析如何通过异步数据流做到加锁加锁机制。当消费端程序A请求加锁，那么一个请求加锁事件 **lock event** 会发送到加锁数据流。锁程序得到此事件后就会判断当前手里有没有锁或者锁是否已经被另外的消费端程序拿走，如果手里有锁自然就给他行了，如果锁已经被消费端程序B拿走那就要知道他什么时候还。上面我们讲到释放锁是可以通过 callback 方式或者 Promise 方式实现，但这不够响应式(Reactive)。所以我们把释放锁也看作一个异步数据流，当锁程序得到消费端程序B释放锁的事件 **release lock event** 时要和消费端程序A的请求加锁事件 **lock event** 匹配上。在异步数据流里如何做到呐？
 
 强大的 RactiveX 库为我们提供了这样的工具，Operators [Zip][reactivex-zip] 可以合并多个数据流，按先后顺序一对一匹配每个数据流上的事件，然后合并成一个事件。可以利用它实现我们的锁程序，加锁数据流事件必须等到释放锁数据流相应的事件后才能往下执行。
 
 ![IMAGE: RactiveX zip](/images/JavaScript/RxJS/zip.png)
 
 ### Implementing Lock
+下面来看一下具体实现，首先创建一个锁类`Lock`，它有两个属性，请求锁的队列和释放锁的队列。然后在构造函数中建立两者的关系，并且初始化一个原始锁给到释放锁队列。在实际应用当中你可能需要更严谨的程序，比方说释放锁方法做些检查，不是任何程序都能调用，你得有锁才能释放锁等限制。
 
+```typescript
+class Lock {
+  // 请求锁队列
+  private lockAcquire = new Subject<Observer<void>>();
+  // 释放锁队列
+  private lockRelease = new Subject();
 
-```javascript
-let lock = new Subject();
-let lockComplete = new Subject();
+  constructor() {
+    this.lockAcquire
+      .zip(this.lockRelease)
+      .subscribe(([acquirer, released])=> {
+        acquirer.next();
+        acquirer.complete();
+      });
 
-lock.zip(lockComplete)
-  .subscribe(([observer, answer])=> {
-    console.log('locking');
-    observer.next();
-  });
+    // 初始化时先 release 一个释放锁事件
+    this.release();
+  }
 
-releaseLock();
+  public acquire(): Observable<void> {
+    return Observable.create((observer: Observer<void>) => {
+      this.lockAcquire.next(observer);
+    });
+  }
+
+  public release() {
+    this.lockRelease.next();
+  }
+}
+```
+
+然后调用锁程序，请求锁后做些异步的操作，整个流程使用 RxJS 实现的效果如下程序
+
+```typescript
+let lock = new Lock();
 
 lockAndProcess('1');
 lockAndProcess('2');
 lockAndProcess('3');
 lockAndProcess('4');
 
-function getLock(): Observable<string> {
-  return Observable.create((observer: Observer<string>) => {
-    lock.next(observer);
-  });
-}
-
-function releaseLock(): void {
-  lockComplete.next('released');
-}
-
 function lockAndProcess(val: string) {
-  getLock()
+  lock.acquire()
     .mergeMap(()=>asyncProcess(val))
     .subscribe(()=> {
-      console.log('releasing');
-      releaseLock();
+      console.log(`My work ${val} is done`);
+    },err=>{
+      console.error(err);
+    },()=> {
+      console.log('releasing lock');
+      console.log();
+      lock.release();
     });
 }
 
 function asyncProcess(val: string): Observable<string> {
   return Observable.create((observer: Observer<string>)=> {
-    console.log('processing');
+    console.log('got lock and processing');
     console.log('waiting 2 seconds ...');
     setTimeout(()=> {
       observer.next('answer '+val);
@@ -161,11 +185,106 @@ function asyncProcess(val: string): Observable<string> {
     }, 2000);
   });
 }
+// Output:
+/**
+got lock and processing
+waiting 2 seconds ...
+My work 1 is done
+releasing lock
+
+got lock and processing
+waiting 2 seconds ...
+My work 2 is done
+releasing lock
+
+got lock and processing
+waiting 2 seconds ...
+My work 3 is done
+releasing lock
+
+got lock and processing
+waiting 2 seconds ...
+My work 4 is done
+releasing lock
+
+*/
 ```
 
-queue
+可以看到整个过程的异步操作都是用 [Observable][rxjs-Observable] 来实现的。
 
-pool
+## Queue
+基于以上逻辑，我们还可以实现任务队列，虽然 JavaScript 本就是按照队列异步处理 callback 函数的，但对于跨 event loop callback 的话还是需要自定义队列逻辑。
+
+```typescript
+class Queue {
+  // 任务事件队列
+  private taskQueue = new Subject<Observer<void>>();
+  // 任务完成事件队列
+  private taskCompleteQueue = new Subject<void>();
+
+  constructor() {
+    this.taskQueue
+      .zip(this.taskCompleteQueue)
+      .subscribe(([taskObserver, taskComplete])=> {
+        taskObserver.next();
+        taskObserver.complete();
+      });
+
+    // 初始化时先 release 一个任务完成事件
+    this.completeTask();
+  }
+
+  public addTask(task: ()=>Observable<void>): Observable<void> {
+
+    return Observable.create((observer: Observer<void>) => {
+        this.taskQueue.next(observer);
+      })
+      .mergeMap(()=>task())
+      .subscribe(
+        ()=>{},
+        (err)=>console.error(err),
+        ()=>this.completeTask());
+  }
+
+  public completeTask() {
+    this.taskCompleteQueue.next()
+  }
+}
+
+let queue = new Queue();
+
+processTask('1');
+processTask('2');
+processTask('3');
+processTask('4');
+
+function processTask(val: string) {
+  queue.addTask(()=> {
+    console.log(`task ${val} starting`);
+    return asyncProcess(val).do(()=>console.log(`Task ${val} is done`));
+  });
+}
+// Output:
+/**
+task 1 starting
+waiting 2 seconds ...
+Task 1 is done
+task 2 starting
+waiting 2 seconds ...
+Task 2 is done
+task 3 starting
+waiting 2 seconds ...
+Task 3 is done
+task 4 starting
+waiting 2 seconds ...
+Task 4 is done
+*/
+```
+
+
+## Pool
+可以做队列，就可以进一步做池子。这个留给读者自己做练习。
+
 
 
 
@@ -177,7 +296,6 @@ pool
 [reactivemanifesto]:http://www.reactivemanifesto.org/
 [rx]:https://archive.codeplex.com/?p=rx
 
-
 [rxjs]:https://github.com/ReactiveX/rxjs
 [soa]:https://en.wikipedia.org/wiki/Service-oriented_architecture
 [Promise]:https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
@@ -186,6 +304,7 @@ pool
 [angular-http]:https://angular.io/guide/http
 [npm-request]:https://www.npmjs.com/package/request
 
+[rxjs-Observable]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
 [rxjs-Observable-fromPromise]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#static-method-fromPromise
 [rxjs-Observable-mergeMap]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-mergeMap
 [rxjs-Observable-switchMap]:http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html#instance-method-switchMap
