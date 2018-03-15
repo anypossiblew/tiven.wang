@@ -15,8 +15,10 @@ comments: true
 share: true
 references:
   - id: 1
-    title: "Angular2 - how to start and with which IDE"
-    url: "https://stackoverflow.com/questions/40840317/angular2-how-to-start-and-with-which-ide"
+    title: "Who needs state management anyways?"
+    url: "https://medium.com/@vyaron/who-needs-state-management-anyways-55e6d1c74239"
+
+
 ---
 
 * TOC
@@ -62,6 +64,10 @@ React to UI => DOM Events + Listener
 ```
 
 ### JavaScript Libraries
+
+Rendering :
+[JSX](https://reactjs.org/docs/jsx-in-depth.html)
+Templates
 
 ### Angular
 
@@ -140,9 +146,24 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 ### Vue
 
+他们有不同的 change-detection strategy
+
+change-detection 后 re-calculating and re-rendering UI
+
+State management 与 [Observable Data Services](http://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/)
+
 ## React to UI
 
 
+dependency injection
+
+change detection
+
+forms
+
+router modules
+
+managing state
 
 
 
