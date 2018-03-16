@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600');
+@import url('https://fonts.googleapis.com/css?family=Kalam:400,700');
+
+@font-face {
+    font-family: TheGoldenEra;
+    src: url(/assets/fonts/TheGoldenEra.woff2);
+}
+
+.mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
+h2, h3, h4, h5, #markdown-toc
+{
+  font-family: 'TheGoldenEra', 'Josefin Sans', cursive, "Arial", sans-serif !important;
+}
+
+.demo-blog .blog__post .mdl-card__supporting-text blockquote p {
+  font-family: 'Kalam', cursive;
+  font-size: 14px !important;
+}
