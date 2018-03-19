@@ -1,6 +1,6 @@
 ---
 layout: post
-theme: Josefin-Sans
+theme: 细秀体
 title: Angular - Setup Dev Project
 excerpt: "Setup Angular development project"
 modified: 2018-03-13T17:00:00-00:00

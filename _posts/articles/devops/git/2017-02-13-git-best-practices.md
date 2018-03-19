@@ -153,7 +153,7 @@ $ git commit -c ORIG_HEAD                                   (5)
 2. This leaves your working tree (the state of your files on disk) unchanged but undoes the commit and leaves the changes you committed unstaged (so they'll appear as "Changes not staged for commit" in git status and you'll need to add them again before committing). If you only want to add more changes to the previous commit, or change the commit message1, you could use git reset --soft HEAD~ instead, which is like git reset HEAD~ but leaves your existing changes staged.
 3. Make corrections to working tree files.
 4. git add anything that you want to include in your new commit.
-5. Commit the changes, reusing the old commit message. reset copied the old head to .git/ORIG_HEAD; commit with -c ORIG_HEAD will open an editor, which initially contains the log message from the old commit and allows you to edit it. If you do not need to edit the message, you could use the -C option.
+5. Commit the changes, reusing the old commit message. reset copied the old head to `.git/ORIG_HEAD`; commit with `-c ORIG_HEAD` will open an editor, which initially contains the log message from the old commit and allows you to edit it. If you do not need to edit the message, you could use the `-C` option.
 
 [stackoverflow.com - How to undo last commit(s) in Git?](http://stackoverflow.com/questions/927358/how-to-undo-last-commits-in-git)
 
@@ -395,6 +395,11 @@ once you find the commit you want to branch from you can do that from within the
 
 ### Associating text editors with Git
 
+For example, you can set your default editor in Git to use [Atom](https://atom.io/) if you have installed the editor.
+
+`git config --global core.editor "C:/Users/USERNAME/AppData/Local/atom/bin/atom.cmd"`
+
+
 [https://help.github.com/articles/associating-text-editors-with-git/](https://help.github.com/articles/associating-text-editors-with-git/)
 
 ### Remote
@@ -469,6 +474,67 @@ If you also need to delete the local tag, use:
 `git tag --delete tagname`
 
 [stackoverflow - How to delete a git remote tag?](https://stackoverflow.com/questions/5480258/how-to-delete-a-git-remote-tag)
+
+## Gerrit
+
+### Gerrit push to refs/heads/master prohibited
+
+在使用 git 命令行时默认 push 到 refs/heads/master，所以一般没有权限。
+
+Don't push to `refs/heads/master`, push to `refs/for/master` instead. This will trigger a change for code review.
+
+If you wish to push directly to `refs/heads/master` (and thus bypass code review) we'll need +1 from your project lead.
+
+Solution:
+**Option 1**. Add option `push = HEAD:refs/for/master` in the `.git/config` file as
+
+```
+[remote "origin"]
+	url = https://c5235715@git.wdf.sap.corp/HC/HSC/HSIC/s4hana-baidu-integration.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	push = HEAD:refs/for/master
+```
+
+**Option 2**. Or set options in the `push` command
+
+`git push [remote-url] HEAD:refs/for/master`
+
+refer [Gerrit Code Review - Uploading Changes](https://gerrit-review.googlesource.com/Documentation/user-upload.html)
+
+**Option 3**. Use the git-review, [git-review](https://www.mediawiki.org/wiki/Gerrit/git-review) is a command-line tool for Git / [Gerrit](https://www.mediawiki.org/wiki/Gerrit) to submit a change or to fetch an existing one.
+
+
+### How to automatically add a Change-Id to commit messages
+
+If the error information show as
+```
+Hint: To automatically insert Change-Id, install the hook:
+****** [url]:hooks/commit-msg ${gitdir}/hooks/
+And then amend the commit:
+git commit --amend
+```
+
+Solution:
+
+Just download it from : http://www.example.com/r/tools/hooks/commit-msg and then copy it to your `.git/hooks` folder.
+
+Or you can download it from [gerrit review](https://gerrit-review.googlesource.com/tools/hooks/commit-msg)
+
+
+If you add the commit hook after making the commit locally, which is probably the case, you need to amend your last commit. Simply amending the last commit without making any real change will add the Change-ID to your log message.
+
+```
+git commit -a --amend
+git log -1 // this is to check that the Change-ID is present in your log message
+git push origin HEAD:refs/for/master
+```
+
+If you are like me and have a lot of projects at create clones every now and then you might want to setup your git installation so the commit-msg hook is installed by default. You can do this by copying the commit-msg to your git template folder. On my Win7 system it can be found here:
+
+`C:\Program Files (x86)\Git\share\git-core\templates\hooks`
+
+The next time you create a new clone you do not need to download the commit-msg again.
+
 
 ## Best Practices
 [Version Control Best Practices](https://www.git-tower.com/learn/git/ebook/en/command-line/appendix/best-practices)

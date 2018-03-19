@@ -56,3 +56,10 @@ http://designwithfontforge.com/en-US/The_Final_Output_Generating_Font_Files.html
 
 https://www.freetype.org/
 http://www.high-logic.com/font-editor/fontcreator.html
+
+## 汉字字体
+
+### 凝明朝体
+
+這個字體是來自於2015年底「瀚字選」標準字設計展的延伸。
+集結明體與楷體的優點，橫劃末端有如凝霜般翹起，是它最⼤的特色。放大來看，明體的感覺十分明顯，可作為標題⽤字；縮小來看，又有楷體的優雅，⼗分適合使用於書籍內頁之中。平假名的設計保留部分漢字筆劃的特⾊，是為了與漢字的風格做呼應。

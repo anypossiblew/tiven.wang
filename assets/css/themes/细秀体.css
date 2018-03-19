@@ -2,19 +2,19 @@
 @import url('https://fonts.googleapis.com/css?family=Kalam:400,700');
 
 @font-face {
-    font-family: TheGoldenEra;
+    font-family: '细秀体';
     src:
-      url('//cdnjs.tiven.wang/fonts/TheGoldenEra仅简中2500.woff2') format('woff2'),
-      url('//cdnjs.tiven.wang/fonts/TheGoldenEra仅简中2500.ttf') format('truetype');
+      url('//cdnjs.tiven.wang/fonts/汉仪细秀体仅简中2500.woff2') format('woff2'),
+      url('//cdnjs.tiven.wang/fonts/汉仪细秀体仅简中2500.ttf') format('truetype');
 }
 
 .mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
 h2, h3, h4, h5, #markdown-toc
 {
-  font-family: 'TheGoldenEra', 'Josefin Sans', "Arial", sans-serif !important;
+  font-family: '细秀体', 'Josefin Sans', "Arial", sans-serif !important;
 }
 
 .demo-blog .blog__post .mdl-card__supporting-text blockquote p {
-  font-family: 'TheGoldenEra', 'Kalam', "Arial";
+  font-family: '细秀体', 'Kalam', "Arial", sans-serif;
   font-size: 14px !important;
 }
