@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: 细秀体
-title: Angular - NgModules
+title: Angular - Modules
 excerpt: ""
 modified: 2018-03-19T17:00:00-00:00
 categories: articles
@@ -50,11 +50,14 @@ import { AppComponent } from './app.component';
 export class AppModule { }
 ```
 
-`@NgModule.declarations` 声明此 module 里包含的类
+`@NgModule.declarations` 声明此 module 里包含的类 => include classes in the package
 
-`@NgModule.imports` 引入其他 module 中的类型进来
+`@NgModule.imports` 引入其他 module 中的类型进来 => import classes from another package
 
 
+* JavaScript 语言本身的模块 Module 其实起到的是 Collection 的作用，就像 Java 语言里的 Class File；
+* 而 JavaScript 源文件目录层级就像 Java 的 package，用于区分不同包；
+* 而 Angular NgModule 才可以表示更抽象层面的模块含义，包含不同功能的类，就像 Java 的 jar 包；
 
 
 [NgModule]:https://angular.io/api/core/NgModule
