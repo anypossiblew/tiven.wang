@@ -2,7 +2,7 @@
 layout: post
 theme: 细秀体
 title: Angular - Observables and RxJS
-excerpt: ""
+excerpt: "Observables provide support for passing messages between publishers and subscribers in your application."
 modified: 2018-03-21T18:00:00-00:00
 categories: articles
 tags: [RxJS, Observable, Angular, TypeScript, JavaScript]

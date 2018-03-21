@@ -1,3 +1,21 @@
+- title: Angular Tutorial
+  series: /series/angular
+  image:
+    vendor: twitter
+    feature: /media/DWxM_OlX0AEOamH.jpg:large
+    credit: Nat Geo Photography‏
+    creditlink: https://twitter.com/NatGeoPhotos/status/967232671427514368
+  posts:
+    - title: Setup Dev Project
+      description:
+      link: /articles/angular-setup-dev-project/
+    - title: Modules
+      description:
+      link: /articles/angular-ngmodules/
+    - title: Dependency Injection
+      description: 
+      link: /articles/angular-dependency-injection/
+
 - title: Try Cloud Foundry
   series: /series/try-cloudfoundry
   image:
