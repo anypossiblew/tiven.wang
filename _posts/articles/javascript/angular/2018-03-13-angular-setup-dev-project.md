@@ -102,6 +102,10 @@ When you want to deploy your app :
 Will also minimify JS and CSS. [[1.](#reference-1)]
 
 
+推荐书籍:
+
+* [Rangle's Angular Training Book](https://angular-2-training-book.rangle.io/)
+
 
 
 
