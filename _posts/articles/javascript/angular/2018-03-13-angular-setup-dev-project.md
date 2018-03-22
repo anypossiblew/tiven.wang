@@ -101,8 +101,14 @@ When you want to deploy your app :
 `ng serve --prod`
 Will also minimify JS and CSS. [[1.](#reference-1)]
 
+## How to debug the typescript source code
 
-推荐书籍:
+// TODO
+https://angularfirebase.com/lessons/methods-for-debugging-an-angular-application/
+
+https://medium.com/@ttemplier/how-to-debug-the-typescript-source-code-of-angular2-99a593e2983f
+
+## 推荐书籍
 
 * [Rangle's Angular Training Book](https://angular-2-training-book.rangle.io/)
 
