@@ -31,3 +31,6 @@ npm start
 ```
 
 https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md
+
+React.js Top 10 Open Source Projects (v.Mar 2018)
+https://medium.mybridge.co/react-js-top-10-open-source-projects-v-mar-2018-7eff0c0d3a2a
