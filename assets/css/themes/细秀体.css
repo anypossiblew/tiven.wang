@@ -14,7 +14,7 @@ h2, h3, h4, h5, #markdown-toc
   font-family: '细秀体', 'Josefin Sans', "Arial", sans-serif !important;
 }
 
-.demo-blog .blog__post .mdl-card__supporting-text blockquote p {
+.demo-blog .blog__post .mdl-card__supporting-text blockquote {
   font-family: '细秀体', 'Kalam', "Arial", sans-serif;
   font-size: 14px !important;
 }

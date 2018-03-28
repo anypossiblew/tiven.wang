@@ -99,7 +99,7 @@ export class AppModule { }
 接下来就是把这个普通的 HTML 与 Angular Component 绑定起来。
 
 ### Two-way data binding with ngModel
-想要实现双向绑定，就要使用 Directive [`NgModel`][NgModel] ，例如 `<input [(ngModel)]="name" #ctrl="ngModel" required>`。因为 `NgModel` 同时还会把自己暴露([`exportAs`][Directive])为一个变量名 *ngModel* ，所以我们可以把它转给 template reference variable 这里的叫做 `ctrl` ，那么就可以使用变量 `ctrl` 得到 `input` 对应的 `ngModel` 的详细属性了 `<p>Valid: {{ ctrl.valid }}</p>`。
+想要实现双向绑定，就要使用 Directive [`NgModel`][NgModel] ，例如 `<input [(ngModel)]="name" #ctrl="ngModel" required>`。因为 `NgModel` 同时还会把自己暴露([`exportAs`][Directive])为一个变量名 *ngModel* ，所以我们可以把它转给 template reference variable 这里的叫做 `ctrl` ，那么就可以使用变量 `ctrl` 得到 `input` 对应的 `ngModel` 的详细属性了 `<p>Valid: \{\{ ctrl.valid \}\}</p>`。
 
 同样原理可以添加 Form 的 Directive 对象给变量 `<form #userForm="ngForm">` 。这里并没有使用双向绑定的 Directive 呢，那是因为 Angular 自动为 `form` 标签的元素创建了 [`NgForm`][NgForm] directive 。
 

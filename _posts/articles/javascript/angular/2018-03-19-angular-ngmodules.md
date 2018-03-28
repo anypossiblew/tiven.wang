@@ -17,6 +17,9 @@ references:
   - id: 1
     title: "Angular guide - NgModules"
     url: "https://angular.io/guide/ngmodules"
+  - id: 1
+    title: "Understanding Angular modules (NgModule) and their scopes"
+    url: "https://medium.com/@cyrilletuzi/understanding-angular-modules-ngmodule-and-their-scopes-81e4ed6f7407"
 
 ---
 

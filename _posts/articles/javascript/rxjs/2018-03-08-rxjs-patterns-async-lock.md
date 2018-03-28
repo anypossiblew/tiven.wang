@@ -5,7 +5,7 @@ title: RxJS Patterns - Implementing Async Lock
 excerpt: "RxJS 中通过 Observable 和 Subject 实现异步锁的机制"
 modified: 2018-03-13T17:00:00-00:00
 categories: articles
-tags: [RxJS, TypeScript, JavaScript]
+tags: [Reactive, RxJS, TypeScript, JavaScript]
 image:
   vendor: yourshot.nationalgeographic
   feature: /u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNfNHPnVooiA8n5vE0-cAR15tNTA-kJQmkOJJQ3pUh29FLhiRIAue1X5mY_HEakGQW3u2qj1gappgadEl86J1EngUipsJriseu4q94H5luZ6y2TFfBO0qrNWI-CmtrikL8JN1wbJfJ_vnu6TJFkXZx95AAgNCGJo7-pbjIfw3QSkvtGvQ/
