@@ -35,7 +35,7 @@ references:
 * [Spring Boot CLI][spring-boot-cli]
 * [Spring Initializr](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-initializr) in Visual Studio Code
 
-我们选择使用 http://start.spring.io/ 创建项目，选择了依赖 Reactive web, Reactive MongoDB, Actuator 。
+我们选择使用 http://start.spring.io/ 创建项目，选择 Spring Boot version 2.x 和依赖 Reactive web, Reactive MongoDB, Actuator 。
 
 参考 https://code.visualstudio.com/docs/java/java-tutorial 教程把 Spring Boot 项目在 Visual Studio Code IDE 中配置好，然后启动程序。
 
