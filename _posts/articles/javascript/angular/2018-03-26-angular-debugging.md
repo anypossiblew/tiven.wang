@@ -5,7 +5,7 @@ title: Angular - Debugging
 excerpt: ""
 modified: 2018-03-22T18:00:00-00:00
 categories: articles
-tags: [Angular, TypeScript, JavaScript]
+tags: [Debugging, Angular, TypeScript, JavaScript]
 image:
   vendor: twitter
   feature: /media/DY5_tv9WkAIKoC6.jpg:large
