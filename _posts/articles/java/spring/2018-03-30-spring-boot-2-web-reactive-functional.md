@@ -110,7 +110,7 @@ route(GET("/tweets"), request -> {
 
 ```java
 RouterFunctions.nest(RequestPredicates.path("/tweets"),
-                     RouterFunctions.route(RequestPredicates.GET("/{id}"),                            request -> ...));
+                     RouterFunctions.route(RequestPredicates.GET("/{id}"), request -> ...));
 ```
 
 转变为
