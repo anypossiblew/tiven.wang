@@ -13,6 +13,9 @@ image:
 comments: true
 share: true
 references:
+  - id: 1
+    title: "Spring Cloud Netflix reference doc - 8. Router and Filter: Zuul"
+    url: https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#_router_and_filter_zuul
   - title: "Embracing the Differences : Inside the Netflix API Redesign"
     url: "https://medium.com/netflix-techblog/embracing-the-differences-inside-the-netflix-api-redesign-15fd8b3dc49d"
   - title: "Routing and Filtering"
@@ -139,8 +142,8 @@ Spring Cloud 提供了 POM 方便依赖包的管理，其中就包含 `netflix-z
 
 ```xml
 <dependency>
-  <groupId>org.springframework.cloud</groupId>
-  <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 ```
 
@@ -183,25 +186,75 @@ ribbon:
 ```
 
 ## Add a filter
-Zuul 除了路由请求功能，还有过滤请求功能。
+Zuul 除了路由请求功能，还有过滤请求功能。Zuul 有四种标准的过滤器类型: `pre`, `route`,
+`post`, `error` 顾名思义。
 
+![Image: Zuul Request Lifecycle](https://camo.githubusercontent.com/4eb7754152028cdebd5c09d1c6f5acc7683f0094/687474703a2f2f6e6574666c69782e6769746875622e696f2f7a75756c2f696d616765732f7a75756c2d726571756573742d6c6966656379636c652e706e67)
 
-https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#_router_and_filter_zuul
+继承 `com.netflix.zuul.ZuulFilter` 的 `@Bean` 都会被 Spring Cloud Netflix 识别，成为 Zuul 的 Filter 。例如我们创建一个 `pre` filter
 
-https://cloud.spring.io/spring-cloud-netflix/single/spring-cloud-netflix.html#netflix-zuul-reverse-proxy
+*wang.tiven.microservices.apigateway.zuul.filters.pre.SimpleFilter.java*
+```java
+package wang.tiven.microservices.apigateway.zuul.filters.pre;
 
+import javax.servlet.http.HttpServletRequest;
+import com.netflix.zuul.context.RequestContext;
+import com.netflix.zuul.ZuulFilter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-[Building Microservices: Using an API Gateway](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
+public class SimpleFilter extends ZuulFilter {
+
+    private static Logger log = LoggerFactory.getLogger(SimpleFilter.class);
+
+    @Override
+    public String filterType() {
+      return "pre";
+    }
+
+    @Override
+    public int filterOrder() {
+      return 1;
+    }
+
+    @Override
+    public boolean shouldFilter() {
+      return true;
+    }
+
+    @Override
+    public Object run() {
+      RequestContext ctx = RequestContext.getCurrentContext();
+      HttpServletRequest request = ctx.getRequest();
+
+      log.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
+
+      return null;
+    }
+  }
+```
+
+重启并调用接口便会在后台看到 `pre` filter 的日志输出。
+
+## Management Endpoints
+如果你在项目中使用 `@EnableZuulProxy` 并且加入了 Spring Boot Actuator ，那么默认情况下就会有两个 endpoints 用来查看 Zuul 配置情况
+
+* Routes `/routes` 查看路由表
+* Filters `/filters` 查看过滤器们
+
+本篇完整代码可下载自 [Github](https://github.com/tiven-wang/microservices/tree/api-gateway-zuul)
 
 ## Asynchronous and Non-Blocking
 
-> Zuul [1] was originally a blocking and synchronous solution. The new effort called Zuul 2 is a non-blocking and asynchronous solution. The major architectural difference between Zuul 2 and Zuul 1 is that Zuul 2 is running on an asynchronous and non-blocking framework, using Netty. Instead of relying on multiple threads to provide increased throughput in Zuul, the Netty framework relies on an event loop and callbacks to do the same for Zuul 2.
+Zuul 在 2 版本增加非阻塞异步解决方案，也就是会拥抱响应式 Reactive 编程方式。
+
+> Zuul [1] was originally a blocking and synchronous solution. The new effort called Zuul 2 is a non-blocking and asynchronous solution. The major architectural difference between Zuul 2 and Zuul 1 is that Zuul 2 is running on an asynchronous and non-blocking framework, using Netty. Instead of relying on multiple threads to provide increased throughput in Zuul, the Netty framework relies on an event loop and callbacks to do the same for Zuul 2.<br>
 > -- [Netflix Zuul Gets a Makeover to a Asynchronous and Non-Blocking Architecture](https://www.infoq.com/news/2016/10/netflix-zuul-asynch-nonblocking)
 
 ## Conclusion
 
-
+本文介绍了使用 Zuul 为 Microservices 创建反向代理服务，并且自定义了过滤器。虽然本本篇没有讲到但 Zuul 还具有服务发现能力，负载平衡能力。同时我们也看到在 Zuul 书写过滤器路由器是多么笨拙，虽然我们可以使用过滤器做任何事情，但它不适合编写调和服务接口的逻辑。所以接下来我们有兴趣介绍一下另外一个出自 Spring 的 API Gateway 产品 Spring Cloud Gateway 。
 
 
 [zuul]:https://github.com/Netflix/zuul

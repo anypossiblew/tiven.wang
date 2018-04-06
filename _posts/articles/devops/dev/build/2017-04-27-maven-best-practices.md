@@ -41,3 +41,47 @@ The verbose flag instructs the dependency tree to display conflicting dependenci
 Thus we can see that Commons Collections 2.0 was chosen over 2.1 since it is nearer, and by default Maven resolves version conflicts with a nearest-wins strategy.
 
 More specifically, in verbose mode the dependency tree shows dependencies that were omitted for: being a duplicate of another; conflicting with another's version and/or scope; and introducing a cycle into the dependency tree.
+
+### Run `mvn spring-boot:run` from parent module?
+
+You can do it by adding following In parent pom:
+
+```xml
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <configuration>
+        <skip>true</skip>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
+```
+
+And in your In my-app (Spring Boot module) pom:
+
+```xml
+<plugin>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-maven-plugin</artifactId>
+  <configuration>
+    <fork>true</fork>
+    <skip>false</skip>
+  </configuration>
+  <executions>
+    <execution>
+      <goals>
+        <goal>repackage</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+```
+
+Now you can do execute in project root:
+
+`mvn -pl my-app -am spring-boot:run`
+
+refer: https://stackoverflow.com/questions/41092200/run-mvn-spring-bootrun-from-parent-module
