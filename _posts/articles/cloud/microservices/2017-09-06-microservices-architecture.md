@@ -1,5 +1,6 @@
 ---
 layout: post
+theme: UbuntuMono
 title: Microservices - Architecture
 excerpt: "Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services. These services are isolated and autonomous yet communicate to provide some piece of business functionality. Microservices are typically implemented and operated by small teams with enough autonomy that each team and service can change its internal implementation details (including replacing it outright!) with minimal impact across the rest of the system."
 modified: 2017-09-06T11:51:25-04:00

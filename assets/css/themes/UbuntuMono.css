@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400i');
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+
+.mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
+h2, h3, h4, h5, #markdown-toc
+{
+  font-family: 'Ubuntu Mono', monospace, sans-serif;
+}
+.demo-blog .blog__post .mdl-card__supporting-text blockquote
+{
+  font-family: 'Special Elite', cursive, sans-serif;
+  font-size: 14px !important;
+}

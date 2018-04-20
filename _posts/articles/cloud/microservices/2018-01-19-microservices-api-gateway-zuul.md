@@ -1,7 +1,8 @@
 ---
 layout: post
+theme: UbuntuMono
 title: "Microservices - API Gateway : Zuul"
-excerpt: "."
+excerpt: "Zuul 是来自 NetFlix 的 Microservice 产品家族的 API Gateway 服务或者说是 edge 服务。 Zuul 为开发者构建微服务架构提供了 Routing，Monitoring，Managing resiliency，Security等功能。简单来说，Zuul 可以被看作是一个反向代理，在服务实例间 Zuul 代理内部使用 Eureka server 作为 service discovery，使用Ribbon 作为 load balancing"
 modified: 2018-01-19T11:51:25-04:00
 categories: articles
 tags: [API Gateway, Scalability, Microservices]

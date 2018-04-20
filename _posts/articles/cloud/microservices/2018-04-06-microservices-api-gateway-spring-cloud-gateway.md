@@ -1,7 +1,8 @@
 ---
 layout: post
+theme: UbuntuMono
 title: "Microservices - API Gateway : Spring Cloud Gateway"
-excerpt: "."
+excerpt: "Spring Cloud Gateway 是一个新的基于 Spring Framework 5, Project Reactor and Spring Boot 2.0 的 API Gateway 产品"
 modified: 2018-04-06T11:51:25-04:00
 categories: articles
 tags: [API Gateway, Spring Cloud, Scalability, Microservices]

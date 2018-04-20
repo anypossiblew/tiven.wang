@@ -1,5 +1,6 @@
 ---
 layout: post
+theme: UbuntuMono
 title: Microservices - Circuit Breaker
 excerpt: "访问远程服务时, 比依赖超时时间更好一些的方式是一种叫断路器(Circuit Breaker)的模式. Circuit Breaker 就像一位交通警察, 在前方道路畅通的情况下, 他会放行; 当前方道路由于各种原因拥堵时, 他会告诉你前方道路不通请回; 如果他是个更智能的交警的话, 还会告诉你前方道路部分拥堵, 只允许部分车辆通过, 比如实行单双号."
 modified: 2017-09-20T11:51:25-04:00

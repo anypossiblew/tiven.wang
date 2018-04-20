@@ -1,5 +1,6 @@
 ---
 layout: post
+theme: UbuntuMono
 title: Microservices - Load Balancing
 excerpt: "在微服务架构中每个服务都可能有多个运行实例， 那么服务消费者在调用服务时怎么定位应该把请求发送给哪个实例呐？ 这就是负载均衡 Load Balancing 要做的事情。Load Balancing 可以在服务端也可以是在消费端。"
 modified: 2017-08-30T11:51:25-04:00

@@ -1,5 +1,6 @@
 ---
 layout: post
+theme: UbuntuMono
 title: Microservices - Service Discovery
 excerpt: "Clients of a service use either Client-side discovery or Server-side discovery to determine the location of a service instance to which to send requests. Why use Service Discovery?"
 modified: 2017-08-10T11:51:25-04:00
