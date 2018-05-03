@@ -8,13 +8,11 @@ image:
   feature:
 search_omit: true
 sitemap: false
+image:
+  feature: /images/so-simple-sample-image-4.jpg
 ---
 
 <style>
-
-.android-content.mdl-layout__content {
-  background-image: url(/images/so-simple-sample-image-4.jpg);
-}
 
 .mdl-card > .mdl-card__media {
   color: #fff;
@@ -29,6 +27,46 @@ sitemap: false
   height: 64px;
   border-radius: 32px;
   margin: 8px 0;
+}
+</style>
+
+<style>
+body::before {
+  background-size: cover;
+  background-attachment: fixed;
+  content: '';
+  will-change: transform;
+  z-index: -1;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  position: fixed;
+}
+
+@media (max-width: 512px)  and (-webkit-min-device-pixel-ratio: 1.5),
+   (max-width: 512px)  and (min-resolution: 1.5dppx),
+   (max-width: 1024px) and (-webkit-max-device-pixel-ratio: 1.5),
+   (max-width: 1024px) and (max-resolution: 1.5dppx) {
+  body::before {
+    background-image: url('{{ page.image.feature }}');
+  }
+}
+@media (min-width: 513px)  and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5),
+       (min-width: 513px)  and (max-width: 1024px) and (min-resolution: 1.5dppx),
+       (min-width: 1025px) and (max-width: 2048px) and (-webkit-max-device-pixel-ratio: 1.5),
+       (min-width: 1025px) and (max-width: 2048px) and (max-resolution: 1.5dppx)  {
+  body::before {
+    background-image: url('{{ page.image.feature }}');
+  }
+}
+@media (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 1.5),
+       (min-width: 1025px) and (min-resolution: 1.5dppx),
+       (min-width: 2049px) and (-webkit-max-device-pixel-ratio: 1.5),
+       (min-width: 2049px) and (max-resolution: 1.5dppx) {
+  body::before {
+    background-image: url('{{ page.image.feature }}');
+  }
 }
 </style>
 

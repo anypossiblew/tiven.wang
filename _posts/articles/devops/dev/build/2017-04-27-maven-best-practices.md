@@ -85,3 +85,12 @@ Now you can do execute in project root:
 `mvn -pl my-app -am spring-boot:run`
 
 refer: https://stackoverflow.com/questions/41092200/run-mvn-spring-bootrun-from-parent-module
+
+### Install jar locally
+
+```
+mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
+    -DartifactId=<artifact-id> -Dversion=<version> -Dpackaging=<packaging>
+```
+
+https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html

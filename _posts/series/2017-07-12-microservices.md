@@ -42,4 +42,22 @@ series:
     url: "/articles/microservices-api-gateway/"
   - title: "Transactions"
     url: "/articles/microservices-transactions/"
+  - title: "Microservices - API Gateway : Zuul"
+    url: "/articles/microservices-api-gateway-zuul/"
+    tags: [API Gateway, Scalability, Microservices]
+    image:
+      vendor: unsplash
+      feature: /photo-1456086272160-b28b0645b729?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
+      credit: russn_fckr
+      creditlink: https://unsplash.com/@russn_fckr
+  - title: "Microservices - API Gateway : Spring Cloud Gateway"
+    url: "/articles/microservices-api-gateway-spring-cloud-gateway/"
+    tags: [API Gateway, Spring Cloud, Scalability, Microservices]
+    image:
+      vendor: twitter
+      feature: /media/DZ-VsLUU8AAH-8K.jpg:large
+      credit: National Geographic
+      creditlink: https://twitter.com/NatGeo/status/981667831917006848
+  - title: "Microservices - Inter-Process Communication"
+    url: "/articles/microservices-inter-process-communication/"
 ---
