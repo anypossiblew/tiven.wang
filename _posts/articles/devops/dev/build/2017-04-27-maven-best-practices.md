@@ -94,3 +94,18 @@ mvn install:install-file -Dfile=<path-to-file> -DgroupId=<group-id> \
 ```
 
 https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html
+
+### Install sources
+
+安装源代码 jar 包，从项目源代码安装到库
+
+`mvn source:jar install -DskipTests`
+
+### Download sources and javadoc
+
+下载依赖包的 javadoc 和 sources
+
+```
+mvn dependency:resolve -Dclassifier=javadoc
+mvn dependency:resolve -Dclassifier=sources
+```

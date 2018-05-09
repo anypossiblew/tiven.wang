@@ -48,7 +48,7 @@ references:
 每个人都可以选择一种组合的交互方式。
 
 ## IPC Technologies
-让我们来看一下两台计算机系统（物理的或虚拟的）之间具体有哪些通信技术。如果两个服务之间需要使用同步(synchronous) request/response 的沟通机制的话，可以选择基于 HTTP 的 [REST][restfulapi] 或者 [Thrift][thrift] 。
+让我们来看一下两台计算机系统（物理的或虚拟的）之间具体有哪些通信技术。如果两个服务之间需要使用同步(synchronous) request/response 的沟通机制的话，可以选择基于 HTTP 的 [REST][restfulapi] 或者 [Thrift][thrift]。另外，如果服务之间想要使用异步的 (asynchronous) 基于消息的沟通机制，可以选择 [AMQP][amqp] 或者 [STOMP][stomp]。
 
 
 
@@ -59,3 +59,5 @@ references:
 
 [restfulapi]:https://restfulapi.net/
 [thrift]:https://thrift.apache.org/
+[amqp]:https://www.amqp.org/
+[stomp]:https://stomp.github.io/
