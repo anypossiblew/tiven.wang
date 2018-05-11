@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Learning Puppet4
-excerpt: "Review for <<Learning Puppet4>>"
+excerpt: "Review for &lt;&lt;Learning Puppet4&gt;&gt;"
 modified: 2017-05-03T17:00:00-00:00
 categories: articles
 tags: [Puppet, Infrastructure as Code]

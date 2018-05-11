@@ -2,7 +2,7 @@
 layout: post
 title: How to develop an XS application on the SAP HANA Cloud Platform
 excerpt: "SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地创建开发XS应用程序，并运行在HANA Cloud上。"
-modified: 2016-10-25T12:00:00-00:00
+modified: 2018-05-10T12:00:00-00:00
 categories: articles
 tags: [HCP, XS, CDS, HANA, Cloud]
 image:
@@ -68,22 +68,33 @@ SAP HANA Cloud Platform 提供了本地开发的能力，使你可以在本地�
 
 > 之后我们访问此DB的host地址均为 https://&lt;DBName&gt;&lt;AccountName&gt;.hanatrial.ondemand.com
 
+### HANA Cockpit init User
+从 Database Overview 界面打开 *SAP HANA Cockpit* 链接，使用 *SYSTEM* 用户登录，页面会提示要为用户分配角色，点击 OK 系统会分配几个 Roles 给此用户，然后就会打开 HANA Cockpit 界面。此程序里有一些基础的 Database Administration 应用。
+
+HANA Cockpit 中其中一个应用就是 *Manage Roles and Users* App， 打开即进入 HANA IDE Security (/sap/hana/ide/security/) 界面，在此程序里便可为用户添加 Role 。
+
+打开 System 用户，可以看到刚才系统为其分配的三个 Roles:
+
+* sap.hana.admin.roles::Administrator
+* sap.hana.ide.roles::SecurityAdmin
+* sap.hana.ide.roles::TraceViewer
+
+如果让此用户成为开发者，可以分配角色 *sap.hana.ide.roles::Developer* 给他。
+
+*Update: 2018-05-10*
+
 ### Open Development Tools
 
 打开链接 Development Tools: **_SAP HANA Web-based Development Workbench_** 使用创建Database设置的用户登录
 里面有四个工具：
 
 * __Editor__ : Create, edit, execute, debug and manage HANA Respository artifacts
-
 * __Catalog__ : Create, edit, execute and manage HANA DB SQL catalog artifacts
-
 * __Security__ : Create users, create roles, assign objects and manage security
-
 * __Traces__ : View, download traces for HANA applications, set trace levels
 
+> 在执行过程中可能遇到权限问题，可以打开 Security (/sap/hana/ide/security/) 为用户添加相应 Roles, e.g. **_sap.hana.ide.roles::Developer_**
 
-> 在执行过程中可能遇到权限问题，可以打开Security为用户添加相应Roles, e.g. **_sap.hana.ide.roles::Developer_**
-> 链接格式为 /sap/hana/ide/security/
 
 ### Create Package
 
@@ -147,18 +158,13 @@ Delivery Unit管理的详细教程可以参见[附录1][3]
 
 这里我们需要更改.xsaccess一些属性。
 
-`"authentication" : null` 为了方便测试及之后的供数字账号事件调用，需要设置匿名访问权限，所以这里授权方式为空。
+* `"authentication" : null` 为了方便测试及之后的供数字账号事件调用，需要设置匿名访问权限，所以这里授权方式为空。
+* `"anonymous_connection": "digital-account::DigAccMessage"` 在匿名用户访问系统的情况下这里需要提供一个[数据库连接设置](#create-xs-sql-connection)，以便授予匿名用户访问数据库的权限。
+* `"cors" : {"enabled" : true}` 显然如果使数字账号可以调用此API的话，需要设置跨域访问。
+* `"force_ssl" : true` 使用ssl连接更安全。
+* `"prevent_xsrf" : false` : 因为数字账号服务器并不能提供xsrf token,所以我们关闭此功能
 
-`"anonymous_connection": "digital-account::DigAccMessage"` 在匿名用户访问系统的情况下这里需要提供一个[数据库连接设置](#create-xs-sql-connection)，以便授予匿名用户访问数据库的权限。
-
-`"cors" : {"enabled" : true}` 显然如果使数字账号可以调用此API的话，需要设置跨域访问。
-
-`"force_ssl" : true` 使用ssl连接更安全。
-
-`"prevent_xsrf" : false` : 因为数字账号服务器并不能提供xsrf token,所以我们关闭此功能
-
-.xsaccess文件完整代码
-
+*.xsaccess* 文件完整代码
 ```javascript
 {
     "exposed": true,
@@ -180,7 +186,7 @@ Delivery Unit管理的详细教程可以参见[附录1][3]
 }
 ```
 
-而.xsapp文件内容为空
+而 *.xsapp* 文件内容为空
 
 #### Access Application
 

@@ -24,9 +24,18 @@ references:
 
 Cloud Foundry designates two types of VMs: the component VMs that constitute the platform’s infrastructure, and the host VMs that host apps for the outside world. Within CF, the Diego system distributes the hosted app load over all of the host VMs, and keeps it running and balanced through demand surges, outages, or other changes. Diego accomplishes this through an auction algorithm.
 
+![Image: Cloud Foundry BOSH Containers Architecture](/images/cloud/cf/cloudfoundry-bosh-vms.png "Cloud Foundry BOSH Containers Architecture")
+{: .center.middle}
+
 To meet demand, multiple host VMs run duplicate instances of the same app. This means that apps must be portable. Cloud Foundry distributes app source code to VMs with everything the VMs need to compile and run the apps locally. This includes the OS stack that the app runs on, and [a buildpack containing all languages, libraries, and services that the app uses](# "就是说 buildpack 负责应用程序所需要的语言环境 依赖包 依赖服务的安装或关联"). Before sending an app to a VM, the Cloud Controller stages it for delivery by combining stack, buildpack, and source code into a droplet that the VM can unpack, compile, and run. For simple, standalone apps with no dynamic pointers, the droplet can contain a pre-compiled executable instead of source code, language, and libraries.
 
 Buildpack 负责语言环境，依赖包，依赖服务的下载安装或配置。 Droplet 则是负责把 [Stack][stacks]，Buildpack 和 源代码整合起来打包，让 VM 可以直接解压，编译和运行。打包好的 Droplet 包含一个预编译的可执行的文件。
+
+![Image: CloudFoundry VM Droplet Buildpack Stack Architecture](/images/cloud/cf/cloudfoundry-vm-droplet-buildpack-stack-arch.png)
+{: .small.center}
+
+> Docker apps do not use stacks.
+{: .Notes}
 
 ## Buildpack Scripts
 

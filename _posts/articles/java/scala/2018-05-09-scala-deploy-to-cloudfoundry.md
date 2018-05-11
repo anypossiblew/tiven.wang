@@ -42,7 +42,8 @@ The buildpack will detect your app as Scala if it has
 * `/project/*.scala`
 * `/project/build.properties`
 * `/.sbt/*.scala`
-<br>. It vendors a version of sbt into your slug (if you are not using sbt-native-packager, it also includes your popluated .ivy/cache in the slug). The .ivy2 directory will be cached between builds to allow for faster build times.
+
+. It vendors a version of sbt into your slug (if you are not using sbt-native-packager, it also includes your popluated .ivy/cache in the slug). The .ivy2 directory will be cached between builds to allow for faster build times.
 
 It is strongly recommended that you use [sbt-native-packager][sbt-native-packager] with this buildpack instead of sbt-start-script. The latter is deprecated, and will result in exessively large slug sizes.
 
@@ -90,7 +91,7 @@ The Play framework automatically generates a start script for you, so no additio
 
 * Add the [sbt-native-packager][sbt-native-packager] to your project
 * Execute the action `universal:packageBin` building by hand or configure your build server to do so
-* Change the buildpack in the `manifest.yml` and add some parameters, if necessary. Configure the path of the artifact to deploy.
+* Change the buildpack in the `manifest.yml` and add some parameters, if necessary. Configure the path of the artifact to deploy
 
   ```
   ---

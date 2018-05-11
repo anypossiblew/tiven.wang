@@ -22,6 +22,9 @@ references:
 {:toc}
 
 ## Basic Operations
+### Login Docker CLI
+
+`docker login`
 
 ### Cleaning Up Stopped Containers
 
@@ -92,23 +95,17 @@ extra_hosts:
 
 ### Running Jekyll
 
-Build a docker image using *Dockerfile*:
+`docker run --rm -e "JEKYLL_ENV=docker" -v ${PWD}:/srv/jekyll -v ${PWD}/_bundle:/usr/local/bundle -p 4000:4000 -it jekyll/jekyll jekyll serve --config  _config.yml,_config.docker.yml`
 
+> The above command line is for PowerShell. For Windows Command Line (cmd), replace `${PWD}` with `%cd%`.
+{: .Notes}
+
+*_config.docker.yml*
+```yaml
+url: "http://localhost:4000"
 ```
-FROM jekyll/jekyll:latest
 
-RUN gem install jekyll-gist
-
-CMD jekyll
-```
-
-build the image:
-
-`docker build -t test/jekyll .`
-
-then run:
-
-`> docker run --rm -it -w /data -p 4000:4000 -v c:/Users/<User>/github/tiven.wang:/data test/jekyll bundle exec jekyll serve -s /data/`
+https://tonyho.net/jekyll-docker-windows-and-0-0-0-0/
 
 ### Running SAP Cloud Platform Application
 

@@ -64,10 +64,10 @@ html, body {
   text-align: left;
 }
 
-.mdl-card__supporting-text p {
-  max-width:initial;
-  margin: 16px 0;
-}
+// .mdl-card__supporting-text p {
+//   max-width:initial;
+//   margin: 16px 0;
+// }
 
 .demo-blog {
 
@@ -157,6 +157,16 @@ html, body {
         figcaption {
           margin: 0 auto;
           max-width: 300px;
+        }
+      }
+
+      ul {
+        li {
+          p {
+            margin: auto;
+            font-size: 14px;
+            line-height: 24px;
+          }
         }
       }
     }

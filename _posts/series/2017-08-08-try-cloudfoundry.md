@@ -116,4 +116,22 @@ series:
       feature: /media/DNUNBsxXUAEicvV.jpg:large
       credit: Nat Geo Photography‏
       creditlink: https://twitter.com/NatGeoPhotos
+  - title: "Try CloudFoundry - Buildpacks"
+    url: /articles/try-cf-buildpacks/
+    excerpt: "Buildpacks provide framework and runtime support for apps. Buildpacks typically examine your apps to determine what dependencies to download and how to configure the apps to communicate with bound services."
+    tags: [Architecture, CloudFoundry]
+    image:
+      vendor: yourshot.nationalgeographic
+      feature: /u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNeZxVNzz27-SruegrZZ_4yjZv2SJTTgB-4kEV8P16ySnVyu_W-Q4sYCvWtpBKVYXZkHlxo5i8RQqijlEy15hpnytLKtG_e-qtCY8qgfqrfZ-XZVQvp2Bna2VcQmyU5pvgmc7VNFU-uAqIYHhMecXTpqBr0X26Se4RRcnrD_CMF1ds/
+      credit: Aleš K.
+      creditlink: https://yourshot.nationalgeographic.com/profile/293407
+  - title: "Try CloudFoundry - Docker"
+    url: /articles/try-cf-docker/
+    excerpt: "How Docker works in Cloud Foundry."
+    tags: [Architecture, CloudFoundry]
+    image:
+      vendor: twitter
+      feature: /media/DcxFO1EX4AIpyci.jpg:large
+      credit: Nat Geo Photography‏
+      creditlink: https://twitter.com/NatGeoPhotos/status/994245741240639488
 ---
