@@ -1,4 +1,5 @@
 _site
+_bundle/*
 .DS_Store
 *.sublime-project
 *.sublime-workspace
