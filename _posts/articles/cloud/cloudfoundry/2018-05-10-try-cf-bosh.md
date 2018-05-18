@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try CloudFoundry - BOSH"
+title: "Try Cloud Foundry - BOSH"
 excerpt: ""
 modified: 2018-05-10T11:51:25-04:00
 categories: articles
@@ -22,6 +22,7 @@ references:
 * TOC
 {:toc}
 
+## BOSH
 BOSH is PCF’s infrastructure management component.
 
 BOSH is an open source tool for release engineering, deployment, lifecycle management, and monitoring of distributed systems.
@@ -34,6 +35,10 @@ BOSH is an open source tool for release engineering, deployment, lifecycle manag
 
 
 https://github.com/cloudfoundry-incubator/docker-boshrelease
+
+### Stemcell
+
+### Compiled Releases
 
 ## vs. Kubernetes
 Kubernetes is a mature container orchestrator that runs in the same market as Docker Swarm and Apache Mesos.

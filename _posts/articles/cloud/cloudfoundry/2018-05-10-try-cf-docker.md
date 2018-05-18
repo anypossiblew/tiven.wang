@@ -1,16 +1,16 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try CloudFoundry - Docker"
+title: "Try Cloud Foundry - Docker"
 excerpt: "How Docker works in Cloud Foundry."
 modified: 2018-05-10T11:51:25-04:00
 categories: articles
 tags: [Architecture, CloudFoundry]
 image:
   vendor: twitter
-  feature: /media/DcxFO1EX4AIpyci.jpg:large
+  feature: /media/DdOGgnwXcAACGQ5.jpg:large
   credit: Nat Geo Photography‏
-  creditlink: https://twitter.com/NatGeoPhotos/status/994245741240639488
+  creditlink: https://twitter.com/NatGeo/status/996287839850717184
 comments: true
 share: true
 references:

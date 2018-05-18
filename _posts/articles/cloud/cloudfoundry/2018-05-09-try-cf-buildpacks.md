@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try CloudFoundry - Buildpacks"
+title: "Try Cloud Foundry - Buildpacks"
 excerpt: "Buildpacks provide framework and runtime support for apps. Buildpacks typically examine your apps to determine what dependencies to download and how to configure the apps to communicate with bound services."
 modified: 2018-05-09T11:51:25-04:00
 categories: articles

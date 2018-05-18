@@ -84,6 +84,14 @@ extra_hosts:
 
 [Docker Machine – moby: Name or service not known](http://blog.yohanliyanage.com/2016/09/docker-machine-moby-name-or-service-not-known/)
 
+### Container Proxy
+
+```
+docker run -e "http_proxy=http://myproxy.example.com:8080" \
+           -e "https_proxy=https://myproxy.example.com:8080" \
+           ...
+```
+
 ## Run
 ### Running Nodejs
 
