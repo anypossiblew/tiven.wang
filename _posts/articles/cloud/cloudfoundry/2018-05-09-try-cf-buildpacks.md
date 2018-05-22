@@ -5,7 +5,7 @@ title: "Try Cloud Foundry - Buildpacks"
 excerpt: "Buildpacks provide framework and runtime support for apps. Buildpacks typically examine your apps to determine what dependencies to download and how to configure the apps to communicate with bound services."
 modified: 2018-05-09T11:51:25-04:00
 categories: articles
-tags: [Architecture, CloudFoundry]
+tags: [Architecture, Cloud Foundry]
 image:
   vendor: yourshot.nationalgeographic
   feature: /u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNeZxVNzz27-SruegrZZ_4yjZv2SJTTgB-4kEV8P16ySnVyu_W-Q4sYCvWtpBKVYXZkHlxo5i8RQqijlEy15hpnytLKtG_e-qtCY8qgfqrfZ-XZVQvp2Bna2VcQmyU5pvgmc7VNFU-uAqIYHhMecXTpqBr0X26Se4RRcnrD_CMF1ds/

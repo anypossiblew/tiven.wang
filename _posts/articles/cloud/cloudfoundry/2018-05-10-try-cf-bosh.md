@@ -5,7 +5,7 @@ title: "Try Cloud Foundry - BOSH"
 excerpt: ""
 modified: 2018-05-10T11:51:25-04:00
 categories: articles
-tags: [Architecture, CloudFoundry]
+tags: [Architecture, Cloud Foundry]
 image:
   vendor: twitter
   feature: /media/DcxFO1EX4AIpyci.jpg:large
@@ -17,6 +17,9 @@ references:
   - id: 1
     title: "Pivotal Cloud Foundry vs Kubernetes: Choosing The Right Cloud-Native Application Deployment Platform"
     url: https://blog.takipi.com/pivotal-cloud-foundry-vs-kubernetes-choosing-the-right-cloud-native-application-deployment-platform/
+  - id: 2
+    title: "Ultimate Guide to BOSH"
+    url: https://ultimateguidetobosh.com/
 ---
 
 * TOC

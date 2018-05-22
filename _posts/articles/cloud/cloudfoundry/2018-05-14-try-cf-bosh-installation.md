@@ -5,7 +5,7 @@ title: "Try Cloud Foundry - BOSH: Installation"
 excerpt: ""
 modified: 2018-05-14T11:51:25-04:00
 categories: articles
-tags: [BOSH, Architecture, CloudFoundry]
+tags: [BOSH, Architecture, Cloud Foundry]
 image:
   vendor: twitter
   feature: /media/DdFCbbtWsAAOVUN.jpg:large
@@ -53,10 +53,17 @@ Succeeded
 ```
 
 ### BOSH CLI on Windows
+BOSH CLI 暂不完全支持 Windows 系统，如果你是在 Windows 系统上开发，可以选择使用 Docker VM 运行 BOSH 命令行工具，如下
+
 ```
-cd ~/bosh/workspace
-git clone https://github.com/cloudfoundry/bosh-deployment.git
-docker run --name my-bosh-cli -it -v ~/bosh/workspace:/usr/local/workspace -w /usr/local/workspace/bosh-deployment bosh/cli2
+$ cd ~/bosh/workspace
+$ git clone https://github.com/cloudfoundry/bosh-deployment.git
+$ docker run --name my-bosh-cli -it -v ~/bosh/workspace:/usr/local/workspace -w /usr/local/workspace/bosh-deployment bosh/cli2
+
+root@2840e0a0fb42:/usr/local/workspace/bosh-deployment# bosh -v
+version 3.0.1-712bfd7-2018-03-13T23:26:43Z
+
+Succeeded
 ```
 
 
@@ -106,38 +113,45 @@ BOSH Director 是指 BOSH 服务端的管理器，负责管理 BOSH 内的虚拟
 
   ![Images: AWS VPC Create step 6](/images/cloud/cf/bosh/aws-vpc-create6.png)
 
-## Deploying the Director
-下载部署 BOSH Director 的模板 `git clone https://github.com/cloudfoundry/bosh-deployment.git`
+### Deploying the Director
+下载部署 BOSH Director 的模板项目
+
+`git clone https://github.com/cloudfoundry/bosh-deployment.git`
+
+`bosh create-env` 命令创建或者更新一个 BOSH 环境即 BOSH 服务平台。*bosh.yml* 是主配置文件，可以使用 `-o` 参数代表的 [Operations file][cli-ops-files] 覆盖他前面的配置。还可以使用 `-v` 参数指定配置中变量的值。
+
+根据你要部署的目标 IaaS 平台的不同，可以选择不同平台的配置文件，例如我们选择 *aws/cpi.yml* 覆盖默认的 [CPI (Cloud Provider Interface)][bosh-cpi] 配置。
+
+*bosh-lite.yml* 定义了 BOSH Lite 版本，*bosh-lite-runc.yml* 则是为 BOSH Lite 指定用 [Garden-runC][garden-runc] 做容器管理。
+
+剩下了就是指定平台具体的参数信息。
 
 ```
-cd bosh-deployment
-git checkout 2c1f713
+# cd bosh-deployment
+# bosh create-env bosh.yml \
+    --state=state.json \
+    --vars-store=creds.yml \
+    -o aws/cpi.yml \
+    -o bosh-lite.yml \
+    -o bosh-lite-runc.yml \
+    -o jumpbox-user.yml \
+    -o external-ip-with-registry-not-recommended.yml \
+    -v director_name=$DIRECTOR_NAME \
+    -v internal_cidr=$INTERNAL_CIDR \
+    -v internal_gw=$INTERNAL_GW \
+    -v internal_ip=$INTERNAL_IP \
+    -v access_key_id=$AWS_ACCESS_KEY_ID \
+    -v secret_access_key=$AWS_SECRET_ACCESS_KEY \
+    -v region=$AWS_DEFAULT_REGION \
+    -v az=$AZ \
+    -v default_key_name=$DEFAULT_KEY_NAME \
+    -v default_security_groups=[bosh] \
+    --var-file private_key=<path/to/private/key> \
+    -v subnet_id=$SUBNET_ID \
+    -v external_ip=$EXTERNAL_IP
 ```
 
-```
-bosh create-env bosh.yml \
-  --state=state.json \
-  --vars-store=creds.yml \
-  -o aws/cpi.yml \
-  -o bosh-lite.yml \
-  -o bosh-lite-runc.yml \
-  -o jumpbox-user.yml \
-  -o external-ip-with-registry-not-recommended.yml \
-  -v director_name=$DIRECTOR_NAME \
-  -v internal_cidr=$INTERNAL_CIDR \
-  -v internal_gw=$INTERNAL_GW \
-  -v internal_ip=$INTERNAL_IP \
-  -v access_key_id=$AWS_ACCESS_KEY_ID \
-  -v secret_access_key=$AWS_SECRET_ACCESS_KEY \
-  -v region=$AWS_DEFAULT_REGION \
-  -v az=$AZ \
-  -v default_key_name=$DEFAULT_KEY_NAME \
-  -v default_security_groups=[bosh] \
-  --var-file private_key=<path/to/private/key> \
-  -v subnet_id=$SUBNET_ID \
-  -v external_ip=$EXTERNAL_IP
-```
-
+例如
 ```
 bosh create-env bosh.yml
     --state=state.json
@@ -152,7 +166,7 @@ bosh create-env bosh.yml
     -v internal_gw=10.0.0.1
     -v internal_ip=10.0.0.6
     -v access_key_id=AKIAIJGGGCZSU5Q2GZKA
-    -v secret_access_key=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
+    -v secret_access_key=yszlorZmBWr8BICB1kJHdskdkLKSDOF8DS67gufa
     -v region=us-east-2
     -v az=us-east-2a
     -v default_key_name=bosh
@@ -160,21 +174,6 @@ bosh create-env bosh.yml
     --var-file private_key=bosh.pem
     -v subnet_id=subnet-07a46ed04003eb6f2
     -v external_ip=18.188.115.138
-```
-
-```
-bosh create-env bosh.yml \
-  -o docker/cpi.yml \
-  -o jumpbox-user.yml \
-  --state=state.json \
-  --vars-store=creds.yml \
-  -v director_name=docker \
-  -v internal_cidr=10.245.0.0/16 \
-  -v internal_gw=10.245.0.1 \
-  -v internal_ip=10.245.0.10 \
-  -v docker_host=tcp://localhost:2375 \
-  -v docker_tls=false
-  -v network=net3
 ```
 
 ### Docker CLI2
@@ -186,7 +185,7 @@ bosh create-env bosh.yml \
 
 以下命令都是基于 work folder `/usr/local/bosh-deployment` 运行的。
 
-`bosh create-env bosh.yml --state=state.json --vars-store=creds.yml -o aws/cpi.yml -o bosh-lite.yml -o bosh-lite-runc.yml -o jumpbox-user.yml -o external-ip-with-registry-not-recommended.yml -v director_name=bosh-1 -v internal_cidr=10.0.0.0/24 -v internal_gw=10.0.0.1 -v internal_ip=10.0.0.6 -v access_key_id=AKIAIJGGGCZSU5Q2GZKA -v secret_access_key=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 -v region=us-east-2 -v az=us-east-2a -v default_key_name=bosh -v default_security_groups=[bosh] --var-file private_key=bosh.pem -v subnet_id=subnet-07a46ed04003eb6f2 -v external_ip=18.188.115.138`
+`bosh create-env bosh.yml --state=state.json --vars-store=creds.yml -o aws/cpi.yml -o bosh-lite.yml -o bosh-lite-runc.yml -o jumpbox-user.yml -o external-ip-with-registry-not-recommended.yml -v director_name=bosh-1 -v internal_cidr=10.0.0.0/24 -v internal_gw=10.0.0.1 -v internal_ip=10.0.0.6 -v access_key_id=AKIAIJGGGCZSU5Q2GZKA -v secret_access_key=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 -v region=us-east-2 -v az=us-east-2a -v default_key_name=bosh -v default_security_groups=[bosh] --var-file private_key=bosh.pem -v subnet_id=subnet-07a46ed04003eb6f2 -v external_ip=18.188.115.138`
 
 如果 Compile 过程中出现这样的错误，需要安装相应组件
 error:
@@ -205,7 +204,7 @@ Another:
 
 Output:
 ```
-root@9e6cf27cdd90:/usr/local/bosh-deployment# bosh create-env bosh.yml --state=state.json --vars-store=creds.yml -o aws/cpi.yml -o bosh-lite.yml -o bosh-lite-runc.yml -o jumpbox-user.yml -o external-ip-with-registry-not-recommended.yml -v director_name=bosh-1 -v internal_cidr=10.0.0.0/24 -v internal_gw=10.0.0.1 -v internal_ip=10.0.0.6 -v access_key_id=AKIAIJGGGCZSU5Q2GZKA -v secret_access_key=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 -v region=us-east-2 -v az=us-east-2a -v default_key_name=bosh -v default_security_groups=[bosh] --var-file private_key=bosh.pem -v subnet_id=subnet-07a46ed04003eb6f2 -v external_ip=18.188.115.138
+root@9e6cf27cdd90:/usr/local/bosh-deployment# bosh create-env bosh.yml --state=state.json --vars-store=creds.yml -o aws/cpi.yml -o bosh-lite.yml -o bosh-lite-runc.yml -o jumpbox-user.yml -o external-ip-with-registry-not-recommended.yml -v director_name=bosh-1 -v internal_cidr=10.0.0.0/24 -v internal_gw=10.0.0.1 -v internal_ip=10.0.0.6 -v access_key_id=AKIAIJGGGCZSU5Q2GZKA -v secret_access_key=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 -v region=us-east-2 -v az=us-east-2a -v default_key_name=bosh -v default_security_groups=[bosh] --var-file private_key=bosh.pem -v subnet_id=subnet-07a46ed04003eb6f2 -v external_ip=18.188.115.138
 Deployment manifest: '/usr/local/bosh-deployment/bosh.yml'
 Deployment state: 'state.json'
 
@@ -373,3 +372,13 @@ Succeeded
 ```
 
 至此，BOSH Lite 版本的 System 安装在 AWS 上的任务便完成了，接下来便是在 BOSH 容器管理系统上安装 CloudFoundry 云系统。
+
+## Scaling Out
+
+
+
+
+
+[cli-ops-files]:https://bosh.io/docs/cli-ops-files/
+[bosh-cpi]:https://bosh.io/docs/terminology/#cpi
+[garden-runc]:https://github.com/cloudfoundry/garden-runc-release

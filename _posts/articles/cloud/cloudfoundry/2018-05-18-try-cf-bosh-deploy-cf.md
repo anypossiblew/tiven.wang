@@ -5,7 +5,7 @@ title: "Try Cloud Foundry - BOSH: Deploying Cloud Foundry"
 excerpt: "Deploying Cloud Foundry with BOSH Lite v2 on AWS"
 modified: 2018-05-18T11:51:25-04:00
 categories: articles
-tags: [BOSH, AWS, Architecture, CloudFoundry]
+tags: [BOSH, AWS, Architecture, Cloud Foundry]
 image:
   vendor: twitter
   feature: /media/DdKnbEOWAAEYmGK.jpg:large
@@ -17,6 +17,9 @@ references:
   - id: 1
     title: "Deploying Cloud Foundry with BOSH Lite v2"
     url: http://operator-workshop.cloudfoundry.org/labs/deploy-cf/
+  - id: 2
+    title: "Deploying Cloud Foundry"
+    url: https://docs.cloudfoundry.org/deploying/cf-deployment/deploy-cf.html
 ---
 
 * TOC
@@ -106,7 +109,7 @@ Succeeded
 
 参数 `--vars-store deployment-vars.yml` 是存储在部署过程中生成的一些重要变量信息，如管理员的密码，各种 private key，各种 secret。
 
-https://sslip.io/ 是一个域名服务网站，它可以把带有 IP 地址的域名转换为 IP 地址本身。
+> https://sslip.io/ 是一个域名服务网站，它可以把带有 IP 地址的域名解析为 IP 地址本身。你还可以选择使用 http://xip.io/
 
 ```
 bosh -d cf deploy ./cf-deployment/cf-deployment.yml \
@@ -270,4 +273,4 @@ Succeeded
 ## Interacting with BOSH clusters
 `bosh instances` 和 `bosh vms` 都能查看运行的虚拟机实例
 
-###
+### Scaling Out BOSH

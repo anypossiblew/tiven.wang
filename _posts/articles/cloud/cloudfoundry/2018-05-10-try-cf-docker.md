@@ -5,7 +5,7 @@ title: "Try Cloud Foundry - Docker"
 excerpt: "How Docker works in Cloud Foundry."
 modified: 2018-05-10T11:51:25-04:00
 categories: articles
-tags: [Architecture, CloudFoundry]
+tags: [Architecture, Cloud Foundry]
 image:
   vendor: twitter
   feature: /media/DdOGgnwXcAACGQ5.jpg:large
