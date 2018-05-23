@@ -38,6 +38,9 @@ cd ..
 docker run --name my-bosh-cf -it -v %cd%:/usr/local/workspace -w /usr/local/workspace bosh/cli2
 ```
 
+> 可以参考 [cf-deployment/deployment-guide.md](https://github.com/cloudfoundry/cf-deployment/blob/master/deployment-guide.md)
+
+### Target your BOSH Director
 首先需要确保 BOSH 环境设置正确
 ```
 # cd /usr/local/workspace/bosh-deployment
@@ -64,15 +67,23 @@ User      admin
 Succeeded
 ```
 
+### Upload a cloud-config
+进入 *workspace* 目录
 `cd /usr/local/workspace`
 
+因为部署 Cloud Foundry 会在 IaaS 上创建虚拟机，而不同 IaaS 平台的技术参数配置不同，所以在部署前需要设置 IaaS 平台相关的虚拟机技术参数，例如虚拟机类型，硬盘，网络等。我们这里是部署在 BOSH Lite 上，所以直接使用 cf-deployment 项目提供的配置文件 *iaas-support/bosh-lite/cloud-config.yml* 就好了。如果要使用其他的 IaaS 平台，则需要提供具体的参数配置。参考文档 [How to cloud config](https://github.com/cloudfoundry/cf-deployment/blob/master/texts/on-cloud-configs.md)
+
 `bosh update-cloud-config ./cf-deployment/iaas-support/bosh-lite/cloud-config.yml`
+
+### Upload Stemcell
+要部署 Cloud Foundry 之前需要先上传 VM image，在 BOSH 里 VM image 叫做 [stemcells][bosh-stemcell]。对于不同的 IaaS, BOSH 提供了不同的 stemcells 可以在 http://bosh.io/stemcells 查找你需要的，他们不同的就两个变量 IaaS(`IAAS_INFO`) 和 Version(`STEMCELL_VERSION`), 例如 GCP 的 IaaS 为 `google-kvm`, 对于 AWS 来说 IaaS 则为 `aws-xen-hvm`，我们这里使用 BOSH Lite warden 作为 IaaS 所以为 `warden-boshlite`。 所以我们创建两个环境变量
 
 ```
 # export STEMCELL_VERSION=$(bosh int ./cf-deployment/cf-deployment.yml --path '/stemcells/alias=default/version')
 # echo $STEMCELL_VERSION
 3541.4
-# bosh upload-stemcell "https://bosh.io/d/stemcells/bosh-warden-boshlite-ubuntu-trusty-go_agent?v=$STEMCELL_VERSION"
+# export IAAS_INFO=warden-boshlite
+# bosh upload-stemcell "https://bosh.io/d/stemcells/bosh-${IAAS_INFO}-ubuntu-trusty-go_agent?v=${STEMCELL_VERSION}"
 Using environment '18.188.115.138' as client 'admin'
 
 Task 1
@@ -112,11 +123,12 @@ Succeeded
 > https://sslip.io/ 是一个域名服务网站，它可以把带有 IP 地址的域名解析为 IP 地址本身。你还可以选择使用 http://xip.io/
 
 ```
-bosh -d cf deploy ./cf-deployment/cf-deployment.yml \
--o ./cf-deployment/operations/bosh-lite.yml \
--o ./cf-deployment/operations/use-compiled-releases.yml \
---vars-store deployment-vars.yml \
--v system_domain=$BOSH_ENVIRONMENT.sslip.io
+# export SYSTEM_DOMAIN=$BOSH_ENVIRONMENT.sslip.io
+# bosh -d cf deploy ./cf-deployment/cf-deployment.yml \
+  --vars-store deployment-vars.yml \
+  -v system_domain=$SYSTEM_DOMAIN \
+  -o ./cf-deployment/operations/bosh-lite.yml \
+  -o ./cf-deployment/operations/use-compiled-releases.yml  
 ```
 
 如果不出现错误，则会有很多个 Tasks 并发执行部署任务。部署过程会花一段时间(~20-30 minutes)
@@ -196,8 +208,11 @@ Task 25 done
 Succeeded
 ```
 
+如果部署出现问题，你可以查看虚拟机状态 `bosh vms --details`，如果觉得虚拟机不正确可以删除部署重新来 `bosh delete-deployment`。或者使用检查工具修正一些问题 `bosh cloudcheck`。再不行就从部署 BOSH Lite 开始重新来过。
+
 ## Check Deployments
 
+查看我们在 BOSH 上的部署
 ```
 # bosh deployments
 Using environment '18.188.115.138' as client 'admin'
@@ -231,8 +246,12 @@ cf    binary-buildpack/1.0.16      bosh-warden-boshlite-ubuntu-trusty-go_agent/3
 
 Succeeded
 ```
-恭喜你已经成功部署了第一个 Cloud Foundry 实例。
+恭喜你已经成功部署了第一个 Cloud Foundry 实例。我们可以看到一个名为 cf 的部署，一堆 [Release][bosh-release] 和一个 [Stemcell][bosh-stemcell]。
 
+> A [release][bosh-release] is a versioned collection of configuration properties, configuration templates, start up scripts, source code, binary artifacts, and anything else required to build and deploy software in a reproducible way.<br>
+A release is the layer placed on top of a [stemcell][bosh-stemcell].  
+
+查看 BOSH Lite 里运行的虚拟机
 ```
 # bosh vms
 Using environment '18.188.115.138' as client 'admin'
@@ -263,6 +282,10 @@ uaa/12c72c06-d565-4365-b830-8301d06f8472                  running        z1  10.
 Succeeded
 ```
 
+上面的 15 个虚拟机简单来说可以对应下面这张 [Cloud Foundry architecture](https://docs.cloudfoundry.org/concepts/architecture/)图的 15 个 Components 。
+![Image: CF Architecture Cloud Foundry Components](https://docs.pivotal.io/pivotalcf/2-1/concepts/images/cf_architecture_block.png)
+{: .center}
+
 还可以查看部署过的 manifest 信息
 `bosh manifest -d <deployment-name>`
 
@@ -274,3 +297,16 @@ Succeeded
 `bosh instances` 和 `bosh vms` 都能查看运行的虚拟机实例
 
 ### Scaling Out BOSH
+
+## Pivotal Cloud Foundry on AWS
+除了部署原版开源的 Cloud Foundry 到 AWS 外，还可以部署 Pivotal 版的 Cloud Foundry 到 AWS 服务器上。
+
+1. [Configure the Amazon Web Services (AWS) components](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-aws-manual-config.html)
+2. [Configuring BOSH Director on AWS Installed Manually](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-aws-manual-om-config.html)
+3. [Manually Configuring PAS for AWS](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-aws-manual-er-config.html)
+
+> 暂时没有亲手试验
+
+
+[bosh-release]:https://bosh.io/docs/release/
+[bosh-stemcell]:https://bosh.io/docs/stemcell/

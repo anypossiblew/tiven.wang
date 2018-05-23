@@ -151,7 +151,7 @@ BOSH Director 是指 BOSH 服务端的管理器，负责管理 BOSH 内的虚拟
     -v external_ip=$EXTERNAL_IP
 ```
 
-例如
+例如本文的技术参数如下
 ```
 bosh create-env bosh.yml
     --state=state.json
@@ -181,7 +181,14 @@ bosh create-env bosh.yml
 `docker run --name my-bosh-cli -it -v %cd%:/usr/local/bosh-deployment -w /usr/local/bosh-deployment bosh/cli2`
 
 如果你的电脑网络需要使用到 Proxy 则可以加入参数（像国内用户访问 *s3.amazonaws.com* 速度慢这样的问题）：
-`docker run --name my-bosh-cli -it -e "http_proxy=http://proxy.wdf.sap.corp:8080" -e "https_proxy=http://proxy.wdf.sap.corp:8080" -v %cd%:/usr/local/bosh-deployment -w /usr/local/bosh-deployment bosh/cli2`
+```
+docker run --name my-bosh-cli -it \
+  -e "http_proxy=http://proxy.wdf.sap.corp:8080" \
+  -e "https_proxy=http://proxy.wdf.sap.corp:8080" \
+  -v %cd%:/usr/local/bosh-deployment \
+  -w /usr/local/bosh-deployment \
+  bosh/cli2
+```
 
 以下命令都是基于 work folder `/usr/local/bosh-deployment` 运行的。
 
@@ -194,12 +201,7 @@ automake-1.14: command not found
 solution:
 `apt-get install automake-1.14`
 
-Another:
-`apt-get install bison`
-
-`apt-get install ssh`
-
-在安装过程中经常需要重试，所以这样的操作最好写入到 *Dockerfile* 创建一个自己的 Docker Image 。
+> 类似地我还遇到了需要安装的 `apt-get install bison`, 在安装过程中经常需要重试，所以这样的操作最好写入到 *Dockerfile* 创建一个自己的 Docker Image 。
 
 
 Output:
@@ -231,7 +233,7 @@ Started installing CPI
 
 Compiling package 需要一段时间。
 
-编译过程中如果遇到 `tar ruby...` 命令
+> 编译过程中如果遇到 `tar ruby...` 命令失败，有一个原因可能是你使用了共享文件夹来作为 *.bosh* 目录
 
 ```
 Started installing CPI
