@@ -24,21 +24,49 @@ references:
 * TOC
 {:toc}
 
-## Setup
+## Setup Project
 
-在 Google firebase console 上创建项目 `try-serverless-firebase`，或者在 *firebase cli* 工具里创建项目。
+在 Google firebase console 上创建项目 `try-serverless-firebase`，或者使用 *Firebase CLI* 工具在客户端创建项目。
 
-安装 firebase cli 工具：
+跟随 Firebase 文档 https://firebase.google.com/docs/functions/get-started 练习以下操作。[Firebase CLI][firebase-tools] 是管理、查看和部署 Firebase 项目的客户端命令行工具，安装 Firebase CLI ：
 
 `npm install -g firebase-tools`
 
-登录 firebase 账号
+登录 firebase 账号，firebase 使用 Ouath2 授权方式登录 Google 账号
 
 `firebase login`
 
-初始化 Google Cloud functions 功能
+创建项目并初始化 Google Cloud functions 功能，根据提醒选择 Project setup, JavaScript/TypeScript, ESLint, Install Dependencies 。
 
-`firebase init functions`
+```
+$ mkdir try-serverless-firebase
+$ cd try-serverless-firebase
+$ firebase init functions
+```
+生成的项目目录结构如下
+```
+try-serverless-firebase
+ +- .firebaserc    # Hidden file that helps you quickly switch between
+ |                 # projects with `firebase use`
+ |
+ +- firebase.json  # Describes properties for your project
+ |
+ +- functions/     # Directory containing all your functions code
+      |
+      +- .eslintrc.json  # Optional file containing rules for JavaScript linting.
+      |
+      +- package.json  # npm package file describing your Cloud Functions code
+      |
+      +- index.js      # main source file for your Cloud Functions code
+      |
+      +- node_modules/ # directory where your dependencies (declared in
+                       # package.json) are installed
+```
+
+如果在 `firebase init` 步骤中没有选择项目，那么可以使用 Firebase CLI 重新设置:
+
+1. `firebase list` 列出所有可用的项目，如果没有可以到 [Firebase console][firebase-console] 中新建
+2. `firebase use <Project ID>` 指定当前目录要对应的项目
 
 ## Hello world
 
@@ -57,18 +85,21 @@ exports.addMessage = functions.https.onRequest((req, res) => {
   // Grab the text parameter.
   const original = req.query.text;
   // Push the new message into the Realtime Database using the Firebase Admin SDK.
-  admin.database().ref('/messages').push({original: original}).then(snapshot => {
+  admin.database().ref('/messages').push({original: original}).then(snapshot =>
     // Redirect with 303 SEE OTHER to the URL of the pushed object in the Firebase console.
-    res.redirect(303, snapshot.ref);
+    res.redirect(303, snapshot.ref)
+  ).catch(err => {
+    if (err) console.log(err);
+    return res.send("ok");
   });
 });
 ```
 
-部署此 function 到 firebase 上:
+部署此 Function 到 Firebase 上:
 
 `firebase deploy --only functions` or `firebase deploy --only functions:addMessage`
 
-在 firebase console functions 栏里会出现这一条记录
+在 Firebase console functions 栏里会出现这一条记录
 
 Function | Event | Executions | Median run time
 --- | --- | --- | ---
@@ -115,3 +146,7 @@ exports.makeUppercase = functions.database.ref('/messages/{pushId}/original')
 |--- original: "Hello world!"
 |--- uppercase: "HELLO WORLD!"
 ```
+
+
+[firebase-tools]:https://github.com/firebase/firebase-tools
+[firebase-console]:https://console.firebase.google.com
