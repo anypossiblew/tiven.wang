@@ -25,14 +25,17 @@ references:
 https://github.com/anaibol/awesome-serverless
 
 
-[Apache OpenWhisk][openwhisk]
-[Amazon Lambda][]
-[IronFunctions][iron-functions]
-[AzureFunctions][azure-functions]
+* [Apache OpenWhisk][openwhisk]
+* [Amazon Lambda][aws-lambda]
+* [IronFunctions][iron-functions]
+* [AzureFunctions][azure-functions]
 
 [Serverless CLI][serverless/serverless]
 
 [Spring Cloud Function][spring-cloud-function]
+
+[riff][projectriff]
+
 
 
 
@@ -40,5 +43,7 @@ https://github.com/anaibol/awesome-serverless
 [openwhisk]:https://openwhisk.apache.org/
 [iron-functions]:https://open.iron.io/
 [azure-functions]:https://azure.microsoft.com/en-us/services/functions/
+[aws-lambda]:https://aws.amazon.com/lambda/
 [serverless/serverless]:https://github.com/serverless/serverless
 [spring-cloud-function]:https://cloud.spring.io/spring-cloud-function/
+[projectriff]:https://projectriff.io/

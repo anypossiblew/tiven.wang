@@ -33,3 +33,6 @@ http://www.oracle.com/technetwork/articles/java/architect-languages-2266279.html
 
 List of JVM languages
 https://en.wikipedia.org/wiki/List_of_JVM_languages
+
+
+Scala embraces the functional programming style

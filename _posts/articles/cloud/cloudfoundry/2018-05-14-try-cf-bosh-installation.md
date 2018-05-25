@@ -118,6 +118,23 @@ BOSH Director 是指 BOSH 服务端的管理器，负责管理 BOSH 内的虚拟
 
 `git clone https://github.com/cloudfoundry/bosh-deployment.git`
 
+#### Docker CLI2
+
+`docker run --name my-bosh-cli -it -v %cd%:/usr/local/bosh-deployment -w /usr/local/bosh-deployment bosh/cli2`
+
+如果你的电脑网络需要使用到 Proxy 则可以加入参数（像国内用户访问 *s3.amazonaws.com* 速度慢这样的问题）：
+```
+docker run --name my-bosh-cli -it \
+  -e "http_proxy=http://proxy.com:8080" \
+  -e "https_proxy=http://proxy.com:8080" \
+  -v %cd%:/usr/local/bosh-deployment \
+  -w /usr/local/bosh-deployment \
+  bosh/cli2
+```
+
+以下命令都是基于 work folder `/usr/local/bosh-deployment` 运行的。
+
+#### Create Environment
 `bosh create-env` 命令创建或者更新一个 BOSH 环境即 BOSH 服务平台。*bosh.yml* 是主配置文件，可以使用 `-o` 参数代表的 [Operations file][cli-ops-files] 覆盖他前面的配置。还可以使用 `-v` 参数指定配置中变量的值。
 
 根据你要部署的目标 IaaS 平台的不同，可以选择不同平台的配置文件，例如我们选择 *aws/cpi.yml* 覆盖默认的 [CPI (Cloud Provider Interface)][bosh-cpi] 配置。
@@ -175,24 +192,6 @@ bosh create-env bosh.yml
     -v subnet_id=subnet-07a46ed04003eb6f2
     -v external_ip=18.188.115.138
 ```
-
-### Docker CLI2
-
-`docker run --name my-bosh-cli -it -v %cd%:/usr/local/bosh-deployment -w /usr/local/bosh-deployment bosh/cli2`
-
-如果你的电脑网络需要使用到 Proxy 则可以加入参数（像国内用户访问 *s3.amazonaws.com* 速度慢这样的问题）：
-```
-docker run --name my-bosh-cli -it \
-  -e "http_proxy=http://proxy.wdf.sap.corp:8080" \
-  -e "https_proxy=http://proxy.wdf.sap.corp:8080" \
-  -v %cd%:/usr/local/bosh-deployment \
-  -w /usr/local/bosh-deployment \
-  bosh/cli2
-```
-
-以下命令都是基于 work folder `/usr/local/bosh-deployment` 运行的。
-
-`bosh create-env bosh.yml --state=state.json --vars-store=creds.yml -o aws/cpi.yml -o bosh-lite.yml -o bosh-lite-runc.yml -o jumpbox-user.yml -o external-ip-with-registry-not-recommended.yml -v director_name=bosh-1 -v internal_cidr=10.0.0.0/24 -v internal_gw=10.0.0.1 -v internal_ip=10.0.0.6 -v access_key_id=AKIAIJGGGCZSU5Q2GZKA -v secret_access_key=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 -v region=us-east-2 -v az=us-east-2a -v default_key_name=bosh -v default_security_groups=[bosh] --var-file private_key=bosh.pem -v subnet_id=subnet-07a46ed04003eb6f2 -v external_ip=18.188.115.138`
 
 如果 Compile 过程中出现这样的错误，需要安装相应组件
 error:

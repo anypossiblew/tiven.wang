@@ -282,7 +282,8 @@ uaa/12c72c06-d565-4365-b830-8301d06f8472                  running        z1  10.
 Succeeded
 ```
 
-上面的 15 个虚拟机简单来说可以对应下面这张 [Cloud Foundry architecture](https://docs.cloudfoundry.org/concepts/architecture/)图的 15 个 Components 。
+上面的 15 个虚拟机简单来说可以对应下面这张 [Cloud Foundry architecture](https://docs.cloudfoundry.org/concepts/architecture/)图的 15 个 Components
+
 ![Image: CF Architecture Cloud Foundry Components](https://docs.pivotal.io/pivotalcf/2-1/concepts/images/cf_architecture_block.png)
 {: .center}
 

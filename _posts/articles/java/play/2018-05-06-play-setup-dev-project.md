@@ -18,12 +18,25 @@ share: true
 * TOC
 {:toc}
 
-对于初学者来说，通过学习现成完整项目代码进行入门是非常合适的。<br>
-下载 [Play Starter Projects](https://www.playframework.com/download) 源代码包或者从 [Github](https://github.com/playframework/play-scala-starter-example) clone 代码。
+本系列我们打算开发一个可以从 Twitter 上拉取数据流并展现在前端的应用，我们选择 Scala 语言版本的 Play Framework 进行学习，前提是安装了 JDK 8 及以上版本 和 sbt （参考 [Scala: Setup Dev Project](/articles/scala-setup-dev-project/)）
 
-我们选择 Scala 语言版本的进行学习，前提是安装了 JDK 8 和 sbt （参考 [Scala: Setup Dev Project](/articles/scala-setup-dev-project/)）
+对于初学者来说，通过学习现成完整项目代码进行入门是非常合适的。下载 [Play Starter Projects](https://www.playframework.com/download) 源代码包或者克隆一份 starter 项目代码
 
-下载后进入项目文件夹运行命令 `sbt run` 下载依赖包并编译运行，成功后访问 http://127.0.0.1:9000
+`git clone https://github.com/playframework/play-scala-starter-example.git`
+
+，你还可以从 https://developer.lightbend.com/start/ 选择更多关于 Play Framework 的样例代码。下载后进入项目文件夹运行命令 `sbt run` 下载依赖包并编译运行，成功后访问 http://127.0.0.1:9000
+
+## App Configuration
+
+请到 https://apps.twitter.com 网站自行创建 App , 把 App 信息配置在 *conf/[application.conf][playframework-ConfigFile]* 文件里。
+
+```
+## My Twitter App Info
+twitter.consumerKey="<your consumer key>"
+twitter.consumerSecret="<your consumer secret>"
+twitter.accessToken="<your access token>"
+twitter.accessTokenSecret="your access token secret"
+```
 
 ## Deploy
 
@@ -35,3 +48,8 @@ https://stackoverflow.com/questions/45070168/host-not-allowed-error-when-deployi
 ### CloudFoundry
 
 如何部署 Play 项目到 CloudFoundry 平台可以参考文章 [Scala - Deploy to CloudFoundry](/articles/scala-deploy-to-cloudfoundry/)
+
+
+
+
+[playframework-ConfigFile]:https://www.playframework.com/documentation/2.6.x/ConfigFile
