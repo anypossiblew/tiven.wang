@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Scala: "
+title: "Scala: Basics"
 excerpt: ""
 modified: 2018-05-25T11:51:25-04:00
 categories: articles
@@ -13,7 +13,12 @@ image:
   creditlink: https://twitter.com/500px/status/997461949398048768
 comments: true
 share: true
+references:
+  - title: "Scala Documentation - Basics"
+    url: https://docs.scala-lang.org/tour/basics.html
 ---
+
+
 
 * TOC
 {:toc}
@@ -93,7 +98,7 @@ s(4) // Yields 'o'
 "Bonjour".sorted.apply(3) // 或这样
 ```
 
-`apply` 另外一种应用是用在 Class （实际是 Object）上
+`apply` 其实是 [Singleton Object][singleton-objects] 的构造函数
 ```scala
 BigInt("1234567890")
 BigInt.apply("1234567890")
@@ -121,3 +126,5 @@ Scala 怎么这样像 JavaScript 呐，也许是发明者吸取了 JavaScript �
 [scala-js]:http://www.scala-js.org/
 
 [RichInt]:https://www.scala-lang.org/api/2.9.3/scala/runtime/RichInt.html
+
+[singleton-objects]:https://docs.scala-lang.org/tour/singleton-objects.html
