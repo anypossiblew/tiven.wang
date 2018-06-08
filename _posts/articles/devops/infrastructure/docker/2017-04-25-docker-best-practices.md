@@ -92,6 +92,14 @@ docker run -e "http_proxy=http://myproxy.example.com:8080" \
            ...
 ```
 
+### How to get a Docker container's IP address from the host?
+
+{% raw %}
+`docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <container name or id>`
+{% endraw %}
+
+`docker inspect <container name or id> | grep "IPAddress"`
+
 ## Run
 ### Running Nodejs
 

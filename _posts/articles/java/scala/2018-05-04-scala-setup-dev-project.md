@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Scala: Setup Dev Project"
+title: "Scala - Setup Dev Project"
 excerpt: ""
 modified: 2018-05-04T11:51:25-04:00
 categories: articles
@@ -89,6 +89,8 @@ libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % 
 
 https://marketplace.visualstudio.com/items?itemName=dragos.scala-lsp
 
+## Debug
+How to debug Scala application in IDEs?
 
 
 

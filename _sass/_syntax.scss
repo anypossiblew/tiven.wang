@@ -16,7 +16,6 @@ pre.highlight {
 	background-color: #efefef;
 	font-family: $code-font;
 	color: #333332;
-	margin-bottom: 1.5em;
 	@include rounded($border-radius);
 	pre {
 		position: relative;

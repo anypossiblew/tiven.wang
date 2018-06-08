@@ -16,6 +16,8 @@ share: true
 references:
   - title: "Kubernetes Documentation"
     url: https://kubernetes.io/docs
+  - title: "Hello Minikube"
+    url: https://kubernetes.io/docs/tutorials/hello-minikube
 ---
 
 * TOC
@@ -64,7 +66,7 @@ Windows 上需要 administrator 权限运行命令，还要在原始 CMD 窗口�
 `minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch" --docker-env HTTP_PROXY=http://your-http-proxy-host:your-http-proxy-port  --docker-env HTTPS_PROXY=http(s)://your-https-proxy-host:your-https-proxy-port
 `
 
-继续，Minikube start 完成后会自动把 `kubectl` 工具指向此 cluster ，我们使用 `kubectl get nodes` 来检查一下安装成果
+继续，Minikube start 完成后会自动把 `kubectl` 工具指向此 cluster
 ```
 λ minikube start --vm-driver hyperv --hyperv-virtual-switch "Primary Virtual Switch"
 Starting local Kubernetes v1.10.0 cluster...
@@ -77,6 +79,9 @@ Setting up kubeconfig...
 Starting cluster components...
 Kubectl is now configured to use the cluster.
 Loading cached images from config file.
+```
+我们使用 `kubectl get nodes` 来检查一下安装成果
+```
 λ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
 minikube   Ready     master    1m        v1.10.0
@@ -163,7 +168,7 @@ Server Version: 17.12.1-ce
 Opening kubernetes dashboard in default browser...
 ```
 
-### Kubernetes Cluster run on Docker Containers
+### Deploy Kubernetes Cluster on Docker Containers Manually
 //[**跳过**](#first-application)
 
 如果你对 [Docker][docker] 比较熟悉的话，也可以用 Docker containers 群来部署 Kubernetes 系统，但这种方式只适合用来做开发练习。虽然 Kubernetes 官方文档也不推荐这种方法，说由 Minikube 取代，参考 https://kubernetes-v1-4.github.io/docs/getting-started-guides/docker/ ，但在 Windows 上跑不起来 Minikube 的情况下不得不选择，也会增加你对 Kubernetes 组件的了解。
@@ -263,8 +268,11 @@ docker run -d --net=container:k8s gcr.io/google_containers/hyperkube:v1.7.11 /sc
 > 但在用 Docker container 跑 kubelet 容器时又遇到了没解决的问题，kubelet 需要一个容器管理器，我尝试了 Windows 平台从 kubelet 的 Docker container 去连接主机的 Docker daemon，或者用 Docker-in-Docker 的方式去连接一个 Docker container 中的 Docker daemon 都没有试验成功。
 
 ### Kubernetes in Docker for Windows CE Edge
-我又发现 [Docker for Windows 18.02 CE Edge](https://docs.docker.com/docker-for-windows/kubernetes/) 支持了 Kubernetes 。
+我又发现 [Docker for Windows 18.02 CE Edge](https://docs.docker.com/docker-for-windows/kubernetes/) 支持了 [Kubernetes](https://www.docker.com/kubernetes) 。
 但并没有成功启动它。
+
+把 Docker 软件 *Reset to factory defaults...* 后重新 *Enable Kubernetes* 成功了。
+
 
 ## First Application
 Minikube 版的 Kubernetes 已经安装好了，现在就来部署我们的第一个应用吧。
@@ -294,7 +302,7 @@ Opening kubernetes service default/ghost in default browser...
 ```
 `minikube service ghost` 命令会在浏览器中打开指定服务的地址。这里可能需要等待 Docker container 创建完成，也用 `kubectl get pods` 可以查看 pods 的运行状态，当为 `Running` 时说明启动完成。
 
-更多相关情况可以查看 Kubernetes Dashboard ，你会发现在 namespace `default` 下新增了 ghost 相关的 Deployment, Pod, Replica Set, Service 。
+更多相关情况可以使用 `minikube dashboard` 查看 Kubernetes Dashboard ，你会发现在 namespace `default` 下新增了 [ghost][ghost] 相关的 Deployment, Pod, Replica Set, Service 。
 
 
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Scala: Basics"
+title: "Scala - Basics"
 excerpt: ""
 modified: 2018-05-25T11:51:25-04:00
 categories: articles

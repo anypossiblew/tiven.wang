@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using Docker
-excerpt: "Review for <<Using Docker>>"
+excerpt: "Review for 《Using Docker》"
 modified: 2017-04-25T17:00:00-00:00
 categories: articles
 tags: [Docker, Infrastructure as Code, CI/CD]
