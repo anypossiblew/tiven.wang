@@ -84,6 +84,8 @@ kubeadm join 10.59.176.211:8443 --token mceq67.bit1jg2iafbz8xjv --discovery-toke
 [WARNING Service-Docker]: docker service is not enabled, please run 'systemctl enable docker.service'
 ```
 
+
+
 https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
 
