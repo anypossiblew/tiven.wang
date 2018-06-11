@@ -18,7 +18,7 @@ share: true
 Open transaction **SCLAS_API**, Select Characteristic "Release State" and search for your CDS view. Change your CDS view's release state to **_Released for version '2'_**
 
 ### Extensibility registration
-Extensibility registration in **SCFD_REGISTRY** (in ER3, package CUAN_MODEL_S_APPLICATION):
+Extensibility registration in **SCFD_REGISTRY** (package CUAN_MODEL_S_APPLICATION):
 
 * For Cube views: Retrieval should be done via association to extension include view.
 

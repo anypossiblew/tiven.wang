@@ -5,7 +5,7 @@ title: "Getting Started with Kubernetes"
 excerpt: ""
 modified: 2018-05-25T11:51:25-04:00
 categories: articles
-tags: [Kubernetes, Cloud]
+tags: [Minikube, Kubernetes, Cloud]
 image:
   vendor: twitter
   feature: /media/Dd0B9t9UQAAJuXN.jpg:large
