@@ -27,6 +27,13 @@
       {% assign background = author.background %}
     {% endif %}
 
+     {% if page.showYourTerms %}
+     <!-- javascript -->
+    <script type='text/javascript' src='https://cdn.rawgit.com/kandebonfim/show-your-terms/master/dist/show-your-terms.min.js'></script>
+    <!-- stylesheet -->
+    <link rel='stylesheet' href='https://cdn.rawgit.com/kandebonfim/show-your-terms/master/dist/show-your-terms.min.css'>
+     {% endif %}
+
     <style>
     #view-source {
       position: fixed;
@@ -201,7 +208,6 @@
             </div>
             <div class="mdl-color-text--primary-contrast mdl-card__supporting-text">
               {% if site.owner.disqus-shortname and page.comments or site.comments %}
-                {% include disqus-comments.html %}
                 <div id="disqus_thread"></div><!-- /#disqus_thread -->
               {% endif %}
             </div>
@@ -215,5 +221,14 @@
     </div>
     <a href="#top" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Back to Top</a>
 
+    {% if page.showYourTerms %}
+    <script type="text/javascript">
+      new ShowYourTerms('.showyourterms');
+    </script>
+    {% endif %}
+
+    {% if site.owner.disqus-shortname and page.comments or site.comments %}
+      {% include disqus-comments.html %}
+    {% endif %}
   </body>
 </html>

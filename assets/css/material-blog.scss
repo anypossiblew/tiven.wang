@@ -515,3 +515,12 @@ blockquote {
     }
   }
 }
+
+
+.showyourterms {
+  width: 100%;
+  box-sizing: border-box;
+  .lines {
+    white-space: pre;
+  }
+}
