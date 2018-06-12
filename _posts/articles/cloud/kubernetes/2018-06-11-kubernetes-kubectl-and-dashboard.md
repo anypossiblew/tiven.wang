@@ -144,8 +144,8 @@ Authentication and Authorization 的概念会放在后面介绍，这里我们�
 下面是查看 Service Account 和其相应的 Secret 的过程
 
 <div class='showyourterms light kubemaster' data-title="Kubemaster">
-  <div class='type' data-action='command' data-delay='400'>kubectl get serviceaccounts --all-namespaces</div>
-  <div class='lines grey' data-delay='400'>
+  <div class='type green' data-action='command' data-delay='400'>kubectl get serviceaccounts --all-namespaces</div>
+  <div class='lines' data-delay='400'>
 default       default                              1         23h
 kube-public   default                              1         23h
 kube-system   attachdetach-controller              1         23h
@@ -165,8 +165,8 @@ kube-system   kube-dns                             1         23h
 kube-system   kube-proxy                           1         23h
 kube-system   kubernetes-dashboard                 1         20h
   </div>
-  <div class='type' data-action='command' data-delay='400'>kubectl get serviceaccounts kubernetes-dashboard -n kube-system -o yaml</div>
-  <div class='lines grey' data-delay='400'>
+  <div class='type green' data-action='command' data-delay='400'>kubectl get serviceaccounts kubernetes-dashboard -n kube-system -o yaml</div>
+  <div class='lines' data-delay='400'>
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -181,44 +181,8 @@ metadata:
 secrets:
 - name: kubernetes-dashboard-token-qtlh8
   </div>
-</div>
-
-```
-root@kubemaster:~# kubectl get serviceaccounts --all-namespaces //查看所有的 Service Accounts
-default       default                              1         23h
-kube-public   default                              1         23h
-kube-system   attachdetach-controller              1         23h
-kube-system   bootstrap-signer                     1         23h
-kube-system   certificate-controller               1         23h
-kube-system   clusterrole-aggregation-controller   1         23h
-kube-system   cronjob-controller                   1         23h
-kube-system   daemon-set-controller                1         23h
-kube-system   default                              1         23h
-kube-system   deployment-controller                1         23h
-kube-system   disruption-controller                1         23h
-kube-system   endpoint-controller                  1         23h
-kube-system   generic-garbage-collector            1         23h
-kube-system   horizontal-pod-autoscaler            1         23h
-kube-system   job-controller                       1         23h
-kube-system   kube-dns                             1         23h
-kube-system   kube-proxy                           1         23h
-kube-system   kubernetes-dashboard                 1         20h
-//...
-root@kubemaster:~# kubectl get serviceaccounts kubernetes-dashboard -n kube-system -o yaml //查看某一个 Service Account 详情
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  creationTimestamp: 2018-06-11T09:55:25Z
-  labels:
-    k8s-app: kubernetes-dashboard
-  name: kubernetes-dashboard
-  namespace: kube-system
-  resourceVersion: "13020"
-  selfLink: /api/v1/namespaces/kube-system/serviceaccounts/kubernetes-dashboard
-  uid: 9070a7cd-6d5d-11e8-a8b9-00155d4b0181
-secrets:
-- name: kubernetes-dashboard-token-qtlh8
-root@kubemaster:~# kubectl get secret kubernetes-dashboard-token-qtlh8 -n kube-system -o yaml //查看 Service Account 对应的 Secret 信息
+  <div class='type green' data-action='command' data-delay='400'>kubectl get secret kubernetes-dashboard-token-qtlh8 -n kube-system -o yaml</div>
+  <div class='lines' data-delay='400'>
 apiVersion: v1
 data:
   ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNE1EWXhNVEEyTkRjeU0xb1hEVEk0TURZd09EQTJORGN5TTFvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTFV3CllWMHlSY1VVK3Q3UlU5VlQ4c3hIUWUrZHowWUtreExOMlR6ZHNXbXVsS2Z1RzdNTGZiYk1ldzZqYmQ0K3VSNVAKMW9sYmsxLzgrSVRjM2UycGpyRWIzUUFrMlpKNFpqM3hhQ2pYMkRZYlhqK1I2WnM3NVRUOEVOT3VUc0xERm1EWAppL00wWkQvdWxMam5sK01sdElxNHpjblNvQ0RNQlFGc0l0QmYyQkJoY29weE5kMUpsVzR4aXl4M1BNcTdDeVNCCmNrVzBHK0JiR09xbDBtVlBuZDd5M0JFcnpvd1Z0UkhOUVQ0T2FTYjFNU0RQTmVsa1YzLzlXSnFiWWVRSkloYnQKN2lkMkVXd1ZHRWFjMkRDTk5kYzgvaWhaM0RHL3pVejQyRFYzQVBEU28wUEFSMG54NG1LRHdVa0Vqc01lUjhMRAphUkh5RCtQK0FQVEwyanZPcURrQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFGV0dKM2hKZmtUdVlVMlcwUDg4Uk1CYURaYlUKU0VJeVhwQk9KbmZQSTZJNGZxVXAxeWJGRTRuNEhYaXRhajM0bDM4UGVCNWM2cnh6eUNVTnVIcVFsMkk4aE5XSQpkZEFvSENtb3JqZzFFMG9LVkUzZ1QzL2FOQVdzUmxuMC9SeUExOU1vRG0xSVFFZXhMM3BqUTZSRzk0SmZhZDhzCjNXN2cxVldmYjRjU2J5UkNxSWNXcldCYmZzTjhzY0RTV3l2VmQxQUN1RnhIcHFyM1VBbmZ6SzlWVFlmdHpPQmgKcm4vME84aGJWMWVqTFNxNXFldWhPUjFITkFQVlNJa3ZIelV6RVlJSHNyUzl1SW1Ca1VYNm53VDF4UnJZOUFVdwpDaS9TWFJxNGJmcHZya1VPUkQ2ZnQ3UmFNQUZYMkVqN1JBclpON0lyUGFEemszY09rcFBTZW0wVHlmZz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
@@ -236,7 +200,9 @@ metadata:
   selfLink: /api/v1/namespaces/kube-system/secrets/kubernetes-dashboard-token-qtlh8
   uid: 907905ea-6d5d-11e8-a8b9-00155d4b0181
 type: kubernetes.io/service-account-token
-```
+  </div>
+</div>
+
 当拿到 Token 时你便可以使用各种方式访问 Kubernetes cluster APIs 了。
 
 ### Kubernetes Dashboard

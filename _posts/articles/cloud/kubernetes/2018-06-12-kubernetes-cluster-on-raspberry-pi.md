@@ -23,3 +23,8 @@ references:
 {:toc}
 
 https://rak8s.io/
+
+```
+cd /usr/local
+sudo curl -o lantern.deb  https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
+```
