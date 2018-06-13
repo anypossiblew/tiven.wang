@@ -8,9 +8,9 @@ categories: articles
 tags: [Kubeadm, Kubernetes, Cloud]
 image:
   vendor: twitter
-  feature: /media/DfGbYtqX0AEP6EY.jpg:large
+  feature: /media/Denfo5pVMAIlav1.jpg:large
   credit: Nat Geo Photography
-  creditlink: https://twitter.com/NatGeoPhotos/status/1004755042925273088
+  creditlink: https://twitter.com/NatGeoPhotos/status/1002578287644807176
 comments: true
 share: true
 showYourTerms: true
@@ -29,6 +29,10 @@ references:
 }
 </style>
 
+<script type="text/javascript">
+  //new ShowYourTerms('.showyourterms');
+</script>
+
 * TOC
 {:toc}
 
@@ -38,10 +42,12 @@ references:
 ## Kubectl from Laptop
 
 Powershell 终端上安全拷贝 admin.conf 到物理本机，然后就可以在此电脑上访问 Kubernetes master 节点的集群了
-```
-scp root@<master ip>:/etc/kubernetes/admin.conf .
-kubectl --kubeconfig ./admin.conf get nodes
-```
+<div class='showyourterms' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>scp root@&lt;master ip&gt;:/etc/kubernetes/admin.conf .</div>
+    <div class='type green' data-action='command' data-delay='400'>kubectl --kubeconfig ./admin.conf get nodes</div>
+  </div>
+</div>
 
 master ip 是你的 master 节点主机的 IP 地址，root 是指使用系统的 root 用户远程登录并做拷贝，你也可以使用非 root 用户，这样更安全一些，但你可能需要授权 *admin.conf* 文件权限给你的用户。
 
@@ -89,30 +95,42 @@ kubectl --kubeconfig ./admin.conf proxy
 ### Install Dashboard
 在 Kubernetes master 主机上(或者使用上节讲的 `kubectl` from Laptop)安装 Dashboard service (当前 Dashboard Version:
 v1.8.3)
-```
-root@kubemaster:~# kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml</div>
+    <div class='lines' data-delay='400'>
 secret "kubernetes-dashboard-certs" created
 serviceaccount "kubernetes-dashboard" created
 role.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
 rolebinding.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
 deployment.apps "kubernetes-dashboard" created
 service "kubernetes-dashboard" created
-```
+    </div>
+  </div>
+</div>
+
 查看 Kubernetes 集群里所有 pods 的状态
-```
-root@kubemaster:~# kubectl get pods --all-namespaces
+
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubectl get pods --all-namespaces</div>
+    <div class='lines' data-delay='400'>
 NAMESPACE     NAME                                    READY     STATUS             RESTARTS   AGE
 kube-system   kube-apiserver-kubemaster               0/1       Pending            0          1s
 kube-system   kube-dns-86f4d74b45-bdd2g               3/3       Running            0          14h
 kube-system   kube-proxy-8swcv                        1/1       Running            0          14h
 kube-system   kubernetes-dashboard-7d5dcdb6d9-jbz8z   0/1       ImagePullBackOff   0          36s
-kube-system   weave-net-7t6lt                         2/2       Running            4          13h
-```
+kube-system   weave-net-7t6lt                         2/2       Running            4          13h    
+    </div>
+  </div>
+</div>
 
 等 kubernetes-dashboard 这个 pod `Running` 起来后，再次在物理本机访问 *http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/*
 如果正常情况则会出现 Kubernetes Dashboard UI 登录页面。
 
 > Kubernetes Dashboard 自版本 v1.7 权限控制便有所升级
+{: .Warning}
 
 有两种登录方式可选 [Kubeconfig](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) 和 [Token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)，两种方式的配置对于到目前步骤为止我们的知识水平来说过于复杂，所以我们选择跳过。跳过的意思是 Kubernetes Dashboard service 会使用默认的账号（kubernetes-dashboard）访问 Kubernetes cluster APIs。
 跳过登录页面的话，虽然可以进入管理页面，但都没权限查看，会出现类似下面这种错误
@@ -143,7 +161,8 @@ Authentication and Authorization 的概念会放在后面介绍，这里我们�
 
 下面是查看 Service Account 和其相应的 Secret 的过程
 
-<div class='showyourterms light kubemaster' data-title="Kubemaster">
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+<div class='showyourterms-container'>
   <div class='type green' data-action='command' data-delay='400'>kubectl get serviceaccounts --all-namespaces</div>
   <div class='lines' data-delay='400'>
 default       default                              1         23h
@@ -201,6 +220,7 @@ metadata:
   uid: 907905ea-6d5d-11e8-a8b9-00155d4b0181
 type: kubernetes.io/service-account-token
   </div>
+</div>
 </div>
 
 当拿到 Token 时你便可以使用各种方式访问 Kubernetes cluster APIs 了。

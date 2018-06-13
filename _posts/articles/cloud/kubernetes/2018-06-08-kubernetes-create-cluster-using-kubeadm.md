@@ -13,6 +13,7 @@ image:
   creditlink: https://twitter.com/NatGeoPhotos/status/998956854687485954
 comments: true
 share: true
+showYourTerms: true
 references:
   - title: "Kubernetes Documentation"
     url: https://kubernetes.io/docs
@@ -20,8 +21,22 @@ references:
     url: https://www.katacoda.com/courses/kubernetes/add-additional-nodes-to-cluster
 ---
 
+<style>
+.showyourterms.kubemaster .type:before {
+  content: "root@kubemaster:~# "
+}
+.showyourterms.kubenode1 .type:before {
+  content: "root@kubenode1:~# "
+}
+</style>
+
 * TOC
 {:toc}
+
+首先来看一下我们要创建的 Kubernetes cluster 整体架构
+
+![Image: Kubernetes cluster using Kubeadm](/images/cloud/kubernetes/Kubernetes-cluster-kubeadm-arc.png)
+
 
 ## VM as Kube Node
 现在就创建一个虚拟机作为 Kubernetes Cluster 新的 Node 主机。Kubernetes 节点主机支持不同的 Linux 系统，只要可以安装相关软件。为了大众化我们选择 Ubuntu server 系统，下载 Ubuntu server 镜像 [https://www.ubuntu.com/download/server](https://www.ubuntu.com/download/server)
@@ -63,8 +78,10 @@ E: Unable to locate package kubectl<br>
 
 ### Configure cgroup driver used by kubelet on Master Node
 // 不确定什么情况下需要做这步
-```
-root@kubemaster:~# cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</div>
+    <div class='lines' data-delay='400'>
 [Service]
 Environment="KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf"
 Environment="KUBELET_SYSTEM_PODS_ARGS=--pod-manifest-path=/etc/kubernetes/manifests --allow-privileged=true"
@@ -75,14 +92,22 @@ Environment="KUBELET_CADVISOR_ARGS=--cadvisor-port=0"
 Environment="KUBELET_CERTIFICATE_ARGS=--rotate-certificates=true --cert-dir=/var/lib/kubelet/pki"
 ExecStart=
 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_SYSTEM_PODS_ARGS $KUBELET_NETWORK_ARGS $KUBELET_DNS_ARGS $KUBELET_AUTHZ_ARGS $KUBELET_CADVISOR_ARGS $KUBELET_CERTIFICATE_ARGS $KUBELET_EXTRA_ARGS
-root@kubemaster:~# docker info | grep -i cgroup
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>docker info | grep -i cgroup</div>
+    <div class='lines' data-delay='400'>
 Cgroup Driver: cgroupfs
 WARNING: No swap limit support
-```
+    </div>
+  </div>
+</div>
 
-```
-root@kubemaster:~# sed -i "s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-root@kubemaster:~# cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+设置参数
+
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>sed -i "s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</div>
+    <div class='type green' data-action='command' data-delay='400'>cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf</div>
+    <div class='lines' data-delay='400'>
 [Service]
 Environment="KUBELET_KUBECONFIG_ARGS=--bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf"
 Environment="KUBELET_SYSTEM_PODS_ARGS=--pod-manifest-path=/etc/kubernetes/manifests --allow-privileged=true"
@@ -93,22 +118,29 @@ Environment="KUBELET_CADVISOR_ARGS=--cadvisor-port=0"
 Environment="KUBELET_CERTIFICATE_ARGS=--rotate-certificates=true --cert-dir=/var/lib/kubelet/pki"
 ExecStart=
 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_SYSTEM_PODS_ARGS $KUBELET_NETWORK_ARGS $KUBELET_DNS_ARGS $KUBELET_AUTHZ_ARGS $KUBELET_CADVISOR_ARGS $KUBELET_CERTIFICATE_ARGS $KUBELET_EXTRA_ARGS
-```
+    </div>
+  </div>
+</div>
 
 Then restart kubelet:
-```
-systemctl daemon-reload
-systemctl restart kubelet
-```
+
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>systemctl daemon-reload</div>
+    <div class='type green' data-action='command' data-delay='400'>systemctl restart kubelet</div>
+  </div>
+</div>
 
 ### Create Cluster
-https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
+按照官方文档 [Create cluster using kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) 创建 Kubernetes cluster
 
 #### Initializing your master
 The master is the machine where the control plane components run, including etcd (the cluster database) and the API server (which the kubectl CLI communicates with).
 
-```
-root@kubemaster:~# kubeadm init
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubeadm init</div>
+    <div class='lines' data-delay='400'>
 [init] Using Kubernetes version: v1.10.4
 [init] Using Authorization modes: [Node RBAC]
 [preflight] Running pre-flight checks.
@@ -169,7 +201,9 @@ You can now join any number of machines by running the following on each node
 as root:
 
   kubeadm join 172.20.84.213:6443 --token 3b7u48.w4bidn6xs5gy6zmx --discovery-token-ca-cert-hash sha256:182fba1ecb85fd4dbfbf478b12a40143d2c7de9f16ba2ea85263648a74b010b1
-```
+    </div>
+  </div>
+</div>
 
 * 如果遇到下面错误说明你需要执行 `swapoff -a`
 ```

@@ -520,6 +520,13 @@ blockquote {
 .showyourterms {
   width: 100%;
   box-sizing: border-box;
+  .showyourterms-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .type:before {
+    color: #fff;
+  }
   .lines {
     white-space: pre;
   }
