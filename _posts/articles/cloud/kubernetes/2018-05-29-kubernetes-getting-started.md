@@ -273,6 +273,7 @@ docker run -d --net=container:k8s gcr.io/google_containers/hyperkube:v1.7.11 /sc
 
 把 Docker 软件 *Reset to factory defaults...* 后重新 *Enable Kubernetes* 成功了。
 
+https://www.hanselman.com/blog/HowToSetUpKubernetesOnWindows10WithDockerForWindowsAndRunASPNETCore.aspx
 
 ## First Application
 Minikube 版的 Kubernetes 已经安装好了，现在就来部署我们的第一个应用吧。

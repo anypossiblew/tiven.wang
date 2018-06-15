@@ -27,6 +27,10 @@ references:
 .showyourterms.kubenode1 .type:before {
   content: "root@kubenode1:~# "
 }
+.showyourterms.powershell .type:before {
+  content: "PS C:\\Users\\tiven> "
+}
+
 </style>
 
 <script type="text/javascript">
@@ -41,7 +45,7 @@ references:
 
 ## Kubectl from Laptop
 
-Powershell 终端上安全拷贝 admin.conf 到物理本机，然后就可以在此电脑上访问 Kubernetes master 节点的集群了
+Powershell 终端上安全拷贝 admin.conf 到物理本机，然后就可以在此电脑上用 [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) 访问 Kubernetes master 节点的集群了
 <div class='showyourterms' data-title="Powershell on Laptop">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>scp root@&lt;master ip&gt;:/etc/kubernetes/admin.conf .</div>
@@ -49,7 +53,7 @@ Powershell 终端上安全拷贝 admin.conf 到物理本机，然后就可以在
   </div>
 </div>
 
-master ip 是你的 master 节点主机的 IP 地址，root 是指使用系统的 root 用户远程登录并做拷贝，你也可以使用非 root 用户，这样更安全一些，但你可能需要授权 *admin.conf* 文件权限给你的用户。
+master ip 是你的 master 节点主机的 IP 地址，root 是指使用系统的 root 用户远程登录并做拷贝，你也可以使用非 root 用户，这样更安全一些，但你可能需要授权 *admin.conf* 文件权限给你的用户。可以替换掉默认的配置文件 `~/.kube/config` 这样在运行命令时就不用指定配置文件参数了。
 
 如果使用 root 用户，到目前为止你应该没有开启 root 登录功能。为 Ubuntu root 用户设置密码，即开启 root 用户登录系统能力
 
@@ -66,10 +70,16 @@ $ service ssh restart
 ```
 
 ## Proxying API Server to localhost
+使用命令 `kubectl proxy` 为 Kubernetes API server 在本机创建一个代理服务
+<div class='showyourterms' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubectl --kubeconfig ./admin.conf proxy</div>
+    <div class='lines' data-delay='400'>
+Starting to serve on 127.0.0.1:8001
+    </div>
+  </div>
+</div>
 
-```
-kubectl --kubeconfig ./admin.conf proxy
-```
 然后就可以用 localhost 访问 Kubernetes cluster 的 API Server 的接口了 [*http://localhost:8001/api/v1*](http://localhost:8001/api/v1)
 
 ## Dashboard
@@ -137,7 +147,7 @@ kube-system   weave-net-7t6lt                         2/2       Running         
 ```
 nodes is forbidden: User "system:serviceaccount:kube-system:kubernetes-dashboard" cannot list nodes at the cluster scope
 ```
-这说明默认账号 ·kube-system:kubernetes-dashboard· 没有权限访问 cluster APIs。接下来我们就按照 [Kuernetes Dashboard/Access control/Admin privileges](https://github.com/kubernetes/dashboard/wiki/Access-control#official-release) 说明为账号分配管理员权限。
+这说明默认账号 `kube-system:kubernetes-dashboard` 没有权限访问 cluster APIs。接下来我们就按照 [Kuernetes Dashboard/Access control/Admin privileges](https://github.com/kubernetes/dashboard/wiki/Access-control#official-release) 说明为账号分配管理员权限。
 执行命令 `kubectl create -f dashboard-admin.yaml` 其中文件 *dashboard-admin.yaml* 内容为
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
@@ -227,6 +237,7 @@ type: kubernetes.io/service-account-token
 
 ### Kubernetes Dashboard
 安装好了 Dashboard 我们就来试用一下他吧。
+其实 Kubernetes Dashboard 算是我们在 Kubernetes cluster 部署的第一个 Application 。后面讲到 Kubernetes 应用程序开发和部署时就会更加清楚。
 
 
 [buildroot]:https://buildroot.org/

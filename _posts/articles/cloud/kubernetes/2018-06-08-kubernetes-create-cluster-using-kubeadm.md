@@ -7,10 +7,10 @@ modified: 2018-06-08T11:51:25-04:00
 categories: articles
 tags: [Kubeadm, Kubernetes, Cloud]
 image:
-  vendor: twitter
-  feature: /media/Dd0B9t9UQAAJuXN.jpg:large
-  credit: Nat Geo Photography
-  creditlink: https://twitter.com/NatGeoPhotos/status/998956854687485954
+  vendor: nationalgeographic
+  feature: /content/dam/travel/rights-exempt/2018-travel-photographer-of-the-year/sunset-sunrise-golden-hour/sunrise-myanmar-burma-golden-hour-01.ngsversion.1527707084997.adapt.885.1.jpg
+  credit: NATIONAL GEOGRAPHIC TRAVEL
+  creditlink: https://www.nationalgeographic.com/travel/features/photography/sunset-sunrise-golden-hour-light/
 comments: true
 share: true
 showYourTerms: true
@@ -37,6 +37,8 @@ references:
 
 ![Image: Kubernetes cluster using Kubeadm](/images/cloud/kubernetes/Kubernetes-cluster-kubeadm-arc.png)
 
+首先我们会创建安装和部署 master 虚拟机，然后再创建安装 node 虚拟机并加入到 master 主机代表的 Kubernetes cluster。
+本篇我们只演示一个 node 虚拟机，内存富裕的小伙伴可以多创建几个 node 虚拟机加入 Kubernetes cluster。
 
 ## VM as Kube Node
 现在就创建一个虚拟机作为 Kubernetes Cluster 新的 Node 主机。Kubernetes 节点主机支持不同的 Linux 系统，只要可以安装相关软件。为了大众化我们选择 Ubuntu server 系统，下载 Ubuntu server 镜像 [https://www.ubuntu.com/download/server](https://www.ubuntu.com/download/server)
@@ -215,17 +217,24 @@ as root:
 ```
 
 ##### Installing a pod network
-```
-root@kubemaster:~# sysctl net.bridge.bridge-nf-call-iptables=1
+
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>sysctl net.bridge.bridge-nf-call-iptables=1</div>
+    <div class='lines' data-delay='400'>
 net.bridge.bridge-nf-call-iptables = 1
-root@kubemaster:~# kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"</div>
+    <div class='lines' data-delay='400'>
 serviceaccount "weave-net" created
 clusterrole.rbac.authorization.k8s.io "weave-net" created
 clusterrolebinding.rbac.authorization.k8s.io "weave-net" created
 role.rbac.authorization.k8s.io "weave-net" created
 rolebinding.rbac.authorization.k8s.io "weave-net" created
 daemonset.extensions "weave-net" created
-```
+    </div>
+  </div>
+</div>
 pod network 安装成功之后，用下面命令查看 kube-dns 这个 pod 的状态，当其为 Running 时说明正式成功运行起来了<br>
 `kubectl get pods --all-namespaces`
 
@@ -243,8 +252,11 @@ kubeadm join 10.59.176.211:8443 --token mceq67.bit1jg2iafbz8xjv --discovery-toke
 > 这是一个重复劳动，所以我们需要像 [Vagrant][Vagrant] 这样的自动化工具
 
 运行上面的命令把此虚拟机加入 Kubernetes cluster master 节点，如果遇到什么问题需要重新运行命令，则先要运行命令 `kubeadm reset` 重置环境，然后重新运行 join 命令。
-```
-root@kubenode1:~# kubeadm join 10.59.176.211:6443 --token psp2gi.6agdgib6ff2r0mla --discovery-token-ca-cert-hash sha256:5b6c9086b74cb0ebc57a8608245c8114d429143183ab3ac4ffda9134b64aaceb
+
+<div class='showyourterms kubenode1' data-title="Kubenode">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubeadm join 10.59.176.211:6443 --token psp2gi.6agdgib6ff2r0mla --discovery-token-ca-cert-hash sha256:5b6c9086b74cb0ebc57a8608245c8114d429143183ab3ac4ffda9134b64aaceb</div>
+    <div class='lines' data-delay='400'>
 [preflight] Running pre-flight checks.
         [WARNING SystemVerification]: docker version is greater than the most recently validated version. Docker version: 17.12.1-ce. Max validated version: 17.03
         [WARNING FileExisting-crictl]: crictl not found in system path
@@ -262,20 +274,26 @@ This node has joined the cluster:
 * The Kubelet was informed of the new secure connection details.
 
 Run 'kubectl get nodes' on the master to see this node join the cluster.
-```
+    </div>
+  </div>
+</div>
+
 日志会提示你，在 master 主机上运行命令 `kubectl get nodes` 查看此 node 节点主机已经加入到了 Kubernetes cluster，如下
 
-```
-root@kubemaster:~# kubectl get nodes
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubectl get nodes</div>
+    <div class='lines' data-delay='400'>
 NAME         STATUS     ROLES     AGE       VERSION
 kubemaster   Ready      master    15m       v1.10.4
 kubenode1    NotReady   <none>    28s       v1.10.3
-```
+    </div>
+  </div>
+</div>
+
 可以看到 kubenode1 节点还没有 Ready , 过一会再查看就会是 Ready 状态了。
 
 > 我之前曾经试图把 node 节点主机加入到 Minikube 主机的 Kubernetes cluster ， node 主机上运行的 `kubeadm join` 命令输出都支持，但 Minikube 就是没有 node 加进来。
-
-
 
 
 [buildroot]:https://buildroot.org/
