@@ -207,7 +207,7 @@ as root:
   </div>
 </div>
 
-* 如果遇到下面错误说明你需要执行 `swapoff -a`
+* 如果遇到下面错误说明你需要执行 `swapoff -a` 使用 `swapon --summary` 查看确保没有 swap
 ```
 [ERROR Swap]: running with swap on is not supported. Please disable swap
 ```
@@ -286,7 +286,7 @@ Run 'kubectl get nodes' on the master to see this node join the cluster.
     <div class='lines' data-delay='400'>
 NAME         STATUS     ROLES     AGE       VERSION
 kubemaster   Ready      master    15m       v1.10.4
-kubenode1    NotReady   <none>    28s       v1.10.3
+kubenode1    NotReady   &lt;none&gt;    28s       v1.10.3
     </div>
   </div>
 </div>
