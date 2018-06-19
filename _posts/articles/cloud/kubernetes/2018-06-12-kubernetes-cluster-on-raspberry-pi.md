@@ -14,8 +14,8 @@ image:
 comments: true
 share: true
 references:
-  - title: "Kubernetes Documentation"
-    url: https://kubernetes.io/docs
+  - title: "Kubernetes on (vanilla) Raspbian Lite"
+    url: https://gist.github.com/alexellis/fdbc90de7691a1b9edb545c17da2d975
 
 ---
 
@@ -96,7 +96,7 @@ This should now show no entries:
 `sudo swapon --summary`
 
 
-https://gist.github.com/alexellis/fdbc90de7691a1b9edb545c17da2d975
+
 
 
 ```
@@ -357,3 +357,13 @@ docker pull anjia0532/google-containers.kube-proxy-arm:v1.9.8
 docker image tag anjia0532/google-containers.kube-proxy-arm:v1.9.8 gcr.io/google_containers/kube-proxy-arm:v1.9.8
 
 ```
+
+https://kubecloud.io/setup-a-kubernetes-1-9-0-raspberry-pi-cluster-on-raspbian-using-kubeadm-f8b3b85bc2d1
+
+下一步
+
+https://kubecloud.io/kubernetes-dashboard-on-arm-with-rbac-61309310a640
+
+https://kubecloud.io/setting-up-kubernetes-visualization-of-a-cluster-96826433fc64
+
+https://kubecloud.io/setting-up-a-highly-available-kubernetes-cluster-with-private-networking-on-aws-using-kops-65f7a94782ef

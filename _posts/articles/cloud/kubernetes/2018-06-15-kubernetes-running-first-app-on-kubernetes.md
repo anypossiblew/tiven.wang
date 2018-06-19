@@ -15,9 +15,8 @@ comments: true
 share: true
 showYourTerms: true
 references:
-  - title: "Kubernetes Documentation"
-    url: https://kubernetes.io/docs
-
+  - title: "Interactive Tutorial - Scaling Your App"
+    url: https://kubernetes.io/docs/tutorials/kubernetes-basics/scale/scale-interactive/
 ---
 
 <style>
@@ -38,7 +37,7 @@ references:
 * TOC
 {:toc}
 
-在之前的两篇 [Kubernetes - Create cluster using kubeadm](/articles/kubernetes-create-cluster-using-kubeadm/) 介绍了如何在虚拟机上使用 kubeadm 工具创建一个 Kubernetes 集群和 [Kubernetes - Kubectl and Dashboard](/articles/kubernetes-kubectl-and-dashboard/) 如何使用工具 kubectl 访问 Kubernetes 服务、如何安装部署 Kubernetes Dashboard 应用服务。这样就有了我们自己的开发环境，接下来就是要介绍如何在这个 Kubernetes cluster 上开发和部署应用程序。
+在之前的两篇 ["Kubernetes - Create cluster using kubeadm"](/articles/kubernetes-create-cluster-using-kubeadm/) 介绍了如何在虚拟机上使用 kubeadm 工具创建一个 Kubernetes 集群和 ["Kubernetes - Kubectl and Dashboard"](/articles/kubernetes-kubectl-and-dashboard/) 如何使用工具 kubectl 访问 Kubernetes 服务、如何安装部署 Kubernetes Dashboard 应用服务。这样就有了我们自己的开发环境，接下来就是要介绍如何在这个 Kubernetes cluster 上开发和部署应用程序。
 
 ## Application to Docker Image
 关于应用程序如何编写我们不做详细介绍，只是一笔带过。使用什么语言编写的应用也不重要，所以你可以选择自己熟悉和喜欢的语言。
@@ -124,7 +123,6 @@ node                                                     8                   f46
 构建 Docker 镜像的过程如下图
 
 ![Image: Docker build container image](/images/cloud/kubernetes/docker-build-container-image.png)
-{: .middle}
 
 检验一下我们的 Docker image 是否正确，发送请求到 8080 端口
 <div class='showyourterms tiven' data-title="Powershell on Laptop">
@@ -194,6 +192,9 @@ latest: digest: sha256:9b8b9367e71860bddda06e9c04139783d44cbf941dce49c96d96b2f37
 ## Deploying Kubernetes Application
 部署 Kubernetes 应用程序有多种方式，可以直接用 kubectl 命令行或者文件，还可以使用 Dashboard 界面部署。
 接下来我们使用命令行部署简单的应用程序，当后面了解的概念多了，再考虑使用配置简单部署更复杂的应用。
+部署过程如下图所示
+
+![Image: Kubectl create/rub application](/images/cloud/kubernetes/Kubectl-create-application.png)
 
 <div class='showyourterms tiven' data-title="Powershell on Laptop">
   <div class='showyourterms-container'>
@@ -222,7 +223,7 @@ Namespace:      default
 Node:           kubenode1/10.59.171.151
 Start Time:     Fri, 15 Jun 2018 17:07:59 +0800
 Labels:         run=kube-tiven
-Annotations:    <none>
+Annotations:    &lt;none&gt;
 Status:         Running
 IP:             10.44.0.2
 Controlled By:  ReplicationController/kube-tiven
@@ -236,7 +237,7 @@ Containers:
       Started:      Fri, 15 Jun 2018 17:16:26 +0800
     Ready:          True
     Restart Count:  0
-    Environment:    <none>
+    Environment:    &lt;none&gt;
     Mounts:
       /var/run/secrets/kubernetes.io/serviceaccount from default-token-x9vsv (ro)
 Conditions:
@@ -250,7 +251,7 @@ Volumes:
     SecretName:  default-token-x9vsv
     Optional:    false
 QoS Class:       BestEffort
-Node-Selectors:  <none>
+Node-Selectors:  &lt;none&gt;
 Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
                  node.kubernetes.io/unreachable:NoExecute for 300s
 Events:
@@ -267,6 +268,43 @@ Events:
 </div>
 
 可以看到此 Pod 是部署 `kubenode1/10.59.171.151` 主机上的，命名空间（Namespace）是 `default` 因为我们暂时没有为开发程序另外创建命名空间。还有他的 IP ，Kubernetes 里的 IP 太复杂了，我们后面会针对网络做详细分析。Pod 还有个 Containers 节点，一个 Pod 可以包含多个 Containers。
+
+## Accessing Application
+
+
+## Scaling Application
+
+<div class='showyourterms tiven' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubectl get rc</div>
+    <div class='lines' data-delay='400'>
+NAME         DESIRED   CURRENT   READY     AGE
+kube-tiven   1         1         1         3d
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>kubectl scale rc kube-tiven --replicas=3</div>
+    <div class='lines' data-delay='400'>
+replicationcontroller "kube-tiven" scaled
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>kubectl get rc</div>
+    <div class='lines' data-delay='400'>
+NAME         DESIRED   CURRENT   READY     AGE
+kube-tiven   3         3         3         3d
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>kubectl get pods</div>
+    <div class='lines' data-delay='400'>
+NAME               READY     STATUS    RESTARTS   AGE
+kube-tiven-fncg9   1/1       Running   0          2m
+kube-tiven-qblvj   1/1       Running   1          3d
+kube-tiven-qwgq4   1/1       Running   0          2m
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 
 

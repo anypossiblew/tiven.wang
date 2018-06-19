@@ -295,7 +295,56 @@ kubenode1    NotReady   &lt;none&gt;    28s       v1.10.3
 
 > 我之前曾经试图把 node 节点主机加入到 Minikube 主机的 Kubernetes cluster ， node 主机上运行的 `kubeadm join` 命令输出都支持，但 Minikube 就是没有 node 加进来。
 
+## Troubleshot after Reboot
+当我重启 master 节点虚拟机后 Kubernetes cluster 没有启动，查看 Kubelet 服务运行状态
+
+<div class='showyourterms kubemaster' data-title="Kubemaster">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>systemctl status kubelet</div>
+    <div class='lines' data-delay='400'>
+<span class="green">●</span> kubelet.service - kubelet: The Kubernetes Node Agent
+   Loaded: loaded (/lib/systemd/system/kubelet.service; enabled; vendor preset: enabled)
+  Drop-In: /etc/systemd/system/kubelet.service.d
+           └─10-kubeadm.conf
+   Active: <span class="green">active (running)</span> since Tue 2018-06-19 03:26:03 UTC; 1h 39min ago
+     Docs: http://kubernetes.io/docs/
+ Main PID: 845 (kubelet)
+    Tasks: 14 (limit: 2184)
+   CGroup: /system.slice/kubelet.service
+           └─845 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --pod-manifest-path
+    </div>
+  </div>
+</div>
+可以看到里面 **Active: active (running)** 则代表正常，否则可能遇到问题了。
+再使用 [journalctl][journalctl] 查看这个服务运行日志
+
+`journalctl -xeu kubelet`
+
+在我的输出里包含如下描述
+
+```
+--cgroups-per-qos enabled, but --cgroup-root was not specified.
+failed to run Kubelet: Running with swap on is not supported
+```
+
+第一行不是问题，第二行说明系统的 swap 开启了，要关闭掉，因为我们之前少做了一步操作，现在重新操作如下
+
+* `swapoff -a`
+* 从 `/etc/fstab` 文件中删除 swap 相关的条目，例如包含 `/swap.img` 的这一行
+* `reboot`
+
+重启后重新查看 swap 状态 `swapon --summary` 确保没有 swap 存在，然后再查看 kubelet 是否正常启动。
+
+### Swap Memory
+
+关于 Swap 的问题，是 Kubernetes 从 v1.8.0 开始，如果工作节点主机的 swap memory 开启 Kubelet 默认会启动失败。
+[kubelet][kubelet] 有个参数 `--fail-swap-on     Default: true` 指定了这个特性。建议不要设置成 false，因为 Kubelet 不管理 swap space，开启 swap 可能会造成不可预测的效率问题。详细请参考讨论[kubernetes/issues/7294](https://github.com/kubernetes/kubernetes/issues/7294)。
+
+
+
 
 [buildroot]:https://buildroot.org/
 [putty]:https://www.putty.org/
 [Vagrant]:https://www.vagrantup.com/
+[journalctl]:https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
+[kubelet]:https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/

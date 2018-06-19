@@ -160,6 +160,26 @@ html, body {
         }
       }
 
+      @media (max-width: 479px) {
+        figure, p {
+          &.middle {
+            img {
+              max-width: 100%;
+            }
+          }
+          &.small {
+            img {
+              max-width: 100%;
+            }
+          }
+
+          figcaption {
+            margin: 0 auto;
+            max-width: 100%;
+          }
+        }
+      }
+
       ul {
         li {
           p {

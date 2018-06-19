@@ -8,9 +8,9 @@ categories: articles
 tags: [Raspberry PI, Cloud]
 image:
   vendor: twitter
-  feature: /media/DfGbYtqX0AEP6EY.jpg:large
+  feature: /media/DfLk8bbV4AA1bcs.jpg:large
   credit: Nat Geo Photography
-  creditlink: https://twitter.com/NatGeoPhotos/status/1004755042925273088
+  creditlink: https://twitter.com/NatGeoPhotos/status/1005117395684519937
 comments: true
 share: true
 references:
