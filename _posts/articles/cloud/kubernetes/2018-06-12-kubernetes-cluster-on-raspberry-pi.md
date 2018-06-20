@@ -25,18 +25,20 @@ references:
 }
 </style>
 <script type="text/javascript">
-  new ShowYourTerms('.showyourterms');
+  new ShowYourTerms('.showyourterms.showyourterms-container');
 </script>
 
 * TOC
 {:toc}
+
+![Gif: raspberry pi](/images/devops/infrastructure/raspberrypi/raspberry-pi.gif)
 
 首先就安装 Docker，This installs 17.12 or newer.
 <div class='showyourterms raspberrypi' data-title="Raspberry Pi">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>curl -sSL get.docker.com | sh && usermod pi -aG docker</div>
     <div class='lines' data-delay='3000'>
-\# Executing docker install script, commit: 36b78b2
+# Executing docker install script, commit: 36b78b2
 Warning: the "docker" command appears to already exist on this system.
 
 If you already have Docker installed, this script can cause trouble, which is
@@ -51,9 +53,7 @@ You can find instructions for this here:
 https://github.com/docker/docker/wiki/Engine-v1.10.0-content-addressability-migration
 
 You may press Ctrl+C now to abort this script.
-+ sleep 20
-    </div>
-    <div class='lines' data-delay='10000'>
++ sleep 20</div><div class='lines' data-delay='10000'>
 + sh -c apt-get update -qq &gt;/dev/null
 + sh -c apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
 + sh -c curl -fsSL "https://download.docker.com/linux/raspbian/gpg" | apt-key add -qq - &gt;/dev/null
