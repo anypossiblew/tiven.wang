@@ -210,7 +210,7 @@ kube-tiven-qblvj   0/1       ContainerCreating   0          4m
   </div>
 </div>
 
-`--image=tiven/kube-tiven` 参数是指定我们刚才发布的应用程序 Docker 镜像，`--port=8080` 参数告诉 Kubernetes 我们的应用程序进程是运行在 8080 端口上的，`--generator=run/v1` 参数则是说明要创建的是 *ReplicationController* 而不是默认的 *Deployment*，至于他们之间的区别后面再介绍。然后我们查看了所有的 pods 可以看到一个叫 `kube-tiven-qblvj` 的状态为 `ContainerCreating`，因为他的 Docker Container 还在创建中，过一会再查看就会是 `Running` 状态了。
+`--image=tiven/kube-tiven` 参数是指定我们刚才发布的应用程序 Docker 镜像，`--port=8080` 参数告诉 Kubernetes 我们的应用程序进程是运行在 8080 端口上的，`--generator=run/v1` 参数则是说明要创建的是 [*ReplicationController*][replicationcontroller] 而不是默认的 [*Deployment*][deployment]，至于他们之间的区别后面再介绍。然后我们查看了所有的 pods 可以看到一个叫 `kube-tiven-qblvj` 的状态为 `ContainerCreating`，因为他的 Docker Container 还在创建中，过一会再查看就会是 `Running` 状态了。
 
 这里我们是查看 Pods ，而不是类似 `kubectl get containers` 这样的命令，因为 Kubernetes 资源类型里没有 Container 这种类型。Kubernetes 不直接管理和操作容器，而是以 [Pod][pods] 概念组织和管理容器的，Pod 可以简单理解为容器组。至于为什么容器需要打包成组存在，后面再介绍。我们还可以查看这个 Pod 详细信息
 
@@ -310,3 +310,5 @@ kube-tiven-qwgq4   1/1       Running   0          2m
 
 
 [pods]:https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/
+[replicationcontroller]:https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
+[deployment]:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
