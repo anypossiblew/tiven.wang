@@ -13,10 +13,10 @@ image:
   creditlink: https://twitter.com/NatGeoPhotos/status/1004755042925273088
 comments: true
 share: true
+showYourTerms: true
 references:
   - title: "Kubernetes on (vanilla) Raspbian Lite"
     url: https://gist.github.com/alexellis/fdbc90de7691a1b9edb545c17da2d975
-
 ---
 
 <style>
