@@ -19,9 +19,14 @@ references:
 
 ---
 
+<style>
 .showyourterms.raspberrypi .type:before {
   content: "root@raspberrypi:~ $ "
 }
+</style>
+<script type="text/javascript">
+  new ShowYourTerms('.showyourterms');
+</script>
 
 * TOC
 {:toc}
@@ -30,7 +35,7 @@ references:
 <div class='showyourterms raspberrypi' data-title="Raspberry Pi">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>curl -sSL get.docker.com | sh && usermod pi -aG docker</div>
-    <div class='lines' data-delay='400'>
+    <div class='lines' data-delay='3000'>
 \# Executing docker install script, commit: 36b78b2
 Warning: the "docker" command appears to already exist on this system.
 
@@ -47,6 +52,8 @@ https://github.com/docker/docker/wiki/Engine-v1.10.0-content-addressability-migr
 
 You may press Ctrl+C now to abort this script.
 + sleep 20
+    </div>
+    <div class='lines' data-delay='10000'>
 + sh -c apt-get update -qq &gt;/dev/null
 + sh -c apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
 + sh -c curl -fsSL "https://download.docker.com/linux/raspbian/gpg" | apt-key add -qq - &gt;/dev/null
@@ -216,7 +223,6 @@ weave-net-v9g62                       0/2       ErrImagePull   0          38s
 kubectl describe pods kube-dns-7b6ff86f69-jw8vn -n kube-system
 kubectl -n kube-system describe pods weave-net-v9g62
 kube-dns-7b6ff86f69-jw8vn
-
 ```
 
 如果需要重新启动 Pods 则可以重新部署一下
