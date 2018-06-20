@@ -19,15 +19,19 @@ references:
 
 ---
 
+.showyourterms.raspberrypi .type:before {
+  content: "root@raspberrypi:~ $ "
+}
+
 * TOC
 {:toc}
 
-This installs 17.12 or newer.
-```
-$ curl -sSL get.docker.com | sh && \
-sudo usermod pi -aG docker
-
-# Executing docker install script, commit: 36b78b2
+首先就安装 Docker，This installs 17.12 or newer.
+<div class='showyourterms raspberrypi' data-title="Raspberry Pi">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>curl -sSL get.docker.com | sh && usermod pi -aG docker</div>
+    <div class='lines' data-delay='400'>
+\# Executing docker install script, commit: 36b78b2
 Warning: the "docker" command appears to already exist on this system.
 
 If you already have Docker installed, this script can cause trouble, which is
@@ -43,14 +47,14 @@ https://github.com/docker/docker/wiki/Engine-v1.10.0-content-addressability-migr
 
 You may press Ctrl+C now to abort this script.
 + sleep 20
-+ sh -c apt-get update -qq >/dev/null
-+ sh -c apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/nu                                                                             ll
-+ sh -c curl -fsSL "https://download.docker.com/linux/raspbian/gpg" | apt-key ad                                                                             d -qq - >/dev/null
++ sh -c apt-get update -qq &gt;/dev/null
++ sh -c apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
++ sh -c curl -fsSL "https://download.docker.com/linux/raspbian/gpg" | apt-key add -qq - &gt;/dev/null
 Warning: apt-key output should not be parsed (stdout is not a terminal)
-+ sh -c echo "deb [arch=armhf] https://download.docker.com/linux/raspbian stretc                                                                             h edge" > /etc/apt/sources.list.d/docker.list
++ sh -c echo "deb [arch=armhf] https://download.docker.com/linux/raspbian stretch edge" &gt; /etc/apt/sources.list.d/docker.list
 + [ raspbian = debian ]
-+ sh -c apt-get update -qq >/dev/null
-+ sh -c apt-get install -y -qq --no-install-recommends docker-ce >/dev/null
++ sh -c apt-get update -qq &gt;/dev/null
++ sh -c apt-get install -y -qq --no-install-recommends docker-ce &gt;/dev/null
 + sh -c docker version
 Client:
  Version:      18.05.0-ce
@@ -83,10 +87,12 @@ WARNING: Adding a user to the "docker" group will grant the ability to run
          docker host.
          Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
          for more information.
+    </div>
+  </div>
+</div>
 
-```
 
-
+因为 Kubernetes 默认不支持 swap memory，所以在安装之前要禁用和删除 swapfile
 ```
 sudo dphys-swapfile swapoff && \
   sudo dphys-swapfile uninstall && \
@@ -94,9 +100,6 @@ sudo dphys-swapfile swapoff && \
 ```
 This should now show no entries:
 `sudo swapon --summary`
-
-
-
 
 
 ```
