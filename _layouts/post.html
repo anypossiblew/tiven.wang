@@ -221,6 +221,16 @@
     </div>
     <a href="#top" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">Back to Top</a>
 
+    {% if page.showYourTerms %}
+    <script type="text/javascript">
+    try{
+      new ShowYourTerms('.showyourterms.active');
+    }catch(err) {
+      console.log('No showyourterms ative!');
+    }
+    </script>
+    {% endif %}
+
     {% if site.owner.disqus-shortname and page.comments or site.comments %}
       {% include disqus-comments.html %}
     {% endif %}

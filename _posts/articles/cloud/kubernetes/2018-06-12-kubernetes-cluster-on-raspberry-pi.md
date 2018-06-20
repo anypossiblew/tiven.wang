@@ -24,17 +24,15 @@ references:
   content: "root@raspberrypi:~ $ "
 }
 </style>
-<script type="text/javascript">
-  new ShowYourTerms('.showyourterms.showyourterms-container');
-</script>
 
 * TOC
 {:toc}
 
 ![Gif: raspberry pi](/images/devops/infrastructure/raspberrypi/raspberry-pi.gif)
+{: .middle.center}
 
 首先就安装 Docker，This installs 17.12 or newer.
-<div class='showyourterms raspberrypi' data-title="Raspberry Pi">
+<div class='showyourterms raspberrypi active' data-title="Raspberry Pi">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>curl -sSL get.docker.com | sh && usermod pi -aG docker</div>
     <div class='lines' data-delay='3000'>
