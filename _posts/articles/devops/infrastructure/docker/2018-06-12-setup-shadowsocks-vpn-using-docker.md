@@ -70,6 +70,58 @@ Docker 容器 Shadowsocks 服务运行在 6443 端口映射成虚拟机的 6443 
 
 然后再为云虚拟机设置个固定公网 IP ，你就可以使用此 IP 和端口号 6443 （或你自定义的其他端口号）和密码访问 Shadowsocks 服务了。
 
+## ARM
+
+<!-- ```
+mkdir shadowsocks
+cd shadowsocks
+wget -O Dockerfile https://raw.githubusercontent.com/mritd/dockerfile/master/shadowsocks/Dockerfile
+wget -O entrypoint.sh https://raw.githubusercontent.com/mritd/dockerfile/master/shadowsocks/entrypoint.sh
+docker build -t shadowsocks-arm .
+``` -->
+
+`easypi/shadowsocks-libev-arm`镜像在 Raspberry Pi 上可以用
+```
+docker run --restart=always -d --name shadowsocks-client -p 1080:1080 -e "SERVER_ADDR=35.198.219.20" -e "SERVER_PORT=6443" -e "METHOD=aes-256-cfb" -e "PASSWORD=mypassword" easypi/shadowsocks-libev-arm
+
+curl -x socks5h://127.0.0.1:1080 https://www.youtube.com/
+```
+
+linux 的环境变量 `http_proxy` 不支持 socks5 协议的代理，所以我们需要把 socks5 代理转成 http 代理
+
+### polipo
+```
+$ sudo apt-get install polipo
+$ polipo socksParentProxy=localhost:1080 &
+$ service polipo stop
+$ cp /usr/share/doc/polipo/examples/config.sample /etc/polipo/config
+$ nano /etc/polipo/config
+$ /etc/init.d/polipo restart
+$ curl --proxy http://127.0.0.1:8123 https://www.google.com
+```
+
+https://www.codevoila.com/post/16/convert-socks-proxy-to-http-proxy-using-polipo
+
+
+### privoxy
+
+`apt-get install privoxy -y`
+
+配置 privoxy ,转换 socks 代理为 http 代理
+`nano /etc/privoxy/config`　# 编辑配置文件，设置转换端口以及监听端口
+```
+orward-socks5 / 127.0.0.1:1080 . # 转换 socks 为 privoxy
+listen-address 0.0.0.0:8118 # 监听端口 8118， 0.0.0.0 对外提供连接
+```
+
+启动privoxy
+`service privoxy start`
+
+设置环境变量
+`export http_proxy="http://127.0.0.1:8118"`
+
+
+
 
 
 https://yq.aliyun.com/articles/599205

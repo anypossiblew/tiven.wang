@@ -159,6 +159,7 @@ couldn't initialize a Kubernetes cluster
 可以看到这里遇到了一些问题，Docker 显然没有走我配置系统环境变量的代理。
 那么就需要单独配置 docker 代理，不同版本的 Linux 平台使用不同的方式管理 Docker 就有不同的配置方式
 
+### Docker proxy
 对于 Control Docker with systemd 的方式
 
 https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
@@ -170,6 +171,8 @@ $ sudo cat <<EOF >/etc/systemd/system/docker.service.d/http-proxy.conf
 Environment="HTTP_PROXY=http://192.168.1.6:1080/" "NO_PROXY=localhost,127.0.0.1"
 EOF
 $ sudo systemctl daemon-reload
+// 确认 http_proxy 环境配置成功
+$ systemctl show --property=Environment docker
 $ sudo systemctl restart docker
 ```
 
@@ -311,6 +314,10 @@ gcr.io/google_containers/pause-arm                      3.0                 b51c
 https://rak8s.io/
 
 ### Join Worker Nodes
+把另外一个树莓派加入到 Kubernetes cluster 里来，首先按照以上过程从开始直到 `kubeadm init` 之前的步骤照做。
+
+* 使用 `raspi-config` 工具修改 hostname，因为 Kubernetes cluster 会以 hostname 区分不同的主机
+
 使用 [kubeadm join][kubeadm-join] 命令把 Worker nodes 加入到 Kubernetes cluster。当你在 Master node 上初始化 kubeadm 时日志里会输出下面这行命令，可以帮助用来加入 Worker nodes。
 ```
 kubeadm join --token dc8b91.eacc7d2b3679748e --discovery-token-unsafe-skip-ca-verification 192.168.1.16:6443
@@ -369,39 +376,25 @@ docker pull anjia0532/google-containers.kube-proxy-arm:v1.9.8
 docker image tag anjia0532/google-containers.kube-proxy-arm:v1.9.8 gcr.io/google_containers/kube-proxy-arm:v1.9.8
 ```
 
-```
-root@kubemaster:~# docker version
-Client:
- Version:       17.12.1-ce
- API version:   1.35
- Go version:    go1.10.1
- Git commit:    7390fc6
- Built: Wed Apr 18 01:23:11 2018
- OS/Arch:       linux/amd64
-
-Server:
- Engine:
-  Version:      17.12.1-ce
-  API version:  1.35 (minimum version 1.12)
-  Go version:   go1.10.1
-  Git commit:   7390fc6
-  Built:        Wed Feb 28 17:46:05 2018
-  OS/Arch:      linux/amd64
-  Experimental: false
-```
+代理问题
 
 ```
 cd /usr/local
 sudo curl -o lantern.deb  https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
 ```
 
-export http_proxy=http://192.168.1.6:1080
-root@raspberrypi:~# export https_proxy=http://192.168.1.6:1080
-root@raspberrypi:~# export no_proxy=192.168.1.16,localhost,127.0.0.1
-
 https://github.com/kubernetes/kubeadm/issues/684
 
 
+## Dashboard
+
+```
+kubectl create -f  https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard-arm.yaml
+```
+帮助 Docker pull 下来这个镜像 `k8s.gcr.io/kubernetes-dashboard-arm:v1.8.3`
+
+怎么访问安装好的 Dashboard 呐？
+`sudo kubectl port-forward kubernetes-dashboard-7fcc5cb979-lsw7f 8888:8443`
 
 
 ## Troubeshoot

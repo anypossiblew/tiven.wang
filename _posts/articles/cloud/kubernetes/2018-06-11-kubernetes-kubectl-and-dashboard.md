@@ -53,7 +53,7 @@ Powershell 终端上安全拷贝 admin.conf 到物理本机，然后就可以在
   </div>
 </div>
 
-master ip 是你的 master 节点主机的 IP 地址，root 是指使用系统的 root 用户远程登录并做拷贝，你也可以使用非 root 用户，这样更安全一些，但你可能需要授权 *admin.conf* 文件权限给你的用户。可以替换掉默认的配置文件 `~/.kube/config` 这样在运行命令时就不用指定配置文件参数了。
+master ip 是你的 master 节点主机的 IP 地址，root 是指使用系统的 root 用户远程登录并做拷贝，你也可以使用非 root 用户，这样更安全一些，但你可能需要授权 *admin.conf* 文件权限给你的用户`chown tiven /etc/kubernetes/admin.conf`。可以替换掉默认的配置文件 `~/.kube/config` 这样在运行命令时就不用指定配置文件参数了。
 
 如果使用 root 用户，到目前为止你应该没有开启 root 登录功能。为 Ubuntu root 用户设置密码，即开启 root 用户登录系统能力
 
