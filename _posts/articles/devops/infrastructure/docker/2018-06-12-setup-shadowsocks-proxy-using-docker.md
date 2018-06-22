@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Setup Shadowsocks VPN using Docker"
+title: "Setup Shadowsocks Proxy using Docker"
 excerpt: ""
 modified: 2018-06-12T11:51:25-04:00
 categories: articles
@@ -14,6 +14,11 @@ image:
 comments: true
 share: true
 showYourTerms: true
+references:
+  - title: "使用ShadowSocks科学上网及突破公司内网"
+    url: http://www.devtalking.com/articles/shadowsocks-guide/
+  - title: "Medium - 各种加密代理协议的简单对比"
+    url: https://medium.com/@Blankwonder/%E5%90%84%E7%A7%8D%E5%8A%A0%E5%AF%86%E4%BB%A3%E7%90%86%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%AE%80%E5%8D%95%E5%AF%B9%E6%AF%94-1ed52bf7a803
 ---
 
 <style>
@@ -25,10 +30,20 @@ showYourTerms: true
 * TOC
 {:toc}
 
+[Shadowsocks][shadowsocks] is<br/>
+
+A secure socks5 proxy, designed to protect your Internet traffic.
+
+![Image: ss theory](/images/devops/infrastructure/ss/ss-theory.png)
+{: .middle.center}
+
 首先我们要有一台外网（相对大局域网来说）云服务器，例如 [Google Cloud Platform Compute Engine][google-cloud] 或者 [AWS EC2][aws-ec2] 等。
 
 看一下收费标准，如 [Google Cloud 流量计费标准](https://cloud.google.com/compute/pricing#internet_egress)
 
+> 本方案在服务端和客户端均使用 [Docker][docker] 工具搭建 Shadowsocks。
+
+## Server
 假设你已经登录创建的虚拟机 SSH，我们选择的是 Google Cloud Compute Engine / Ubuntu linux 系统
 
 <div class='showyourterms gce-instance' data-title="GCE tiven_wang@instance-1:~">
@@ -70,17 +85,10 @@ Docker 容器 Shadowsocks 服务运行在 6443 端口映射成虚拟机的 6443 
 
 然后再为云虚拟机设置个固定公网 IP ，你就可以使用此 IP 和端口号 6443 （或你自定义的其他端口号）和密码访问 Shadowsocks 服务了。
 
-## ARM
-
-<!-- ```
-mkdir shadowsocks
-cd shadowsocks
-wget -O Dockerfile https://raw.githubusercontent.com/mritd/dockerfile/master/shadowsocks/Dockerfile
-wget -O entrypoint.sh https://raw.githubusercontent.com/mritd/dockerfile/master/shadowsocks/entrypoint.sh
-docker build -t shadowsocks-arm .
-``` -->
-
-`easypi/shadowsocks-libev-arm`镜像在 Raspberry Pi 上可以用
+## Client
+Shadowsocks 支持各种平台的客户端程序。
+### arm
+如果要在 arm 架构的 linux 系统上使用 shadowsocks 可以选择 `easypi/shadowsocks-libev-arm` 镜像，如在 Raspberry Pi 上
 ```
 docker run --restart=always -d --name shadowsocks-client -p 1080:1080 -e "SERVER_ADDR=35.198.219.20" -e "SERVER_PORT=6443" -e "METHOD=aes-256-cfb" -e "PASSWORD=mypassword" easypi/shadowsocks-libev-arm
 
@@ -104,6 +112,7 @@ https://www.codevoila.com/post/16/convert-socks-proxy-to-http-proxy-using-polipo
 
 
 ### privoxy
+[Privoxy][privoxy] 是一款不进行网页缓存且自带过滤功能的代理服务器，针对 HTTP、 HTTPS 协议。通过其过滤功能，用户可以保护隐私、对网页内容进行过滤、管理 Cookie，以及拦阻各种广告等。它也可以与其他代理相连（通常与 [Squid](#squid) 一起使用）。
 
 `apt-get install privoxy -y`
 
@@ -121,7 +130,9 @@ listen-address 0.0.0.0:8118 # 监听端口 8118， 0.0.0.0 对外提供连接
 `export http_proxy="http://127.0.0.1:8118"`
 
 
-
+## 课外
+### Squid
+[Squid Cache][wikipedia/Squid]（简称为 Squid ）是 HTTP 代理服务器软件。Squid 用途广泛的，可以作为缓存服务器，可以过滤流量帮助网络安全，也可以作为代理服务器链中的一环，向上级代理转发数据或直接连接互联网。除了 HTTP 外，对于 FTP 与 HTTPS 的支持也相当好，在 3.0 测试版中也支持了 IPv6。但是 Squid 的上级代理不能使用 SOCKS 协议。
 
 
 https://yq.aliyun.com/articles/599205
@@ -141,3 +152,10 @@ https://www.ovpn.com/en/guides/raspberry-pi-raspbian
 [aws-ec2]:https://aws.amazon.com/ec2/
 [docker/shadowsocks]:https://hub.docker.com/r/mritd/shadowsocks/
 [kcptun]:https://github.com/xtaci/kcptun
+
+[shadowsocks]:https://shadowsocks.org/en/index.html
+[privoxy]:https://www.privoxy.org/
+[wikipedia/Squid]:https://en.wikipedia.org/wiki/Squid_(software)
+[wikipedia/Varnish]:https://en.wikipedia.org/wiki/Varnish_(software)
+
+[docker]:https://www.docker.com/

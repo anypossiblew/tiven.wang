@@ -12,6 +12,8 @@ share: true
 references:
   - title: "Gitbooks - Awesome-Kubernetes"
     url: "https://ramitsurana.gitbooks.io/awesome-kubernetes/"
+  - title: "7 systems engineering and operations trends to watch in 2018"
+    url: https://www.oreilly.com/ideas/7-systems-engineering-and-operations-trends-to-watch-in-2018
 ---
 
 * TOC

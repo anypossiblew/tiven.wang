@@ -2,7 +2,7 @@
 layout: post
 theme: UbuntuMono
 title: "Kubernetes - Create cluster using kubeadm"
-excerpt: "Learn how to add additional nodes to a Kubernetes cluster. This allows you to start exploring scaling and scheduling approaches of Kubernetes. In future scenarios we'll use this foundation to simulate network errors and application errors that may occur in a distributed system."
+excerpt: "Learn how to create a kubernetes cluster using kubeadm tool"
 modified: 2018-06-08T11:51:25-04:00
 categories: articles
 tags: [Kubeadm, Kubernetes, Cloud]

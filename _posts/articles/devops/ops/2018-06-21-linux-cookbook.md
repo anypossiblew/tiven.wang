@@ -8,9 +8,9 @@ categories: articles
 tags: [Linux]
 image:
   vendor: twitter
-  feature: /media/Dd5LgMEVwAENVEO.jpg:large
+  feature: /media/DgRBIAKXkAApDrI.jpg:large
   credit: Nat Geo Photography
-  creditlink: https://twitter.com/NatGeoPhotos/status/999319186018103296
+  creditlink: https://twitter.com/NatGeoPhotos/status/1010003824516517889
 comments: true
 share: true
 ---
@@ -30,5 +30,8 @@ The DHCP client in Linux is called [dhclient][dhclient]. It requests dynamic IP 
 
 https://www.computerhope.com/issues/ch001078.htm
 
+### 通过 pid 查看占用端口
+
+`netstat -anp`
 
 [dhclient]:https://www.computerhope.com/unix/dhclient.htm
