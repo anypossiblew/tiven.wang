@@ -35,7 +35,14 @@ references:
 * TOC
 {:toc}
 
+> 为了避免混乱，以下命令均是在 root 用户下运行
+
+为此主机配置个固定 IP，避免 Kubernetes cluster master 主机的地址都会变化，那就不好了。
+
 首先就安装 Docker，This installs 17.12 or newer.
+
+> 这一步网络好的情况下可以连接，网络不好的情况下则需要设置代理服务器
+
 <div class='showyourterms raspberrypi active' data-title="Raspberry Pi">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>curl -sSL get.docker.com | sh && usermod pi -aG docker</div>
@@ -100,17 +107,25 @@ WARNING: Adding a user to the "docker" group will grant the ability to run
   </div>
 </div>
 
+确认 Docker 安装成功
+```
+root@:raspberrypi~# docker --version
+Docker version 18.05.0-ce, build f150324
+```
+👌
 
+### Disable Swap Memory
 因为 Kubernetes 默认不支持 swap memory，所以在安装之前要禁用和删除 swapfile
 ```
-sudo dphys-swapfile swapoff && \
-  sudo dphys-swapfile uninstall && \
-  sudo update-rc.d dphys-swapfile remove
+dphys-swapfile swapoff && \
+  dphys-swapfile uninstall && \
+  update-rc.d dphys-swapfile remove
 ```
-This should now show no entries:
-`sudo swapon --summary`
+运行下面命令确保没有 swap 存在了<br/>
+`swapon --summary`
+👌
 
-### Add cgroup memory
+### Add Cgroup Memory
 添加下面内容到文件 */boot/cmdline.txt* 那行的结尾，不要创建新行
 ```
 cgroup_enable=cpuset cgroup_enable=memory
@@ -120,23 +135,56 @@ cgroup_enable=cpuset cgroup_enable=memory
 ### Add repo lists & install kubeadm
 添加 kubernetes 的 repository 地址到系统配置文件，然后安装 kubeadm 工具
 ```
-$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add - && \
-  echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list && \
-  sudo apt-get update -q && \
-  sudo apt-get install -qy kubeadm
+$ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+$ echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
+$ apt-get update -q
+$ apt-get install -qy kubeadm
 ```
 
-> 对于中国大陆用户来说这一步应该需要设置系统代理
+> 对于中国大陆用户来说这一步应该需要设置系统代理，因为他需要连接 google 网络
+
+👌
 
 ## Create cluster
+Docker 和 kubeadm 工具安装好后就来创建 Kubernetes cluster 吧。
+
 ### Kubeadm init
-
+使用工具 kubeadm 初始化 Kubernetes cluster 的 master 节点
 ```
-$ sudo kubeadm init --token-ttl=0
-
-
+root@raspberrypi:~# kubeadm init --token-ttl=0
+[init] Using Kubernetes version: v1.10.5
+[init] Using Authorization modes: [Node RBAC]
+[preflight] Running pre-flight checks.
+        [WARNING SystemVerification]: docker version is greater than the most recently validated version. Docker version: 18.05.0-ce. Max validated version: 17.03
+        [WARNING FileExisting-crictl]: crictl not found in system path
+Suggestion: go get github.com/kubernetes-incubator/cri-tools/cmd/crictl
+[certificates] Generated ca certificate and key.
+[certificates] Generated apiserver certificate and key.
+[certificates] apiserver serving cert is signed for DNS names [raspberrypi kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local] and IPs [10.96.0.1 192.168.2.100]
+[certificates] Generated apiserver-kubelet-client certificate and key.
+[certificates] Generated sa key and public key.
+[certificates] Generated front-proxy-ca certificate and key.
+[certificates] Generated front-proxy-client certificate and key.
+[certificates] Generated etcd/ca certificate and key.
+[certificates] Generated etcd/server certificate and key.
+[certificates] etcd/server serving cert is signed for DNS names [localhost] and IPs [127.0.0.1]
+[certificates] Generated etcd/peer certificate and key.
+[certificates] etcd/peer serving cert is signed for DNS names [raspberrypi] and IPs [192.168.2.100]
+[certificates] Generated etcd/healthcheck-client certificate and key.
+[certificates] Generated apiserver-etcd-client certificate and key.
+[certificates] Valid certificates and keys now exist in "/etc/kubernetes/pki"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/admin.conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/kubelet.conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/controller-manager.conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/scheduler.conf"
+[controlplane] Wrote Static Pod manifest for component kube-apiserver to "/etc/kubernetes/manifests/kube-apiserver.yaml"
+[controlplane] Wrote Static Pod manifest for component kube-controller-manager to "/etc/kubernetes/manifests/kube-controller-manager.yaml"
+[controlplane] Wrote Static Pod manifest for component kube-scheduler to "/etc/kubernetes/manifests/kube-scheduler.yaml"
+[etcd] Wrote Static Pod manifest for a local etcd instance to "/etc/kubernetes/manifests/etcd.yaml"
+[init] Waiting for the kubelet to boot up the control plane as Static Pods from directory "/etc/kubernetes/manifests".
 [init] This might take a minute or longer if the control plane images have to be pulled.
 
+# 一段时间后
 Unfortunately, an error has occurred:
         timed out waiting for the condition
 
@@ -156,172 +204,176 @@ If you are on a systemd-powered system, you can try to troubleshoot the error wi
 couldn't initialize a Kubernetes cluster
 ```
 
-可以看到这里遇到了一些问题，Docker 显然没有走我配置系统环境变量的代理。
+可以看到这里遇到了一些问题，这里主要问题是 Docker images 没能下载下来，显然 Docker 没有走我配置系统环境变量的代理。
 那么就需要单独配置 docker 代理，不同版本的 Linux 平台使用不同的方式管理 Docker 就有不同的配置方式
 
+> 这里有个教训 ，在运行 kubeadm init 时不要设置系统代理环境变量，要不然 kubeadm 会把代理环境变量带到每个 kube 组件，这会导致 kubenernetes 组件内的通讯也会走代理服务。所以实际上只在下载 kubeadm 等工具时设置上代理，然后到 kubeadm init 这一步时要去掉代理环境变量。
+{: .Warning}
+
 ### Docker proxy
-对于 Control Docker with systemd 的方式
-
-https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
+对于 [Control Docker with systemd 的方式配置代理](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)
 
 ```
-$ sudo mkdir -p /etc/systemd/system/docker.service.d
-$ sudo cat <<EOF >/etc/systemd/system/docker.service.d/http-proxy.conf
+$ mkdir -p /etc/systemd/system/docker.service.d
+$ cat <<EOF >/etc/systemd/system/docker.service.d/http-proxy.conf
 [Service]
-Environment="HTTP_PROXY=http://192.168.1.6:1080/" "NO_PROXY=localhost,127.0.0.1"
+Environment="HTTP_PROXY=http://127.0.0.1:8118/" "NO_PROXY=localhost,127.0.0.1"
 EOF
-$ sudo systemctl daemon-reload
-// 确认 http_proxy 环境配置成功
+$ systemctl daemon-reload
+# 确认 http_proxy 环境配置成功
 $ systemctl show --property=Environment docker
-$ sudo systemctl restart docker
+$ systemctl restart docker
 ```
 
-安装过最新的 kubelet 工具会遇到错误，解决办法就时降级 kubelet 到 `1.10.2-00` 版本
-`sudo apt-get install kubelet=1.10.2-00 -y --allow-downgrades`
-https://github.com/kubernetes/kubernetes/issues/64234
+> 确认环境配置成功这一步最好是做，确保你认为配置了但是没有配置成功（例如你没有看见在配置那行开始有个符号 “#”）
 
-如果使用 v1.10.4 版本 Docker 镜像的仓库地址变了，改成了 `k8s.gcr.io` 原来的是 `gcr.io/google_containers`
+### Kubeadm reinit
+重新运行初始化，之前要使用 `kubeadm reset` 重置环境
+```
+$ kubeadm reset
+$ kubeadm init --token-ttl=0
+
+# 接着之前的日志，以上都一样
+[init] This might take a minute or longer if the control plane images have to be pulled.
+[apiclient] All control plane components are healthy after 59.514974 seconds
+[uploadconfig] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[markmaster] Will mark node raspberrypi as master by adding a label and a taint
+[markmaster] Master raspberrypi tainted and labelled with key/value: node-role.kubernetes.io/master=""
+[bootstraptoken] Using token: mdt1jg.312ebga0sydo2ab0
+[bootstraptoken] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstraptoken] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstraptoken] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstraptoken] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[addons] Applied essential addon: kube-dns
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of machines by running the following on each node
+as root:
+
+  kubeadm join 192.168.2.100:6443 --token mdt1jg.312ebga0sydo2ab0 --discovery-token-ca-cert-hash sha256:865e742c53da18a663ecbf98a02e1a060b040ccb0530470c285ae6c36a201c30
 
 ```
-root@raspberrypi:~# docker images
-REPOSITORY                                             TAG                 IMAGE ID            CREATED             SIZE
-k8s.gcr.io/kube-scheduler-arm                          v1.10.4             b3ad5420efae        9 days ago          43.6MB
-k8s.gcr.io/kube-controller-manager-arm                 v1.10.4             78bb214362bf        9 days ago          129MB
-k8s.gcr.io/kube-apiserver-arm                          v1.10.4             ed4553b39798        9 days ago          206MB
-k8s.gcr.io/etcd-arm                                    3.1.12              88c32b5960ff        3 months ago        178MB
-k8s.gcr.io/pause-arm                                   3.1                 e11a8cbeda86        5 months ago        374kB
-```
-我只进行到了下载了这 5 个镜像这一步。
+👌 问题解决，成功创建。
 
 
-再次降级到 1.9.6 似乎就可以继续进行了（或者我代理网络好点了）
+接下来依照日志的说明把 kubectl 工具配置好（运行给的三行命令即可），后面再安装个集群用的网络组件，把最后的 kubeadm join 命令记下来后面加进来 worker node 要用。
+
+### Initial Status
 
 ```
-sudo apt-get install kubelet=1.9.6-00 kubeadm=1.9.6-00 -y --allow-downgrades
+root@raspberrypi:~# kubectl get nodes
+NAME          STATUS     ROLES     AGE       VERSION
+raspberrypi   NotReady   master    6m        v1.10.5
+```
+可以看到 master 节点状态为 `NotReady` 说明我们还有一些工作要做。在来看一下 Kubernetes 组件情况
+
+```
+root@raspberrypi:~# kubectl get pods --all-namespaces -o wide
+NAMESPACE     NAME                                  READY     STATUS    RESTARTS   AGE       IP              NODE
+kube-system   etcd-raspberrypi                      1/1       Running   0          7m        192.168.2.100   raspberrypi
+kube-system   kube-apiserver-raspberrypi            1/1       Running   0          7m        192.168.2.100   raspberrypi
+kube-system   kube-controller-manager-raspberrypi   1/1       Running   0          7m        192.168.2.100   raspberrypi
+kube-system   kube-dns-686d6fb9c-t5wcm              0/3       Pending   0          7m        <none>          <none>
+kube-system   kube-proxy-665dg                      1/1       Running   0          7m        192.168.2.100   raspberrypi
+kube-system   kube-scheduler-raspberrypi            1/1       Running   0          7m        192.168.2.100   raspberrypi
 ```
 
-`kubeadm 1.9.6` 使用的 Docker 镜像版本如下
-```
-gcr.io/google_containers/kube-proxy-arm                v1.9.8              d78f11ff4746        3 weeks ago         97.8MB
-gcr.io/google_containers/kube-apiserver-arm            v1.9.8              2bbdbfd54424        3 weeks ago         194MB
-gcr.io/google_containers/kube-controller-manager-arm   v1.9.8              0fa1d05b0709        3 weeks ago         121MB
-gcr.io/google_containers/kube-scheduler-arm            v1.9.8              36edf271415a        3 weeks ago         54.3MB
-gcr.io/google_containers/etcd-arm                      3.1.11              a5f8f54094ff        6 months ago        189MB
-gcr.io/google_containers/pause-arm                     3.0                 b51c23e6a2ab        2 years ago         506kB
-```
-Kubernetes 首先使用 `kube-apiserver`, `kube-controller-manager`, `kube-scheduler`, `etcd`, `pause` setup 起来基础的 cluster，
+可以看到几个组件已经在运行了，但有一个 *kube-dns* 的三个实例处在 `Pending` 状态，他在等待网络扩展组件的就绪。
+
+Kubernetes 首先使用 `kube-apiserver`, `kube-controller-manager`, `kube-scheduler`, `kube-proxy`, `etcd`, `kube-dns` setup 起来基础的 cluster，
 然后再由 cluster 自己去 setup 剩余的工作如 `kube-proxy`。
 
-
-I have the same issue on Raspberry Pi 3, HypriotOS. Downgrading to 1.9.7-00 also worked for me.
-
-
-For people in China who behind THE GREAT FIREWALL
-
-https://github.com/anjia0532/gcr.io_mirror
+> 对于下载 Docker images 问题我使用过下面解决方法，但 Kubenetes 更新很快，下面的复制镜像显然跟不上节奏<br/>
+For people in China who behind THE GREAT FIREWALL<br/>
+https://github.com/anjia0532/gcr.io_mirror<br/>
 https://anjia0532.github.io/2017/11/15/gcr-io-image-mirror/
 
+至此 Kubernetes 集群 master 节点已经初始化完成，但要想让其工作还需要一个步骤，安装网络扩展组件。
 
-Setup networking
-Install Weave network driver
+### Setup networking
+
+选择一个网络扩展组件安装到 Kubernetes 集群，Install Weave network driver
 
 ```
 $ kubectl apply -f \
  "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
+等一会再次查看 Pods 运行情况
+```
+root@raspberrypi:~# kubectl get pods --all-namespaces -o wide
+NAMESPACE     NAME                                  READY     STATUS    RESTARTS   AGE       IP              NODE
+kube-system   etcd-raspberrypi                      1/1       Running   0          17m       192.168.2.100   raspberrypi
+kube-system   kube-apiserver-raspberrypi            1/1       Running   0          17m       192.168.2.100   raspberrypi
+kube-system   kube-controller-manager-raspberrypi   1/1       Running   0          17m       192.168.2.100   raspberrypi
+kube-system   kube-dns-686d6fb9c-t5wcm              3/3       Running   0          17m       10.32.0.2       raspberrypi
+kube-system   kube-proxy-665dg                      1/1       Running   0          17m       192.168.2.100   raspberrypi
+kube-system   kube-scheduler-raspberrypi            1/1       Running   0          17m       192.168.2.100   raspberrypi
+kube-system   weave-net-7css2                       2/2       Running   0          2m        192.168.2.100   raspberrypi
+```
+在此查看 Nodes 状态
+```
+root@raspberrypi:~# kubectl get nodes
+NAME          STATUS    ROLES     AGE       VERSION
+raspberrypi   Ready     master    22m       v1.10.5
+```
+👌
 
-查看 Pod 部署情况
+### Troubleshoot pods
+当 Pods 遇到问题时可以用下面查看某个 Pod 里面的 events log 看原因
 ```
-root@raspberrypi:~# kubectl get pods --namespace=kube-system
-NAME                                  READY     STATUS         RESTARTS   AGE
-etcd-raspberrypi                      1/1       Running        0          35m
-kube-apiserver-raspberrypi            1/1       Running        0          35m
-kube-controller-manager-raspberrypi   1/1       Running        0          34m
-kube-dns-7b6ff86f69-jw8vn             0/3       Pending        0          35m
-kube-proxy-8vwcl                      1/1       Running        0          35m
-kube-scheduler-raspberrypi            1/1       Running        0          35m
-weave-net-v9g62                       0/2       ErrImagePull   0          38s
+root@raspberrypi:~# kubectl -n kube-system describe pods kube-proxy-665dg
+...
+Events:
+  Type     Reason                 Age                 From                Message
+  ----     ------                 ----                ----                -------
+  Normal   SuccessfulMountVolume  49m                 kubelet, kubenode1  MountVolume.SetUp succeeded for volume "lib-modules"
+  Normal   SuccessfulMountVolume  49m                 kubelet, kubenode1  MountVolume.SetUp succeeded for volume "xtables-lock"
+  Normal   SuccessfulMountVolume  49m                 kubelet, kubenode1  MountVolume.SetUp succeeded for volume "kube-proxy"
+  Normal   SuccessfulMountVolume  49m                 kubelet, kubenode1  MountVolume.SetUp succeeded for volume "kube-proxy-token-r6sgq"
+  Normal   BackOff                47m (x4 over 48m)   kubelet, kubenode1  Back-off pulling image "gcr.io/google_containers/kube-proxy-arm:v1.10.5"
+  Normal   Pulling                46m (x4 over 49m)   kubelet, kubenode1  pulling image "gcr.io/google_containers/kube-proxy-arm:v1.10.5"
+  Warning  Failed                 46m (x4 over 48m)   kubelet, kubenode1  Failed to pull image "gcr.io/google_containers/kube-proxy-arm:v1.10.5": rpc error: code = Unknown desc = Error response from daemon: Get https://gcr.io/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)
+  Warning  Failed                 46m (x4 over 48m)   kubelet, kubenode1  Error: ErrImagePull
+  Warning  Failed                 44m (x14 over 48m)  kubelet, kubenode1  Error: ImagePullBackOff
 ```
 
-当 Pods 遇到问题时可以用下面查看某个 Pod 里面的 events logs 看原因
-```
-kubectl describe pods kube-dns-7b6ff86f69-jw8vn -n kube-system
-kubectl -n kube-system describe pods weave-net-v9g62
-kube-dns-7b6ff86f69-jw8vn
-```
-
+### Reinstall Pods
 如果需要重新启动 Pods 则可以重新部署一下
 ```
 kubectl replace --force -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
-```
-kubectl delete pods wso2am-default-813fy
-kubectl create -f <yml_file_describing_pod>
-```
-部署 weave 错误时 Docker pull image 的时候有问题，下面的问题
-Error response from daemon: Get https://registry-1.docker.io/v2/: proxyconnect tcp: dial tcp 192.168.1.6:1080: getsockopt: no route to host
-
-尝试去掉 Docker Engine 代理倒是可以 pull 了。可能是我代理类型的原因（我用的shadowsocks）。但总得来说连接 Docker registry 不需要代理，连接 gcr.io 必须要代理。这就麻烦了。但最终是用代理都有问题，代理有问题了，Docker 不能用了，说重新安装 Docker 可以解决，但我也没尝试重新安装，最终我选择的是从 Docker 官方库下载[别人弄的 gcr.io google_containers 的拷贝](https://github.com/anjia0532/gcr.io_mirror)，然后重新打成原标签。
-例如，如果需要下载 `gcr.io/google_containers/k8s-dns-dnsmasq-nanny-arm:1.14.7`
-则手工执行 `docker pull anjia0532/google-containers.k8s-dns-dnsmasq-nanny-arm:1.14.7`
-然后重新给个原来的名字 Tag `docker image tag anjia0532/google-containers.k8s-dns-dnsmasq-nanny-arm:1.14.7 gcr.io/google_containers/k8s-dns-dnsmasq-nanny-arm:1.14.7`
-
-
-
-
-docker pull weaveworks/weave-kube:2.3.0
-docker pull gcr.io/google_containers/k8s-dns-dnsmasq-nanny-arm:1.14.7
-
-docker pull anjia0532/google-containers.k8s-dns-dnsmasq-nanny-arm:1.14.7
-
-需要手工 pull 的 gcr 镜像：
-gcr.io/google_containers/k8s-dns-dnsmasq-nanny-arm:1.14.7
-gcr.io/google_containers/k8s-dns-sidecar-arm:1.14.7
-gcr.io/google_containers/k8s-dns-kube-dns-arm:1.14.7
-
-之前的镜像你可能也需要手工 pull 我的是因为之前 shadowsocks vpn 代理可以，但现在不行了。
-gcr.io/google_containers/kube-apiserver-arm
-
-```
-docker pull anjia0532/google-containers.k8s-dns-sidecar-arm:1.14.7
-docker image tag anjia0532/google-containers.k8s-dns-sidecar-arm:1.14.7 gcr.io/google_containers/k8s-dns-sidecar-arm:1.14.7
-docker pull anjia0532/google-containers.k8s-dns-kube-dns-arm:1.14.7
-docker image tag anjia0532/google-containers.k8s-dns-kube-dns-arm:1.14.7 gcr.io/google_containers/k8s-dns-kube-dns-arm:1.14.7
-```
-
-```
-root@raspberrypi:~# docker images
-REPOSITORY                                              TAG                 IMAGE ID            CREATED             SIZE
-k8s.gcr.io/kube-controller-manager-arm                  v1.10.4             78bb214362bf        10 days ago         129MB
-k8s.gcr.io/kube-apiserver-arm                           v1.10.4             ed4553b39798        10 days ago         206MB
-k8s.gcr.io/kube-scheduler-arm                           v1.10.4             b3ad5420efae        10 days ago         43.6MB
-gcr.io/google_containers/kube-proxy-arm                 v1.9.8              d78f11ff4746        3 weeks ago         97.8MB
-gcr.io/google_containers/kube-controller-manager-arm    v1.9.8              0fa1d05b0709        3 weeks ago         121MB
-gcr.io/google_containers/kube-apiserver-arm             v1.9.8              2bbdbfd54424        3 weeks ago         194MB
-gcr.io/google_containers/kube-scheduler-arm             v1.9.8              36edf271415a        3 weeks ago         54.3MB
-weaveworks/weave-npc                                    2.3.0               e214242c20cf        2 months ago        44.5MB
-weaveworks/weave-kube                                   2.3.0               10ead2ac9c17        2 months ago        88.8MB
-k8s.gcr.io/etcd-arm                                     3.1.12              88c32b5960ff        3 months ago        178MB
-k8s.gcr.io/pause-arm                                    3.1                 e11a8cbeda86        5 months ago        374kB
-gcr.io/google_containers/etcd-arm                       3.1.11              a5f8f54094ff        6 months ago        189MB
-anjia0532/google-containers.k8s-dns-dnsmasq-nanny-arm   1.14.7              76c015d7978c        7 months ago        37.5MB
-gcr.io/google_containers/k8s-dns-dnsmasq-nanny-arm      1.14.7              76c015d7978c        7 months ago        37.5MB
-gcr.io/google_containers/pause-arm                      3.0                 b51c23e6a2ab        2 years ago         506kB
-```
-
-
-https://rak8s.io/
-
-### Join Worker Nodes
+## Join Worker Nodes
 把另外一个树莓派加入到 Kubernetes cluster 里来，首先按照以上过程从开始直到 `kubeadm init` 之前的步骤照做。
 
-* 使用 `raspi-config` 工具修改 hostname，因为 Kubernetes cluster 会以 hostname 区分不同的主机
+* 使用 `raspi-config` 工具修改系统默认的 hostname ，避免与其他节点的名称重复，因为 Kubernetes 会使用 hostname 区分节点。
+* （可选）配置代理环境变量
+* 安装 Docker
+* 关闭 Swap Memory
+* 添加 Cgroup Memory 并重启
+* （可选）配置代理环境变量（因为上步已重启）
+* 安装 Kubeadm
+* （可选）去除代理环境变量
+* （可选）配置 Docker 代理
 
-使用 [kubeadm join][kubeadm-join] 命令把 Worker nodes 加入到 Kubernetes cluster。当你在 Master node 上初始化 kubeadm 时日志里会输出下面这行命令，可以帮助用来加入 Worker nodes。
+还记得 kubeadm init 时记下来的 [kubeadm join][kubeadm-join] 命令吗，现在用它来把这个 Work node 主机加入到上面创建的 Kubernetes cluster master
 ```
 kubeadm join --token dc8b91.eacc7d2b3679748e --discovery-token-unsafe-skip-ca-verification 192.168.1.16:6443
+kubeadm join 192.168.2.100:6443 --token mdt1jg.312ebga0sydo2ab0 --discovery-token-ca-cert-hash sha256:865e742c53da18a663ecbf98a02e1a060b040ccb0530470c285ae6c36a201c30
 ```
+
 如果不记得可以查询 token 和 Master API Server address
 <div class='showyourterms raspbpi-master active' data-title="Raspberry Pi Master">
   <div class='showyourterms-container'>
@@ -344,7 +396,20 @@ dc8b91.eacc7d2b3679748e   &lt;forever&gt;   &lt;never&gt;   authentication,signi
 
 ```
 root@raspberrypi:~# kubectl get nodes
-root@raspberrypi:~# kubectl get pods -n kube-system
+NAME          STATUS     ROLES     AGE       VERSION
+pi-node1      NotReady   <none>    6s        v1.10.5
+raspberrypi   Ready      master    6h        v1.10.5
+root@raspberrypi:~# kubectl get pods --all-namespaces -o wide
+NAMESPACE     NAME                                  READY     STATUS              RESTARTS   AGE       IP              NODE
+kube-system   etcd-raspberrypi                      1/1       Running             1          6h        192.168.2.101   raspberrypi
+kube-system   kube-apiserver-raspberrypi            1/1       Running             9          6h        192.168.2.101   raspberrypi
+kube-system   kube-controller-manager-raspberrypi   1/1       Running             1          6h        192.168.2.101   raspberrypi
+kube-system   kube-dns-686d6fb9c-t5wcm              3/3       Running             3          6h        10.32.0.3       raspberrypi
+kube-system   kube-proxy-665dg                      1/1       Running             1          6h        192.168.2.100   raspberrypi
+kube-system   kube-proxy-rkqpq                      0/1       ContainerCreating   0          1m        192.168.2.142   pi-node1
+kube-system   kube-scheduler-raspberrypi            1/1       Running             1          6h        192.168.2.101   raspberrypi
+kube-system   weave-net-7css2                       2/2       Running             3          6h        192.168.2.100   raspberrypi
+kube-system   weave-net-sj6b7                       0/2       ContainerCreating   0          1m        192.168.2.142   pi-node1
 root@raspberrypi:~# kubectl -n kube-system describe pods kube-proxy-nb22l
 ...
 Events:
@@ -361,37 +426,20 @@ Events:
   Warning  Failed                 44m (x14 over 48m)  kubelet, kubenode1  Error: ImagePullBackOff
 ```
 
-具体 Worker node 加入 cluster 时要下载的 container images 有
 ```
-kube-proxy
-  gcr.io/google_containers/kube-proxy-arm:v1.9.8
-weave
-  weaveworks/weave-kube:2.3.0
-weave-npc
-  weaveworks/weave-npc:2.3.0
+root@pi-node1:~# docker images
+REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
+k8s.gcr.io/kube-proxy-arm      v1.10.5             8fac2dc84e30        2 days ago          88.1MB
+weaveworks/weave-npc           2.3.0               e214242c20cf        2 months ago        44.5MB
+weaveworks/weave-kube          2.3.0               10ead2ac9c17        2 months ago        88.8MB
+k8s.gcr.io/pause-arm           3.1                 e11a8cbeda86        6 months ago        374kB
 ```
-从 Docker hub 下载的镜像不需要代理，但从 gcr.io 下载的需要代理，当代理不要办的情况下还可以下载别人同步到 Docker hub 里的备份，然后打上原来的 tag 就行了，过程如下
-```
-docker pull anjia0532/google-containers.kube-proxy-arm:v1.9.8
-docker image tag anjia0532/google-containers.kube-proxy-arm:v1.9.8 gcr.io/google_containers/kube-proxy-arm:v1.9.8
-```
-
-代理问题
-
-```
-cd /usr/local
-sudo curl -o lantern.deb  https://raw.githubusercontent.com/getlantern/lantern-binaries/master/lantern-installer-64-bit.deb
-```
-
-https://github.com/kubernetes/kubeadm/issues/684
-
 
 ## Dashboard
 
 ```
 kubectl create -f  https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard-arm.yaml
 ```
-帮助 Docker pull 下来这个镜像 `k8s.gcr.io/kubernetes-dashboard-arm:v1.8.3`
 
 怎么访问安装好的 Dashboard 呐？
 `sudo kubectl port-forward kubernetes-dashboard-7fcc5cb979-lsw7f 8888:8443`
@@ -404,7 +452,14 @@ kubectl create -f  https://raw.githubusercontent.com/kubernetes/dashboard/master
 `[ERROR KubeletVersion]: couldn't get kubelet version: exit status 2`
 kubelet 工具出现问题，可以运行 `kubelet --version` 查看报什么错误。
 
-`kubelet error reading /var/lib/kubelet/pki/kubelet.key, certificate and key must be supplied as a pair`
+```
+root@raspberrypi:~# kubectl -n kube-system logs weave-net-sj6b7 -c weave
+standard_init_linux.go:190: exec user process caused "exec format error"
+```
+说明下载的 Docker 镜像并不适合此主机系统，可能不是 arm 版本的镜像。
+关于 weave-net 这个镜像在 arm 系统上的运行问题可能还有些争议，参见 https://github.com/weaveworks/weave/issues/3276 ，虽然这个 close 了，但仍然有些人和我一样运行失败。
+
+
 
 https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/
 
@@ -418,5 +473,8 @@ https://kubecloud.io/setting-up-kubernetes-visualization-of-a-cluster-96826433fc
 
 https://kubecloud.io/setting-up-a-highly-available-kubernetes-cluster-with-private-networking-on-aws-using-kops-65f7a94782ef
 
+https://rak8s.io/
+
+manifest-tool
 
 [kubeadm-join]:https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-join/

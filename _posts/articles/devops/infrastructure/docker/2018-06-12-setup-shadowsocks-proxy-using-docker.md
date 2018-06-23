@@ -97,7 +97,25 @@ curl -x socks5h://127.0.0.1:1080 https://www.youtube.com/
 
 linux 的环境变量 `http_proxy` 不支持 socks5 协议的代理，所以我们需要把 socks5 代理转成 http 代理
 
+### privoxy
+[Privoxy][privoxy] 是一款不进行网页缓存且自带过滤功能的代理服务器，针对 HTTP、 HTTPS 协议。通过其过滤功能，用户可以保护隐私、对网页内容进行过滤、管理 Cookie，以及拦阻各种广告等。它也可以与其他代理相连（通常与 [Squid](#squid) 一起使用）。
+
+* `apt-get install privoxy -y` 安装
+
+* 配置 privoxy ,转换 socks 代理为 http 代理
+
+  `nano /etc/privoxy/config` 编辑配置文件，设置转换端口以及监听端口
+  ```
+  forward-socks5 / 127.0.0.1:1080 . # 转换 socks 为 privoxy
+  listen-address 0.0.0.0:8118 # 监听端口 8118， 0.0.0.0 对外提供连接
+  ```
+
+* `service privoxy restart` 重启 privoxy 服务
+* `systemctl status privoxy.service` 查看服务运行状态
+* 测试 `curl --proxy http://127.0.0.1:8118 https://www.google.com`
+
 ### polipo
+polipo 是另外一种支持 socks5 的 http 代理的工具
 ```
 $ sudo apt-get install polipo
 $ polipo socksParentProxy=localhost:1080 &
@@ -109,25 +127,6 @@ $ curl --proxy http://127.0.0.1:8123 https://www.google.com
 ```
 
 https://www.codevoila.com/post/16/convert-socks-proxy-to-http-proxy-using-polipo
-
-
-### privoxy
-[Privoxy][privoxy] 是一款不进行网页缓存且自带过滤功能的代理服务器，针对 HTTP、 HTTPS 协议。通过其过滤功能，用户可以保护隐私、对网页内容进行过滤、管理 Cookie，以及拦阻各种广告等。它也可以与其他代理相连（通常与 [Squid](#squid) 一起使用）。
-
-`apt-get install privoxy -y`
-
-配置 privoxy ,转换 socks 代理为 http 代理
-`nano /etc/privoxy/config`　# 编辑配置文件，设置转换端口以及监听端口
-```
-orward-socks5 / 127.0.0.1:1080 . # 转换 socks 为 privoxy
-listen-address 0.0.0.0:8118 # 监听端口 8118， 0.0.0.0 对外提供连接
-```
-
-启动privoxy
-`service privoxy start`
-
-设置环境变量
-`export http_proxy="http://127.0.0.1:8118"`
 
 
 ## 课外

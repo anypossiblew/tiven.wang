@@ -34,4 +34,20 @@ https://www.computerhope.com/issues/ch001078.htm
 
 `netstat -anp`
 
+### How to set up swap space?
+配置文件 */etc/dphys-swapfile*
+
+修改大小
+
+`CONF_SWAPSIZE=100`
+
+重启服务
+`sudo dphys-swapfile restart`
+
+https://raspberrypi.stackexchange.com/questions/70/how-to-set-up-swap-space
+
+
+
+
+
 [dhclient]:https://www.computerhope.com/unix/dhclient.htm
