@@ -27,6 +27,7 @@ references:
 
 `docker-machine ls`
 
+### Hyper-V
 创建一个新的 Docker Machine 即虚拟机，在 Windows 10 professional 平台上选择其原生的虚拟机软件 Hyper-V 。首先需要在 Hyper-V Manager 软件里创建一个 Virtual Switch 它被用作虚拟机的网络设备，它有三种类型可选：External 类型的是绑定到物理主机的网络适配器，所以可以访问物理网络；Internal 类型的是可以在虚拟机和物理主机之间进行相互访问；Private 类型的只能在虚拟机之间相互访问。运行 Docker 一般需要连接网络下载软件，所以我们创建一个 External 的 Virtual Switch
 ```
 PS C:\Users\tiven> docker-machine create dev --driver hyperv --hyperv-virtual-switch "MySwitch"
@@ -175,7 +176,11 @@ PS C:\Users\tiven> docker run -d --name my-ghost -p 3001:2368 ghost:alpine
 ![Image: Docker-Machine-Hyper-V](/images/devops/infrastructure/docker/Docker-Machine-Hyper-V.png)
 {: .center.middle}
 
-
+### VirtualBox
+如果使用 VirtualBox 创建 Docker Machine VM 的话要禁用掉 Windows 的 Hyper-V 属性才能使用 VirtualBox 软件
+```
+docker-machine create dev
+```
 
 
 [boot2docker]:https://github.com/boot2docker/boot2docker

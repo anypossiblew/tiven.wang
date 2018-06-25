@@ -52,7 +52,14 @@ references:
 
 安装好虚拟机 Ubuntu server 系统后使用 Hyper-V connect 登录虚拟机系统或者使用 [PuTTY][putty] 这种 ssh 工具登录（使用 PuTTY 工具更好，对编辑终端命令支持好一些）。
 
+### Disable Swap Momery
+
+* `swapoff -a`
+* 从 `/etc/fstab` 文件中删除 swap 相关的条目，例如包含 `/swap.img` 的这一行
+* `swapon --summary` 确认没有 Swap Momery
+
 ### Install kubeadm
+
 虚拟机准备好了，接下来就可以在他上面安装 Kubernetes master 节点所需软件和创建集群了，根据 [https://kubernetes.io/docs/tasks/tools/install-kubeadm/](https://kubernetes.io/docs/tasks/tools/install-kubeadm/) 教程安装 Docker, kubelet, kubeadm 和 kubectl 工具。我们是 Ubuntu 系统，所以使用以下命令（使用`sudo -i`进入 root 权限模式）安装：
 
 * 在虚拟机里安装 Docker
@@ -139,6 +146,7 @@ Then restart kubelet:
 #### Initializing your master
 The master is the machine where the control plane components run, including etcd (the cluster database) and the API server (which the kubectl CLI communicates with).
 
+使用命令 [kubeadm init][kubeadm-init] 初始化集群的 master 节点
 <div class='showyourterms kubemaster' data-title="Kubemaster">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>kubeadm init</div>
@@ -331,9 +339,8 @@ failed to run Kubelet: Running with swap on is not supported
 
 * `swapoff -a`
 * 从 `/etc/fstab` 文件中删除 swap 相关的条目，例如包含 `/swap.img` 的这一行
-* `reboot`
 
-重启后重新查看 swap 状态 `swapon --summary` 确保没有 swap 存在，然后再查看 kubelet 是否正常启动。
+重新查看 swap 状态 `swapon --summary` 确保没有 swap 存在，然后再查看 kubelet 是否正常启动。
 
 ### Swap Memory
 
@@ -348,3 +355,4 @@ failed to run Kubelet: Running with swap on is not supported
 [Vagrant]:https://www.vagrantup.com/
 [journalctl]:https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
 [kubelet]:https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
+[kubeadm-init]:https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/

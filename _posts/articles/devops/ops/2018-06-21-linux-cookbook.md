@@ -46,8 +46,12 @@ https://www.computerhope.com/issues/ch001078.htm
 
 https://raspberrypi.stackexchange.com/questions/70/how-to-set-up-swap-space
 
+### Network
 
+`/etc/network/interfaces`
 
+### Change hostname on Ubuntu 18 04
 
+https://websiteforstudents.com/updating-changing-the-hostname-on-ubuntu-18-04-beta-server/
 
 [dhclient]:https://www.computerhope.com/unix/dhclient.htm
