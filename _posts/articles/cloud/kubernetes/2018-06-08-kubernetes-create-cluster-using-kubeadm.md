@@ -215,6 +215,17 @@ as root:
   </div>
 </div>
 
+首先依照日志给出的命令先把 kubectl 工具配好
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+其次安装网络扩展组件下一步要做。
+
+最后记下来 `kubeadm join ...` 这行命令，后面添加 Worker 节点要用到。
+
+
 * 如果遇到下面错误说明你需要执行 `swapoff -a` 使用 `swapon --summary` 查看确保没有 swap
 ```
 [ERROR Swap]: running with swap on is not supported. Please disable swap
@@ -225,7 +236,9 @@ as root:
 ```
 
 ##### Installing a pod network
+Kubernetes cluster 需要安装网络扩展组件用来扁平化容器之间的网络通信，为什么需要单独的网络扩展组件可以参考 [Kubernetes Concepts / Cluster Networking](https://kubernetes.io/docs/concepts/cluster-administration/networking/)
 
+我们这里选择 [Weave Net][weave-net]
 <div class='showyourterms kubemaster' data-title="Kubemaster">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>sysctl net.bridge.bridge-nf-call-iptables=1</div>
@@ -356,3 +369,5 @@ failed to run Kubelet: Running with swap on is not supported
 [journalctl]:https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
 [kubelet]:https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 [kubeadm-init]:https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/
+
+[weave-net]:https://www.weave.works/docs/net/latest/kubernetes/kube-addon/

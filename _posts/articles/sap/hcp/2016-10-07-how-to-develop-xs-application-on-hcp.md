@@ -160,7 +160,7 @@ Delivery Unit管理的详细教程可以参见[附录1][3]
 
 * `"authentication" : null` 为了方便测试及之后的供数字账号事件调用，需要设置匿名访问权限，所以这里授权方式为空。
 * `"anonymous_connection": "digital-account::DigAccMessage"` 在匿名用户访问系统的情况下这里需要提供一个[数据库连接设置](#create-xs-sql-connection)，以便授予匿名用户访问数据库的权限。
-* `"cors" : {"enabled" : true}` 显然如果使数字账号可以调用此API的话，需要设置跨域访问。
+* `"cors" : {"enabled" : true}` 显然如果使数字账号服务器可以调用此API的话，需要设置跨域访问。
 * `"force_ssl" : true` 使用ssl连接更安全。
 * `"prevent_xsrf" : false` : 因为数字账号服务器并不能提供xsrf token,所以我们关闭此功能
 
@@ -176,7 +176,7 @@ Delivery Unit管理的详细教程可以参见[附录1][3]
     }],
     "force_ssl": true,
     "enable_etags": true,
-    "prevent_xsrf": true,
+    "prevent_xsrf": false,
     "anonymous_connection": "digital-account::DigAccMessage",
     "cors": [{
         "enabled": true
