@@ -5,34 +5,15 @@ title: "Kubernetes - Cookbook"
 excerpt: "Kubernetes Cookbook."
 modified: 2018-06-25T11:51:25-04:00
 categories: articles
-tags: [Kubernetes, Cloud]
+tags: [Kubernetes, Cookbook, Cloud]
 image:
-  vendor: nationalgeographic
-  feature: /content/dam/travel/rights-exempt/2018-travel-photographer-of-the-year/2018-tpc-animals/malabar-pied-hornbills.ngsversion.1526674260421.adapt.885.1.jpg
-  credit: NATIONAL GEOGRAPHIC TRAVEL
-  creditlink: https://www.nationalgeographic.com/travel/features/photography/wildlife-landscapes-worth-trip/
+  vendor: gstatic
+  feature: /prettyearth/assets/full/1739.jpg
+  credit: Google Earth
+  creditlink: https://earthview.withgoogle.com/acampo-united-states-1739
 comments: true
 share: true
-showYourTerms: true
-references:
-  - title: "Interactive Tutorial - Scaling Your App"
-    url: https://kubernetes.io/docs/tutorials/kubernetes-basics/scale/scale-interactive/
 ---
-
-<style>
-.showyourterms.kubemaster .type:before {
-  content: "root@kubemaster:~# "
-}
-.showyourterms.kubenode1 .type:before {
-  content: "root@kubenode1:~# "
-}
-.showyourterms.kube-tiven .type:before {
-  content: "PS C:\\dev\\kube-tiven> "
-}
-.showyourterms.tiven .type:before {
-  content: "PS C:\\User\\tiven> "
-}
-</style>
 
 * TOC
 {:toc}

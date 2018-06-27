@@ -14,6 +14,9 @@
      style="background-image: url('https://pbs.twimg.com{{ post.image.feature }}')"
 {% elsif post.image.vendor == "dronestagr" %}
      style="background-image: url('http://www.dronestagr.am{{ post.image.feature }}')"
+{% elsif post.image.vendor == "gstatic" %}
+    style="background-image: url('https://www.gstatic.com{{ post.image.feature }}')"
+
 {% else %}
      style="background-image: url('{{ post.image.feature }}')"
 {% endif %}
