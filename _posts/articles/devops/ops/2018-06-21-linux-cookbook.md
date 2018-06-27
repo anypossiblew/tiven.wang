@@ -46,9 +46,22 @@ https://www.computerhope.com/issues/ch001078.htm
 
 https://raspberrypi.stackexchange.com/questions/70/how-to-set-up-swap-space
 
-### Network
+## Network
+### Assign Static IP
+修改下面 Network Interfaces 文件，为每个 interface 指定 IP 类型，最好每个 interface 都设置上及时他有默认行为
 
-`/etc/network/interfaces`
+`sudo nano /etc/network/interfaces`
+```
+auto enp0s3
+iface enp0s3 inet dhcp
+
+auto enp0s8
+iface enp0s8 inet static
+address 192.168.99.100
+netmask 255.255.255.0
+network 192.168.99.0
+broadcast 192.168.99.255
+```
 
 ### Change hostname on Ubuntu 18 04
 

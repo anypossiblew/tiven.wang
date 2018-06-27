@@ -7,10 +7,10 @@ modified: 2018-06-22T11:51:25-04:00
 categories: articles
 tags: [Proxy, Cloud]
 image:
-  vendor: yourshot.nationalgeographic
-  feature: /.com/u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNfMYZTpJyEuhrWDKZwigHxqTpI1M2WoY453ZL7mfUkRP15OtqmMr3w3kKLg47kgyMA5VrTjwhcFdhr0ywdh2p_uCk3BwqpuKEmpkEENr-SMXE5jhpUtV2I5H0wFhbcGyXXK--NXtXqCshJV8FwFx4YUrSmrS89QkcFpbyZ9d5T5fY/
-  credit: Nicolas Merkulov
-  creditlink: https://yourshot.nationalgeographic.com/profile/1665808
+  vendor: gstatic
+  feature: /prettyearth/assets/full/1975.jpg
+  credit: Google Earth
+  creditlink: https://earthview.withgoogle.com/sublette-united-states-1975
 comments: true
 share: true
 ---

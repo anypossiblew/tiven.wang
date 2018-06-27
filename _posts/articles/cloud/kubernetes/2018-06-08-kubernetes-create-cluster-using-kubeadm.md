@@ -141,7 +141,7 @@ Then restart kubelet:
 </div>
 
 ### Create Cluster
-按照官方文档 [Create cluster using kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) 创建 Kubernetes cluster
+按照官方文档 [Create cluster using kubeadm][create-cluster-kubeadm] 创建 Kubernetes cluster
 
 #### Initializing your master
 The master is the machine where the control plane components run, including etcd (the cluster database) and the API server (which the kubectl CLI communicates with).
@@ -316,7 +316,8 @@ kubenode1    NotReady   &lt;none&gt;    28s       v1.10.3
 
 > 我之前曾经试图把 node 节点主机加入到 Minikube 主机的 Kubernetes cluster ， node 主机上运行的 `kubeadm join` 命令输出都支持，但 Minikube 就是没有 node 加进来。
 
-## Troubleshot after Reboot
+## Troubleshoting
+### Troubleshot after Reboot
 当我重启 master 节点虚拟机后 Kubernetes cluster 没有启动，查看 Kubelet 服务运行状态
 
 <div class='showyourterms kubemaster' data-title="Kubemaster">
@@ -355,11 +356,76 @@ failed to run Kubelet: Running with swap on is not supported
 
 重新查看 swap 状态 `swapon --summary` 确保没有 swap 存在，然后再查看 kubelet 是否正常启动。
 
-### Swap Memory
+#### Swap Memory
 
 关于 Swap 的问题，是 Kubernetes 从 v1.8.0 开始，如果工作节点主机的 swap memory 开启 Kubelet 默认会启动失败。
 [kubelet][kubelet] 有个参数 `--fail-swap-on     Default: true` 指定了这个特性。建议不要设置成 false，因为 Kubelet 不管理 swap space，开启 swap 可能会造成不可预测的效率问题。详细请参考讨论[kubernetes/issues/7294](https://github.com/kubernetes/kubernetes/issues/7294)。
 
+### Multiple Network Interfaces
+当 Kubernetes 使用的 Master/Worker 主机系统安装了两个及以上的网络适配器(Network Interfaces)时，Kubernetes 默认选择使用默认的 Network Interface 作为其地址，但有时另外一个才是其需要的适配器地址时，就需要手工指定给他。
+
+参见 [Using kubeadm with multiple network interfaces](/articles/kubernetes-cookbook/#using-kubeadm-with-multiple-network-interfaces).
+
+
+### Weave Net CrashLoopBackOff
+#### Problem
+安装了 Weave Net 组件后，加入一个 Worker 节点后，此节点的 `weave-net` 循环崩溃，状态为 CrashLoopBackOff。
+
+查看此 pod 的日志，显示不能连到地址 10.96.0.1，此地址看起来像 apiserver 的地址
+```
+root@kubemaster:~# kubectl logs weave-net-rd99x -n kube-system -c weave
+FATA: 2018/06/27 05:35:46.045930 [kube-peers] Could not get peers: Get https://10.96.0.1:443/api/v1/nodes: dial tcp 10.96.0.1:443: i/o timeout
+Failed to get peers
+```
+通过查看服务确认一下是 kubernetes 服务的即 apiserver 的地址
+```
+root@kubemaster:~# kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   2h
+```
+那么问题就是 Worker 节点上的 weave-net pod 连不上 Master 节点的 apiserver 地址，他们是通过 cluster-ip 通信的，而 kube-proxy 负责此项任务。
+查看 Master 节点上 kube-proxy pod 日志可以发现问题
+```
+root@kubemaster:~# kubectl logs kube-proxy-98b7s -n kube-system
+I0627 03:44:30.494219       1 feature_gate.go:226] feature gates: &\{\{\} map[]}
+W0627 03:44:30.780309       1 server_others.go:290] Can't use ipvs proxier, trying iptables proxier
+I0627 03:44:30.781468       1 server_others.go:140] Using iptables Proxier.
+W0627 03:44:30.977868       1 proxier.go:311] clusterCIDR not specified, unable to distinguish between internal and external traffic
+I0627 03:44:30.978159       1 server_others.go:174] Tearing down inactive rules.
+I0627 03:44:31.140425       1 server.go:444] Version: v1.10.5
+I0627 03:44:31.178436       1 conntrack.go:98] Set sysctl 'net/netfilter/nf_conntrack_max' to 131072
+I0627 03:44:31.178659       1 conntrack.go:52] Setting nf_conntrack_max to 131072
+I0627 03:44:31.182668       1 conntrack.go:83] Setting conntrack hashsize to 32768
+I0627 03:44:31.182815       1 conntrack.go:98] Set sysctl 'net/netfilter/nf_conntrack_tcp_timeout_established' to 86400
+I0627 03:44:31.183028       1 conntrack.go:98] Set sysctl 'net/netfilter/nf_conntrack_tcp_timeout_close_wait' to 3600
+I0627 03:44:31.189000       1 config.go:202] Starting service config controller
+I0627 03:44:31.189028       1 controller_utils.go:1019] Waiting for caches to sync for service config controller
+I0627 03:44:31.189069       1 config.go:102] Starting endpoints config controller
+I0627 03:44:31.189075       1 controller_utils.go:1019] Waiting for caches to sync for endpoints config controller
+I0627 03:44:31.290423       1 controller_utils.go:1026] Caches are synced for endpoints config controller
+I0627 03:44:31.290491       1 controller_utils.go:1026] Caches are synced for service config controller
+```
+日志 *clusterCIDR not specified, unable to distinguish between internal and external traffic* 显示 clusterCIDR 没有指定，不能区分 internal 和 external 数据流。你还可以通过下面全局搜索关键字的方式查看日志
+```
+root@kubemaster:~# kubectl cluster-info dump | grep -i cidr
+                "PodCIDR": "",
+                "PodCIDR": "",
+                "PodCIDR": "",
+I0627 03:36:22.170690       1 core.go:149] Will not configure cloud provider routes for allocate-node-cidrs: false, configure-cloud-routes: true.
+W0627 03:44:30.977868       1 proxier.go:311] clusterCIDR not specified, unable to distinguish between internal and external traffic
+W0627 03:36:27.770563       1 proxier.go:311] clusterCIDR not specified, unable to distinguish between internal and external traffic
+W0627 05:15:22.445973       1 proxier.go:311] clusterCIDR not specified, unable to distinguish between internal and external traffic
+```
+
+#### Solution
+各种文档并没有明确说明要设置 cluster CIDR，一般都会有默认的。但可能是我使用的虚拟机 Ubuntu 设置了两个 network interfaces 的原因，导致 Kubernetes 在区分流量路径时出现问题。
+
+在 Kubernetes 官方安装文档 [Creating a single master cluster with kubeadm][create-cluster-kubeadm] 里指出了在安装 pod network add-on 时要注意有些是需要指定 `--pod-network-cidr` 参数的。
+那么就重新初始化一下
+```
+root@kubemaster:~# kubeadm init --apiserver-advertise-address=192.168.99.100 --service-cidr=10.96.0.0/12 --pod-network-cidr=10.32.0.0/16
+```
+同样是因为我的虚拟机系统安装了两个 network interfaces 而 Kubernetes 会选择默认的，所以需要手工指定 apiserver 使用的 IP 地址 by `--apiserver-advertise-address=192.168.99.100`。
 
 
 
@@ -369,5 +435,6 @@ failed to run Kubelet: Running with swap on is not supported
 [journalctl]:https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs
 [kubelet]:https://kubernetes.io/docs/reference/command-line-tools-reference/kubelet/
 [kubeadm-init]:https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/
+[create-cluster-kubeadm]:https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
 
 [weave-net]:https://www.weave.works/docs/net/latest/kubernetes/kube-addon/

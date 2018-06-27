@@ -41,36 +41,46 @@ rm /etc/kubernetes/admin.conf
 kubeadm alpha phase kubeconfig admin
 ```
 
-https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha
-
-https://stackoverflow.com/questions/46360361/invalid-x509-certificate-for-kubernetes-master
+#### References
+* [https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha)
+* [https://stackoverflow.com/questions/46360361/invalid-x509-certificate-for-kubernetes-master](https://stackoverflow.com/questions/46360361/invalid-x509-certificate-for-kubernetes-master)
 
 ### Using kubeadm with multiple network interfaces
 #### Problem
 I'm testing a Kubernetes cluster with VirtualBox and Vagrant. Every VM has an NATed interface (eth0) and a Host-Only interface (eth1). I wanted to make the first node try to join the master using the Host-Only IP address VMs contact each other using the Host-Only interfaces.
 #### Solution
-When running `kubeadm init`, you must make sure you specify an internal IP for the API server’s bind address, like so:
+When running [`kubeadm init`][kubeadm-init], you must make sure you specify an internal IP for the API server’s bind address, like so:
 ```
-kubeadm init --apiserver-advertise-address=192.168.99.101
+kubeadm init --apiserver-advertise-address=192.168.99.100
 ```
 And set parameter `--node-ip` for kubelet service in config file */etc/systemd/system/kubelet.service.d/10-kubeadm.conf* equal IP address of the node. If set, kubelet will use this IP address for the node.
 ```
-nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+sudo nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
 [Service]
 # ...
-Environment="KUBELET_NETWORK_ARGS=--network-plugin=cni --cni-conf-dir=/etc/cni/net.d --cni-bin-dir=/opt/cni/bin --node-ip=192.168.99.101"
+Environment="KUBELET_NETWORK_ARGS=--network-plugin=cni --cni-conf-dir=/etc/cni/net.d --cni-bin-dir=/opt/cni/bin --node-ip=192.168.99.100"
 # ...
 ExecStart=
 ExecStart=/usr/bin/kubelet $KUBELET_KUBECONFIG_ARGS $KUBELET_SYSTEM_PODS_ARGS $KUBELET_NETWORK_ARGS $KUBELET_DNS_ARGS $KUBELET_AUTHZ_ARGS $KUBELET_CADVISOR_ARGS $KUBELET_CERTIFICATE_ARGS $KUBELET_EXTRA_ARGS
 ```
 
+重启 kubelet 服务
+```
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet.service
+```
+
 #### Discussion
-但跑起来后 Kubernetes 里面仍然有些地方会使用默认的 network interface，所以仍然有需要配置的地方？针对 VirtualBox 虚拟机这种情况，我只是把要用的 Host-Only interface 改成了默认的 Adapter 就行了（在 Settings - Network 里把 Host-Only Adapter 设置在 Adapter 1 上，把 Nat 设置在 Adapter 2 上）。
+
 
 #### References
-* https://github.com/kubernetes/kubernetes/issues/33618
-* https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#using-internal-ips-in-your-cluster
+* [https://github.com/kubernetes/kubernetes/issues/33618](https://github.com/kubernetes/kubernetes/issues/33618)
+* [kubernetes.io/using-internal-ips-in-your-cluster](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/#using-internal-ips-in-your-cluster)
+
+
+
 
 
 [kubeadm-alpha]:https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha
+[kubeadm-init]:https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/

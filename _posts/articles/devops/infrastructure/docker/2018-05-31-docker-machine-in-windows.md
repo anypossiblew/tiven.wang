@@ -182,6 +182,11 @@ PS C:\Users\tiven> docker run -d --name my-ghost -p 3001:2368 ghost:alpine
 docker-machine create dev
 ```
 
+### Machine IP Changed
+如果由于各种原因 VM 的 IP Address 改变了，那么 docker-machine env 就无法访问到该 VM。
+
+`docker-machine regenerate-certs [machine]`
+
 
 [boot2docker]:https://github.com/boot2docker/boot2docker
 [boot2docker/releases]:https://github.com/boot2docker/boot2docker/releases

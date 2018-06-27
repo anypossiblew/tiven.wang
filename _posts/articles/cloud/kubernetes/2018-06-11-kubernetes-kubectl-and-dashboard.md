@@ -142,6 +142,7 @@ kube-system   weave-net-7t6lt                         2/2       Running         
 > Kubernetes Dashboard 自版本 v1.7 权限控制便有所升级
 {: .Warning}
 
+#### Authorization
 有两种登录方式可选 [Kubeconfig](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) 和 [Token](https://kubernetes.io/docs/reference/access-authn-authz/authentication/)，两种方式的配置对于到目前步骤为止我们的知识水平来说过于复杂，所以我们选择跳过。跳过的意思是 Kubernetes Dashboard service 会使用默认的账号（kubernetes-dashboard）访问 Kubernetes cluster APIs。
 跳过登录页面的话，虽然可以进入管理页面，但都没权限查看，会出现类似下面这种错误
 ```
@@ -238,6 +239,10 @@ type: kubernetes.io/service-account-token
 ### Kubernetes Dashboard
 安装好了 Dashboard 我们就来试用一下他吧。
 其实 Kubernetes Dashboard 算是我们在 Kubernetes cluster 部署的第一个 Application 。后面讲到 Kubernetes 应用程序开发和部署时就会更加清楚。
+
+![Image: Kubernetes Dashboard](/images/cloud/kubernetes/Kubernetes-Dashboard.png)
+
+
 
 
 [buildroot]:https://buildroot.org/

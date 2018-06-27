@@ -7,10 +7,10 @@ modified: 2018-06-25T11:51:25-04:00
 categories: articles
 tags: [VirtualBox, Linux]
 image:
-  vendor: twitter
-  feature: /media/DgRBIAKXkAApDrI.jpg:large
-  credit: Nat Geo Photography
-  creditlink: https://twitter.com/NatGeoPhotos/status/1010003824516517889
+  vendor: gstatic
+  feature: /prettyearth/assets/full/2442.jpg
+  credit: Google Earth
+  creditlink: https://earthview.withgoogle.com/baku-azerbaijan-2442
 comments: true
 share: true
 ---
