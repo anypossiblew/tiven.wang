@@ -35,16 +35,28 @@ https://www.computerhope.com/issues/ch001078.htm
 `netstat -anp`
 
 ### How to set up swap space?
-配置文件 */etc/dphys-swapfile*
+If you want to re-add this service to be started on boot up
+```
+$ sudo update-rc.d dphys-swapfile defaults
+```
+修改配置文件
+```
+$ sudo nano /etc/dphys-swapfile
 
-修改大小
-
-`CONF_SWAPSIZE=100`
+CONF_SWAPSIZE=1024
+```
 
 重启服务
-`sudo dphys-swapfile restart`
-
-https://raspberrypi.stackexchange.com/questions/70/how-to-set-up-swap-space
+```
+$ sudo dphys-swapfile setup
+$ sudo dphys-swapfile swapon
+```
+检查 swap 内存空间
+```
+$ sudo swapon -s
+```
+#### References
+* https://raspberrypi.stackexchange.com/questions/70/how-to-set-up-swap-space
 
 ## Network
 ### Assign Static IP

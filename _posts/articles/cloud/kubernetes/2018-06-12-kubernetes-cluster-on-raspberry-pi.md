@@ -459,7 +459,19 @@ standard_init_linux.go:190: exec user process caused "exec format error"
 说明下载的 Docker 镜像并不适合此主机系统，可能不是 arm 版本的镜像。
 关于 weave-net 这个镜像在 arm 系统上的运行问题可能还有些争议，参见 https://github.com/weaveworks/weave/issues/3276 ，虽然这个 close 了，但仍然有些人和我一样运行失败。
 
+### Swap Momery
+Kubernetes 不推荐开启 Swap，但 Raspberry Pi 的 1 G 内存实在不算大，所以不得已非得使用 Swap 的话可以使用下面方法
+```
+sudo nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
+# 添加参数 --fail-swap-on=false
+
+# 重启 kubelet 服务
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart kubelet.service
+$ kubeadm init --ignore-preflight-errors=Swap
+```
+在 Worker 主机上也进行上面设置才能开启 Swap 空间。
 
 https://kubernetes.io/docs/tasks/debug-application-cluster/debug-cluster/
 
