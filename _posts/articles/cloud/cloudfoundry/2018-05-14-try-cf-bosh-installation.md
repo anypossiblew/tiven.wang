@@ -2,7 +2,7 @@
 layout: post
 theme: UbuntuMono
 title: "Try Cloud Foundry - BOSH: Installation"
-excerpt: ""
+excerpt: "How to install BOSH Lite on AWS"
 modified: 2018-05-14T11:51:25-04:00
 categories: articles
 tags: [BOSH, Architecture, Cloud Foundry]
@@ -41,7 +41,7 @@ BOSH is an open source tool for release engineering, deployment, lifecycle manag
 ## Install BOSH CLI
 
 [BOSH Command Line Interface (CLI)](https://bosh.io/docs/cli-v2/) 是执行 BOSH 指令的客户端命令行工具，我们需要安装它来操作 BOSH 的服务端服务。
-按照 http://bosh.io/docs/cli-v2/#install 来安装 BOSH CLI 。
+按照文档 [Install](http://bosh.io/docs/cli-v2/#install) 来安装 BOSH CLI 。
 
 下载安装包进行安装，然后检查 BOSH CLI 版本来确保安装正确
 
@@ -66,8 +66,12 @@ version 3.0.1-712bfd7-2018-03-13T23:26:43Z
 Succeeded
 ```
 
+#### Ubuntu on Windows
+最新的 Windows 版本支持运行各种 Linux 系统例如 Ubuntu，那么我们可以在此 Ubuntu 环境中使用 BOSH CLI 工具了。
 
-## Install BOSH Director
+
+
+## Install BOSH
 
 BOSH Director 是指 BOSH 服务端的管理器，负责管理 BOSH 内的虚拟机 VMs 。 现在是做练习，所以使用简化版的 BOSH 软件 - BOSH Lite v2 。我们使用 AWS 环境来做练习。
 

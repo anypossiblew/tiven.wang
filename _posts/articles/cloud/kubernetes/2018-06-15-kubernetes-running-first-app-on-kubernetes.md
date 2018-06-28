@@ -7,25 +7,22 @@ modified: 2018-06-15T11:51:25-04:00
 categories: articles
 tags: [Kubernetes, Cloud]
 image:
-  vendor: nationalgeographic
-  feature: /content/dam/travel/rights-exempt/2018-travel-photographer-of-the-year/2018-tpc-animals/malabar-pied-hornbills.ngsversion.1526674260421.adapt.885.1.jpg
-  credit: NATIONAL GEOGRAPHIC TRAVEL
-  creditlink: https://www.nationalgeographic.com/travel/features/photography/wildlife-landscapes-worth-trip/
+  vendor: gstatic
+  feature: /prettyearth/assets/full/6531.jpg
+  credit: Google Earth
+  creditlink: https://earthview.withgoogle.com/mary-turkmenistan-6531
 comments: true
 share: true
 showYourTerms: true
 references:
+  - id: 1
+    title: "Use a Service to Access an Application in a Cluster"
+    url: https://kubernetes.io/docs/tasks/access-application-cluster/service-access-application-cluster/
   - title: "Interactive Tutorial - Scaling Your App"
     url: https://kubernetes.io/docs/tutorials/kubernetes-basics/scale/scale-interactive/
 ---
 
 <style>
-.showyourterms.kubemaster .type:before {
-  content: "root@kubemaster:~# "
-}
-.showyourterms.kubenode1 .type:before {
-  content: "root@kubenode1:~# "
-}
 .showyourterms.kube-tiven .type:before {
   content: "PS C:\\dev\\kube-tiven> "
 }
@@ -40,11 +37,11 @@ references:
 在之前的两篇 ["Kubernetes - Create cluster using kubeadm"](/articles/kubernetes-create-cluster-using-kubeadm/) 介绍了如何在虚拟机上使用 kubeadm 工具创建一个 Kubernetes 集群和 ["Kubernetes - Kubectl and Dashboard"](/articles/kubernetes-kubectl-and-dashboard/) 如何使用工具 kubectl 访问 Kubernetes 服务、如何安装部署 Kubernetes Dashboard 应用服务。这样就有了我们自己的开发环境，接下来就是要介绍如何在这个 Kubernetes cluster 上开发和部署应用程序。
 
 ## Application to Docker Image
-关于应用程序如何编写我们不做详细介绍，只是一笔带过。使用什么语言编写的应用也不重要，所以你可以选择自己熟悉和喜欢的语言。
-本篇我们选择使用 Node.js 来编写一个简单的 Web Application。
+关于如何编写应用程序我们不做详细介绍，只是一笔带过。使用什么语言编写的应用也不重要，所以你可以选择自己熟悉和喜欢的语言。
+本篇我们选择使用 [Node.js][nodejs] 来编写一个简单的 Web Application。
 
 ### Create Node.js Application
-创建 Node.js 项目 *kube-tiven*，然后编写 JavaScript 程序如下
+创建一个 Node.js 项目叫 *kube-tiven*，然后编写主 JavaScript 程序 *app.js* 如下
 
 *app.js*
 ```javascript
@@ -61,6 +58,7 @@ var handler = function(req, resp) {
 var www = http.createServer(handler);
 www.listen(8080);
 ```
+
 为了保证下一步顺利进行，我们进行本地测试。运行 Node.js 程序并发送请求给端口号 8080，结果如下便是正确
 <div class='showyourterms kube-tiven' data-title="Powershell on Laptop">
   <div class='showyourterms-container'>
@@ -124,7 +122,7 @@ node                                                     8                   f46
 
 ![Image: Docker build container image](/images/cloud/kubernetes/docker-build-container-image.png)
 
-检验一下我们的 Docker image 是否正确，发送请求到 8080 端口
+把我们当创建的镜像创建为一个容器，检验一下我们的 Docker image 是否正确，发送请求到 8080 端口看到返回说明运行正确
 <div class='showyourterms tiven' data-title="Powershell on Laptop">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>docker run --rm -d --name kube-tiven-container -p 8080:8080 kube-tiven</div>
@@ -147,6 +145,8 @@ kube-tiven-container
   </div>
 </div>
 👌
+
+
 ### Publish your Docker Image
 因为 Kubernetes 默认是从 Docker hub 网站上下载 Docker 容器镜像的，所以我们在部署应用程序之前要把应用程序的 Docker 容器镜像发布到 Docker hub 网站。
 
@@ -189,13 +189,16 @@ latest: digest: sha256:9b8b9367e71860bddda06e9c04139783d44cbf941dce49c96d96b2f37
   </div>
 </div>
 👌
-## Deploying Kubernetes Application
+
+
+## Deploying Our Application
 部署 Kubernetes 应用程序有多种方式，可以直接用 kubectl 命令行或者文件，还可以使用 Dashboard 界面部署。
 接下来我们使用命令行部署简单的应用程序，当后面了解的概念多了，再考虑使用配置简单部署更复杂的应用。
 部署过程如下图所示
 
 ![Image: Kubectl create/rub application](/images/cloud/kubernetes/Kubectl-create-application.png)
 
+简单起见，这里使用 [`kubectl run`][docker-cli-to-kubectl] 运行一个容器，就像运行 Docker 命令 `docker run` 一样
 <div class='showyourterms tiven' data-title="Powershell on Laptop">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>kubectl run kube-tiven --image=tiven/kube-tiven --port=8080 --generator=run/v1</div>
@@ -220,12 +223,12 @@ kube-tiven-qblvj   0/1       ContainerCreating   0          4m
     <div class='lines' data-delay='400'>
 Name:           kube-tiven-qblvj
 Namespace:      default
-Node:           kubenode1/10.59.171.151
+Node:           kubenode2/192.168.99.102
 Start Time:     Fri, 15 Jun 2018 17:07:59 +0800
 Labels:         run=kube-tiven
 Annotations:    &lt;none&gt;
 Status:         Running
-IP:             10.44.0.2
+IP:             10.36.0.2
 Controlled By:  ReplicationController/kube-tiven
 Containers:
   kube-tiven:
@@ -267,10 +270,110 @@ Events:
   </div>
 </div>
 
-可以看到此 Pod 是部署 `kubenode1/10.59.171.151` 主机上的，命名空间（Namespace）是 `default` 因为我们暂时没有为开发程序另外创建命名空间。还有他的 IP ，Kubernetes 里的 IP 太复杂了，我们后面会针对网络做详细分析。Pod 还有个 Containers 节点，一个 Pod 可以包含多个 Containers。
+可以看到此 Pod 是部署 `kubenode2/192.168.99.102` 主机上的，命名空间（Namespace）是 `default` 因为我们暂时没有为开发程序另外创建命名空间。还有他的 IP (10.36.0.2)，Kubernetes 里的 IP 太复杂了，我们后面会针对网络做详细分析。Pod 还有个 Containers 节点，一个 Pod 可以包含多个 Containers。
 
 ## Accessing Application
+要想访问我们的应用程序，需要把它暴露成一个 [Service][kubernetes/service]。使用 [`kubectl expose`][kubectl/expose] 命令创建一个 Service 类型设置为 `NodePort` 意思是使用 Worker Node 上的端口转发来访问应用程序，因为我们是在虚拟机群上创建的 Kubernetes 集群，对于我们的本机来说集群的 Public IP 就是虚拟机节点的 IP。如果你的 Kubernetes cluster 是部署在像 GCP 这样的云服务器上的话，还可以选择使用 `LoadBalancer` 类型，他会为你创建一个具有公网 IP 的服务，也就是 IaaS 里的 LoadBalancer。
 
+<div class='showyourterms tiven' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>
+kubectl expose rc kube-tiven --type=NodePort  --name tiven-service
+    </div>
+    <div class='lines' data-delay='400'>
+service "tiven-service" exposed
+    </div>
+  </div>
+</div>
+
+查看我们创建的 Service
+<div class='showyourterms tiven' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>
+kubectl get svc
+    </div>
+    <div class='lines' data-delay='400'>
+NAME            TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)          AGE
+kubernetes      ClusterIP   10.96.0.1     &lt;none&gt;        443/TCP          22h
+tiven-service   NodePort    10.96.2.195   &lt;none&gt;        8080:31177/TCP   7s
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>
+kubectl describe services tiven-service
+    </div>
+    <div class='lines' data-delay='400'>
+Name:                     tiven-service
+Namespace:                default
+Labels:                   run=kube-tiven
+Annotations:              &lt;none&gt;
+Selector:                 run=kube-tiven
+Type:                     NodePort
+IP:                       10.96.2.195
+Port:                     &lt;unset&gt;  8080/TCP
+TargetPort:               8080/TCP
+NodePort:                 &lt;unset&gt;  31177/TCP
+Endpoints:                10.36.0.2:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   &lt;none&gt;
+    </div>
+  </div>
+</div>
+
+从上面可以看到 Service 的 NodePort 属性为 31177/TCP 说明服务分配了 Worker Node 主机 31177 端口号给了我们的应用程序容器作端口号转发。那么我们要访问应用程序还需要知道其所在 Worker Node 主机的 IP 地址。你可以在 Dashboard 界面上查看到，也可以使用命令行查看，如下
+<div class='showyourterms tiven' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>
+kubectl get pods -o wide
+    </div>
+    <div class='lines' data-delay='400'>
+NAME               READY     STATUS    RESTARTS   AGE       IP          NODE
+kube-tiven-qt56j   1/1       Running   0          1h        10.36.0.2   kubenode2
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>
+kubectl describe node kubenode2
+    </div>
+    <div class='lines' data-delay='400'>
+Name:               kubenode2
+# ...
+Addresses:
+  InternalIP:  <span class="highlight">192.168.99.102</span>
+  Hostname:    kubenode2
+# ...
+    </div>
+  </div>
+</div>
+
+至此我们拿到了应用程序所在主机的 IP 地址（192.168.99.102）和 Service 暴露的转发端口号（31177），那么就可以来访问了
+<div class='showyourterms tiven' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>
+curl http://192.168.99.102:31177/
+    </div>
+    <div class='lines' data-delay='400'>
+StatusCode        : 200
+StatusDescription : OK
+Content           : {89, 111, 117, 39...}
+RawContent        : HTTP/1.1 200 OK
+                    Connection: keep-alive
+                    Transfer-Encoding: chunked
+                    Date: Thu, 28 Jun 2018 06:34:48 GMT
+
+                    You've hit kube-tiven-qt56j
+
+Headers           : {[Connection, keep-alive], [Transfer-Encoding, chunked], [Date, Thu, 28 Jun 2018 06:34:48 GMT]}
+RawContentLength  : 28
+    </div>
+    <div class='type green' data-action='command' data-delay='400'>
+kubectl logs kube-tiven-qt56j
+    </div>
+    <div class='lines' data-delay='400'>
+Kube-tiven server starting...
+Received request from ::ffff:10.36.0.0
+    </div>
+  </div>
+</div>
+
+参考[[1.]](#reference-1)
 
 ## Scaling Application
 
@@ -312,3 +415,7 @@ kube-tiven-qwgq4   1/1       Running   0          2m
 [pods]:https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/
 [replicationcontroller]:https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
 [deployment]:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/
+[nodejs]:https://nodejs.org/en/
+[docker-cli-to-kubectl]:https://kubernetes.io/docs/reference/kubectl/docker-cli-to-kubectl/
+[kubernetes/service]:https://kubernetes.io/docs/concepts/services-networking/service/
+[kubectl/expose]:https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#expose

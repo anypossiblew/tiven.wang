@@ -18,6 +18,29 @@ share: true
 * TOC
 {:toc}
 
+### Add VBoxManage command to Windows PATH
+1. Find the folder VBoxManage.exe is in
+  It is usually here `C:\Program Files\Oracle\VirtualBox`
+2. Verify the VBoxManage folder you have
+3. Add the VBoxManage folder to your classpath
+4. Close & open CMD prompt. Re-issue VBoxManage
+5. DRY (Don’t Repeat Yourself)
+
+### Run Vbox in Bash on Windows
+
+VirtualBox relies a lot on the hardware it is running on and it does not understand Bash on Windows. Running Vbox on BoW is never have been the intention of either Canonical, Microsoft or Oracle.
+
+As explained by [Microsoft](http://www.pcworld.com/article/3050473/windows/heres-how-windows-10s-ubuntu-based-bash-shell-will-actually-work.html):
+
+> This is a developer toolset to help you write and build all your code for all your scenarios and platforms.” It’s not a full Ubuntu virtual machine. You can’t use it to host servers, as you could on Linux.
+{: .Quotes}
+
+#### References
+* https://askubuntu.com/questions/816343/unable-to-install-virtualbox-in-windows-bash-ubuntu-windows-10
+
+#### References
+* https://www.build-business-websites.co.uk/add-vboxmanage-to-path/
+
 ### VirtualBox Host-Only Static IP
 VirtualBox 虚拟机系统默认都会有 NAT 网络适配器可以用来访问外网，他是走的主机物理网络适配器。但要使 VM 与 Host 或者 VM 与 VM 之间能相互访问的话，可以再增加一个 Host-Only 网络适配器给虚拟机。关于 VirtualBox Network 各种类型的能力参考 [VirtualBox Networking modes](https://www.virtualbox.org/manual/ch06.html#networkingmodes)
 
