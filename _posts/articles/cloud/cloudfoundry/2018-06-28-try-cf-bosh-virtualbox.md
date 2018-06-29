@@ -13,6 +13,13 @@ image:
   creditlink: https://earthview.withgoogle.com/chargheri-india-1972
 comments: true
 share: true
+references:
+  - id: 1
+    title: "BOSH Lite on VirtualBox"
+    url: https://bosh.io/docs/bosh-lite/
+  - id: 2
+    title: "Deploying Cloud Foundry on Virtualbox using BOSH CLI v2"
+    url: https://banck.net/2017/03/deploying-cloud-foundry-virtualbox-using-bosh-cli-v2/
 ---
 
 
@@ -38,6 +45,9 @@ version 3.0.1-712bfd7-2018-03-13T23:26:43Z
 Succeeded
 ```
 
+```
+docker run --name my-bosh-cli -it -v ${$pwd}:/usr/local/vbox -w /usr/local/vbox  bosh/cli2
+```
 
 ```
 bosh create-env ./bosh-deployment/bosh.yml \
