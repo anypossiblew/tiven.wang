@@ -80,3 +80,11 @@ broadcast 192.168.99.255
 https://websiteforstudents.com/updating-changing-the-hostname-on-ubuntu-18-04-beta-server/
 
 [dhclient]:https://www.computerhope.com/unix/dhclient.htm
+
+### Network
+
+ip addr show
+
+iptables
+
+https://docs.docker.com/network/iptables/

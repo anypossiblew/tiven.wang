@@ -14,6 +14,8 @@ references:
     url: "https://ramitsurana.gitbooks.io/awesome-kubernetes/"
   - title: "7 systems engineering and operations trends to watch in 2018"
     url: https://www.oreilly.com/ideas/7-systems-engineering-and-operations-trends-to-watch-in-2018
+  - title: "Cluster Schedulers"
+    url: https://medium.com/@copyconstruct/schedulers-kubernetes-and-nomad-b0f2e14a896
 ---
 
 * TOC
