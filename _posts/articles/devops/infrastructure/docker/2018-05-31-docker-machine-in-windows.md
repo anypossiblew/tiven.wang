@@ -187,6 +187,18 @@ docker-machine create dev
 
 `docker-machine regenerate-certs [machine]`
 
+### Remote Access Docker Engine in Machine VM
+例如我在 Ubuntu Bash on Windows 里访问 Windows 上的 VirtualBox 里的 Docker Machine 虚拟机里的 Docker Engine 可以如下设置
+```
+export DOCKER_TLS_VERIFY=1
+export DOCKER_HOST=tcp://192.168.222.100:2376
+export DOCKER_CERT_PATH=/mnt/c/Users/tiven/.docker/machine/machines/default
+export DOCKER_MACHINE_NAME=default
+```
+
+
+
+
 
 [boot2docker]:https://github.com/boot2docker/boot2docker
 [boot2docker/releases]:https://github.com/boot2docker/boot2docker/releases
