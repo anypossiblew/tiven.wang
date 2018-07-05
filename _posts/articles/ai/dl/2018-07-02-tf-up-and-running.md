@@ -19,17 +19,15 @@ share: true
 {:toc}
 
 ### use Docker
-对于初学者来说从 Docker Container 启动 TensorFlow 学习环境是个不错(不费力)的选择。
+对于初学者来说从 Docker Container 启动 TensorFlow 学习环境是个不错(不费力)的选择。镜像为 [tensorflow][docker/tensorflow]
 
-镜像为 [tensorflow][docker/tensorflow]
-
-如果直接运行，容器会建立一个 [jupyter][jupyter] 服务来帮助你学习 python 语言
+如果直接运行，容器会建立一个 [Jupyter][jupyter] notebook 服务来帮助你学习 python 语言
 
 `docker run -it -p 8888:8888 tensorflow/tensorflow`
 
 还可以运行 bash 命令行工具，然后运行 python 命令行环境
 ```
-$ docker run -it --name=my-tensorflow tensorflow/tensorflow bash
+$ docker run -it tensorflow/tensorflow bash
 root@06a6c03e3e74:/notebooks# python
 Python 2.7.12 (default, Dec  4 2017, 14:50:18)
 [GCC 5.4.0 20160609] on linux2
