@@ -87,6 +87,11 @@ Docker 容器 Shadowsocks 服务运行在 6443 端口映射成虚拟机的 6443 
 
 ## Client
 Shadowsocks 支持各种平台的客户端程序。
+### amd64
+```
+docker run --restart=always -d --name shadowsocks-client -p 1080:1080 easypi/shadowsocks-libev ss-local -s 35.198.219.20 -p 6443 -m aes-256-cfb -k mypassword -b 0.0.0.0 -l 1080 -t 60 --fast-open
+```
+
 ### arm
 如果要在 arm 架构的 linux 系统上使用 shadowsocks 可以选择 `easypi/shadowsocks-libev-arm` 镜像，如在 Raspberry Pi 上
 ```
