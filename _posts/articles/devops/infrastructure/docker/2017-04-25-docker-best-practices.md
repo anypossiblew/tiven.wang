@@ -100,6 +100,53 @@ docker run -e "http_proxy=http://myproxy.example.com:8080" \
 
 `docker inspect <container name or id> | grep "IPAddress"`
 
+## Configuration
+
+### Docker Daemon Proxy
+
+1. Create a systemd drop-in directory for the docker service:
+
+  `$ sudo mkdir -p /etc/systemd/system/docker.service.d`
+
+2. Create a file called `/etc/systemd/system/docker.service.d/http-proxy.conf` that adds the **HTTP_PROXY** environment variable:
+
+  ```
+  [Service]
+  Environment="HTTP_PROXY=http://proxy.example.com:80/" "NO_PROXY=localhost,127.0.0.1"
+  ```
+  or 
+  ```
+  $ cat <<EOF >/etc/systemd/system/docker.service.d/http-proxy.conf
+  [Service]
+  Environment="HTTP_PROXY=http://proxy.example.com:80/" "NO_PROXY=localhost,127.0.0.1"
+  EOF
+  ```
+  If you are behind an HTTPS proxy server
+  ```
+  $ cat <<EOF >/etc/systemd/system/docker.service.d/https-proxy.conf
+  [Service]
+  Environment="HTTPS_PROXY=https://proxy.example.com:443/" "NO_PROXY=localhost,127.0.0.1"
+  EOF
+  ```
+
+3. Flush changes:
+
+  `$ sudo systemctl daemon-reload`
+
+4. Restart Docker:
+
+  `$ sudo systemctl restart docker`
+
+5. Verify that the configuration has been loaded:
+
+  ```
+  $ systemctl show --property=Environment docker
+  Environment=HTTP_PROXY=http://proxy.example.com:80/
+  ```
+
+[Docker daemon proxy config with systemd](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy)
+
+
 ## Run
 ### Running Nodejs
 
