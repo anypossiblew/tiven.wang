@@ -78,7 +78,7 @@ RUN pip3 install -U numpy
 然后构建自己的镜像
 `docker build -t py3-data-science .`
 
-有人基于 alpine linux 系统做的镜像，此镜像除了 numpy 包我们还安装了另外的一些软件，以后用到的时候再介绍。如下
+有人基于 alpine linux 系统做的镜像，此镜像除了 numpy 包我们还安装了另外的一些 python 的数据科学软件，以后用到的时候再介绍。如下
 
 *Dockerfile*
 ```
@@ -91,13 +91,21 @@ RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
 RUN pip install --no-cache-dir numpy scipy pandas matplotlib
 ```
 
-```
-FROM alpine:3.7
-RUN echo "http://dl-8.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-RUN apk --no-cache --update-cache add python3 py-pip build-base wget freetype-dev libpng-dev openblas-dev
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
-RUN pip install --no-cache-dir numpy scipy pandas matplotlib
-```
+## Matrix
+
+什么是矩阵
+
+### Array
+
+矩阵在 python 如何表达
+
+### 矩阵运算
+
+同维度矩阵的加减乘除比较，不同维度矩阵的加减乘除比较
+
+### 矩阵操作
+
+转置，对角线，行列式
 
 
 
