@@ -27,6 +27,13 @@ references:
 
 > 因为 python 3 语言变化比较大，和 python 基本不兼容，所以在说 python 都会指明是 3 还是 2 版本的
 
+## Installation
+
+### On Windows
+
+https://www.python.org/downloads/release/python-366/
+
+
 ### Run in Docker
 镜像 [`docker pull python`][docker/python]
 
@@ -57,11 +64,12 @@ http://ipython.readthedocs.io/en/stable/
 
 ### matplotlib
 
-[Matplotlib][matplotlib]  is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms. Matplotlib can be used in Python scripts, the Python and IPython shells, the Jupyter notebook, web application servers, and four graphical user interface toolkits.
+[Matplotlib][matplotlib] is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms. Matplotlib can be used in Python scripts, the Python and IPython shells, the Jupyter notebook, web application servers, and four graphical user interface toolkits.
 
-Install 
-
-`pip3 install matplotlib`
+Install via `pip3`
+```
+pip3 install matplotlib
+```
 
 #### %matplotlib inline
 
