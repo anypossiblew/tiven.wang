@@ -1,6 +1,6 @@
 ---
 layout: post
-theme: UbuntuMono
+theme: IBMPlexSerif
 title: "TensorFlow - Up and Running"
 excerpt: "Start our journey with TensorFlow in Docker container"
 modified: 2018-07-02T11:51:25-04:00
@@ -22,6 +22,7 @@ mathjax: true
 ## Installation
 
 ### use Docker
+
 对于初学者来说从 Docker Container 启动 TensorFlow 学习环境是个不错(不费力)的选择。镜像为 [tensorflow][docker/tensorflow]
 
 如果直接运行，容器会建立一个 [Jupyter][jupyter] notebook 服务来帮助你学习 python 语言
@@ -59,6 +60,7 @@ To install the GPU version of TensorFlow
 [TensorFlow install on Windows](https://www.tensorflow.org/install/install_windows)
 
 ## First Graph
+
 现在就来创建一个最简单的 TensorFlow 图，如下图所示
 
 ![](/images/tensorflow/simple-tensorflow.png)
@@ -92,6 +94,7 @@ pip3 install --upgrade matplotlib
 ```
 
 ### Tensor
+
 张量（英语：[Tensor][wiki/Tensor]）是一个可用来表示在一些矢量、标量和其他张量之间的线性关系的多线性函数, 这些线性关系的基本例子有内积、外积、线性映射以及笛卡儿积.
 
 These are our Tensors
@@ -115,32 +118,70 @@ print(tf.constant(np.array([
 ```
 
 ## Regression model
-假设我们有这样一个数学模型，其实他是一个多元线性回归函数
+
+本章节我们用 TensorFlow Graph 构建一个线性回归模型。假设我们有这样一个数学模型，其实他是一个多元线性回归函数
 
 $$f(x_i) = w^Tx_i + b$$
 
-$$y_i = f(x_i) + \varepsilon_i$$
+此模型所对应的矩阵运算如下图
 
+![](/images/tensorflow/simple-regression-tensorflow.png)
+{: .center.middle}
 
+对应的 TensorFlow 代码如下
 ```python
 x = tf.placeholder(tf.float32,shape=[None,3])
-y_true = tf.placeholder(tf.float32,shape=None)
 w = tf.Variable([[0,0,0]],dtype=tf.float32,name='weights')
 b = tf.Variable(0,dtype=tf.float32,name='bias')
 
 y_pred = tf.matmul(w,tf.transpose(x)) + b
 ```
+这里的 `w` 和 `b` 是模型的变量，我们的目标就是找到合适的 `w` 和 `b` 以使结果值 `y_pred` 和目标值差异最小化。
 
 ### Loss Function
 
+损失函数是指在计算过程某一步的结果与目标结果的差异，最常用的损失函数有均方误差 (Mean squared error)。 这里我们就使用 TensorFlow 的均方误差函数来计算损失差异。
+
+`y_true` 是我们要达到的某个目标值，后面我们会创造这个样例数据
+```python
+loss = tf.reduce_mean(tf.square(y_true-y_pred))
+```
 
 ### Optimizer
 
-The gradient descent optimizer
+有了函数模型计算，有了比较结果差异的损失函数，我们还需要给 TensorFlow 指定如何改变模型的变量（如 `w` 和 `b`）以找到最优解即结果差异最小化。这就是优化器 (Optimizer) 的工作，我们这里使用常用的一种梯度下降法（Gradient descent）优化器 [
+tf.train.GradientDescentOptimizer][tf/GradientDescentOptimizer] 。
+
+```python
+learning_rate = 0.5
+optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+train = optimizer.minimize(loss)
+```
 
 ### Sampling methods
 
+为了训练我们的 TensorFlow 模型，要创建一些样例数据和目标值给他，结合之前的模型函数，这里再为其叠加一些高斯噪音（要不然 TensorFlow 很快就能找到完全最优的目标值）
 
+$$y_i = f(x_i) + \varepsilon_i$$
+
+下面使用 [numpy][numpy] 库创造一些 2000 个的样例数据，`w` 设为 `[0.3,0.5,0.1]` `b` 设为 `-0.2`，用随机函数生成噪音数据
+```python
+import numpy as np
+# === Create data and simulate results =====
+x_data = np.random.randn(2000,3)
+w_real = [0.3,0.5,0.1]
+b_real = -0.2
+
+noise = np.random.randn(1,2000)*0.1
+y_data = np.matmul(w_real,x_data.T) + b_real + noise
+```
+
+### Train
+最后完整流程为
+
+**模型函数 + 损失函数 + 优化器 =\> 最优值**
+
+完整代码如下
 ```python
 import tensorflow as tf
 import numpy as np
@@ -196,3 +237,6 @@ with g.as_default():
 
 [wiki/Tensor]:https://en.wikipedia.org/wiki/Tensor
 [wiki/Loss_function]:https://en.wikipedia.org/wiki/Loss_function
+[wiki/Gradient_descent]:https://en.wikipedia.org/wiki/Gradient_descent
+
+[tf/GradientDescentOptimizer]:https://www.tensorflow.org/api_docs/python/tf/train/GradientDescentOptimizer

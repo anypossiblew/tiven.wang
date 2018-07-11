@@ -1,6 +1,6 @@
 ---
 layout: post
-theme: UbuntuMono
+theme: IBMPlexSerif
 title: "TensorFlow - Mathematical Foundations"
 excerpt: "The mathematical foundations of TensorFlow"
 modified: 2018-07-10T11:51:25-04:00
@@ -43,6 +43,9 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 
 [MSE (Mean squared error)][wiki/Mean_squared_error]
 
+### Gradient Descent
+
+梯度下降法 ([Gradient Descent][wiki/Gradient_descent])
 
 ### Convex function
 
@@ -58,3 +61,4 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 [wiki/Loss_function]:https://en.wikipedia.org/wiki/Loss_function
 [wiki/Mean_squared_error]:https://en.wikipedia.org/wiki/Mean_squared_error
 [wiki/Convex_function]:https://en.wikipedia.org/wiki/Convex_function
+[wiki/Gradient_descent]:https://en.wikipedia.org/wiki/Gradient_descent

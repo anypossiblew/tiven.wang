@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Averia+Serif+Libre|IBM+Plex+Serif');
+
+.mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
+h2, h3, h4, h5, #markdown-toc
+{
+  font-family: 'IBM Plex Serif', monospace, sans-serif;
+}
+.demo-blog .blog__post .mdl-card__supporting-text blockquote
+{
+  font-family: 'Averia Serif Libre', cursive, sans-serif;
+  font-size: 14px !important;
+}
