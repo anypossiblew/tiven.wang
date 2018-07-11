@@ -71,6 +71,12 @@ Install via `pip3`
 pip3 install matplotlib
 ```
 
+#### Matplotlib dependent Tkinter
+
+[Install Tkinter on Linux](https://github.com/anki/cozmo-python-sdk/blob/master/docs/source/install-linux.rst)
+
+`sudo apt-get install python3-tk`
+
 #### %matplotlib inline
 
 Provided you are running IPython, the %matplotlib inline will make your plot outputs appear and be stored within the notebook.
