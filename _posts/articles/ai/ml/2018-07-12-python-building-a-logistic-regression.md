@@ -2,10 +2,10 @@
 layout: post
 theme: IBMPlexSerif
 title: "Python - Building A Logistic Regression"
-excerpt: "Building A Logistic Regression with Python"
+excerpt: "Building A Logistic Regression with Python, 用线性模型解决回归任务中的二分类任务"
 modified: 2018-07-12T11:51:25-04:00
 categories: articles
-tags: [Logistic Regression, Regression, Python]
+tags: [Logistic Regression, Linear Model, Regression, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/2147.jpg
@@ -57,8 +57,29 @@ Logistic regression 的模型公式为
 
 $$ f(z) = \frac{e^{z}}{1 + e^{z}} = \frac{1}{1+e^{-z}} $$
 
+在趋于正无穷或负无穷时，函数趋近平滑状态，sigmoid函数因为输出范围（0，1），所以二分类的概率常常用这个函数
 
-## sigmoid function
+## classification
+
+Statistical classification is a problem studied in machine learning. It is a type of supervised learning, a method of machine learning where the categories are predefined, and is used to categorize new probabilistic observations into said categories. When there are only two categories the problem is known as statistical [binary classification](https://en.wikipedia.org/wiki/Binary_classification).
+
+Some of the methods commonly used for binary classification are:
+
+* Decision trees
+* Random forests
+* Bayesian networks
+* Support vector machines
+* Neural networks
+* Logistic regression
+* Probit model
+
+[zhihu - 分类与回归区别是什么？](https://www.zhihu.com/question/21329754)
+
+[zhihu - 用于数据挖掘的分类算法有哪些，各有何优劣？](https://www.zhihu.com/question/24169940)
+
+## Logistic Regression
+
+### sigmoid function
 
 ## Decision boundary
 
@@ -70,6 +91,8 @@ $$ f(z) = \frac{e^{z}}{1 + e^{z}} = \frac{1}{1+e^{-z}} $$
 
 
 ## Gradient descent
+
+https://stats.stackexchange.com/questions/250937/which-loss-function-is-correct-for-logistic-regression
 
 https://towardsdatascience.com/logistic-regression-using-python-sklearn-numpy-mnist-handwriting-recognition-matplotlib-a6b31e2b166a
 

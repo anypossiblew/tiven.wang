@@ -33,6 +33,14 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 
 矩阵可以用来表示线性映射，矩阵积则可以用来表示线性映射的复合。因此，矩阵乘法是线性代数的基础工具，不仅在数学中有大量应用，在应用数学、物理学、工程学等领域也有广泛使用.
 
+## Statics
+
+### Least Squares
+
+[Least Squares][wiki/Least_squares] 
+
+[zhihu - 最小二乘法](https://www.zhihu.com/topic/19668117/hot)
+
 ## Machine Learning
 
 ### Loss function
@@ -62,3 +70,4 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 [wiki/Mean_squared_error]:https://en.wikipedia.org/wiki/Mean_squared_error
 [wiki/Convex_function]:https://en.wikipedia.org/wiki/Convex_function
 [wiki/Gradient_descent]:https://en.wikipedia.org/wiki/Gradient_descent
+[wiki/Least_squares]:https://en.wikipedia.org/wiki/Least_squares
