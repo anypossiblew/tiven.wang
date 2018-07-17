@@ -53,11 +53,6 @@ logisticRegr.fit(x_data.reshape(-1, 1), y_data.reshape(-1, 1))
 logisticRegr.predict([[2],[3],[8]])
 ```
 
-Logistic regression 的模型公式为
-
-$$ f(z) = \frac{e^{z}}{1 + e^{z}} = \frac{1}{1+e^{-z}} $$
-
-在趋于正无穷或负无穷时，函数趋近平滑状态，sigmoid函数因为输出范围（0，1），所以二分类的概率常常用这个函数
 
 ## classification
 
@@ -79,7 +74,20 @@ Some of the methods commonly used for binary classification are:
 
 ## Logistic Regression
 
-### sigmoid function
+关于逻辑回归经典的例子如考试通过与否与学习时间的关系，如下图
+
+![Exam pass logistic curve](https://upload.wikimedia.org/wikipedia/commons/6/6d/Exam_pass_logistic_curve.jpeg)
+{: .center.middle}
+
+直观表达为，学习很努力学习时间很长的人可以说几乎是要通过的，不怎么学习的人可以说几乎是不会通过的。那么问题在于那些一瓶子不满半瓶子咣当的学生，考试会不会通过呐。这就是可以使用逻辑回归（或者叫对数几率回归）模型进行评估。
+
+### Sigmoid Function
+
+[Sigmoid Function][wiki/Sigmoid_function] (S 函数) 是[Logistic Function][wiki/Logistic_function] 的一种特殊情况，它被用作为 Logistic Regression 的模型，公式为
+
+$$ f(z) = \frac{e^{z}}{1 + e^{z}} = \frac{1}{1+e^{-z}} $$
+
+直观看在趋于正无穷或负无穷时，函数趋近平滑状态，Sigmoid 函数因为输出范围（0，1），所以二分类的概率常常用这个函数。
 
 ## Decision boundary
 
@@ -89,6 +97,9 @@ Some of the methods commonly used for binary classification are:
 
 ### Cross-Entropy
 
+[Cross Entropy][wiki/Cross_entropy]
+
+熵实际是对随机变量的比特量和顺次发生概率相乘再总和的数学期望。
 
 ## Gradient descent
 
@@ -100,3 +111,6 @@ https://medium.com/data-science-group-iitr/logistic-regression-simplified-9b4efe
 
 
 [wiki/Logistic_regression]:https://en.wikipedia.org/wiki/Logistic_regression
+[wiki/Sigmoid_function]:https://en.wikipedia.org/wiki/Sigmoid_function
+[wiki/Logistic_function]:https://en.wikipedia.org/wiki/Logistic_function
+[wiki/Cross_entropy]:https://en.wikipedia.org/wiki/Cross_entropy

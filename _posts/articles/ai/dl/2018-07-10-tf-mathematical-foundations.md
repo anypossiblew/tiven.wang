@@ -41,11 +41,17 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 
 [zhihu - 最小二乘法](https://www.zhihu.com/topic/19668117/hot)
 
+### Cross Entropy
+
+[Cross Entropy][wiki/Cross_entropy]
+
 ## Machine Learning
 
 ### Loss function
 
 损失函数 ([Loss function][wiki/Loss_function])
+
+* [Cross Entropy][wiki/Cross_entropy]
 
 #### MSE
 
@@ -71,3 +77,4 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 [wiki/Convex_function]:https://en.wikipedia.org/wiki/Convex_function
 [wiki/Gradient_descent]:https://en.wikipedia.org/wiki/Gradient_descent
 [wiki/Least_squares]:https://en.wikipedia.org/wiki/Least_squares
+[wiki/Cross_entropy]:https://en.wikipedia.org/wiki/Cross_entropy
