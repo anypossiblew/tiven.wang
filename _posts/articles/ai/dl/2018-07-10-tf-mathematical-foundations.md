@@ -19,22 +19,37 @@ mathjax: true
 * TOC
 {:toc}
 
-[Tensor][wiki/Tensor]: In mathematics, tensors are geometric objects that describe linear relations between geometric vectors, scalars, and other tensors. Elementary examples of such relations include the dot product, the cross product, and linear maps. Geometric vectors, often used in physics and engineering applications, and scalars themselves are also tensors.
+## Linear Algebra
 
-In short, tensor is a mathematical term for n-dimensional arrays. For example, a 1×1 tensor is a [scalar][wiki/Scalar], a 1×n tensor is a [vector][wiki/Euclidean_vector], an n×n tensor is a [matrix][wiki/Matrix], and an n×n×n tensor is just a three-dimensional [array][wiki/Array].
+* [Scalars][wiki/Scalar]
+* [Vectors][wiki/Euclidean_vector]
+* Matrices
+* Tensors
+* Hyperplanes
 
+### Matrix
 
-[Scalar][wiki/Scalar]
+#### 矩阵乘法
 
-[Vector][wiki/Euclidean_vector]
+* Dot product
+* Element-wise product
+* Outer product
 
-## Matrix
-### 矩阵乘法
 矩阵乘法 ([Matrix multiplication][wiki/Matrix_multiplication]) 的结果称为矩阵积 (Matrix product).
 
 矩阵可以用来表示线性映射，矩阵积则可以用来表示线性映射的复合。因此，矩阵乘法是线性代数的基础工具，不仅在数学中有大量应用，在应用数学、物理学、工程学等领域也有广泛使用.
 
-## Statics
+### Tensors
+
+[Tensor][wiki/Tensor]: In mathematics, tensors are geometric objects that describe linear relations between geometric vectors, scalars, and other tensors. Elementary examples of such relations include the dot product, the cross product, and linear maps. Geometric vectors, often used in physics and engineering applications, and scalars themselves are also tensors.
+
+In short, tensor is a mathematical term for n-dimensional arrays. For example, a 1×1 tensor is a [scalar][wiki/Scalar], a 1×n tensor is a [vector][wiki/Euclidean_vector], an n×n tensor is a [matrix][wiki/Matrix], and an n×n×n tensor is just a three-dimensional [array][wiki/Array].
+
+## Statistics
+
+* Probabilities
+* Distributions
+* Likelihood
 
 ### Least Squares
 
@@ -50,6 +65,14 @@ $$y = xlog(x)$$
 
 ![Image: xlogx](/images/tensorflow/desmos-xlogx.png)
 {: .center.small}
+
+## Calculus
+
+[Calculus][wiki/Calculus]
+
+### Derivative
+
+导数（英语：[Derivative][wiki/Derivative]）是微积分学中重要的基础概念。一个函数在某一点的导数描述了这个函数在这一点附近的变化率。导数的本质是通过极限的概念对函数进行局部的线性逼近。当函数 $$f$$ 的自变量在一点 $$x_0$$ 上产生一个增量 $$h$$ 时，函数输出值的增量与自变量增量 $$h$$ 的比值在 $$h$$ 趋于 0 时的极限如果存在，即为 $$f$$ 在 $$x_{0}$$ 处的导数，记作 $$f'(x_{0})$$ 或 $$\frac{\mathrm{d}f}{\mathrm{d}x}(x_{0})$$ 或 $$\left.\frac{\mathrm{d}f}{\mathrm{d}x}\right\| _{x=x_0}$$
 
 ## Machine Learning
 
@@ -71,13 +94,9 @@ $$y = xlog(x)$$
 
 凸函数 ([Convex function][wiki/Convex_function])
 
-## Calculus
 
-[Calculus][wiki/Calculus]
 
-## Derivative
 
-导数（英语：[Derivative][wiki/Derivative]）是微积分学中重要的基础概念。一个函数在某一点的导数描述了这个函数在这一点附近的变化率。导数的本质是通过极限的概念对函数进行局部的线性逼近。当函数 {\displaystyle f} f的自变量在一点 {\displaystyle x_{0}} x_{0}上产生一个增量 {\displaystyle h} h时，函数输出值的增量与自变量增量 {\displaystyle h} h的比值在 {\displaystyle h} h趋于0时的极限如果存在，即为 {\displaystyle f} f在 {\displaystyle x_{0}} x_{0}处的导数，记作 {\displaystyle f'(x_{0})}
 
 
 [wiki/Tensor]:https://en.wikipedia.org/wiki/Tensor

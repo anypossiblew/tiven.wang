@@ -94,7 +94,7 @@ $$
 
 ## Cost Function
 
-结合上一篇讲的交叉熵的概念，对于一个某一个样本的 Cost Function 可以表示如下
+结合上一篇讲的交叉熵的概念，对于某一个样本的 Cost Function 可以表示如下
 
 $$
 \begin{align}
