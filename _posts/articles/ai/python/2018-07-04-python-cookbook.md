@@ -48,6 +48,12 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 [docker/python]:https://hub.docker.com/_/python/
 
+### Anaconda
+
+[Anaconda][anaconda] 是一种 Python 语言的免费增值开源发行版, 用于进行大规模数据处理, 预测分析, 和科学计算, 致力于简化包的管理和部署。 Anaconda 使用软件包管理系统 Conda 进行包管理。
+
+[anaconda]:https://anaconda.org/anaconda
+
 ## IDE
 
 ### VSCode

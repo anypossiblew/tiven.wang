@@ -51,20 +51,28 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 * Distributions
 * Likelihood
 
+### Probability distributions
+
+At a high level, probabiity distributions provide a mathematical trick that allows you to relax a discrete set of choices into a continuum.
+
 ### Least Squares
 
 [Least Squares][wiki/Least_squares] 
 
 [zhihu - 最小二乘法](https://www.zhihu.com/topic/19668117/hot)
 
-#### Entropy
-
-* [Cross Entropy][wiki/Cross_entropy]
+### Entropy
 
 $$y = xlog(x)$$
 
 ![Image: xlogx](/images/tensorflow/desmos-xlogx.png)
 {: .center.small}
+
+[Cross-entropy][wiki/Cross_entropy] is a mathematical method for gauging the distance between two probability distributions: Here $$p$$ and $$q$$ are two probability distributions. the notation $$p(x)$$ denotes the probability $$p$$ accords to event $$x$$. Like the $$L2$$ norm, $$H$$ provides a notion of distance. Note that in the case where $$p = q$$ , this quantity is the entropy of $$p$$ and is usually written simply $$H(p)$$. It's a measure of how disorderd the distribution is; The entropy is maximized when all events are equally likely. $$H(p)$$ is always less than or equal to $$H(p, q)$$. In fact, the "further away" distribution $$q$$ is from $$p$$, the larger the cross-entropy gets.
+
+$$H(p,q) = -\sum_x p(x)log(q(x))$$
+
+As an aside, note that unlike $$L2$$ norm, $$H$$ is asymmetric.
 
 ## Calculus
 
@@ -76,19 +84,33 @@ $$y = xlog(x)$$
 
 ## Machine Learning
 
+At a very high level, machine learning is simply the act of function minimization: learning algorithms are nothing more than minima finders for suitably defined functions.
+
 ### Loss function
 
 损失函数 ([Loss function][wiki/Loss_function])
+
+All of machine learning, and much of artificial intelligence, boils down to the creation of the right loss function to solve the problem at hand.
 
 * [Cross Entropy][wiki/Cross_entropy]
 
 #### MSE
 
+L1 L2 loss functions
+
 [MSE (Mean squared error)][wiki/Mean_squared_error]
+
+[Why Mean Squared Error and L2 regularization? A probabilistic justification](http://aoliver.org/why-mse)
 
 ### Gradient Descent
 
 梯度下降法 ([Gradient Descent][wiki/Gradient_descent])
+
+### Classification and regression
+
+Machine learning algorithms can be broadly categorized as supervised or unsupervised problems. Supervised problems are those for which both datapoints $$x$$ and labels $$y$$ are available, while unsupervised problems have only datapoints $$x$$ without labels $$y$$.
+
+Supervised machine learning can be broken up into the two subproblems of classification and regression.
 
 ### Convex function
 
