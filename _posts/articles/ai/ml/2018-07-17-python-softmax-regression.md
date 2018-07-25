@@ -102,3 +102,12 @@ J(w) = - \left[ \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(z_k)
 \end{align}
 $$
 
+
+## Softmax regression
+
+> [Softmax regression][SoftmaxRegression] (or multinomial logistic regression) is a generalization of logistic regression to the case where we want to handle multiple classes. In logistic regression we assumed that the labels were binary: y(i)∈{0,1}. We used such a classifier to distinguish between two kinds of hand-written digits. Softmax regression allows us to handle y(i)∈{1,…,K} where K is the number of classes.
+{: .Quotes}
+
+
+
+[SoftmaxRegression]:http://ufldl.stanford.edu/tutorial/supervised/SoftmaxRegression/
