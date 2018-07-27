@@ -98,10 +98,17 @@ $$
 
 $$
 \begin{align}
-J(w) = - \left[ \sum_{k=1}^{K}  1\left\{y^{(i)} = k\right\} \log \frac{\exp(z_k)}{\sum_{j=1}^K \exp(z_j)}\right]
+J(w) = - \left[ \sum_{k=1}^{K} 1\left\{y = k\right\} \log \frac{\exp(z_k)}{\sum_{j=1}^K \exp(z_j)}\right]
 \end{align}
 $$
 
+假设有 $$n$$ 个样本那么汇总的 Cost Function 可写为
+
+$$
+\begin{align}
+J(w) = - \left[ \sum_{i=1}^{n}\sum_{k=1}^{K} 1\left\{y^i = k\right\} \log \frac{e^{(z_{ik})}}{\sum_{j=1}^K e^{(z_{ij})}}\right]
+\end{align}
+$$
 
 ## Softmax regression
 

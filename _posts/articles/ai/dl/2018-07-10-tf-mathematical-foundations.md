@@ -80,7 +80,33 @@ As an aside, note that unlike $$L2$$ norm, $$H$$ is asymmetric.
 
 ### Derivative
 
-导数（英语：[Derivative][wiki/Derivative]）是微积分学中重要的基础概念。一个函数在某一点的导数描述了这个函数在这一点附近的变化率。导数的本质是通过极限的概念对函数进行局部的线性逼近。当函数 $$f$$ 的自变量在一点 $$x_0$$ 上产生一个增量 $$h$$ 时，函数输出值的增量与自变量增量 $$h$$ 的比值在 $$h$$ 趋于 0 时的极限如果存在，即为 $$f$$ 在 $$x_{0}$$ 处的导数，记作 $$f'(x_{0})$$ 或 $$\frac{\mathrm{d}f}{\mathrm{d}x}(x_{0})$$ 或 $$\left.\frac{\mathrm{d}f}{\mathrm{d}x}\right\| _{x=x_0}$$
+导数（英语：[Derivative][wiki/Derivative]）是微积分学中重要的基础概念。一个函数在某一点的导数描述了这个函数在这一点附近的变化率。导数的本质是通过极限的概念对函数进行局部的线性逼近。当函数 $$f$$ 的自变量在一点 $$x_0$$ 上产生一个增量 $$h$$ 时，函数输出值的增量与自变量增量 $$h$$ 的比值在 $$h$$ 趋于 0 时的极限如果存在，即为 $$f$$ 在 $$x_{0}$$ 处的导数，记作 $$f'(x_{0})$$ 或 $$\frac{\mathrm{d}f}{\mathrm{d}x}(x_{0})$$ 或 $$\left.\frac{\mathrm{d}f}{\mathrm{d}x}\right\| _{x=x_0}$$ 导函数公式定义为
+
+$$
+\displaystyle
+f'(x_{0})
+= \lim_{\Delta x \to 0}\frac{\Delta x}{\Delta y}
+= \lim_{\Delta x \to 0}\frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+$$
+
+#### Partial derivative
+
+偏导数 ([Partial derivative][wiki/Partial_derivative]) 定义为
+
+$$
+\displaystyle
+\frac{∂}{∂x_j}f(x_0,x_1,\cdots,x_n) = \lim_{\Delta x \to 0}\frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0}\frac{f(x_0,x_1,\cdots,x_n)-f(x_0,x_1,\cdots,x_n)}{\Delta x}
+$$
+
+#### Directional derivative
+
+方向导数 ([Directional derivative][wiki/Directional_derivative]) 定义为
+
+$$
+\displaystyle
+\frac{∂}{∂l}f(x_0,x_1,\cdots,x_n) = \lim_{\rho \to 0}\frac{\Delta y}{\Delta x} = \lim_{\rho \to 0}\frac{f(x_0+\Delta x_0,x_1+\Delta x_1,\cdots,x_n+\Delta x_n)-f(x_0,x_1,\cdots,x_n)}{\rho} \\
+\rho = \sqrt{(\Delta x_0)^2+(\Delta x_1)^2+\cdots+(\Delta x_n)^2}
+$$
 
 ## Machine Learning
 
@@ -116,8 +142,12 @@ Supervised machine learning can be broken up into the two subproblems of classif
 
 凸函数 ([Convex function][wiki/Convex_function])
 
+## 专业词汇
 
-
+* approximation
+* continuous function approximation
+* numerical 数值
+* numerical analysis 数值分析
 
 
 
@@ -135,3 +165,5 @@ Supervised machine learning can be broken up into the two subproblems of classif
 [wiki/Cross_entropy]:https://en.wikipedia.org/wiki/Cross_entropy
 [wiki/Calculus]:https://en.wikipedia.org/wiki/Calculus
 [wiki/Derivative]:https://en.wikipedia.org/wiki/Derivative
+[wiki/Partial_derivative]:https://en.wikipedia.org/wiki/Partial_derivative
+[wiki/Directional_derivative]:https://en.wikipedia.org/wiki/Directional_derivative

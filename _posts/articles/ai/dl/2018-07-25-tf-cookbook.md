@@ -1,16 +1,16 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "TensorFlow - Neural Networks"
-excerpt: "Neural Networks with TensorFlow"
-modified: 2018-07-17T11:51:25-04:00
+title: "TensorFlow - Cookbook"
+excerpt: "Cookbook for TensorFlow"
+modified: 2018-07-25T11:51:25-04:00
 categories: articles
-tags: [Neural Networks, TensorFlow, DeepLearning, Python]
+tags: [TensorFlow, Cookbook, Python]
 image:
   vendor: gstatic
-  feature: /prettyearth/assets/full/1594.jpg
+  feature: /prettyearth/assets/full/1629.jpg
   credit: Google Earth
-  creditlink: https://earthview.withgoogle.com/corpen-aike-department-argentina-1594
+  creditlink: https://earthview.withgoogle.com/mount-ney-australia-1629
 comments: true
 share: true
 ---
@@ -18,20 +18,17 @@ share: true
 * TOC
 {:toc}
 
-## 基本概念
+## TensorBoard
 
-* Full Connected Layer
-* Convolutional Layer
-* Recurrent Neural Network Layers
-* Long Short-Term Memory Cells
+```
+$ docker run -v //c/pathto/tf_logs:/tf_logs  
+-p 0.0.0.0:6006:6006 -it tensorflow/tensorflow bash
+root@73954ccec665:/notebooks# cd ..
+root@73954ccec665:/# tensorboard --logdir tf_logs/
+```
 
-## 词汇
 
-* **perception** 知觉 the ability to see, hear, or become aware of something through the senses.
-* **biological neuron** 生物神经元
-
-https://www.cnblogs.com/makefile/p/activation-function.html
-
+[tensorboard]:https://www.tensorflow.org/guide/summaries_and_tensorboard
 
 [wiki/Tensor]:https://en.wikipedia.org/wiki/Tensor
 [wiki/Scalar]:https://en.wikipedia.org/wiki/Scalar_(mathematics)
