@@ -99,8 +99,13 @@ Provided you are running IPython, the %matplotlib inline will make your plot out
 >
 > `%matplotlib inline` With this backend, the output of plotting commands is displayed inline within frontends like the Jupyter notebook, directly below the code cell that produced it. The resulting plots will then also be stored in the notebook document.
 
+## 语法
 
+### Lambdas
 
+http://book.pythontips.com/en/latest/lambdas.html
+
+https://medium.com/@happymishra66/lambda-map-and-filter-in-python-4935f248593
 
 
 

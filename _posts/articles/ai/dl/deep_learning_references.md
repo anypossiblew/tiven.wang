@@ -28,5 +28,11 @@
 [wiki/Regularization]:https://en.wikipedia.org/wiki/Regularization_(mathematics)
 [wiki/Heaviside_step_function]:https://en.wikipedia.org/wiki/Heaviside_step_function
 
+[wiki/Markov_chain]:https://en.wikipedia.org/wiki/Markov_chain
+[wiki/Vanishing_gradient_problem]:https://en.wikipedia.org/wiki/Vanishing_gradient_problem
+[wiki/Long_short-term_memory]:https://en.wikipedia.org/wiki/Long_short-term_memory
+[wiki/Backpropagation_through_time]:https://en.wikipedia.org/wiki/Backpropagation_through_time
+[wiki/Principal_component_analysis]:https://en.wikipedia.org/wiki/Principal_component_analysis
+
 [wiki/AlphaGo_Zero]:https://en.wikipedia.org/wiki/AlphaGo_Zero
 [wiki/Monte_Carlo_tree_search]:https://en.wikipedia.org/wiki/Monte_Carlo_tree_search

@@ -19,8 +19,8 @@ references:
     title: "CS231n Convolutional Neural Networks for Visual Recognition"
     url: http://cs231n.github.io/convolutional-networks/
   - id: 2
-    title: "wikipedia - Convolutional neural network"
-    url: https://en.wikipedia.org/wiki/Convolutional_neural_network
+    title: "Towards Data Science - Cutting-Edge Face Recognition is Complicated. These Spreadsheets Make it Easier."
+    url: https://towardsdatascience.com/cutting-edge-face-recognition-is-complicated-these-spreadsheets-make-it-easier-e7864dbf0e1a
 ---
 
 * TOC

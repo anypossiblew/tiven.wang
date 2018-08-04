@@ -44,6 +44,8 @@ references:
 
 [Inceptionism: Going Deeper into Neural Networks](https://ai.googleblog.com/2015/06/inceptionism-going-deeper-into-neural.html)
 
+https://github.com/google/deepdream
+
 ### Modeling artistic style
 
 ### Generative Adversarial Networks

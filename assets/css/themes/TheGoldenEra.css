@@ -9,7 +9,7 @@
 }
 
 .mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
-h2, h3, h4, h5, #markdown-toc
+h2, h3, h4, h5, #markdown-toc, .android-link
 {
   font-family: 'TheGoldenEra', 'Josefin Sans', "Arial", sans-serif !important;
 }
