@@ -26,6 +26,8 @@ references:
 * TOC
 {:toc}
 
+想要深入理解卷积神经网络，就要理解数学里卷积 (Convolution) 的概念，可以参见 [Convolution](/articles/tf-mathematical-foundations/#Convolution)，还可以阅读 [Chris Olah's blog post - Understanding Convolutions][Understanding-Convolutions]
+
 ## Filters and Feature Maps
 
 $$m_{ij}^k = f((W * x)_{ij} + b^k)$$
@@ -39,6 +41,11 @@ deep convolutional networks
 ## Building blocks
 
 ### Convolutional layer
+
+神经元可以表示为
+
+$$y = \sigma(Wx + b)$$
+
 ### Pooling layer
 ### ReLU layer
 ### Fully connected layer
@@ -51,3 +58,4 @@ deep convolutional networks
 
 {% include_relative tensorflow_references.md %}
 {% include_relative deep_learning_references.md %}
+[Understanding-Convolutions]:http://colah.github.io/posts/2014-07-Understanding-Convolutions/

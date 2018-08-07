@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+
+.mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
+h2, h3, h4, h5, #markdown-toc, .android-link
+{
+  font-family: 'Merriweather', monospace, sans-serif;
+}
+.demo-blog .blog__post .mdl-card__supporting-text blockquote
+{
+  font-family: 'Merriweather', cursive, sans-serif;
+  font-size: 14px !important;
+}

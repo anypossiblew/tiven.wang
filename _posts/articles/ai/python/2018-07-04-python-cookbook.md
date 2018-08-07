@@ -99,6 +99,22 @@ Provided you are running IPython, the %matplotlib inline will make your plot out
 >
 > `%matplotlib inline` With this backend, the output of plotting commands is displayed inline within frontends like the Jupyter notebook, directly below the code cell that produced it. The resulting plots will then also be stored in the notebook document.
 
+### Seaborn
+
+[Seaborn][seaborn.pydata] is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.
+
+`pip install seaborn` install it
+
+### Jupyter
+
+The [Jupyter][jupyter] Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, data visualization, machine learning, and much more.
+
+`python -m pip install jupyter` install it
+
+### Facets
+
+https://github.com/PAIR-code/facets
+
 ## 语法
 
 ### Lambdas
@@ -111,3 +127,5 @@ https://medium.com/@happymishra66/lambda-map-and-filter-in-python-4935f248593
 
 [matplotlib]:https://matplotlib.org
 [ipython]:https://ipython.org/
+[seaborn.pydata]:https://seaborn.pydata.org/
+[jupyter]:http://jupyter.org/

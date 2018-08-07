@@ -74,6 +74,14 @@ $$H(p,q) = -\sum_x p(x)log(q(x))$$
 
 As an aside, note that unlike $$L2$$ norm, $$H$$ is asymmetric.
 
+### Convolution
+
+[Convolution][wiki/Convolution] 定义
+
+$$(f\ast g)(c) = \sum_a f(a) \cdot g(c-a)$$
+
+[Convolution of probability distributions][wiki/Convolution_of_probability_distributions]
+
 ## Calculus
 
 [Calculus][wiki/Calculus]
@@ -149,21 +157,4 @@ Supervised machine learning can be broken up into the two subproblems of classif
 * numerical 数值
 * numerical analysis 数值分析
 
-
-
-[wiki/Tensor]:https://en.wikipedia.org/wiki/Tensor
-[wiki/Scalar]:https://en.wikipedia.org/wiki/Scalar_(mathematics)
-[wiki/Euclidean_vector]:https://en.wikipedia.org/wiki/Euclidean_vector
-[wiki/Matrix]:https://en.wikipedia.org/wiki/Matrix_(mathematics)
-[wiki/Array]:https://en.wikipedia.org/wiki/Array
-[wiki/Matrix_multiplication]:https://en.wikipedia.org/wiki/Matrix_multiplication
-[wiki/Loss_function]:https://en.wikipedia.org/wiki/Loss_function
-[wiki/Mean_squared_error]:https://en.wikipedia.org/wiki/Mean_squared_error
-[wiki/Convex_function]:https://en.wikipedia.org/wiki/Convex_function
-[wiki/Gradient_descent]:https://en.wikipedia.org/wiki/Gradient_descent
-[wiki/Least_squares]:https://en.wikipedia.org/wiki/Least_squares
-[wiki/Cross_entropy]:https://en.wikipedia.org/wiki/Cross_entropy
-[wiki/Calculus]:https://en.wikipedia.org/wiki/Calculus
-[wiki/Derivative]:https://en.wikipedia.org/wiki/Derivative
-[wiki/Partial_derivative]:https://en.wikipedia.org/wiki/Partial_derivative
-[wiki/Directional_derivative]:https://en.wikipedia.org/wiki/Directional_derivative
+{% include_relative deep_learning_references.md %}

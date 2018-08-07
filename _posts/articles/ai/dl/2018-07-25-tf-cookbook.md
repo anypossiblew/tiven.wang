@@ -29,10 +29,16 @@ root@73954ccec665:/# tensorboard --logdir tf_logs/
 ```
 
 直接运行，只需要指定日志目录
-```
+
+```python
 tensorboard --logdir=./logs
 ```
 
-[tensorboard]:https://www.tensorflow.org/guide/summaries_and_tensorboard
+## Keras
+
+[Keras][keras.io] is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano. It was developed with a focus on enabling fast experimentation. *Being able to go from idea to result with the least possible delay is key to doing good research.*
+
+https://medium.com/implodinggradients/tensorflow-or-keras-which-one-should-i-learn-5dd7fa3f9ca0
 
 {% include_relative deep_learning_references.md %}
+{% include_relative tensorflow_references.md %}

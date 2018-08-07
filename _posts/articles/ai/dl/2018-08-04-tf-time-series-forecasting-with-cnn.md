@@ -26,3 +26,9 @@ references:
 https://jeddy92.github.io/JEddy92.github.io/ts_seq2seq_conv/
 
 https://github.com/JEddy92/TimeSeries_Seq2Seq/blob/master/notebooks/TS_Seq2Seq_Conv_Intro.ipynb
+
+[Conditional probability distribution][wiki/Conditional_probability_distribution]
+
+[Convolution](/articles/tf-mathematical-foundations/#Convolution)
+
+{% include_relative deep_learning_references.md %}
