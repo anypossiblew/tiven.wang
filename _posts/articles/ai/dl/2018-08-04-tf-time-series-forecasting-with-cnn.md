@@ -1,11 +1,14 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "TensorFlow - Time Series Forecasting with Convolutional Neural Networks"
+series: 
+  url: tensorflow
+  title: TensorFlow
+title: "Time Series Forecasting with Convolutional Neural Networks"
 excerpt: "Time Series Forecasting with Convolutional Neural Networks"
 modified: 2018-08-04T11:51:25-04:00
 categories: articles
-tags: [TensorBoard, Nerual Networks, DeepLearning, Python]
+tags: [TensorBoard, Nerual Networks, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/6043.jpg
@@ -29,6 +32,6 @@ https://github.com/JEddy92/TimeSeries_Seq2Seq/blob/master/notebooks/TS_Seq2Seq_C
 
 [Conditional probability distribution][wiki/Conditional_probability_distribution]
 
-[Convolution](/articles/tf-mathematical-foundations/#Convolution)
+[Convolution](/articles/dl-mathematical-foundations/#Convolution)
 
 {% include_relative deep_learning_references.md %}

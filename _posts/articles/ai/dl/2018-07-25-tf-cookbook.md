@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "TensorFlow - Cookbook"
+series: 
+  url: tensorflow
+  title: TensorFlow
+title: "Cookbook"
 excerpt: "Cookbook for TensorFlow"
 modified: 2018-07-25T11:51:25-04:00
 categories: articles

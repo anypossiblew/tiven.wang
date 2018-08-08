@@ -1,11 +1,11 @@
 ---
 layout: post
-theme: IBMPlexSerif
-title: "TensorFlow - Deep Networks"
+theme: Merriweather
+title: "Deep Learning - Deep Networks"
 excerpt: "Fundamentals of Deep Networks"
 modified: 2018-07-30T11:51:25-04:00
 categories: articles
-tags: [Deep Networks, TensorFlow, DeepLearning, Python]
+tags: [Deep Networks, TensorFlow, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/2170.jpg

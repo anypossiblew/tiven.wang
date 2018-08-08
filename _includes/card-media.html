@@ -31,7 +31,11 @@
   {% endfor %}
 </span>
 <!-- Article title -->
-<h3>{{ post.title }}</h3>
+<h3>
+  {% if post.series %}
+  <a href="/series/{{ post.series.url }}">{{ post.series.title }}</a> - 
+  {% endif %}
+  {{ post.title }}</h3>
 <!-- Feature image's credit link -->
 {% if post.image.credit %}
 <a class="credit" href="{{ post.image.creditlink }}" target="_blank">

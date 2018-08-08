@@ -86,7 +86,7 @@ Some of the methods commonly used for binary classification are:
 
 [Sigmoid Function][wiki/Sigmoid_function] (S 函数) 是[Logistic Function][wiki/Logistic_function] 的一种特殊情况，它被用作为 Logistic Regression 的模型，公式为
 
-$$ f(z) = \frac{e^{z}}{1 + e^{z}} = \frac{1}{1+e^{-z}} $$
+$$ \sigma(z) = \frac{e^{z}}{1 + e^{z}} = \frac{1}{1+e^{-z}} $$
 
 直观看在趋于正无穷或负无穷时，函数趋近平滑状态，Sigmoid 函数因为输出范围（0，1），所以二分类的概率常常用这个函数。
 
@@ -120,6 +120,12 @@ $$H(p) = -\sum_x p(x)log(p(x))$$
 $$J(\theta) = - \sum_i \left(y^{(i)} \log( h_\theta(x^{(i)}) ) + (1 - y^{(i)}) \log( 1 - h_\theta(x^{(i)}) ) \right)$$
 
 ## Gradient descent
+
+### Derivative of Sigmoid Function
+
+我们的 Sigmoid Function 的导函数 [Derivative of sigmoid function](https://math.stackexchange.com/questions/78575/derivative-of-sigmoid-function-sigma-x-frac11e-x) 为
+
+$$\dfrac{d}{dz}\sigma(z) = \sigma(z)(1 - \sigma(z))$$
 
 https://stats.stackexchange.com/questions/250937/which-loss-function-is-correct-for-logistic-regression
 

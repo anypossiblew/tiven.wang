@@ -1,11 +1,11 @@
 ---
 layout: post
-theme: IBMPlexSerif
-title: "TensorFlow - Convolutional Neural Networks"
-excerpt: "Convolutional Neural Networks with TensorFlow"
+theme: Merriweather
+title: "Deep Learning - Convolutional Neural Networks"
+excerpt: "Convolutional Neural Networks with Deep Learning"
 modified: 2018-07-11T11:51:25-04:00
 categories: articles
-tags: [CNN, TensorFlow, DeepLearning, Python]
+tags: [CNN, TensorFlow, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/5253.jpg
@@ -26,7 +26,7 @@ references:
 * TOC
 {:toc}
 
-想要深入理解卷积神经网络，就要理解数学里卷积 (Convolution) 的概念，可以参见 [Convolution](/articles/tf-mathematical-foundations/#Convolution)，还可以阅读 [Chris Olah's blog post - Understanding Convolutions][Understanding-Convolutions]
+想要深入理解卷积神经网络，就要理解数学里卷积 (Convolution) 的概念，可以参见 [Convolution](/articles/dl-mathematical-foundations/#Convolution)，还可以阅读 [Chris Olah's blog post - Understanding Convolutions][Understanding-Convolutions]
 
 ## Filters and Feature Maps
 

@@ -1,11 +1,14 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "TensorFlow - Working with Text and Sequences"
+series: 
+  url: tensorflow
+  title: TensorFlow
+title: "Working with Text and Sequences"
 excerpt: "Working with Text and Sequences using Recurrent Neural Networks with TensorFlow"
 modified: 2018-07-31T11:51:25-04:00
 categories: articles
-tags: [RNNs, TensorFlow, DeepLearning, Python]
+tags: [RNNs, TensorFlow, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/6304.jpg

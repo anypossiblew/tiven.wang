@@ -1,3 +1,4 @@
+[wiki/ANN_distributed_representation]:https://en.wikipedia.org/wiki/Artificial_neural_network#distributed_representation
 [wiki/Feature_learning]:https://en.wikipedia.org/wiki/Feature_learning
 [wiki/Reinforcement_learning]:https://en.wikipedia.org/wiki/Reinforcement_learning
 [wiki/Generative_model]:https://en.wikipedia.org/wiki/Generative_model
@@ -51,4 +52,15 @@
 [wiki/Monte_Carlo_tree_search]:https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
 [wiki/Q-learning]:https://en.wikipedia.org/wiki/Q-learning
 
+[wiki/Diagonal_matrix]:https://en.wikipedia.org/wiki/Diagonal_matrix
+
 [wiki/Conditional_probability_distribution]:https://en.wikipedia.org/wiki/Conditional_probability_distribution
+[wiki/Bayesian_probability]:https://en.wikipedia.org/wiki/Bayesian_probability
+[wiki/Bayes_theorem]:https://en.wikipedia.org/wiki/Bayes%27_theorem
+[wiki/Likelihood]:https://en.wikipedia.org/wiki/Likelihood_function
+[wiki/Probability_mass_function]:https://en.wikipedia.org/wiki/Probability_mass_function
+[wiki/Probability_density_function]:https://en.wikipedia.org/wiki/Probability_density_function
+[wiki/Joint_probability_distribution]:https://en.wikipedia.org/wiki/Joint_probability_distribution
+[wiki/Marginal_distribution]:https://en.wikipedia.org/wiki/Marginal_distribution
+[wiki/Conditional_probability_distribution]:https://en.wikipedia.org/wiki/Conditional_probability_distribution
+[wiki/Conditional_independence]:https://en.wikipedia.org/wiki/Conditional_independence

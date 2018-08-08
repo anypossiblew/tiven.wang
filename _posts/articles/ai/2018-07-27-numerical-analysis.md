@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "Numerical analysis"
+title: "Machine Learning - Numerical analysis"
 excerpt: "Numerical analysis 数值分析是指在数学分析（区别于离散数学）问题中，对使用数值近似（相对于一般化的符号运算）算法的研究。"
 modified: 2018-07-27T11:51:25-04:00
 categories: articles

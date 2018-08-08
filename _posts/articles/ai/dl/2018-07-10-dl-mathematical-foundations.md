@@ -1,11 +1,11 @@
 ---
 layout: post
-theme: IBMPlexSerif
-title: "TensorFlow - Mathematical Foundations"
-excerpt: "The mathematical foundations of TensorFlow"
+theme: Merriweather
+title: "Deep Learning - Mathematical Foundations"
+excerpt: "The mathematical foundations of Deep Learning"
 modified: 2018-07-10T11:51:25-04:00
 categories: articles
-tags: [TensorFlow, DeepLearning, Python]
+tags: [TensorFlow, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/1068.jpg
@@ -27,6 +27,10 @@ mathjax: true
 * Tensors
 * Hyperplanes
 
+关于线性代数非常直观的讲解可以观看 [YouTube - 3Blue1Brown - Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### Matrix
 
 #### 矩阵乘法
@@ -39,6 +43,56 @@ mathjax: true
 
 矩阵可以用来表示线性映射，矩阵积则可以用来表示线性映射的复合。因此，矩阵乘法是线性代数的基础工具，不仅在数学中有大量应用，在应用数学、物理学、工程学等领域也有广泛使用.
 
+#### Linear Dependence and Span
+
+* linear dependence 线性相关
+* linearly independent 线性无关
+* linear combination 线性组合
+* span 生成子空间
+* singular square 奇异方阵
+* matrix inversion 矩阵逆
+
+#### Special Kinds of Matrices and Vectors
+
+* [diagonal matrix][wiki/Diagonal_matrix] 对角矩阵
+* symmetric matrix 对称矩阵
+* unit vector 单位向量
+* unit norm 单位范数
+* orthogonal matrix 正交矩阵
+
+### Norms 范数
+
+向量的大小成为范数 (Norm), $$L^p$$ 的范数定义如下
+
+$$
+\displaystyle 
+\|x\|_p=(\sum_{i}|x_i|^p)^\frac{1}{p}
+$$
+
+最大范数 (max norm) 定义为
+
+$$
+\displaystyle 
+\|x\|_{\infty}=\max_{i}|x_i|
+$$
+
+衡量矩阵的大小可以用 Frobenius 范数 (Frobenius norm):
+
+$$
+\displaystyle 
+\|A\|_F=\sqrt{\sum_{i,j}A_{i,j}^2}
+$$
+
+#### Eigendecomposition 特征分解
+
+* eigenvector 特征向量
+* positive definite 正定
+* positive semidefinite 半正定
+* negative definite 负定
+* negative semidefinite 半负定
+
+线性代码应用实例：主成分分析 ([principal components analysis, PCA][wiki/Principal_component_analysis])
+
 ### Tensors
 
 [Tensor][wiki/Tensor]: In mathematics, tensors are geometric objects that describe linear relations between geometric vectors, scalars, and other tensors. Elementary examples of such relations include the dot product, the cross product, and linear maps. Geometric vectors, often used in physics and engineering applications, and scalars themselves are also tensors.
@@ -49,11 +103,32 @@ In short, tensor is a mathematical term for n-dimensional arrays. For example, a
 
 * Probabilities
 * Distributions
-* Likelihood
+* [Likelihood][wiki/Likelihood] 似然
+
+[Bayesian probability][wiki/Bayesian_probability] (贝叶斯概率) 是由 [Bayes' theorem][wiki/Bayes_theorem] (贝叶斯理论) 所提供的一种对概率的解释，它采用将概率定义为某人对一个命题信任的程度的概念。贝叶斯理论同时也建议贝叶斯定理可以用作根据新的信息导出或者更新现有的置信度的规则。
+
+### Random Variables
+
+On its own, a **random variable** is just a description of the states that are possible; it
+must be coupled with a [probability distribution](#probability-distributions) that specifies how likely each of these states are.
 
 ### Probability distributions
 
 At a high level, probabiity distributions provide a mathematical trick that allows you to relax a discrete set of choices into a continuum.
+
+* [Probability mass function, PMF][wiki/Probability_mass_function] 概率质量函数用来描述离散型随机变量的概率的函数，它代表的是变量在某个取值上的概率。
+* [Probability density function, PDF][wiki/Probability_density_function] 概率密度函数用来描述连续型随机变量的概率的函数，它代表的是变量在某个取值上的概率密度，要说概率只能是变量在某个区间上的概率，要通过 PDF 在此区间求积分得到此概率。
+* [Joint probability distribution][wiki/Joint_probability_distribution] 联合概率分布是对多个随机变量如两个随机变量 $$X$$ 和 $$Y$$ 的概率分布。
+* [Marginal probability distribution][wiki/Marginal_distribution] 边缘概率分布是指对于多个变量的联合分布，其中一部分变量（子集）的概率分布。要通过对此子集外的变量函数求和或者积分来计算得到。
+* [Conditional probability distribution][wiki/Conditional_probability_distribution] 条件概率分布是指对于多个变量的联合分布，如果指定一部分变量的值的情况下，变量剩下的部分（子集）的概率分布。
+* 条件概率的链式法则或者乘法法则，即任何多维随机变量的联合概率分布，都可以分解成只有一个变量的条件概率相乘的形式:<br>
+  $$P(x^{(1)},\dots,x^{(n)})=P(x^{(1)})\prod_{i=2}^nP(x^{(i)}|x^{(1)},\dots,x^{(i-1)})$$
+* 直觉上是指一次实验中一事件的发生不会影响到另一事件发生的概率，那么称为两个事件的随机变量是独立 (independent) 的，记作$$x \bot y$$。[Conditional independence][wiki/Conditional_independence] (条件独立)是指在给定随机变量 $$z$$ 时两个随机变量$$x$$和$$y$$是独立的，记作
+  $$x \bot y|z$$。
+
+#### Bernoulli distribution
+
+
 
 ### Least Squares
 

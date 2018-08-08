@@ -1,11 +1,11 @@
 ---
 layout: post
 theme: Merriweather
-title: "TensorFlow - Neural Networks"
+title: "Deep Learning - Neural Networks"
 excerpt: "Neural Networks with TensorFlow"
-modified: 2018-07-17T11:51:25-04:00
+modified: 2018-08-08T11:51:25-04:00
 categories: articles
-tags: [Neural Networks, TensorFlow, DeepLearning, Python]
+tags: [Neural Networks, TensorFlow, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/1594.jpg
@@ -45,6 +45,8 @@ references:
 * [recurrent neural network][wiki/Recurrent_neural_network] 递归神经网络 (RNN) - 时间递归神经网络
 * [recursive neural network][wiki/Recursive_neural_network] 递归神经网络 (RNN) - 结构递归神经网络
 * [Stochastic gradient descent][wiki/Stochastic_gradient_descent]
+
+* [distributed representation][wiki/ANN_distributed_representation]
 
 ## Intuitive
 
@@ -111,7 +113,7 @@ The multilayer feed-forward network is a neural network with an input layer, one
 * [stochastic](https://www.google.com/search?q=define+stochastic)
 * [Convergence]()
 * [Support vector machines (SVMs)][wiki/Support_vector_machine]
-* [Epoch]()
+* Epoch
 
 https://www.cnblogs.com/makefile/p/activation-function.html
 
@@ -129,65 +131,70 @@ Input_1 | Input_2 | Input_3 | Output |
 1 | 1 | 0 | 1 
 1 | 1 | 1 | 1 
 
+本例其实是三维逻辑回归问题，首先引入 Numpy 包里需要用到的工具类
 ```python
 from numpy import exp, array, random, dot
 ```
 
+然后创建我们的主体，单层神经网络类，它包含了初始化权重方法，激活函数方法，导数方法，前馈函数方法和训练方法
 ```python
 class SingleNeuronNetwork():
     def __init__(self):
-        # Set the seed for the random number generator
-        # Ensures same random numbers are produced every time the program is run
+        # 为随机数产生器设置种子
+        # 以确保每次生成相同的随机数
         random.seed(42)
 
-        # --- Model a single neuron: 3 input connections and 1 output connection ---
-        # Assign random weights to a 3 x 1 matrix: Floating-point values in (-1, 1)
+        # --- 单个神经元模型: 3 个输入连接， 1 个输出连接 ---
+        # 所以我们的权重变量是需要三个标量的向量，然后去点称三维的输入数据得到一维的输出
+        # 下面生成 3 x 1 矩阵: Floating-point values in (-1, 1)
         self.weights = 2 * random.random((3, 1)) - 1
 
-    # --- Define the Sigmoid function ---
-    # Pass the weighted sum of inputs through this function to normalize between [0, 1]
+    # --- 定义 Sigmoid 函数（激活函数） ---
+    # 传入神经元的 1 维输出连接 out connection 到此函数 normalize between [0, 1]
     def __sigmoid(self, x):
         return 1 / (1 + exp(-x))
 
-    # --- Define derivative of the Sigmoid function ---
-    # Evaluates confidence of existing learnt weights
+    # --- 定义 Sigmoid 函数的导函数 ---
     def __sigmoid_derivative(self, x):
         return x * (1 - x)
 
-    # --- Define the training procedure ---
-    # Modufy weights by calculating error after every iteration
+    # --- 定义前馈过程 ---
+    def feed_forward(self, inputs):
+        # Feed-forward inputs through the single-neuron neural network
+        return self.__sigmoid(dot(inputs, self.weights))
+
+    # --- 定义训练过程 ---
+    # 循环处理前馈过程，每一循环后根据误差和斜率调整权重参数
     def train(self, train_inputs, train_outputs, num_iterations):
-        # We run the training for num_iteration times
+        # 循环训练过程
         for iteration in range(num_iterations):
-            # Feed-forward the training set through the single neuron neural network
+            # 计算单层前馈神经网络
             output = self.feed_forward(train_inputs)
 
-            # Calculate the error in predicted output 
-            # Difference between the desired output and the feed-forward output
+            # 计算单层神经网络的输出和期望值之间的误差
             error = train_outputs - output
 
-            # Multiply the error by the input and again by the gradient of Sigmoid curve
+            # 根据原始训练数据，误差和斜率计算权重参数需要调整的大小
             # 1. Less confident weights are adjusted more
             # 2. Inputs, that are zero, do not cause changes to the weights
             adjustment = dot(train_inputs.T, error * 
                              self.__sigmoid_derivative(output))
 
-            # Make adjustments to the weights
+            # 把调整加到权重参数上
             self.weights += adjustment
-
-    # --- Define feed-forward procedure ---
-    def feed_forward(self, inputs):
-        # Feed-forward inputs through the single-neuron neural network
-        return self.__sigmoid(dot(inputs, self.weights))
 ```
 
+其中 Sigmoid 函数的导函数参考 [Python - Building A Logistic Regression # Derivative of Sigmoid Function](/articles/python-building-a-logistic-regression/#derivative-of-sigmoid-function)
+
+初始化我们的单层神经网络类
 ```python
-# Intialise a single-neuron neural network.
+# 初始化一个单层神经网络类
 neural_network = SingleNeuronNetwork()
 ```
 
+查看权重参数初始化时的随机值，初始化训练数据集
 ```python
-print ("Neural network weights before training (random initialization): ")
+print ("训练前的神经网络权重 (random initialization): ")
 print (neural_network.weights)
 
 # The train data consists of 6 examples, each consisting of 3 inputs and 1 output
@@ -195,12 +202,12 @@ train_inputs = array([[0, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 1], [1, 0, 0], [1,
 train_outputs = array([[0, 1, 0, 1, 0, 1]]).T
 ```
 
+训练 10000 次，并查看训练后的权重值
 ```python
-# Train the neural network using a train inputs.
-# Train the network for 10,000 steps while modifying weights to reduce error.
+# 把训练数据集训练 10000 次
 neural_network.train(train_inputs, train_outputs, 10000)
 
-print ("Neural network weights after training: ")
+print ("训练后的神经网络权重: ")
 print (neural_network.weights)
 ```
 
@@ -213,14 +220,12 @@ Input_1 | Input_2 | Input_3 | 期望输出 |
 1 | 0 | 0 | 0 
 0 | 1 | 1 | 1 
 
-
+下面就是用我们训练好的权重去预测一下测试数据集
 ```python
 # Test the neural network with a new input
 print ("Inferring predicting from the network for [1, 0, 0] -> ?: ")
 print (neural_network.feed_forward(array([1, 0, 0])))
-```
 
-```python
 print ("Inferring predicting from the network for [0, 1, 1] -> ?: ")
 print (neural_network.feed_forward(array([0, 1, 1])))
 ```

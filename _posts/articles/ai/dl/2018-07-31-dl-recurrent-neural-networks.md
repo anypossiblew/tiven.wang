@@ -1,11 +1,11 @@
 ---
 layout: post
-theme: IBMPlexSerif
-title: "TensorFlow - Recurrent Neural Networks"
-excerpt: "Recurrent Neural Networks with TensorFlow"
+theme: Merriweather
+title: "Deep Learning - Recurrent Neural Networks"
+excerpt: "Recurrent Neural Networks with Deep Learning"
 modified: 2018-08-01T11:51:25-04:00
 categories: articles
-tags: [RNNs, TensorFlow, DeepLearning, Python]
+tags: [RNNs, TensorFlow, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/5901.jpg

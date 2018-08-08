@@ -1,11 +1,14 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "TensorFlow - Up and Running"
-excerpt: "Start our journey with TensorFlow in Docker container"
+series: 
+  url: tensorflow
+  title: TensorFlow
+title: "Up and Running"
+excerpt: "Start our journey with TensorFlow"
 modified: 2018-07-02T11:51:25-04:00
 categories: articles
-tags: [TensorFlow, DeepLearning, Python]
+tags: [TensorFlow, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/6311.jpg

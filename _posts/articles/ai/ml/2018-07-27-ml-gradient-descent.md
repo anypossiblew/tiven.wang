@@ -1,7 +1,7 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "Gradient Descent"
+title: "Machine Learning - Gradient Descent"
 excerpt: "梯度下降法 是一个一阶最优化算法，通常也称为最速下降法。 要使用梯度下降法找到一个函数的局部极小值，必须向函数上当前点对应梯度（或者是近似梯度）的反方向的规定步长距离点进行迭代搜索。如果相反地向梯度正方向迭代进行搜索，则会接近函数的局部极大值点；这个过程则被称为梯度上升法。"
 modified: 2018-07-27T11:51:25-04:00
 categories: articles

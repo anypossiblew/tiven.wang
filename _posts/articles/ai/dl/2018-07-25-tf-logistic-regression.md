@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: IBMPlexSerif
-title: "TensorFlow - Logistic Regression"
+series: 
+  url: tensorflow
+  title: TensorFlow
+title: "Logistic Regression"
 excerpt: "Logistic Regression with TensorFlow. A logistic regression learning algorithm example using TensorFlow library."
 modified: 2018-07-25T11:51:25-04:00
 categories: articles
