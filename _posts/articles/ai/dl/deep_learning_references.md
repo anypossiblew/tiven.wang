@@ -64,3 +64,6 @@
 [wiki/Marginal_distribution]:https://en.wikipedia.org/wiki/Marginal_distribution
 [wiki/Conditional_probability_distribution]:https://en.wikipedia.org/wiki/Conditional_probability_distribution
 [wiki/Conditional_independence]:https://en.wikipedia.org/wiki/Conditional_independence
+[wiki/Bernoulli_distribution]:https://en.wikipedia.org/wiki/Bernoulli_distribution
+[wiki/Categorical_distribution]:https://en.wikipedia.org/wiki/Categorical_distribution
+[wiki/Normal_distribution]:https://en.wikipedia.org/wiki/Normal_distribution

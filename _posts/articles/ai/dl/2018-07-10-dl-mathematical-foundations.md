@@ -126,9 +126,61 @@ At a high level, probabiity distributions provide a mathematical trick that allo
 * 直觉上是指一次实验中一事件的发生不会影响到另一事件发生的概率，那么称为两个事件的随机变量是独立 (independent) 的，记作$$x \bot y$$。[Conditional independence][wiki/Conditional_independence] (条件独立)是指在给定随机变量 $$z$$ 时两个随机变量$$x$$和$$y$$是独立的，记作
   $$x \bot y|z$$。
 
+#### Expectation
+
+函数 $$f(x)$$ 关于（由其影响的）某分布 $$P(x)$$ 的期望 (expectation) 或叫期望值 (expected value) 是指，当 $$x$$ 由概率分布 $$P$$ 产生，$$f$$ 作用于 $$x$$ 时，$$f(x)$$ 的平均值（**平均值不平均而是概率均**）。
+对于离散型随机变量，期望值可以通过求和得到:
+
+$$\displaystyle\mathbb{E}_{x \sim P}[f(x)]=\sum_xP(x)f(x)$$
+
+对于连续型随机变量可以通过求积分得到:
+
+$$\displaystyle\mathbb{E}_{x \sim p}[f(x)]=\int p(x)f(x)dx$$
+
+当你我他都清楚时可以简写为:
+
+$$\mathbb{E}[f(x)]$$
+
+期望是线性的:
+
+$$\mathbb{E}_x[\alpha f(x) + \beta g(x)] = \alpha \mathbb{E}_x[f(x)] + \beta \mathbb{E}_x[g(x)]$$
+
+#### Variance
+
+方差 (variance) 衡量的是使用概率分布和不使用概率分布的 $$f(x)$$ 的差异:
+
+$$Var(f(x)) = \mathbb{E}[(f(x) - \mathbb{E}[f(x)])^2]$$
+
+方差的平方根即为标准差 (standard deviation)
+
+#### Covariance
+
+协方差 (covariance) 在某种意义上给出了两个变量线性相关性的强度以及这些变量的尺度:
+
+$$Cov(f(x),g(y)) = \mathbb{E}[(f(x) - \mathbb{E}[f(x)])(g(y) - \mathbb{E}[g(y)])]$$
+
+### Common Probability Distributions
+
 #### Bernoulli distribution
 
+[Bernoulli distribution][wiki/Bernoulli_distribution] 伯努利分布又名两点分布或者0-1分布，是一个离散型概率分布。
+它具有如下性质:
 
+$$
+P(\mathbf{x}=1)=\phi \\
+P(\mathbf{x}=0)=1-\phi \\
+P(\mathbf{x}=x)=\phi ^x (1-\phi)^{1-x} \\
+\mathbb{E}_{\mathbf{x}}[\mathbf{x}]=\phi \\
+\mathbf{Var}_{\mathbf{x}}(\mathbf{x})=\phi(1-\phi)
+$$
+
+#### Multinoulli Distribution
+
+#### Gaussian Distribution
+
+[Gaussian Distribution][wiki/Normal_distribution] normal distribution
+
+[正态分布的前世今生](http://www.flickering.cn/%E6%95%B0%E5%AD%A6%E4%B9%8B%E7%BE%8E/2014/06/%E7%81%AB%E5%85%89%E6%91%87%E6%9B%B3%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%E4%B8%8A/)
 
 ### Least Squares
 
