@@ -58,7 +58,7 @@ var width = $(".cloud.mdl-cell.mdl-cell--12-col").width();
 var fill = d3.scale.category20();
 
 var layout = d3.layout.cloud()
-    .size([width, 500])
+    .size([width, 800])
     .words(words)
     .padding(5)
     .rotate(function() { return ~~(Math.random() * 10) * 10 - 50; })

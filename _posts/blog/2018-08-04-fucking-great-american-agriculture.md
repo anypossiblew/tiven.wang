@@ -28,6 +28,12 @@ https://earthview.withgoogle.com/riverside-county-united-states-1787
 
 https://earthview.withgoogle.com/saint-john-united-states-5179
 
+https://earthview.withgoogle.com/scottsdale-united-states-1807
+
+https://earthview.withgoogle.com/palmdale-united-states-5586
+
+https://earthview.withgoogle.com/el-centro-united-states-5773
+
 ## Irrigation
 
 [Irrigation 灌溉](https://en.wikipedia.org/wiki/Irrigation)
@@ -47,3 +53,15 @@ https://earthview.withgoogle.com/saint-john-united-states-5179
 ## Organizations
 
 [Food and Agriculture Organization of the United Nations 联合国粮食及农业组织](https://en.wikipedia.org/wiki/Food_and_Agriculture_Organization)
+
+## 其他国家
+
+https://earthview.withgoogle.com/thoai-son-vietnam-5589
+
+https://earthview.withgoogle.com/general-roca-argentina-1134
+
+https://earthview.withgoogle.com/tall-rifat-syria-2281
+
+https://earthview.withgoogle.com/sun-lakes-united-states-1810
+
+https://earthview.withgoogle.com/glynneath-united-kingdom-1852

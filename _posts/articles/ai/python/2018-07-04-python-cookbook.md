@@ -33,7 +33,6 @@ references:
 
 https://www.python.org/downloads/release/python-366/
 
-
 ### Run in Docker
 镜像 [`docker pull python`][docker/python]
 
@@ -115,6 +114,25 @@ The [Jupyter][jupyter] Notebook is an open-source web application that allows yo
 
 https://github.com/PAIR-code/facets
 
+### pandas
+
+[pandas][pandas] is an open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language.
+
+安装 pandas
+
+`python3 -m pip install --upgrade pandas`
+
+或者
+
+`conda install pandas`
+
+### PyTorch
+
+[PyTorch][pytorch.org] is a python package that provides two high-level features:
+
+* Tensor computation (like numpy) with strong GPU acceleration
+* Deep Neural Networks built on a tape-based autodiff system
+
 ## 语法
 
 ### Lambdas
@@ -129,3 +147,5 @@ https://medium.com/@happymishra66/lambda-map-and-filter-in-python-4935f248593
 [ipython]:https://ipython.org/
 [seaborn.pydata]:https://seaborn.pydata.org/
 [jupyter]:http://jupyter.org/
+[pandas]:https://pandas.pydata.org/
+[pytorch.org]:https://pytorch.org/

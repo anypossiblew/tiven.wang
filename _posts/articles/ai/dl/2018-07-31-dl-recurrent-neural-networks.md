@@ -50,6 +50,8 @@ https://www.tensorflow.org/tutorials/sequences/recurrent
 
 [Long short-term memory (LSTM)][wiki/Long_short-term_memory]
 
+[Gated recurrent unit][wiki/Gated_recurrent_unit] (GRUs) are a gating mechanism in recurrent neural networks, introduced in 2014 by Kyunghyun Cho et al. Their performance on polyphonic music modeling and speech signal modeling was found to be similar to that of long short-term memory (LSTM). However, GRUs have been shown to exhibit better performance on smaller datasets. They have fewer parameters than LSTM, as they lack an output gate.
+
 ## RMSprop optimizer
 
 https://www.quora.com/Why-is-it-said-that-RMSprop-optimizer-is-recommended-in-training-recurrent-neural-networks-What-is-the-explanation-behind-it

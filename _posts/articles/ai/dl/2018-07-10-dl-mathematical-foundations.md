@@ -27,7 +27,7 @@ mathjax: true
 * Tensors
 * Hyperplanes
 
-关于线性代数非常直观的讲解可以观看 [YouTube - 3Blue1Brown - Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
+关于线性代数非常直观的讲解可以观看 YouTube - [3Blue1Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw) - [Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fNk_zzaMoSs" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -36,7 +36,7 @@ mathjax: true
 #### 矩阵乘法
 
 * Dot product
-* Element-wise product
+* Element-wise product ([Hadamard product][wiki/Hadamard_product])
 * Outer product
 
 矩阵乘法 ([Matrix multiplication][wiki/Matrix_multiplication]) 的结果称为矩阵积 (Matrix product).
@@ -176,15 +176,46 @@ $$
 
 #### Multinoulli Distribution
 
+Multinoulli Distribution 或称 Categorical distribution [范畴分布][wiki/Categorical_distribution]，它是 [Multinomial distribution][wiki/Multinomial_distribution] 多项式分布 $$\{0,\dots,n\}^k$$ 的一个特例 ($$n=1$$)。
+
 #### Gaussian Distribution
 
-[Gaussian Distribution][wiki/Normal_distribution] normal distribution
+[Normal Distribution][wiki/Normal_distribution] 正态分布，也称为 Gaussian Distribution 高斯分布，是实数上最常用的分布。
+
+$$\mathcal{N}(x;\mu,\sigma^2)=\sqrt{\frac{1}{2\pi\sigma^2}}\exp(-\frac{1}{2\sigma^2}(x-\mu)^2)$$
+
+当 $$\mu=0,\sigma=1$$ 时为标准正态分布
+
+$$\mathcal{N}(x)=\sqrt{\frac{1}{2\pi}}\exp(-\frac{x^2}{2})$$
+
+正态分布可以推广到$$\mathbb{R}^n$$空间，称为 multivariate normal distribution 多维正态分布
+
+$$\mathcal{N}(\pmb{x};\pmb{\mu},\pmb{\Sigma})=\sqrt{\frac{1}{(2\pi)^n\det(\pmb{\Sigma})}}\exp(-\frac{1}{2}(\pmb{x}-\pmb{\mu})^{\top}\pmb{\Sigma}^{-1}(\pmb{x}-\pmb{\mu}))$$
+
+其中$$\pmb{\Sigma}$$是一个[正定][wiki/Positive-definite_matrix][对称][wiki/Symmetric_matrix]矩阵。
 
 [正态分布的前世今生](http://www.flickering.cn/%E6%95%B0%E5%AD%A6%E4%B9%8B%E7%BE%8E/2014/06/%E7%81%AB%E5%85%89%E6%91%87%E6%9B%B3%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%E4%B8%8A/)
 
+* 指数分布和 Laplace 分布
+* Dirac 分布和经验分布
+
+#### 分布的混合
+
+[Mixture model][wiki/Mixture_model] (混合模型)是组合简单概率分布来生成更丰富的分布的一种简单策略。一个非常强大且常见的混合模型是 [Guassian Mixture Model][wiki/Mixture_distribution] (高斯混合模型)
+
+[Mixture distribution][wiki/Mixture_distribution]:
+
+$$\displaystyle P(\mathbf{x})=\sum_iP(c=i)P(\mathbf{x}|c=i)$$
+
+这里$$P(c)$$是对各组件的一个 Multinoulli 分布。
+
+### 常用函数
+
+// TODO
+
 ### Least Squares
 
-[Least Squares][wiki/Least_squares] 
+[Least Squares][wiki/Least_squares]
 
 [zhihu - 最小二乘法](https://www.zhihu.com/topic/19668117/hot)
 
@@ -208,6 +239,8 @@ As an aside, note that unlike $$L2$$ norm, $$H$$ is asymmetric.
 $$(f\ast g)(c) = \sum_a f(a) \cdot g(c-a)$$
 
 [Convolution of probability distributions][wiki/Convolution_of_probability_distributions]
+
+[planetmath - Convolution](http://planetmath.org/Convolution)
 
 ## Calculus
 
@@ -246,6 +279,26 @@ $$
 ## Machine Learning
 
 At a very high level, machine learning is simply the act of function minimization: learning algorithms are nothing more than minima finders for suitably defined functions.
+
+**超参数** 必须在学习算法外设定。机器学习本质上属于应用统计学，频率派估计 和 贝叶斯推断，监督学习 和 无监督学习，generalize (泛化)
+
+Learning 学习：“对于某类任务$$T$$和性能度量$$P$$，一个计算机程序被认为可以从经验$$E$$中学习是指，通过经验$$E$$改进后，它在任务$$T$$上由性能度量$$P$$衡量的性能有所提升。”
+
+example (样本) 表示为向量 $$\pmb{x} \in \mathbb{R}^n$$, feature (特征) 是向量的一个元素 $$x_i$$
+
+### 任务
+
+* Classification 分类
+* Classification with missing inputs 输入缺失分类
+* Regression
+* Transcription
+* Machine translation
+* Structured output
+* Anomaly detection
+* Synthesis and sampling
+* Imputation of missing values
+* Denoising
+* Density estimation or probability mass function estimation
 
 ### Loss function
 

@@ -8,9 +8,7 @@
 [wiki/Tensor]:https://en.wikipedia.org/wiki/Tensor
 [wiki/Scalar]:https://en.wikipedia.org/wiki/Scalar_(mathematics)
 [wiki/Euclidean_vector]:https://en.wikipedia.org/wiki/Euclidean_vector
-[wiki/Matrix]:https://en.wikipedia.org/wiki/Matrix_(mathematics)
 [wiki/Array]:https://en.wikipedia.org/wiki/Array
-[wiki/Matrix_multiplication]:https://en.wikipedia.org/wiki/Matrix_multiplication
 [wiki/Loss_function]:https://en.wikipedia.org/wiki/Loss_function
 [wiki/Mean_squared_error]:https://en.wikipedia.org/wiki/Mean_squared_error
 [wiki/Convex_function]:https://en.wikipedia.org/wiki/Convex_function
@@ -34,6 +32,7 @@
 [wiki/Perceptron]:https://en.wikipedia.org/wiki/Perceptron
 [wiki/Support_vector_machine]:https://en.wikipedia.org/wiki/Support_vector_machine
 [wiki/Stochastic_gradient_descent]:https://en.wikipedia.org/wiki/Stochastic_gradient_descent
+[wiki/Gated_recurrent_unit]:https://en.wikipedia.org/wiki/Gated_recurrent_unit
 
 [wiki/Neuron]:https://en.wikipedia.org/wiki/Neuron
 [wiki/Loss_function]:https://en.wikipedia.org/wiki/Loss_function
@@ -41,6 +40,8 @@
 [wiki/Overfitting]:https://en.wikipedia.org/wiki/Overfitting
 [wiki/Regularization]:https://en.wikipedia.org/wiki/Regularization_(mathematics)
 [wiki/Heaviside_step_function]:https://en.wikipedia.org/wiki/Heaviside_step_function
+[wiki/Hyperbolic_function]:https://en.wikipedia.org/wiki/Hyperbolic_function
+[wiki/Sigmoid_function]:https://en.wikipedia.org/wiki/Sigmoid_function
 
 [wiki/Markov_chain]:https://en.wikipedia.org/wiki/Markov_chain
 [wiki/Vanishing_gradient_problem]:https://en.wikipedia.org/wiki/Vanishing_gradient_problem
@@ -53,6 +54,11 @@
 [wiki/Q-learning]:https://en.wikipedia.org/wiki/Q-learning
 
 [wiki/Diagonal_matrix]:https://en.wikipedia.org/wiki/Diagonal_matrix
+[wiki/Matrix]:https://en.wikipedia.org/wiki/Matrix_(mathematics)
+[wiki/Positive-definite_matrix]:https://en.wikipedia.org/wiki/Positive-definite_matrix
+[wiki/Symmetric_matrix]:https://en.wikipedia.org/wiki/Symmetric_matrix
+[wiki/Matrix_multiplication]:https://en.wikipedia.org/wiki/Matrix_multiplication
+[wiki/Hadamard_product]:https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
 
 [wiki/Conditional_probability_distribution]:https://en.wikipedia.org/wiki/Conditional_probability_distribution
 [wiki/Bayesian_probability]:https://en.wikipedia.org/wiki/Bayesian_probability
@@ -66,4 +72,7 @@
 [wiki/Conditional_independence]:https://en.wikipedia.org/wiki/Conditional_independence
 [wiki/Bernoulli_distribution]:https://en.wikipedia.org/wiki/Bernoulli_distribution
 [wiki/Categorical_distribution]:https://en.wikipedia.org/wiki/Categorical_distribution
+[wiki/Multinomial_distribution]:https://en.wikipedia.org/wiki/Multinomial_distribution
 [wiki/Normal_distribution]:https://en.wikipedia.org/wiki/Normal_distribution
+[wiki/Mixture_model]:https://en.wikipedia.org/wiki/Mixture_model
+[wiki/Mixture_distribution]:https://en.wikipedia.org/wiki/Mixture_distribution

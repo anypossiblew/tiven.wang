@@ -86,6 +86,9 @@ The multilayer feed-forward network is a neural network with an input layer, one
 
 ### Activation Functions
 
+* [Sigmoid function][wiki/Sigmoid_function]
+* [Hyperbolic function][wiki/Hyperbolic_function]
+
 ### Loss Functions
 
 ### Hyperparameters
