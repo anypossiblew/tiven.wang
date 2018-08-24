@@ -1,0 +1,16 @@
+@font-face {
+    font-family: '新蒂唐朝体';
+    src:
+      url('//cdnjs.tiven.wang/fonts/SentyTang仅简中2500.ttf') format('truetype');
+}
+
+.mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
+h2, h3, h4, h5, #markdown-toc, .android-link
+{
+  font-family: '新蒂唐朝体', monospace, sans-serif;
+}
+.demo-blog .blog__post .mdl-card__supporting-text blockquote
+{
+  font-family: '新蒂唐朝体', cursive, sans-serif;
+  font-size: 14px !important;
+}

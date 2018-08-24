@@ -282,11 +282,13 @@ At a very high level, machine learning is simply the act of function minimizatio
 
 **超参数** 必须在学习算法外设定。机器学习本质上属于应用统计学，频率派估计 和 贝叶斯推断，监督学习 和 无监督学习，generalize (泛化)
 
+### 学习算法
+
 Learning 学习：“对于某类任务$$T$$和性能度量$$P$$，一个计算机程序被认为可以从经验$$E$$中学习是指，通过经验$$E$$改进后，它在任务$$T$$上由性能度量$$P$$衡量的性能有所提升。”
 
 example (样本) 表示为向量 $$\pmb{x} \in \mathbb{R}^n$$, feature (特征) 是向量的一个元素 $$x_i$$
 
-### 任务
+任务:
 
 * Classification 分类
 * Classification with missing inputs 输入缺失分类
@@ -299,6 +301,36 @@ example (样本) 表示为向量 $$\pmb{x} \in \mathbb{R}^n$$, feature (特征) 
 * Imputation of missing values
 * Denoising
 * Density estimation or probability mass function estimation
+
+对于任务结果属于离散型的模型通常度量其 **accuracy** (准确率，反面为 errorrate 错误率) 来衡量其性能。而结果为连续型变量的任务，常用的方式是输出模型在一些样本上的**概率对数的平均值**。
+
+机器学习算法可以大致分类为 **unsupervised** (无监督) 算法和 **supervised** (监督) 算法。
+
+传统上，人们将回归、分类或者结构化输出问题称为监督学习，将支持其他任务的密度估计称为无监督学习。
+
+表示数据集的常用方法是 design matrix (设计矩阵)，每一行包含一个不同的样本，每一列对应不同的特征。
+
+度量模型性能的一种方法是计算模型在测试集上的 mean squared error (均方误差)
+
+### 设计学习算法的基本原则
+
+在先前未观测到的输入上表现良好的能力被称为 **generalization** (泛化)
+
+training error (训练误差) test error (测试误差)
+
+**underfitting** (欠拟合) 是指模型不能在训练集上获得足够低的误差，**overfitting** (过拟合) 是指训练误差和测试误差之间的差距过大。通过调整模型的 **capacity** (容量) 可以控制模型是否偏向于过拟合或者欠拟合。
+
+**Regularization** (正则化) 是指修改学习算法，使其降低泛化误差而非训练误差，正则化是机器学习领域的中心问题之一，只有优化能够与其重要性相提并论。
+
+**hyperparameters** (超参数) 是指学习算法能学习的参数之外的参数，为什么有学习之外的参数，因为它太难优化了，尽管可以设计一个嵌套的学习过程。
+
+用于挑选超参数的数据子集被称为 validation set (验证集)
+
+### 学习的目标
+
+估计、偏差和方差
+
+[Point estimation][wiki/Point_estimation]
 
 ### Loss function
 

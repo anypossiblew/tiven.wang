@@ -297,6 +297,10 @@ html, body {
     margin: 50px auto;
   }
 
+  p + ul {
+    margin-top: 0;
+  }
+
   .mdl-list {
     .entry-date {
       float: right;

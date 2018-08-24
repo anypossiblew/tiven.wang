@@ -110,6 +110,10 @@ The [Jupyter][jupyter] Notebook is an open-source web application that allows yo
 
 `python -m pip install jupyter` install it
 
+运行 Jupyter Notebook
+
+`jupyter notebook`
+
 ### Facets
 
 https://github.com/PAIR-code/facets

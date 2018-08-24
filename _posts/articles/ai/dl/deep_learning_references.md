@@ -76,3 +76,4 @@
 [wiki/Normal_distribution]:https://en.wikipedia.org/wiki/Normal_distribution
 [wiki/Mixture_model]:https://en.wikipedia.org/wiki/Mixture_model
 [wiki/Mixture_distribution]:https://en.wikipedia.org/wiki/Mixture_distribution
+[wiki/Point_estimation]:https://en.wikipedia.org/wiki/Point_estimation
