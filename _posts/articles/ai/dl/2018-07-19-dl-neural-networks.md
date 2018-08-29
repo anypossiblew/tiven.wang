@@ -13,6 +13,7 @@ image:
   creditlink: https://earthview.withgoogle.com/corpen-aike-department-argentina-1594
 comments: true
 share: true
+mathjax: true
 references:
   - id: 1
     title: "神经网络浅讲：从神经元到深度学习"
@@ -27,6 +28,13 @@ references:
 
 * TOC
 {:toc}
+
+**Deep feedforward network** (深度前馈网络)，也叫 **feedforward neural network** (前馈神经网络) 或者 **multilayer perceptron, MLP** (多层感知机)，是典型的深度学习模型。前馈网络的目标是近似某个函数 $$f^*$$ (理想中的函数)。例如，对于分类器，$$y=f^*(\boldsymbol{x})$$ 将输入 $$\boldsymbol{x}$$ 映射到一个类别 $$y$$ 。前馈网络定义了一个映射 $$\boldsymbol{y}=f(\boldsymbol{x};\boldsymbol{\theta})$$ ，并且学习参数 $$\boldsymbol{\theta}$$ 的值，使它能够得得到最佳的函数近似。这种模型被称为 **feedforward** (前向) 的，是因为信息流过 $$\boldsymbol{x}$$ 的函数，流经用于定义 $$f$$ 的中间计算过程，最终到达输出 $$\boldsymbol{y}$$ 。在模型的输出和模型本身之间没有 **feedback** (反馈) 连接。当前馈神经网络被扩展成包含反馈连接时，他们被称为 recurrent neural nerwork (循环神经网络)，将在 [Deep Learning - Recurrent Neural Networks](/articles/dl-recurrent-neural-networks/) 介绍。
+
+神经网络之所以称作**网络**，是因为他们通常用许多不同函数复合在一起来表示。例如三个函数 $$f^{(1)}$$、$$f^{(2)}$$ 和 $$f^{(3)}$$ 连接在一个链上以形成 $$f(\boldsymbol{x})=f^{(3)}(f^{(2)}(f^{(1)}(\boldsymbol{x})))$$ 。这种情况下，$$f^{(1)}$$ 被称为网络的**第一层**(first layer)，$$f^{(2)}$$ 被称为第二层(second layer)，以此类推。链的全长称为模型的**深度**(depth)。前馈网络的最后一层被称为**输出层**(output layer)，其他的称为**隐藏层**(hidden layer)。网络中每个隐藏层通常都是向量值的，隐藏层的维数决定了模型的**宽度**(width)。向量的每个元素都可以被视为起到类似一个神经元的作用。可以将层想象成向量到向量的单个函数，也可以想象成由许多并行操作的**单元**(unit)组成，每个单元表示一个向量到标量的函数。每个单元在某种意义上又类似一个神经元，它接收的输入来源于许多其他的神经元，并计算它自己的激活值。
+
+> 使用多层向量值表示的想法来源于神经科学。用于计算这些表示的函数 $$f^{(i)}(x)$$ 的选择，也或多或少地受到神经科学观测的指引，这些观测是关于生物神经元计算功能的。然而，现代的神经网络研究受到更多的是来自许多数学和工程学科的指引，并且神经网络的目标并不是完美地给大脑建模。我们最好将前馈神经网络想成是为了实现统计泛化而设计出的函数近似机，它偶尔从我们了接的大脑中提取灵感，但并不是大脑功能的模型。
+{: .Quotes}
 
 ## 基本概念
 
@@ -69,7 +77,34 @@ references:
 
 ## Perceptron
 
-The [perceptron][wiki/Perceptron] is a linear model used for binary classification. In the field of neural networks the perceptron is considered an artificial neuron using the [Heaviside step function][wiki/Heaviside_step_function] (单位阶跃函数) for the activation function. The perceptron training algorithm is considered a supervised learning algorithm. 
+神经网络最早的一种形式叫 [Perceptron][wiki/Perceptron] (感知器)，一种人工神经网络。它可以被视为一种最简单形式的前馈神经网络，是一种二元线性分类器。
+
+感知器可以表示为线性变换
+
+$$z = \mathbf{w}\cdot\mathbf{x}+b$$
+
+然后对变换结果使用二分函数，则得到二分类结果
+
+$$f(z)=\left\{ \begin{array}{rcl} 1 && if && z>0 \\ 0 && otherwise\end{array}\right.$$
+
+那么可以看出感知器的模型属于线性函数，即使我们为其添加多层隐藏层形成的多层神经网络，其模型仍然是线性函数。一层网络表示为
+
+$$f^{(1)}(\boldsymbol{x})=\boldsymbol{W}^\top\boldsymbol{x}=\boldsymbol{h}$$
+
+第二层表示为
+
+$$f^{(2)}(\boldsymbol{h})=\boldsymbol{h}^\top\boldsymbol{w}$$ 
+
+那么 
+
+$$f(\boldsymbol{x})=\boldsymbol{w}^\top\boldsymbol{W}^\top\boldsymbol{x}$$ 
+
+令 $$\boldsymbol{w}'=\boldsymbol{W}\boldsymbol{w}$$ 函数可以重新表示成 $$f(\boldsymbol{x})=\boldsymbol{x}^\top\boldsymbol{w}'$$ 显然仍然是线性的。
+
+线性函数无法解决像 XOR 异或的问题，
+
+
+In the field of neural networks the perceptron is considered an artificial neuron using the [Heaviside step function][wiki/Heaviside_step_function] (单位阶跃函数) for the activation function. The perceptron training algorithm is considered a supervised learning algorithm. 
 
 Fully connected (FC) network aka Multilayer Perceptron (MLP) aka Feedforward Neural
 Network (FNN)
@@ -85,6 +120,14 @@ The multilayer feed-forward network is a neural network with an input layer, one
 ### Backpropagation Learning
 
 ### Activation Functions
+
+为了扩展线性模型来表示 $$\boldsymbol{x}$$ 的非线性函数，我们可以不把线性模型用于 $$\boldsymbol{x}$$ 本身，而是用在一个变换后的输入 $$\phi(\boldsymbol{x})$$ 上，这里 $$\phi$$ 是一个非线性变换。我们可以认为 $$\phi$$ 提供了一组描述 $$\boldsymbol{x}$$ 的特征，或者认为它提供了 $$\boldsymbol{x}$$ 的一个新的表示。那么我们模型表示为 
+
+$$y=f(\boldsymbol{x};\boldsymbol{\theta},\boldsymbol{w})=\phi(\boldsymbol{x};\boldsymbol{\theta})^\top\boldsymbol{w}$$
+
+其中 \phi(\boldsymbol{x};\boldsymbol{\theta}) 在深度神经网络中叫作**激活函数** (Activation Function)
+
+常见的激活函数有
 
 * [Sigmoid function][wiki/Sigmoid_function]
 * [Hyperbolic function][wiki/Hyperbolic_function]

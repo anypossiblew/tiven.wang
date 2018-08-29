@@ -99,6 +99,22 @@ RUN pip install --no-cache-dir numpy scipy pandas matplotlib
 
 矩阵在 python 如何表达
 
+Array masking:
+
+Slice:
+基本的 Slice 操作如官方文档 [indexing][scipy/numpy/basics/indexing] 或 [Indexing][scipy-cookbook.readthedocs/Indexing]
+
+```python
+arr[1:3,0,2:]
+i = slice(1,3,1)
+arr[i,0,2]
+```
+
+```python
+slice = [arr[i][0:2] for i in range(0,2)]
+slice = [b[i[0]:i[1]][0:2] for i in a]
+```
+
 ### 矩阵运算
 
 同维度矩阵的加减乘除比较，不同维度矩阵的加减乘除比较
@@ -107,7 +123,7 @@ RUN pip install --no-cache-dir numpy scipy pandas matplotlib
 
 转置，对角线，行列式
 
-
-
 [numpy]:http://www.numpy.org/
 [scipy]:https://www.scipy.org/
+
+{% include_relative python-references.md %}

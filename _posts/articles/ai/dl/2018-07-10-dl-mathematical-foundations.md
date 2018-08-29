@@ -328,9 +328,39 @@ training error (训练误差) test error (测试误差)
 
 ### 学习的目标
 
-估计、偏差和方差
+[**Point estimation**][wiki/Point_estimation] (**点估计**) 是用样本统计量来估计总体参数，因为样本统计量为数轴上某一点值，估计的结果也以一个点的数值表示，所以称为点估计。点估计和区间估计属于总体参数估计问题。何为总体参数统计，当在研究中从样本获得一组数据后，如何通过这组信息，对总体特征进行估计，也就是如何从局部结果推论总体的情况，称为总体参数估计。
 
-[Point estimation][wiki/Point_estimation]
+为了区分参数估计和真实值，将参数 $$\boldsymbol{\theta}$$ 的点估计表示为 $$\hat{\boldsymbol{\theta}}$$ 。令 $$\{x^{(1)},\dots,x^{(m)}\}$$ 是 $$m$$ 个独立同分布的数据点。点估计是这些数据的任意函数:
+
+$$\hat{\boldsymbol{\theta}}_m=g(\boldsymbol{x}^{(1)},\dots,\boldsymbol{x}^{(m)})$$
+
+点估计也可以指输入和目标变量之间关系的估计，我们将这种类型的点估计称为**函数估计**。
+
+估计的**偏差**定义为
+
+$$bias(\hat{\boldsymbol{\theta}}_m)=\mathbb{E}(\hat{\boldsymbol{\theta}}_m)-\boldsymbol{\theta}$$
+
+如果 $$\displaystyle \lim_{m\rightarrow\infty} bias(\hat{\boldsymbol{\theta}}_m)=0$$ 那么估计量 $$\hat{\boldsymbol{\theta}}_m$$ 被称为是 asymptotically unbiased (渐近无偏)，这意味着 $$\displaystyle \lim_{m\rightarrow\infty} \mathbb{E}(\hat{\boldsymbol{\theta}}_m)=\boldsymbol{\theta}$$
+
+偏差和方差度量着估计量的两个不同误差来源。偏差度量这偏离真实函数或者参数的误差期望，而方差度量着数据上任意特定采样可能导致的估计期望的偏差。
+
+[Maximum likelihood estimation][wiki/Maximum_likelihood_estimation] (最大似然估计) 
+
+[CSDN - 极大似然估计详解](https://blog.csdn.net/zengxiantao1994/article/details/72787849)
+
+### 构建机器学习算法
+
+深度学习算法的简单配方：特定的数据集、代价函数、优化过程和模型。
+
+[**Closed-form expression**][wiki/Closed-form_expression] (**解析解**)，又称为**闭式解**，是可以用解析表达式来表达的解。 在数学上，如果一个方程或者方程组存在的某些解，是由有限次常见运算的组合给出的形式，则称该方程存在解析解。当解析解不存在时，比如五次以及更高次的代数方程，则该方程只能用数值分析的方法求解近似值 (数值解)。
+
+#### Manifold learning
+
+[Manifold learning][wiki/Manifold_learning_algorithms]
+
+http://scikit-learn.org/stable/modules/manifold.html
+
+https://jakevdp.github.io/PythonDataScienceHandbook/05.10-manifold-learning.html
 
 ### Loss function
 

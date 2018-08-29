@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather');
+@font-face {
+  font-family: '新蒂唐朝体';
+  src:
+    url('//cdnjs.tiven.wang/fonts/SentyTang仅简中2500.ttf') format('truetype');
+}
 
 .mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content,
 h2, h3, h4, h5, #markdown-toc, .android-link
@@ -7,6 +12,13 @@ h2, h3, h4, h5, #markdown-toc, .android-link
 }
 .demo-blog .blog__post .mdl-card__supporting-text blockquote
 {
-  font-family: 'Merriweather', cursive, sans-serif;
-  font-size: 14px !important;
+  font-family: '新蒂唐朝体', 'Merriweather', cursive, sans-serif;
+  font-size: 16px !important;
+  font-style: normal;
+}
+
+.demo-blog .blog__post .mdl-card__supporting-text blockquote p
+{
+  font-family: '新蒂唐朝体', 'Merriweather', cursive, sans-serif;
+  font-size: 18px;
 }

@@ -4,6 +4,8 @@
 [wiki/Generative_model]:https://en.wikipedia.org/wiki/Generative_model
 [wiki/Restricted_Boltzmann_machine]:https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine
 [wiki/Boltzmann_machine]:https://en.wikipedia.org/wiki/Boltzmann_machine
+[wiki/Manifold_learning_algorithms]:https://en.wikipedia.org/wiki/Nonlinear_dimensionality_reduction#Manifold_learning_algorithms
+[wiki/Closed-form_expression]:https://en.wikipedia.org/wiki/Closed-form_expression
 
 [wiki/Tensor]:https://en.wikipedia.org/wiki/Tensor
 [wiki/Scalar]:https://en.wikipedia.org/wiki/Scalar_(mathematics)
@@ -77,3 +79,4 @@
 [wiki/Mixture_model]:https://en.wikipedia.org/wiki/Mixture_model
 [wiki/Mixture_distribution]:https://en.wikipedia.org/wiki/Mixture_distribution
 [wiki/Point_estimation]:https://en.wikipedia.org/wiki/Point_estimation
+[wiki/Maximum_likelihood_estimation]:https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
