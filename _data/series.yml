@@ -1,5 +1,5 @@
 - title: Kubernetes
-  series: /series/kubernetes
+  url: /series/kubernetes
   image:
     vendor: nationalgeographic
     feature: /content/dam/travel/rights-exempt/2018-travel-photographer-of-the-year/sunset-sunrise-golden-hour/sunrise-myanmar-burma-golden-hour-01.ngsversion.1527707084997.adapt.885.1.jpg
@@ -17,7 +17,7 @@
       link: /articles/kubernetes-cluster-on-raspberry-pi/
 
 - title: Angular Tutorial
-  series: /series/angular
+  url: /series/angular
   image:
     vendor: twitter
     feature: /media/DWxM_OlX0AEOamH.jpg:large
@@ -35,7 +35,7 @@
       link: /articles/angular-dependency-injection/
 
 - title: Try Cloud Foundry
-  series: /series/try-cloudfoundry
+  url: /series/try-cloudfoundry
   image:
     vendor: unsplash
     feature: /photo-1427434991195-f42379e2139d?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
@@ -53,7 +53,7 @@
       link: /articles/try-cf-3-cloud-foundry-components-uaa/
 
 - title: Microservices
-  series: /series/microservices
+  url: /series/microservices
   image:
     vendor: instagram
     feature: /t51.2885-15/e35/21371957_343797492726746_672750594775056384_n.jpg
@@ -71,7 +71,7 @@
       link: /articles/microservices-restful-api-hateoas/
 
 - title: Reactive Design Patterns
-  series: /series/reactive-design-patterns
+  url: /series/reactive-design-patterns
   image:
     vendor: unsplash
     feature: /photo-1490645935967-10de6ba17061?dpr=1.5&auto=format&fit=crop&w=1080&h=735&q=80&cs=tinysrgb&crop=
@@ -90,12 +90,12 @@
 
 - title: Machine Learning
   background: /images/so-simple-sample-image-6.jpg
-  series: /series/machine-learning
+  url: /series/machine-learning
   posts:
 
 - title: Training JavaScript
   background: /images/so-simple-sample-image-6.jpg
-  series: /series/training-javascript
+  url: /series/training-javascript
   image:
     vendor: twitter
     feature: /media/DMgx7CEW0AA3RWk.jpg:large
@@ -113,16 +113,16 @@
       description:
 - title: HANA
   background: /images/so-simple-sample-image-6.jpg
-  series: /series/hana
+  url: /series/hana
   posts:
 
 - title: SAP Cloud Platform
   background: /images/so-simple-sample-image-6.jpg
-  series: /series/scp
+  url: /series/scp
   posts:
 
 - title: Web Fundamentals
-  series: /series/web-fundamentals
+  url: /series/web-fundamentals
   image:
     vendor: yourshot.nationalgeographic
     feature: /u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDNeZgL7slPxjZIiombl5-bW2HBqmzLhARbUNJsrRqjWV6IMFYQTIEzP6MKTY0DaknXmuusRLZQK0kLI_OZBklbFVkTdTM6DiWwEaAzWIQMaMX89UXOOIYE2dgSC23mc5NE4ICH7AIdrNiMgvK58RsD4NDIO2GvuxP32XlbYJWq4Ew/
@@ -134,7 +134,7 @@
       link: /articles/web-fundamentals-http2/
 
 - title: Data-Intensive
-  series: /series/data-intensive
+  url: /series/data-intensive
   image:
     vendor: unsplash
     feature: /photo-1504461154005-31b435e687ed?dpr=1.5&auto=format&fit=crop&w=1500&h=844&q=80&cs=tinysrgb&crop=
@@ -146,7 +146,7 @@
       link: /articles/sap-hana-database/
 
 - title: Serverless
-  series: /series/serverless
+  url: /series/serverless
   image:
     vendor: yourshot.nationalgeographic
     feature: /u/fQYSUbVfts-T7odkrFJckdiFeHvab0GWOfzhj7tYdC0uglagsDq7nWbpdKTjiox0o7fPPvA6y-PfYPLwaHQRZ7mJJ_aHFcuCzBCNl9Be1yC5aZX4-QbjFR2jBTCdlbZaMa4zyTNeRTR5YYRjY5ASejoZPMKF0fOh2h7gpAxezl2d020voxKk-eBhX4_aEYqd_XxTpw2N1mteL0T189McdQnB2Ck/
@@ -161,7 +161,7 @@
       link: /articles/serverless-firebase/
 
 - title: Spring Boot
-  series: /series/spring-boot
+  url: /series/spring-boot
   image:
     vendor: nationalgeographic
     feature: /content/dam/photography/PROOF/2017/November/animals-from-above-yourshot/01-animals-from-above-prod-yourshot-230366-11044091.adapt.1190.1.jpg
@@ -179,7 +179,7 @@
       link: /articles/spring-boot-testing/
 
 - title: Apache Camel
-  series: /series/camel
+  url: /series/camel
   image:
     vendor: twitter
     feature: /media/DQyBpK5UMAAi9Bc.jpg:large

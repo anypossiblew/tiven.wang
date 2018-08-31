@@ -1,7 +1,11 @@
 ---
 layout: post
 theme: Merriweather
-title: "Deep Learning - Neural Networks"
+star: true
+series: 
+  url: deep-learning
+  title: Deep Learning
+title: "Neural Networks"
 excerpt: "Neural Networks with TensorFlow"
 modified: 2018-08-08T11:51:25-04:00
 categories: articles
@@ -58,6 +62,8 @@ references:
 
 ## Intuitive
 
+在深入理解神经网络之前，让我们来直观感受一下神经网络的魔幻色彩
+
 * Neural Network 3D Simulation
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3JQ3hYko51Y" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -77,9 +83,7 @@ references:
 
 ## Perceptron
 
-神经网络最早的一种形式叫 [Perceptron][wiki/Perceptron] (感知器)，一种人工神经网络。它可以被视为一种最简单形式的前馈神经网络，是一种二元线性分类器。
-
-感知器可以表示为线性变换
+神经网络最早的一种形式叫 [Perceptron][wiki/Perceptron] (感知器)，一种人工神经网络。它可以被视为一种最简单形式的前馈神经网络，是一种二元线性分类器。感知器的模型函数可以表示为线性变换
 
 $$z = \mathbf{w}\cdot\mathbf{x}+b$$
 
@@ -97,7 +101,7 @@ $$f^{(2)}(\boldsymbol{h})=\boldsymbol{h}^\top\boldsymbol{w}$$
 
 那么 
 
-$$f(\boldsymbol{x})=\boldsymbol{w}^\top\boldsymbol{W}^\top\boldsymbol{x}$$ 
+$$f(\boldsymbol{x})=f^{(2)}(f^{(1)}(\boldsymbol{x}))=\boldsymbol{w}^\top\boldsymbol{W}^\top\boldsymbol{x}$$ 
 
 令 $$\boldsymbol{w}'=\boldsymbol{W}\boldsymbol{w}$$ 函数可以重新表示成 $$f(\boldsymbol{x})=\boldsymbol{x}^\top\boldsymbol{w}'$$ 显然仍然是线性的。
 
@@ -115,24 +119,42 @@ https://www.cybercontrols.org/neuralnetworks
 
 The multilayer feed-forward network is a neural network with an input layer, one or more hidden layers, and an output layer.
 
-## Training Neural Networks
-
-### Backpropagation Learning
-
 ### Activation Functions
 
 为了扩展线性模型来表示 $$\boldsymbol{x}$$ 的非线性函数，我们可以不把线性模型用于 $$\boldsymbol{x}$$ 本身，而是用在一个变换后的输入 $$\phi(\boldsymbol{x})$$ 上，这里 $$\phi$$ 是一个非线性变换。我们可以认为 $$\phi$$ 提供了一组描述 $$\boldsymbol{x}$$ 的特征，或者认为它提供了 $$\boldsymbol{x}$$ 的一个新的表示。那么我们模型表示为 
 
 $$y=f(\boldsymbol{x};\boldsymbol{\theta},\boldsymbol{w})=\phi(\boldsymbol{x};\boldsymbol{\theta})^\top\boldsymbol{w}$$
 
-其中 \phi(\boldsymbol{x};\boldsymbol{\theta}) 在深度神经网络中叫作**激活函数** (Activation Function)
+其中 $$\phi(\boldsymbol{x};\boldsymbol{\theta})$$ 在深度神经网络中叫作**激活函数** (Activation Function)
 
 常见的激活函数有
 
 * [Sigmoid function][wiki/Sigmoid_function]
 * [Hyperbolic function][wiki/Hyperbolic_function]
+* [Rectified Linear Unit (ReLU)][wiki/Rectifier]
+
+#### ReLU
+
+[Rectified Linear Unit (ReLU)][wiki/Rectifier] (**线性整流函数**) 又称**修正线性单元**，通常指代以斜坡函数及其变种为代表的非线性函数。
+
+![Image: Rectifier and Softplus functions](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Rectifier_and_softplus_functions.svg/495px-Rectifier_and_softplus_functions.svg.png)
+{: .center}
+
+该激活函数是被推荐用于大多数前馈神经网络的默认激活函数，将此函数用于线性变换的输出将产生非线性变换。然而函数仍然非常接近线性，在这种意义上它是具有两个线性部分的分段线性函数。由于整流线性单元几乎是线性的，因此它们保留了许多使得线性模型易于使用基于梯度的方法进行优化的属性。它们还保留了许多使得线性模型能够泛化良好的属性。计算机科学的一个公共原则是，我们可以从最小的组件构建复杂的系统。就像图灵机的内存只需要能够存储 0 或 1 的状态，我们可以从整流线性函数构建一个万能函数近似器。
+
+### Gradient-Based Learning
+
+因为增加了非线性的激活函数，导致了神经网络的大多数我们感兴趣的代价函数都变得非凸。这意味着神经网络的训练通常使用迭代的、基于梯度的优化，仅仅使得代价函数达到一个非常小的值；而不是像用于训练线性回归模型的线性方程求解器，或者用于训练逻辑回归或者 SVM 的凸优化算法那样保证全局收敛。
 
 ### Loss Functions
+
+在大多数情况下，参数模型(parametric model)定义了一个分布 $$p(\boldsymbol{y} \| \boldsymbol{x};\boldsymbol{\theta})$$ 并且简单地使用 最大似然原理(the principle of maximum likelihood)。这意味着我们使用训练数据和模型预测间的 交叉熵(cross-entropy) 作为 代价函数(cost function)。
+
+有时，我们使用一个更简单的方法，不是预测 $$y$$ 的完整概率分布，而是仅仅预测在给定 $$x$$ 的条件下 $$y$$ 的某种统计量。某些专门的损失函数允许我们来训练这些估计量的 预测器(predictor)。
+
+用于训练神经网络的完整的代价函数，通常在我们这里描述的基本代价函数的基础上结合一个 正则项(regularization term)。关于 正则化([regularization][wiki/Regularization]) 我们会专门介绍。
+
+### Backpropagation Learning
 
 ### Hyperparameters
 

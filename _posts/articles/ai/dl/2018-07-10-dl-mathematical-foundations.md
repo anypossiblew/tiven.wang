@@ -1,7 +1,11 @@
 ---
 layout: post
 theme: Merriweather
-title: "Deep Learning - Mathematical Foundations"
+star: true
+series: 
+  url: deep-learning
+  title: Deep Learning
+title: "Mathematical Foundations"
 excerpt: "The mathematical foundations of Deep Learning"
 modified: 2018-07-10T11:51:25-04:00
 categories: articles

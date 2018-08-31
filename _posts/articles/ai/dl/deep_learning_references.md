@@ -44,6 +44,7 @@
 [wiki/Heaviside_step_function]:https://en.wikipedia.org/wiki/Heaviside_step_function
 [wiki/Hyperbolic_function]:https://en.wikipedia.org/wiki/Hyperbolic_function
 [wiki/Sigmoid_function]:https://en.wikipedia.org/wiki/Sigmoid_function
+[wiki/Rectifier]:https://en.wikipedia.org/wiki/Rectifier_(neural_networks)
 
 [wiki/Markov_chain]:https://en.wikipedia.org/wiki/Markov_chain
 [wiki/Vanishing_gradient_problem]:https://en.wikipedia.org/wiki/Vanishing_gradient_problem
