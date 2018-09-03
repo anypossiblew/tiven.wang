@@ -14,6 +14,13 @@ image:
 comments: true
 share: true
 mathjax: true
+references:
+  - id: 1
+    title: " PennState Eberly College of Science - Probability Theory and Mathematical Statistics / Maximum Likelihood Estimation"
+    url: https://onlinecourses.science.psu.edu/stat414/node/191/
+  - id: 1
+    title: "简书 - 深入浅出最大似然估计（Maximum Likelihood Estimation）"
+    url: https://www.jianshu.com/p/f1d3906e4a3e
 ---
 
 * TOC
@@ -79,18 +86,32 @@ $$x=\frac{a}{a+b}$$
 
 至此我们之前的例子中的白球的比例是 70% 是怎么来的从理论上就解释清楚了。
 
-我们现在再把此理论抽到更高级别，假设理想中的概率分布模型是 $$f(x;\theta)$$，现在进行 $$n$$ 独立抽样的结果为 $$(x_1,x_2,\dots,x_n)$$ 那么此结果的条件概率记为
+## 最大似然估计
+
+我们现在再把此理论抽象到更高级别，假设理想中的概率分布模型是 $$f(x;\theta)$$，现在进行 $$n$$ 独立抽样的结果为 $$(x_1,x_2,\dots,x_n)$$ 那么此结果的条件概率记为
 
 $$\displaystyle f(x_1,x_2,\dots,x_n;\theta)=\prod_{i=1}^nf(x_i;\theta)$$
 
-因为此问题中要求解的是参数 $$\theta$$ 所以我们定义似然 $$L$$ 为 
+因为此问题中要求解的是参数 $$\theta$$ 所以我们定义似然 $$L$$ 为
 
 $$L(\theta;x_1,x_2,\dots,x_n)=f(x_1,x_2,\dots,x_n;\theta)=\prod_{i=1}^nf(x_i;\theta)$$
 
-两边取ln, 取ln是为了将右边的乘号变为加号，方便求导。
+两边取 $$ln$$, 取 $$ln$$ 是为了将右边的乘号变为加号（根据 [Ln Rules][rapidtables/Ln_Rules]），方便求导。
 
-// TODO
+$$\displaystyle \ln L(\theta;x_1,x_2,\dots,x_n)=\ln \prod_{i=1}^nf(x_i;\theta)=\sum_{i=1}^n\ln f(x_i;\theta)$$
+
+此结果通常称之为对数似然。对取样个数取个平均值称为平均对数似然
+
+$$\frac{1}{n} \ln L(\theta;x_1,x_2,\dots,x_n)$$
+
+最大似然估计的过程，就是找一个合适的 $$\theta$$，使得平均对数似然的值为最大。
+
+## 正态分布的似然函数
 
 举例，正态分布的似然函数
 
-// TODO
+$$f(x_i;\mu,\sigma^2)=\dfrac{1}{\sigma \sqrt{2\pi}}\text{exp}\left[-\dfrac{(x_i-\mu)^2}{2\sigma^2}\right]$$
+
+https://www.jianshu.com/p/f1d3906e4a3e
+
+[rapidtables/Ln_Rules]:https://www.rapidtables.com/math/algebra/ln/Ln_Rules.html
