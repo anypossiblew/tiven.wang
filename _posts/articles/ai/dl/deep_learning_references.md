@@ -81,3 +81,5 @@
 [wiki/Mixture_distribution]:https://en.wikipedia.org/wiki/Mixture_distribution
 [wiki/Point_estimation]:https://en.wikipedia.org/wiki/Point_estimation
 [wiki/Maximum_likelihood_estimation]:https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
+[wiki/Covariance]:https://en.wikipedia.org/wiki/Covariance
+[wiki/Covariance_matrix]:https://en.wikipedia.org/wiki/Covariance_matrix

@@ -146,13 +146,39 @@ $$y=f(\boldsymbol{x};\boldsymbol{\theta},\boldsymbol{w})=\phi(\boldsymbol{x};\bo
 
 因为增加了非线性的激活函数，导致了神经网络的大多数我们感兴趣的代价函数都变得非凸。这意味着神经网络的训练通常使用迭代的、基于梯度的优化，仅仅使得代价函数达到一个非常小的值；而不是像用于训练线性回归模型的线性方程求解器，或者用于训练逻辑回归或者 SVM 的凸优化算法那样保证全局收敛。
 
-### Loss Functions
+#### Loss Functions
 
 在大多数情况下，参数模型(parametric model)定义了一个分布 $$p(\boldsymbol{y} \| \boldsymbol{x};\boldsymbol{\theta})$$ 并且简单地使用 最大似然原理(the principle of maximum likelihood)。这意味着我们使用训练数据和模型预测间的 交叉熵(cross-entropy) 作为 代价函数(cost function)。
 
 有时，我们使用一个更简单的方法，不是预测 $$y$$ 的完整概率分布，而是仅仅预测在给定 $$x$$ 的条件下 $$y$$ 的某种统计量。某些专门的损失函数允许我们来训练这些估计量的 预测器(predictor)。
 
 用于训练神经网络的完整的代价函数，通常在我们这里描述的基本代价函数的基础上结合一个 正则项(regularization term)。关于 正则化([regularization][wiki/Regularization]) 我们会专门介绍。
+
+#### Maximum Likelihood
+
+> Many output units involve an $$exp$$ function that can saturate when its argument is very negative. The $$log$$ function in the negative log-likelihood cost function undoes the exp of some output units.
+
+#### Learning Conditional Statistics
+
+均方误差和平均绝对误差在使用基于梯度的优化方法时往往成效不佳。一些饱和的输出单元当结合这些代价函数时会产生非常小的梯度。这就是交叉熵代价函数比均方误差或者平均绝对误差更受欢迎的原因之一了，即使是在没必要估计整个 $$p(y;x)$$ 分布时。
+
+#### Output Units
+
+代价函数的选择与输出单元的选择紧密相关。大多数时候，我们简单地使用数据分布和模型分布间的交叉熵。选择如何表示输出决定了交叉熵函数的形式。
+
+* 用于高斯输出分布的线性单元
+* 用于 Bernoulli 输出分布的 sigmoid 单元
+* 用于 Multinoulli 输出分布的 softmax 单元
+* 其他的输出类型
+
+### 隐藏单元
+
+隐藏单元的激活函数
+
+* 整流线性单元及其扩展
+* logistic sigmoid 与双曲正切函数
+* 其他隐藏单元
+
 
 ### Backpropagation Learning
 

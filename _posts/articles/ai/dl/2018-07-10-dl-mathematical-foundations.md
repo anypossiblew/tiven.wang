@@ -9,7 +9,7 @@ title: "Mathematical Foundations"
 excerpt: "The mathematical foundations of Deep Learning"
 modified: 2018-07-10T11:51:25-04:00
 categories: articles
-tags: [TensorFlow, Deep Learning, Python]
+tags: [Nerual Networks, Deep Learning]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/1068.jpg
@@ -159,9 +159,11 @@ $$Var(f(x)) = \mathbb{E}[(f(x) - \mathbb{E}[f(x)])^2]$$
 
 #### Covariance
 
-协方差 (covariance) 在某种意义上给出了两个变量线性相关性的强度以及这些变量的尺度:
+协方差 ([covariance][wiki/Covariance]) 在某种意义上给出了两个变量线性相关性的强度以及这些变量的尺度:
 
 $$Cov(f(x),g(y)) = \mathbb{E}[(f(x) - \mathbb{E}[f(x)])(g(y) - \mathbb{E}[g(y)])]$$
+
+协方差矩阵 ([Covariance matrix][wiki/Covariance_matrix])
 
 ### Common Probability Distributions
 
@@ -186,17 +188,17 @@ Multinoulli Distribution 或称 Categorical distribution [范畴分布][wiki/Cat
 
 [Normal Distribution][wiki/Normal_distribution] 正态分布，也称为 Gaussian Distribution 高斯分布，是实数上最常用的分布。
 
-$$\mathcal{N}(x;\mu,\sigma^2)=\sqrt{\frac{1}{2\pi\sigma^2}}\exp(-\frac{1}{2\sigma^2}(x-\mu)^2)$$
+$$\mathcal{N}(x;\mu,\sigma^2)=\sqrt{\frac{1}{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(x-\mu)^2\right)$$
 
 当 $$\mu=0,\sigma=1$$ 时为标准正态分布
 
-$$\mathcal{N}(x)=\sqrt{\frac{1}{2\pi}}\exp(-\frac{x^2}{2})$$
+$$\mathcal{N}(x)=\sqrt{\frac{1}{2\pi}}\exp\left(-\frac{x^2}{2}\right)$$
 
-正态分布可以推广到$$\mathbb{R}^n$$空间，称为 multivariate normal distribution 多维正态分布
+正态分布可以推广到 $$\mathbb{R}^n$$ 空间，称为 多维正态分布 (multivariate normal distribution)
 
-$$\mathcal{N}(\pmb{x};\pmb{\mu},\pmb{\Sigma})=\sqrt{\frac{1}{(2\pi)^n\det(\pmb{\Sigma})}}\exp(-\frac{1}{2}(\pmb{x}-\pmb{\mu})^{\top}\pmb{\Sigma}^{-1}(\pmb{x}-\pmb{\mu}))$$
+$$\mathcal{N}(\pmb{x};\pmb{\mu},\pmb{\Sigma})=\sqrt{\frac{1}{(2\pi)^n\det(\pmb{\Sigma})}}\exp\left(-\frac{1}{2}(\pmb{x}-\pmb{\mu})^{\top}\pmb{\Sigma}^{-1}(\pmb{x}-\pmb{\mu})\right)$$
 
-其中$$\pmb{\Sigma}$$是一个[正定][wiki/Positive-definite_matrix][对称][wiki/Symmetric_matrix]矩阵。
+其中 $$\pmb{\Sigma}$$ 是一个 [正定][wiki/Positive-definite_matrix] [对称][wiki/Symmetric_matrix] 矩阵。
 
 [正态分布的前世今生](http://www.flickering.cn/%E6%95%B0%E5%AD%A6%E4%B9%8B%E7%BE%8E/2014/06/%E7%81%AB%E5%85%89%E6%91%87%E6%9B%B3%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F%E4%B8%8A/)
 

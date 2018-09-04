@@ -110,8 +110,54 @@ $$\frac{1}{n} \ln L(\theta;x_1,x_2,\dots,x_n)$$
 
 举例，正态分布的似然函数
 
-$$f(x_i;\mu,\sigma^2)=\dfrac{1}{\sigma \sqrt{2\pi}}\text{exp}\left[-\dfrac{(x_i-\mu)^2}{2\sigma^2}\right]$$
+正态分布的公式，当 $$\mu$$ (期望) 为 0 ，$$\sigma^1$$ (方差) 为 1 时，分布称为标准正态分布：
 
-https://www.jianshu.com/p/f1d3906e4a3e
+$$f(x;\mu,\sigma^2)=\dfrac{1}{\sigma \sqrt{2\pi}}\text{exp} \left\lgroup-\dfrac{(x-\mu)^2}{2\sigma^2}\right\rgroup$$
+
+将此正态分布函数代入似然函数得到
+
+$$\displaystyle L(\mu,\sigma^2)=\left[\dfrac{1}{\sigma \sqrt{2\pi}}\right]^n\text{exp} \left[-\dfrac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2\right]$$
+
+两边取对数（根据 [Ln Rules][rapidtables/Ln_Rules]）得
+
+$$\displaystyle \text{ln}L(\mu,\sigma^2)=-n\text{ln}\left(\sigma \sqrt{2\pi}\right) + \left(-\dfrac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2\right)\text{ln} e$$
+
+然后
+
+$$\displaystyle = -\frac{n}{2}\text{ln}\sigma^2 -n\text{ln}\sqrt{2\pi} - \left(\dfrac{1}{2\sigma^2}\sum_{i=1}^n (x_i-\mu)^2\right)$$
+
+假设 $$\mu$$ (期望) 为 0 ，我们求似然相对于变量 $$\sigma^2$$ (方差) 的偏导数 (将 $$\sigma^2$$ 看作一个变量)(根据导数规则 [Derivative Rules][rapidtables/derivative_Rules])
+
+$$\displaystyle \dfrac{\partial\text{ln}L(0,\sigma^2)}{\partial\sigma^2} =-\frac{n}{2\sigma^2} - \left(-\dfrac{1}{2(\sigma^2)^2}\sum_{i=1}^n x_i^2\right)=0$$
+
+公式两边乘以 $$2(\sigma^2)^2$$
+
+$$\displaystyle -n\sigma^2+\sum_{i=1}^nx_i^2=0$$
+
+那么结果就是
+
+$$\displaystyle \sigma^2 = \dfrac{\sum_{i=1}^n x_i^2}{n}$$
+
+如果加上参数 $$\mu$$ 则
+
+$$\displaystyle \hat{\sigma}^2 = \dfrac{\sum_{i=1}^n (x_i-\mu)^2}{n}$$
+
+如果对 $$\mu$$ 求偏导数
+
+$$\displaystyle \dfrac{\partial\text{ln}L(\mu,\sigma^2)}{\partial\mu} = -\dfrac{1}{2\sigma^2}\sum_{i=1}^n2(x_i-\mu)$$
+
+然后
+
+$$=-\dfrac{1}{\sigma^2}\sum_{i=1}^n(x_i-\mu)=0$$
+
+则 
+
+$$\sum_{i=1}^n(x_i-\mu)=\sum_{i=1}^nx_i-n\mu=0$$
+
+最终
+
+$$\hat{\mu}=\frac{\sum_{i=1}^nx_i}{n}$$
+
 
 [rapidtables/Ln_Rules]:https://www.rapidtables.com/math/algebra/ln/Ln_Rules.html
+[rapidtables/derivative_Rules]:https://www.rapidtables.com/math/calculus/derivative.html
