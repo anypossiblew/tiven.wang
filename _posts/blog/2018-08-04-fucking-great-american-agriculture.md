@@ -34,6 +34,8 @@ https://earthview.withgoogle.com/palmdale-united-states-5586
 
 https://earthview.withgoogle.com/el-centro-united-states-5773
 
+https://earthview.withgoogle.com/somerton-united-states-1217
+
 ## Irrigation
 
 [Irrigation 灌溉](https://en.wikipedia.org/wiki/Irrigation)
@@ -65,3 +67,5 @@ https://earthview.withgoogle.com/tall-rifat-syria-2281
 https://earthview.withgoogle.com/sun-lakes-united-states-1810
 
 https://earthview.withgoogle.com/glynneath-united-kingdom-1852
+
+https://earthview.withgoogle.com/zeewolde-netherlands-5654

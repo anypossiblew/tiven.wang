@@ -141,11 +141,13 @@ html, body {
           margin: 0 auto;
         }
         &.middle {
+          max-width: 500px;
           img {
             max-width: 500px;
           }
         }
         &.small {
+          max-width: 300px;
           img {
             max-width: 300px;
           }
@@ -156,7 +158,7 @@ html, body {
 
         figcaption {
           margin: 0 auto;
-          max-width: 300px;
+          // max-width: 300px;
         }
       }
 
@@ -222,6 +224,12 @@ html, body {
 
       .mjx-chtml.MJXc-display {
         width: 100%;
+      }
+
+      figcaption {
+         .MJXc-display {
+           display: inline;
+         }
       }
     }
 

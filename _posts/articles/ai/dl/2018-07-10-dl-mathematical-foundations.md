@@ -63,6 +63,11 @@ mathjax: true
 * unit vector 单位向量
 * unit norm 单位范数
 * orthogonal matrix 正交矩阵
+* [Jacobian matrix][wiki/Jacobian_matrix]
+
+##### Jacobian matrix
+
+[Khan Academy Lessons: Jacobian](https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives#jacobian)
 
 ### Norms 范数
 

@@ -24,6 +24,7 @@
 [wiki/Derivative]:https://en.wikipedia.org/wiki/Derivative
 [wiki/Partial_derivative]:https://en.wikipedia.org/wiki/Partial_derivative
 [wiki/Directional_derivative]:https://en.wikipedia.org/wiki/Directional_derivative
+[rapidtables/derivative]:https://www.rapidtables.com/math/calculus/derivative.html
 
 [wiki/CNN]:https://en.wikipedia.org/wiki/Convolutional_neural_network
 [wiki/Feedforward_neural_network]:https://en.wikipedia.org/wiki/Feedforward_neural_network
@@ -62,6 +63,7 @@
 [wiki/Symmetric_matrix]:https://en.wikipedia.org/wiki/Symmetric_matrix
 [wiki/Matrix_multiplication]:https://en.wikipedia.org/wiki/Matrix_multiplication
 [wiki/Hadamard_product]:https://en.wikipedia.org/wiki/Hadamard_product_(matrices)
+[wiki/Jacobian_matrix]:https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant
 
 [wiki/Conditional_probability_distribution]:https://en.wikipedia.org/wiki/Conditional_probability_distribution
 [wiki/Bayesian_probability]:https://en.wikipedia.org/wiki/Bayesian_probability

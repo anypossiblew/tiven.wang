@@ -15,4 +15,5 @@ h2, h3, h4, h5, #markdown-toc, .android-link
 .demo-blog .blog__post .mdl-card__supporting-text blockquote p {
   font-family: 'MingChao', 'Kalam', cursive;
   font-size: 14px !important;
+  font-style: normal;
 }
