@@ -19,8 +19,8 @@ share: true
 mathjax: true
 references:
   - id: 1
-    title: "CS231n Convolutional Neural Networks for Visual Recognition"
-    url: http://cs231n.github.io/convolutional-networks/
+    title: "Calculus on Computational Graphs: Backpropagation"
+    url: http://colah.github.io/posts/2015-08-Backprop/
 ---
 
 * TOC
@@ -70,6 +70,12 @@ $$\displaystyle\nabla_\boldsymbol{x}z=\left(\frac{\partial \boldsymbol{y}}{\part
 [Backpropagation][wiki/Backpropagation]
 
 http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/
+
+## 多层感知机的反向传播算法
+
+https://blog.csdn.net/qq_32611933/article/details/51612102
+
+https://blog.csdn.net/zhuimeng999/article/details/80795943
 
 ## 反向传播算法的实现
 

@@ -9,7 +9,7 @@ title: "Neural Networks"
 excerpt: "Neural Networks with TensorFlow"
 modified: 2018-08-08T11:51:25-04:00
 categories: articles
-tags: [Neural Networks, TensorFlow, Deep Learning, Python]
+tags: [Neural Networks, Deep Learning, Python]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/1594.jpg
@@ -178,7 +178,6 @@ $$y=f(\boldsymbol{x};\boldsymbol{\theta},\boldsymbol{w})=\phi(\boldsymbol{x};\bo
 * 整流线性单元及其扩展
 * logistic sigmoid 与双曲正切函数
 * 其他隐藏单元
-
 
 ### Backpropagation Learning
 
