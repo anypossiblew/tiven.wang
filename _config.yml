@@ -23,6 +23,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-redirect-from
 #  - jekyll-archives
 
 kramdown:
