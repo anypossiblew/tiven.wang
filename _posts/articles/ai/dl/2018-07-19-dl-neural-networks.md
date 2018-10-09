@@ -33,6 +33,8 @@ references:
 * TOC
 {:toc}
 
+> 开始学习神经网络之前推荐两本书：《深度学习》Ian Goodfellow 等著，《神经网络与机器学习》Simon Haykin 著。
+
 **Deep feedforward network** (深度前馈网络)，也叫 **feedforward neural network** (前馈神经网络) 或者 **multilayer perceptron, MLP** (多层感知机)，是典型的深度学习模型。前馈网络的目标是近似某个函数 $$f^*$$ (理想中的函数)。例如，对于分类器，$$y=f^*(\boldsymbol{x})$$ 将输入 $$\boldsymbol{x}$$ 映射到一个类别 $$y$$ 。前馈网络定义了一个映射 $$\boldsymbol{y}=f(\boldsymbol{x};\boldsymbol{\theta})$$ ，并且学习参数 $$\boldsymbol{\theta}$$ 的值，使它能够得得到最佳的函数近似。这种模型被称为 **feedforward** (前向) 的，是因为信息流过 $$\boldsymbol{x}$$ 的函数，流经用于定义 $$f$$ 的中间计算过程，最终到达输出 $$\boldsymbol{y}$$ 。在模型的输出和模型本身之间没有 **feedback** (反馈) 连接。当前馈神经网络被扩展成包含反馈连接时，他们被称为 recurrent neural nerwork (循环神经网络)，将在 [Deep Learning - Recurrent Neural Networks](/articles/dl-recurrent-neural-networks/) 介绍。
 
 神经网络之所以称作**网络**，是因为他们通常用许多不同函数复合在一起来表示。例如三个函数 $$f^{(1)}$$、$$f^{(2)}$$ 和 $$f^{(3)}$$ 连接在一个链上以形成 $$f(\boldsymbol{x})=f^{(3)}(f^{(2)}(f^{(1)}(\boldsymbol{x})))$$ 。这种情况下，$$f^{(1)}$$ 被称为网络的**第一层**(first layer)，$$f^{(2)}$$ 被称为第二层(second layer)，以此类推。链的全长称为模型的**深度**(depth)。前馈网络的最后一层被称为**输出层**(output layer)，其他的称为**隐藏层**(hidden layer)。网络中每个隐藏层通常都是向量值的，隐藏层的维数决定了模型的**宽度**(width)。向量的每个元素都可以被视为起到类似一个神经元的作用。可以将层想象成向量到向量的单个函数，也可以想象成由许多并行操作的**单元**(unit)组成，每个单元表示一个向量到标量的函数。每个单元在某种意义上又类似一个神经元，它接收的输入来源于许多其他的神经元，并计算它自己的激活值。
@@ -70,6 +72,8 @@ references:
 * A.I. Experiments: Visualizing High-Dimensional Space
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wvsE8jm1GzE" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
+https://www.cybercontrols.org/neuralnetworks
+
 ## 生物学本质
 
 生物神经元 ([Neurons][wiki/Neuron]) 结构
@@ -99,7 +103,7 @@ $$f^{(1)}(\boldsymbol{x})=\boldsymbol{W}^\top\boldsymbol{x}=\boldsymbol{h}$$
 
 $$f^{(2)}(\boldsymbol{h})=\boldsymbol{h}^\top\boldsymbol{w}$$ 
 
-那么 
+那么
 
 $$f(\boldsymbol{x})=f^{(2)}(f^{(1)}(\boldsymbol{x}))=\boldsymbol{w}^\top\boldsymbol{W}^\top\boldsymbol{x}$$ 
 
@@ -107,13 +111,10 @@ $$f(\boldsymbol{x})=f^{(2)}(f^{(1)}(\boldsymbol{x}))=\boldsymbol{w}^\top\boldsym
 
 线性函数无法解决像 XOR 异或的问题，
 
-
-In the field of neural networks the perceptron is considered an artificial neuron using the [Heaviside step function][wiki/Heaviside_step_function] (单位阶跃函数) for the activation function. The perceptron training algorithm is considered a supervised learning algorithm. 
+In the field of neural networks the perceptron is considered an artificial neuron using the [Heaviside step function][wiki/Heaviside_step_function] (单位阶跃函数) for the activation function. The perceptron training algorithm is considered a supervised learning algorithm.
 
 Fully connected (FC) network aka Multilayer Perceptron (MLP) aka Feedforward Neural
 Network (FNN)
-
-https://www.cybercontrols.org/neuralnetworks
 
 ## Multilayer Feed-Forward Networks
 
@@ -173,6 +174,10 @@ $$y=f(\boldsymbol{x};\boldsymbol{\theta},\boldsymbol{w})=\phi(\boldsymbol{x};\bo
 
 ### 隐藏单元
 
+何以为“**隐藏**”？输入信号是网络的输入层，输出神经单元构成网络的输出层，余下的神经元并不是网络的输出或输入的一部分，因此它们被称为“隐藏”的，构成网络的隐藏层。
+
+隐藏神经元扮演着特征检测算子（ feature detector ）的角色；它们在多层感知器的运转中起着决定性作用。随着学习过程通过多层感知器不断进行，隐藏神经元开始逐步“发现”刻画训练数据的突出特征。它们是通过将输入数据非线性变换到新的称为特征空间的空间而实现的。
+
 隐藏单元的激活函数
 
 * 整流线性单元及其扩展
@@ -180,6 +185,10 @@ $$y=f(\boldsymbol{x};\boldsymbol{\theta},\boldsymbol{w})=\phi(\boldsymbol{x};\bo
 * 其他隐藏单元
 
 ### Backpropagation Learning
+
+多层神经网络的监督学习可以有批量学习和在线学习两种方法。在批量方法中，多层感知器的突触权值的调整在训练样本集合$$\mathcal{J}$$的所有 N 个样例都出现后进行，这构成了训练的一个回合（ epoch ）。换句话说，批量学习的代价函数是由平均误差能量$$\mathcal{E}_{av}$$定义的。多层感知器的突触权值的调整是以**回合-回合**为基础的（ epoch-by-epoch ）。
+
+在线学习下，对于多层感知器突触权值的调整是以**样例-样例**为基础的（ example-by-example ）。
 
 ### Hyperparameters
 
