@@ -1,6 +1,7 @@
 ---
 layout: post
 theme: Merriweather
+star: true
 series: 
   url: deep-learning
   title: Deep Learning
@@ -71,11 +72,27 @@ $$\displaystyle\nabla_\boldsymbol{x}z=\left(\frac{\partial \boldsymbol{y}}{\part
 
 http://www.deepideas.net/deep-learning-from-scratch-i-computational-graphs/
 
-## 多层感知机的反向传播算法
+## 多层感知器的反向传播算法
 
 https://blog.csdn.net/qq_32611933/article/details/51612102
 
 https://blog.csdn.net/zhuimeng999/article/details/80795943
+
+多层感知器的监督训练最初是以批量学习和在线学习进行的。
+
+首先将误差函数表示为
+
+$$\displaystyle \mathcal{E}(n) = \frac 1 2 \sum_{j  \in C} e_{j}^2(n)$$
+
+那么对于训练样本中包含 N 个样例，则误差函数定义为：
+
+$$\displaystyle \mathcal{E}_{av}(N) = \frac 1 {N} \sum_{n=1}^N \mathcal{E}(n) = \frac 1 {2N} \sum_{n=1}^N \sum_{j \in C} e_{j}^2(n)$$
+
+其中ej(n)为第n个样本产生的第j个输出值的误差信号，即期望值减去输出值：
+
+$$e_j(n)=d_j(n)-y_j(n)$$
+
+$$\mathcal{E}(n)$$ 也就是第 n 个样本输入产生的输出层所有的输出的误差的平方和再除以 2 。除以 2 是为了后边求导时可以直接消掉。它也被称为**全部瞬时误差能量**。
 
 ## 反向传播算法的实现
 

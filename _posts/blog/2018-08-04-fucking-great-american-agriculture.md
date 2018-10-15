@@ -42,6 +42,14 @@ https://earthview.withgoogle.com/somerton-united-states-1217
 
 [灌溉对环境的影响](https://en.wikipedia.org/wiki/Environmental_impact_of_irrigation)
 
+[知乎 - 灌溉](https://www.zhihu.com/topic/19611766/hot)
+
+[精准灌溉领域的领军者 Valmont® Irrigation](http://ww2.valleyirrigation.com/valley-irrigation/cn/%E7%81%8C%E6%BA%89%E4%BA%A7%E5%93%81)
+
+### 指针式喷灌技术
+
+### 卷盘式喷灌技术
+
 ## Groundwater
 
 [Groundwater 地下水](https://en.wikipedia.org/wiki/Groundwater)
