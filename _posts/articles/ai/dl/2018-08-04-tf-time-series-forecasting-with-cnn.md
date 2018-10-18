@@ -50,4 +50,6 @@ PixelCNN http://sergeiturukin.com/2017/02/22/pixelcnn.html
 
 Auto-Regressive Generative Models (PixelRNN, PixelCNN++) https://towardsdatascience.com/auto-regressive-generative-models-pixelrnn-pixelcnn-32d192911173
 
+https://towardsdatascience.com/3-facts-about-time-series-forecasting-that-surprise-experienced-machine-learning-practitioners-69c18ee89387
+
 {% include_relative deep_learning_references.md %}
