@@ -100,6 +100,10 @@ docker run -e "http_proxy=http://myproxy.example.com:8080" \
 
 `docker inspect <container name or id> | grep "IPAddress"`
 
+### How to get IP address when Docker containers in Hyper-V VM
+
+如果你的 Windows 系统上的 Docker 默认使用 Hyper-V VM 实现，那么 Docker 命令参数 `--net=host` 就不是连的物理主机而是 Hyper-V VM 里的虚拟主机。想要查看此虚拟主机的 IP Address，首先通过 Windows 命令 `ipconfig` 查看发现 Ethernet adapter vEthernet (DockerNAT) 网络适配器的地址是如 10.0.75.1，那么再通过用 [Advanced IP Scanner](https://www.advanced-ip-scanner.com/) 软件扫描可以发现 10.0.75.2 地址，如果 Hyper-V VM 只有一个虚拟机，那么就是它了。
+
 ## Configuration
 
 ### Docker Daemon Proxy

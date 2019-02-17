@@ -51,6 +51,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 [Anaconda][anaconda] 是一种 Python 语言的免费增值开源发行版, 用于进行大规模数据处理, 预测分析, 和科学计算, 致力于简化包的管理和部署。 Anaconda 使用软件包管理系统 Conda 进行包管理。
 
+[Getting started with Anaconda](http://docs.anaconda.com/anaconda/user-guide/geijiatting-started/) Anaconda 包含 conda 和 Anaconda Navigator 两种使用方式.
+
 [anaconda]:https://anaconda.org/anaconda
 
 ## IDE
@@ -92,7 +94,7 @@ Provided you are running IPython, the %matplotlib inline will make your plot out
 
 `%matplotlib inline` sets the backend of matplotlib to the 'inline' backend:
 
-> To set this up, before any plotting or import of matplotlib is performed you must execute the %matplotlib magic command. This performs the necessary behind-the-scenes setup for IPython to work correctly hand in hand with matplotlib; it does not, however, actually execute any Python import commands, that is, no names are added to the namespace.
+> To set this up, before any plotting or import of matplotlib is performed you must execute the `%matplotlib magic` command. This performs the necessary behind-the-scenes setup for IPython to work correctly hand in hand with matplotlib; it does not, however, actually execute any Python import commands, that is, no names are added to the namespace.
 >
 > A particularly interesting backend, provided by IPython, is the  inline backend. This is available only for the Jupyter Notebook and the Jupyter QtConsole. It can be invoked as follows:
 >

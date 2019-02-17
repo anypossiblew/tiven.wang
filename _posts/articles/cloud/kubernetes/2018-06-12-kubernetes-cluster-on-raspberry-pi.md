@@ -39,9 +39,12 @@ references:
 
 为此主机配置个固定 IP，避免 Kubernetes cluster master 主机的地址都会变化，那就不好了。
 
-首先就安装 Docker，This installs 17.12 or newer.
+### Install Docker
+
+首先就安装 Docker，版本 17.12 or newer.
 
 > 这一步网络好的情况下可以连接，网络不好的情况下则需要设置代理服务器
+{: .Warning}
 
 <div class='showyourterms raspberrypi active' data-title="Raspberry Pi">
   <div class='showyourterms-container'>

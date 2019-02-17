@@ -93,7 +93,7 @@ docker run --restart=always -d --name shadowsocks-client -p 1080:1080 easypi/sha
 ```
 
 ### arm
-如果要在 arm 架构的 linux 系统上使用 shadowsocks 可以选择 `easypi/shadowsocks-libev-arm` 镜像，如在 Raspberry Pi 上
+如果要在 arm 架构的 linux 系统上使用 shadowsocks 可以选择 `easypi/shadowsocks-libev-arm` 镜像，如在 Raspberry Pi 上（如何在 Raspberry Pi 系统上安装 Docker 请参考 [Install docker on Raspberry Pi](/articles/kubernetes-cluster-on-raspberry-pi/)）
 ```
 docker run --restart=always -d --name shadowsocks-client -p 1080:1080 -e "SERVER_ADDR=35.198.219.20" -e "SERVER_PORT=6443" -e "METHOD=aes-256-cfb" -e "PASSWORD=mypassword" easypi/shadowsocks-libev-arm
 
@@ -107,7 +107,7 @@ linux 的环境变量 `http_proxy` 不支持 socks5 协议的代理，所以我�
 
 * `apt-get install privoxy -y` 安装
 
-* 配置 privoxy ,转换 socks 代理为 http 代理
+* 配置 privoxy , 转换 socks 代理为 http 代理
 
   `nano /etc/privoxy/config` 编辑配置文件，设置转换端口以及监听端口
   ```
