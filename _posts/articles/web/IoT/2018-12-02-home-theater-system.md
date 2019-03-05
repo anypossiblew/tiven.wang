@@ -52,6 +52,20 @@ http://bbs.xiaomi.cn/t-7914787-1-o0
 
 https://exp.newsmth.net/topic/e8e459a490de6d36f99b149ba22d3e85
 
+## 千兆网络
+现代家庭影音系统完全有必要需要一个千兆网络，那么怎么为自己组建一个家庭千兆网络呐？
+
+首先看我们需要光猫、路由器、交换机、网线等都必须达到千兆级。
+
+### 网线
+
+首先需要注意的网线，因为对于新房子来说，开发商已经布置好了部分网线。所以在装修时需要考虑重新布设网线或者更换原来的网线。
+
+http://baijiahao.baidu.com/s?id=1600766279209241336&wfr=spider&for=pc
+
+
+
+
 [DLNA]:https://www.wikiwand.com/zh/%E6%95%B0%E5%AD%97%E7%94%9F%E6%B4%BB%E7%BD%91%E7%BB%9C%E8%81%94%E7%9B%9F
 [kodi]:https://kodi.tv/
 
