@@ -2,6 +2,8 @@
 sitemap: false
 ---
 
+@import "fonts";
+
 @import "variables";
 
 
@@ -18,7 +20,7 @@ html, body {
 }
 
 .android-drawer {
-  font-family: 'Comfortaa', cursive;
+  font-family: $heading-font, cursive;
   .mdl-layout-title {
     background-image: url(/images/bg-lab.jpg);
     background-repeat: no-repeat;
@@ -26,7 +28,7 @@ html, body {
     background-size: cover;
     display: flex;
     flex-direction: column;
-    font-family: 'Comfortaa', cursive;
+    font-family: $heading-font, cursive;
     a {
       text-decoration: none;
       color: white;
@@ -36,10 +38,10 @@ html, body {
 }
 
 .android-header {
-  font-family: 'Comfortaa', cursive;
+  font-family: $heading-font, cursive;
   .mdl-layout__header-row {
     .mdl-layout-title {
-      font-family: 'Comfortaa', cursive;
+      font-family: $heading-font, cursive;
       a {
         text-decoration: none;
         color: #6ab344;
@@ -51,14 +53,6 @@ html, body {
     }
   }
 }
-
-// h2[id], h3[id], h4[id] {
-//     font-family: 'Comfortaa',"Roboto","Helvetica","Arial",sans-serif;
-// }
-
-// .demo-blog .blog__post .demo-references.mdl-card .mdl-list__item {
-//     font-family: 'Comfortaa',"Roboto","Helvetica","Arial",sans-serif;
-// }
 
 .demo-blog.demo-blog--blogpost .blog__post {
   text-align: left;
