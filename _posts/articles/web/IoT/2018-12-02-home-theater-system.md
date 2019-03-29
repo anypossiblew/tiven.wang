@@ -36,7 +36,11 @@ http://www.mz6.net/news/pingce/6488.html
 
 ## 软路由
 
-LEDE软路由
+LEDE 软路由
+
+Mesh 网络
+
+Merlin 固件
 
 ## 技术概念
 
@@ -52,6 +56,26 @@ http://bbs.xiaomi.cn/t-7914787-1-o0
 
 https://exp.newsmth.net/topic/e8e459a490de6d36f99b149ba22d3e85
 
+### 电影文件名词解释
+
+例如下面的电影名里的技术名词
+```
+1080p.3D.BluRay.BluRay.Half-OU.x264.TrueHD.7.1.Atmos-FGT
+1080p.3D.BluRay.BluRay.Half-SBS.x264.DTS-HD.MA.7.1-FGT
+2160p.BluRay.x265.10bit.SDR.DTS-HD.MA.TrueHD.7.1.Atmos-SWTYBLZ
+2160p.BluRay.x265.10bit.HDR.DTS-HD.MA.TrueHD.7.1.Atmos-SWTYBLZ
+2160p.BluRay.x264.8bit.SDR.DTS-HD.MA.TrueHD.7.1.Atmos-SWTYBLZ
+2160p.BluRay.REMUX.HEVC.DTS-HD.MA.TrueHD.7.1.Atmos-FGT
+2160p.BluRay.HEVC.TrueHD.7.1.Atmos-BHD
+1080p.BluRay.x264.TrueHD.7.1.Atmos-SWTYBLZ
+1080p.BluRay.REMUX.AVC.DTS-HD.MA.7.1-FGT
+1080p.BluRay.AVC.DTS-HD.MA.7.1-FGT
+```
+
+[DTS](https://www.wikiwand.com/en/DTS_(sound_system)) [DTS-HD] [DTS++]
+
+H265 解码
+
 ## 千兆网络
 现代家庭影音系统完全有必要需要一个千兆网络，那么怎么为自己组建一个家庭千兆网络呐？
 
@@ -63,8 +87,9 @@ https://exp.newsmth.net/topic/e8e459a490de6d36f99b149ba22d3e85
 
 http://baijiahao.baidu.com/s?id=1600766279209241336&wfr=spider&for=pc
 
+秋叶原 6 类线
 
-
+[京东优评 - 告诉你如何选网线，让你的网速飞起来](https://www.jd.com/phb/zhishi/e2d8c586cbe4a448.html)
 
 [DLNA]:https://www.wikiwand.com/zh/%E6%95%B0%E5%AD%97%E7%94%9F%E6%B4%BB%E7%BD%91%E7%BB%9C%E8%81%94%E7%9B%9F
 [kodi]:https://kodi.tv/

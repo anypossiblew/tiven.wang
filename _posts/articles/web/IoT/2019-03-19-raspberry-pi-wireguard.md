@@ -10,3 +10,5 @@ wireguard-ammp 0.0.20181119 from Svet Bajlekov (ammp) installed
 ```
 
 https://docs.snapcraft.io/getting-started/3876
+
+参考 https://github.com/adrianmihalko/raspberrypiwireguard 👌

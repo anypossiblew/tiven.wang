@@ -149,38 +149,56 @@ DDNS 并不合适，有的需要费用，noip 的 DNS 可能被墙内污染了�
 
 https://ngrok.com/
 
-## VPS+VPN+IPFORWARD
+## VPS+VPN+IPFORWARD👌
 
 如果你已经有现有的域名和 VPS 可以选择如下方式。
 
 https://www.digitalocean.com/community/tutorials/how-to-forward-ports-through-a-linux-gateway-with-iptables
 
-我想还可以用 WireGuard 加密协议和 TunSafe 客户端（因为 TunSafe 客户端会自动重连，并且走的是 UDP 协议效率很高）实现双向内网穿透的相互访问。
+我想还可以用 WireGuard 加密协议（走的是 UDP 协议效率很高）和 TunSafe 客户端（因为 Windows 系统使用 TunSafe 客户端比较方便，Ubuntu 等 Linux 系统可以用 WireGuard 程序）实现双向内网穿透的相互访问。WireGuard 加密协议是在两台电脑之间建立一个虚拟局域网，那么不管这两台电脑分别在哪里都可以使用局域网地址相互访问。例如：VPS 服务器（公网地址是 `35.198.168.21`）的 WireGuard 协议局域网地址是 `10.0.0.1`，家里的 Desktop 系统（不管公网地址是多少，因为它是会变的）的 WireGuard 协议地址是 `10.0.0.2`。那么用户用 (VPS 公网地址 `35.198.168.21`) + (端口号 `80`) 访问 VPS 服务器，VPS 服务器做 Iptables 转发给家庭主机的内网地址（`10.0.0.2`+`8080`）就可以实现访问了。不过麻烦的是，iptables 转发规则需要手动维护。
+> 有没有脚本给做自动维护，再加个 Web 界面就可以了？
 
-用户用 (VPS 公网 IP) + (端口号) 访问 VPS 服务器，VPS 服务器做 Iptables 转发给 WireGuard 代表的内网地址。不过麻烦的是，iptables 转发规则需要手动维护。有没有脚本给做自动维护，再加个 Web 界面就可以了？
+### 如何设置 Iptables 转发
 
 设置 VPS 服务器的防火墙转发规则
 ```
-sudo iptables -A FORWARD -i ens4 -o wg0 -p tcp --syn --dport 8123 -m conntrack --ctstate NEW -j ACCEPT
+sudo iptables -A FORWARD -i ens4 -o wg0 -p tcp --syn --dport 8080 -m conntrack --ctstate NEW -j ACCEPT
 sudo iptables -A FORWARD -i ens4 -o wg0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 sudo iptables -A FORWARD -i wg0 -o ens4 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-sudo iptables -t nat -A PREROUTING -i ens4 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.2:8123
-sudo iptables -t nat -A POSTROUTING -o wg0 -p tcp --dport 8123 -d 10.0.0.2 -j SNAT --to-source 10.0.0.1
+sudo iptables -t nat -A PREROUTING -i ens4 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.2:8080
+sudo iptables -t nat -A POSTROUTING -o wg0 -p tcp --dport 8080 -d 10.0.0.2 -j SNAT --to-source 10.0.0.1
 ```
 
-Open Windows 10 firewall port:
+要删除规则的话, 把添加规则时的参数 `-A` 改成 `-D` 就可以删除了
 ```
-netsh advfirewall firewall add rule name="Open Port 8123 for HASS" dir=in action=allow protocol=TCP localport=8123
+sudo iptables -D FORWARD -i ens4 -o wg0 -p tcp --syn --dport 8080 -m conntrack --ctstate NEW -j ACCEPT
+sudo iptables -D FORWARD -i ens4 -o wg0 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -D FORWARD -i wg0 -o ens4 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -t nat -D PREROUTING -i ens4 -p tcp --dport 80 -j DNAT --to-destination 10.0.0.2:8080
+sudo iptables -t nat -D POSTROUTING -o wg0 -p tcp --dport 8080 -d 10.0.0.2 -j SNAT --to-source 10.0.0.1
+```
+
+查看规则列表
+```
+sudo iptables -t nat -L -v -n
+```
+
+### 注意事项
+需要注意的是你的家庭主机系统的防火墙可能需要对局域网进行相应端口开放，例如打开 Windows 10 firewall port 命令:
+```
+netsh advfirewall firewall add rule name="Open Port 8080 for HASS" dir=in action=allow protocol=TCP localport=8080
 ```
 
 如果 Windows 还要转发给另外的主机系统，可以用 Windows 的端口转发规则
 ```
-netsh interface portproxy add v4tov4 listenport=8123 listenaddress=10.0.0.2 connectport=8123 connectaddress=192.168.3.249
+netsh interface portproxy add v4tov4 listenport=8080 listenaddress=10.0.0.2 connectport=8080 connectaddress=192.168.3.249
 ```
 
-要删除的话用命令 `netsh advfirewall firewall delete rule name="Open port 8123 for HASS"`
+要删除的话用命令 `netsh advfirewall firewall delete rule name="Open port 8080 for HASS"`
 
-### nginx
+Linux 系统的防火墙程序 [ufw](https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/).
+
+## nginx
 
 反向代理
 

@@ -27,6 +27,8 @@ references:
 
 [WireGuard][wireguard]
 
+https://www.wireguard.com/netns/
+
 This only works if you have your kernel headers installed in /usr/src and your kernel allows kernel modules (CONFIG_MODULES=y).
 
 If you are like me and set CONFIG_MODULES=n then you can use my kernel-builder Dockerfile to build a custom kernel.

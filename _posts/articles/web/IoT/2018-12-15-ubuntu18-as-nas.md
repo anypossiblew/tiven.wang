@@ -60,73 +60,6 @@ uTorrent 是由 BitTorrent Inc 拥有的封闭源的 BitTorrent 客户端。可�
 
 https://www.logcg.com/archives/2750.html
 
-#### Ubuntu 手动安装
-依照文档 Nextcloud [Installation and server configuration](https://docs.nextcloud.com/server/15/admin_manual/installation/) 进行安装。
-
-* 安装服务器软件
-```
-apt-get install apache2 libapache2-mod-php7.2
-apt-get install php7.2-gd php7.2-json php7.2-mysql php7.2-curl php7.2-mbstring
-apt-get install php7.2-intl php-imagick php7.2-xml php7.2-zip
-```
-
-* 安装数据库 mysql
-  * 安装 mysql `apt-get install mysql-server mysql-client`
-  * Setup Mysql 数据库 `mysql_secure_installation`
-  * 设置远程访问
-    * 解除绑定IP地址: 从 `/etc/mysql/my.cnf` 或者 `/etc/mysql/mysql.conf.d/mysqld.cnf` 里删除 `bind-address = 127.0.0.1`
-    * 重启服务 `/etc/init.d/mysql restart`
-    * 授权用户远程连接
-    `grant all privileges on *.* to root@"%" identified by "password" with grant option`
-    `flush privileges;`
-  * 创建数据库, 名称是nextcloud
-    ```
-    sudo mysql -u root -p
-    create database nextcloud;
-    quit;
-    ```
-* 安装 mariadb
-  `apt-get install mariadb-server mariadb-server-10.1`
-* 安装 NextCloud;
-  * 下载并解压 Nextcloud 文件包，
-  * 复制到 Apache2 根目录 `cp -rv nextcloud /var/www/`
-  * 配置 Apache2
-    * 创建子目录配置文件 `nano /etc/apache2/sites-available/nextcloud.conf`
-      ```
-      Alias /nextcloud "/var/www/nextcloud/"
-
-      <Directory /var/www/nextcloud/>
-        Options +FollowSymlinks
-        AllowOverride All
-
-      <IfModule mod_dav.c>
-        Dav off
-      </IfModule>
-
-      SetEnv HOME /var/www/nextcloud
-      SetEnv HTTP_HOME /var/www/nextcloud
-
-      </Directory>
-      ```
-    * 激活新建的网站 `a2ensite nextcloud.conf`
-    * 添加模块 `a2enmod rewrite`
-      ```
-      a2enmod headers
-      a2enmod env
-      a2enmod dir
-      a2enmod mime
-      ```
-    * 配置根目录权限 `chown -R www-data:www-data /var/www/nextcloud/`
-    * Enabling SSL
-      ```
-      a2enmod ssl
-      a2ensite default-ssl
-      service apache2 reload
-      ```
-
-* Installation wizard
-  * 浏览器访问 `http://localhost/nextcloud`
-
 #### Nextcloud 安装在 Docker 上
 
 ##### Installation wizard
@@ -170,5 +103,7 @@ https://docs.docker.com/storage/volumes/
 
 ## Ubuntu Firewall Open Port
 如果发现同一局域网的电脑也访问不了此 Ubuntu 系统的端口时，可以查看此 Ubuntu 系统的防火墙状态，是否允许相应端口号的外部访问权限。[How To: Ubuntu Linux Firewall Open Port Command](https://www.cyberciti.biz/faq/how-to-open-firewall-port-on-ubuntu-linux-12-04-14-04-lts/)
+
+https://www.linode.com/docs/security/firewalls/configure-firewall-with-ufw/
 
 例如 `sudo ufw allow from 192.168.0.0/16 to any port 8080 proto tcp`

@@ -262,9 +262,23 @@ https://blog.chih.me/global-proxy-within-redsocks-and-shadowsocks.html
 
 ### Securing DNS Traffic in China
 
-DNS防污染，国内ip白名单
+#### DNS 污染
+DNS 污染是什么，如何查看 DNS 污染
 
-http://blog.anthonywong.net/2016/01/18/securing-dns-traffic-in-china/
+1. 点“开始”-“运行”-输入 CMD，再输入 `ipconfig /all` ，在下 DNS SERVER 里找到你使用的 DNS 服务器地址。
+2. 再输入 nslookup abc.com（你的域名） 你的DNS服务器IP ，来查看是否能解析。
+3. 再输入 nslookup abc.com 8.8.8.8 使用 Google 的 DNS 服务器验证。
+
+#### DNScrypt
+
+[SimpleDnscrypt](https://simplednscrypt.org/)
+
+[MacOS 下使用 DNSmasq 和 DNScrypt 防止污染](https://polynomia.github.io/dns_proxy/) 试试 DNSmasq + DNScrypt proxy + DNScrypt server (VPS) 方式防 DNS 污染。
+
+DNS 防污染(DNScrypt)，国内 IP 白名单(DNSmasq)
+
+[Securing DNS Traffic in China
+](http://blog.anthonywong.net/2016/01/18/securing-dns-traffic-in-china/)
 
 * 第一步安装 dnscrypt-proxy
 
@@ -304,6 +318,10 @@ reboot
 `sudo dnscrypt-proxy /etc/dnscrypt-proxy/dnscrypt-proxy.conf --resolver-name=dnscrypt.eu-dk`
 
 https://www.opendns.com/
+
+#### DNSCrypt server
+
+[How to setup your own DNSCrypt server in less than 10 minutes](https://github.com/jedisct1/dnscrypt-proxy/wiki/How-to-setup-your-own-DNSCrypt-server-in-less-than-10-minutes)
 
 ### dnsmasq
 
@@ -362,6 +380,8 @@ https://www.wireguard.com/
 https://tunsafe.com/
 
 http://www.jpzyfx.com/23798.html
+
+> 2019-03-10 这段时间发现电脑 Windows 系统上的 Tunsafe 可以连上 server 但浏览器连不上网络, 但 Android 端的 Tunsafe 可以使用, 于是我使用了 Android 上一个叫 Proxy Server 的软件把 Android 当作一个代理服务器供电脑使用, 于是电脑就可以上网了.
 
 ## ShadowsocksR
 
