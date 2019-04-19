@@ -5,7 +5,7 @@ title: SAP ABAP CDS
 excerpt: "ABAP CDS View"
 modified: 2018-10-08T17:00:00-00:00
 categories: articles
-tags: [CDS, ABAP, SAP]
+tags: [CDS, ABAP, Analytics, SAP]
 image:
   vendor: twitter
   feature: /media/DK57HdFUQAEsepr.jpg:large
@@ -18,7 +18,13 @@ references:
     url: "https://blogs.sap.com/2017/09/22/data-filtration-options-and-performance-analysis-in-abap-cds-views/"
 ---
 
+## CDS
+
+[CDS Views: Tools and Tables](https://wiki.scn.sap.com/wiki/display/BI/CDS+Views%3A+Tools+and+Tables)
+
 ## Annotations
+
+* Convey 传达 某种信息
 
 ### Consumption
 
@@ -33,6 +39,19 @@ Via these annotations, the specific behavior is defined which is related to the 
 ### Date Functions
 
 [ABAP CDS - Date Functions and Time Functions](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abencds_f1_date_functions.htm)
+
+## CRUD
+
+通过 CDS View 创建 OData service 有三种途径：
+* __`@OData.publish` annotation__ 通过 CDS View 的注解 `@OData.publish` 自动生成 OData service
+* __Reference Data Source__ 通过 OData project 里 Reference Data Source 功能链接到 CDS View
+* __Import DDIC Structure__ 通过 OData project 里 Import  DDIC Structure 功能引入 CDS View 结构
+
+那么以上只有 Import DDIC Structure 是属于手动创建 OData entityset，所以只有这种可以设置 CRUD 自定义逻辑。
+
+Creatable, Updatable, Deletable, Pageable, Addr.able, Searchable, Subscr.able
+
+[update, D-delete OData Services Creation Using ABAP CDS Views](https://www.skybuffer.com/c-create-r-read-u-update-d-delete-odata-services-creation-using-abap-cds-views/)
 
 ## CDS Test Double Framework
 
@@ -98,6 +117,18 @@ ENDMETHOD.
 注意这里 Mock 数据内表的类型要使用 ABAP CDS 依赖组件的数据类型，因为 `environment->insert_test_data` 方法会根据其类型找到相应的依赖组件 Double 出来的对象并插入 Mock 数据。
 
 插入 Mock 数据之后便可以运行 Open SQL 进行实际测试了，使用 Open SQL 读取 ABAP CDS 视图得到想要的结果。这里读取真实的 ABAP CDS View 是怎么得到 Mock 数据的呐？这因为 CDS Test Double Framework 使用了 Open SQL 的一项新功能 [Replacement Service][abennews-752-open_sql], 类 [CL_OSQL_REPLACE][CL_OSQL_REPLACE] 可以在 ABAP Unit 单元测试中将数据库访问重定向至访问其它数据库的 Open SQL。如何应用可以参考示例程序 `demo_cl_osql_replace`。
+
+## Performance Optimization
+
+https://blogs.sap.com/2018/07/03/performance-optimization-for-abap-cds-view/
+
+General Architecture for SAP S/4HANA:
+
+![](https://blogs.sap.com/wp-content/uploads/2018/07/S1.jpg)
+
+SQL Processing Steps :
+
+![](https://blogs.sap.com/wp-content/uploads/2018/07/s2.jpg)
 
 [abennews-752-open_sql]:https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abennews-752-open_sql.htm#!ABAP_MODIFICATION_11@11@
 [CL_OSQL_REPLACE]:https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abencl_osql_replace.htm

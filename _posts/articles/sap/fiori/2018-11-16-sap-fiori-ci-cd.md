@@ -33,5 +33,24 @@ share: true
 * [CI Best Practices Guide – SAPUI5/SAP Fiori on SAP Cloud Platform](https://developers.sap.com/tutorials/ci-best-practices-fiori-sapcp.html)
 
 
-
 ABAPGit
+
+Jenkins
+CircleCI
+GitLab CI/CD
+
+![forrester ci wave graphic](https://about.gitlab.com/images/home/forrester-ci-wave-graphic.svg)
+
+## With Docker Container
+
+Containerization is quickly becoming the most accepted method of packaging and deploying applications in cloud environments. The standardization it provides, along with its resource efficiency (when compared to full virtual machines) and flexibility, make it a great enabler of the modern DevOps mindset. Many interesting cloud native deployment, orchestration, and monitoring strategies become possible when your applications and microservices are fully containerized.
+
+
+```
+Git — 版本管理
+GitHub — 程式碼託管、審查
+CircleCI — 自動化建置、測試、部署
+Docker — 可攜式、輕量級的執行環境(使用 Docker，統一開發者、測試人員、以及產品的執行環境。)
+AWS Elastic Beanstalk — 雲端平台
+Slack — 團隊溝通、日誌、通知
+```

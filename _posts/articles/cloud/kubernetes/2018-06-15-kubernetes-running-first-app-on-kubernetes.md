@@ -406,12 +406,6 @@ kube-tiven-qwgq4   1/1       Running   0          2m
 
 
 
-
-
-
-
-
-
 [pods]:https://kubernetes.io/docs/concepts/workloads/pods/pod-overview/
 [replicationcontroller]:https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
 [deployment]:https://kubernetes.io/docs/concepts/workloads/controllers/deployment/

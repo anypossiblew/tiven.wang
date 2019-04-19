@@ -8,6 +8,7 @@ h2, h3, h4, h5, #markdown-toc
 }
 .demo-blog .blog__post .mdl-card__supporting-text blockquote
 {
-  font-family: 'Special Elite', cursive, sans-serif;
+  font-family: 'Ubuntu Mono', 'Special Elite', cursive, sans-serif;
   font-size: 14px !important;
+  font-style: normal;
 }

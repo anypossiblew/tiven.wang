@@ -269,11 +269,44 @@ docker run -d --net=container:k8s gcr.io/google_containers/hyperkube:v1.7.11 /sc
 
 ### Kubernetes in Docker for Windows CE Edge
 我又发现 [Docker for Windows 18.02 CE Edge](https://docs.docker.com/docker-for-windows/kubernetes/) 支持了 [Kubernetes](https://www.docker.com/kubernetes) 。
-但并没有成功启动它。
+但并没有成功启动它。 把 Docker 软件 *Reset to factory defaults...* 后重新 *Enable Kubernetes* 成功了。
 
-把 Docker 软件 *Reset to factory defaults...* 后重新 *Enable Kubernetes* 成功了。
+安装成功后使用命令 `kubectl get nodes` 可以看到有一个节点已经就绪
+```
+$ kubectl get nodes
+NAME                 STATUS    ROLES     AGE       VERSION
+docker-for-desktop   Ready     master    20m       v1.10.11
+```
 
-https://www.hanselman.com/blog/HowToSetUpKubernetesOnWindows10WithDockerForWindowsAndRunASPNETCore.aspx
+[Deploy on Kubernetes](https://docs.docker.com/docker-for-windows/kubernetes/)
+
+#### Setting up Kubernetes Dashboard
+
+部署 Kubernetes Dashboard
+```
+$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+secret "kubernetes-dashboard-certs" created
+serviceaccount "kubernetes-dashboard" created
+role.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
+rolebinding.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
+deployment.apps "kubernetes-dashboard" created
+service "kubernetes-dashboard" created
+```
+
+运行 `kubectl proxy`
+
+访问链接 [http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/](http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/) 可以看到让选择登录配置，在 Windows Powershell 里执行
+```powershell
+PS C:\Users\tiven.wang> $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1
+]
+PS C:\Users\tiven.wang> kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
+User "docker-for-desktop" set.
+```
+
+然后选择 Kubeconfig 并选择配置文件 `C:\Users<Username>\.kube\config` 就可以登录了。
+
+[5 Minutes to Kubernetes Dashboard running on Docker Desktop for Windows 2.0.0.3](http://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/)
+
 
 ## First Application
 Minikube 版的 Kubernetes 已经安装好了，现在就来部署我们的第一个应用吧。
@@ -303,8 +336,15 @@ Opening kubernetes service default/ghost in default browser...
 ```
 `minikube service ghost` 命令会在浏览器中打开指定服务的地址。这里可能需要等待 Docker container 创建完成，也用 `kubectl get pods` 可以查看 pods 的运行状态，当为 `Running` 时说明启动完成。
 
-更多相关情况可以使用 `minikube dashboard` 查看 Kubernetes Dashboard ，你会发现在 namespace `default` 下新增了 [ghost][ghost] 相关的 Deployment, Pod, Replica Set, Service 。
+或者使用下面命令查看服务暴露的端口
+```
+λ kubectl get services
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+ghost        NodePort    10.103.126.172   <none>        2368:31522/TCP   23m
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP          54m
+```
 
+更多相关情况可以使用 `minikube dashboard` 查看 Kubernetes Dashboard ，你会发现在 namespace `default` 下新增了 [ghost][ghost] 相关的 Deployment, Pod, Replica Set, Service 。
 
 
 ## Conclusion
