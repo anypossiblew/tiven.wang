@@ -1,6 +1,7 @@
 ---
 layout: post
 redirect_from: "/articles/sap-cds"
+star: true
 title: SAP ABAP CDS
 excerpt: "ABAP CDS View"
 modified: 2018-10-08T17:00:00-00:00
@@ -20,11 +21,21 @@ references:
 
 ## CDS
 
+Technically, __CDS__ is an enhancement of _**SQL**_ which provides a Data Definition Language (DDL) for defining semantically rich database tables/views (CDS entities) and user-defined types in the database. 有这些增强
+
+* __Expressions__ used for calculations and queries in the data model
+* __Associations__ on a conceptual level, replacing joins with simple path expressions in queries
+* __Annotations__ to enrich the data models with additional (domain specific) metadata
+
+CDS 分为 ABAP 和 SAP HANA 两个版本。ABAP CDS 可以被 ABAP 程序通过 Open SQL statements 访问。
+
 [CDS Views: Tools and Tables](https://wiki.scn.sap.com/wiki/display/BI/CDS+Views%3A+Tools+and+Tables)
 
 ## Annotations
 
 * Convey 传达 某种信息
+
+[SAP CDS annotations list](https://help.sap.com/viewer/cc0c305d2fab47bd808adcad3ca7ee9d/7.5.14/en-US/630ce9b386b84e80bfade96779fbaeec.html)
 
 ### Consumption
 
@@ -120,7 +131,13 @@ ENDMETHOD.
 
 ## Performance Optimization
 
+我觉得关于 CDS Performance 优化的问题可以从两个方面考虑：
+* CDS 本身的优化
+* HANA View 的优化，因为最终 CDS View 都会转成 HANA View 的
+
 https://blogs.sap.com/2018/07/03/performance-optimization-for-abap-cds-view/
+
+https://blogs.sap.com/2018/11/15/safeguard-performance-of-abap-cds-views-part-1-cds-view-complexity/
 
 General Architecture for SAP S/4HANA:
 
@@ -129,6 +146,32 @@ General Architecture for SAP S/4HANA:
 SQL Processing Steps :
 
 ![](https://blogs.sap.com/wp-content/uploads/2018/07/s2.jpg)
+
+### CDS Optimazation
+
+#### performance annotations
+
+* `@ObjectModel.usageType.serviceQuality` quality of service with respect to the expected performance of the CDS view
+* `@ObjectModel.usageType.dataClass` type of data in CDS view (transactional data, master data, …)
+* `@ObjectModel.usageType.sizeCategory` set of data whichhas to be searched through in order to compute the result set
+
+### HANA View Optimazation
+
+从 HANA 数据库角度出发进行优化 View
+
+https://blogs.sap.com/2013/06/05/abap-on-hana-from-analysis-to-optimization/
+
+### PUSH DOWN
+
+Limit push down and aggregation push down
+
+### Calculation PUSH UP
+
+## Evaluation of Annotations
+
+CL_DD_DDL_ANNOTATION_SERVICE
+
+## for Embedded Analytics
 
 [abennews-752-open_sql]:https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abennews-752-open_sql.htm#!ABAP_MODIFICATION_11@11@
 [CL_OSQL_REPLACE]:https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/abencl_osql_replace.htm

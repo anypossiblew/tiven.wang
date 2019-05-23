@@ -4,7 +4,7 @@ title: SAP Cloud Platform Integration - Message Mapping
 excerpt: "SAP Cloud Platform Integration provides message mapping, where you can map fields between two messages  . Message mapping is one of the widely used message transformation steps in an integration flow."
 modified: 2018-01-16T17:00:00-00:00
 categories: articles
-tags: [SCI, iPaaS, EIP, SCP]
+tags: [SAP CPI, iPaaS, EIP, SAP Cloud]
 image:
   vendor: twitter
   feature: /media/DRrKrhbX0AATJbd.jpg:large

@@ -1,3 +1,33 @@
+- title: SAP ABAP CDS
+  url: /series/sap-abap-cds
+  image:
+    vendor: nationalgeographic
+    feature: /content/dam/travel/rights-exempt/2018-travel-photographer-of-the-year/sunset-sunrise-golden-hour/sunrise-myanmar-burma-golden-hour-01.ngsversion.1527707084997.adapt.885.1.jpg
+    credit: NATIONAL GEOGRAPHIC TRAVEL
+    creditlink: https://www.nationalgeographic.com/travel/features/photography/sunset-sunrise-golden-hour-light/
+  posts:
+    - title: SAP ABAP CDS
+      description: SAP ABAP CDS
+      link: /articles/sap-abap-cds/
+    - title: CDS based Virtual Data Model (VDM)
+      description: "The Virtual Data Model (VDM) represents the simplified and harmonized business oriented semantically enriched data model of the suite. “Virtual” refers to the fact that the VDM semantical model may deviate from the historically grown persistent model of database tables to make it simpler and easier to understand."
+      link: /articles/cds-based-vdm/
+    - title: From a CDS View to an OData Service for Analytics
+      description: "The Virtual Data Model (VDM) represents the simplified and harmonized business oriented semantically enriched data model of the suite. “Virtual” refers to the fact that the VDM semantical model may deviate from the historically grown persistent model of database tables to make it simpler and easier to understand."
+      link: /articles/cds-to-odata-for-analytics/
+    - title: CDS and OData Extensibility
+      description: ""
+      link: /articles/cds-extensibility/
+    - title: Introduction to CDS on HANA and ABAP part 1
+      description: ""
+      link: /articles/cds-on-hana-and-abap/
+    - title: Introduction to CDS on HANA and ABAP Part 2 - Authorization Check
+      description: ""
+      link: /articles/cds-on-hana-and-abap-part-2/
+    - title: Introduction to CDS on HANA and ABAP Part 3 - Unit Test
+      description: ""
+      link: /articles/cds-on-hana-and-abap-part-3/
+
 - title: Kubernetes
   url: /series/kubernetes
   image:

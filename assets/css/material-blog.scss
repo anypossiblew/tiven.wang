@@ -292,6 +292,9 @@ html, body {
     .highlighter-rouge {
       box-sizing: border-box;
       font-family: "Lucida Console", Consolas, monospace, "Open Sans";
+      code {
+        font-family: "Lucida Console", Consolas, monospace, "Open Sans";
+      }
     }
   }
 

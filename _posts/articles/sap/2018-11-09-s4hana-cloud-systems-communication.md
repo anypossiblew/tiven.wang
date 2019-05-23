@@ -2,7 +2,7 @@
 layout: post
 theme: UbuntuMono
 series: 
-  url: s/4hana-cloud
+  url: s4hana-cloud
   title: S/4HANA Cloud
 title: "Communications in S/4HANA Cloud with other Systems"
 excerpt: "How to config Communications in S/4HANA Cloud with other Systems"
@@ -30,4 +30,4 @@ Communication Management:
 
 https://blogs.sap.com/2018/06/02/sap-s4hana-cloud-extensibility-basics-of-creating-finding-and-using-odata-service-in-custom-business-objects-and-custom-cds-views/
 
-在 https://api.sap.com 里可以查找 SAP 交付的标准的接口信息，然后再用其 Communication Scenario 创建 Communication Arrangement 。
+在 https://api.sap.com 里可以查找 SAP 交付的标准的接口信息，然后再为此 Communication Scenario 创建 相应的 Communication Arrangement 。

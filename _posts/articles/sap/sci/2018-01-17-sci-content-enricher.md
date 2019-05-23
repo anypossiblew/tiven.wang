@@ -4,7 +4,7 @@ title: SAP Cloud Platform Integration - Content Enricher
 excerpt: "How do we communicate with another system if the message originator does not have all the required data items available? Use a specialized transformer, a Content Enricher, to access an external data source in order to augment a message with missing information."
 modified: 2018-01-17T17:00:00-00:00
 categories: articles
-tags: [SCI, iPaaS, EIP, SCP]
+tags: [SAP CPI, iPaaS, EIP, SAP Cloud]
 image:
   vendor: twitter
   feature: /media/DTMCqPFVAAIOIHh.jpg:large

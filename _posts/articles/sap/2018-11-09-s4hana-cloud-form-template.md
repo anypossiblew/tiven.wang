@@ -2,7 +2,7 @@
 layout: post
 theme: UbuntuMono
 series: 
-  url: s/4hana-cloud
+  url: s4hana-cloud
   title: S/4HANA Cloud
 title: "Form Templates"
 excerpt: "Custom form templates in S/4HANA Cloud"

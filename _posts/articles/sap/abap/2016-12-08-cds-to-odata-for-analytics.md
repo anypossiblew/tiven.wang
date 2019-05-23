@@ -192,7 +192,6 @@ All characteristics that shall be included in the EasyQuery have to be in Rows. 
 
 ![Add Dimension And Key Figures](/images/hana/olap/AddDimensionAndKeyFigures.jpg)
 
-
 Check if Easy Query is successful generated. Start transaction **EQManager** in BW/ODP client( e.g. ANA(333)). The query should appear in the list. A generated function module /BIC/NF_xx indicates indicates a sucessful generation. Field Easy Query and FUnction Module must be filled. If not, try to regenerate the Easy Query with the appropriate button.
 
 ![Check Easy Query](/images/hana/olap/EQCheck.jpg)

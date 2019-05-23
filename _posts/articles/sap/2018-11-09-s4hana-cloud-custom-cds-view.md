@@ -2,7 +2,7 @@
 layout: post
 theme: UbuntuMono
 series: 
-  url: s/4hana-cloud
+  url: s4hana-cloud
   title: S/4HANA Cloud
 title: "Custom CDS Views"
 excerpt: "Custom CDS Views in S/4HANA Cloud"

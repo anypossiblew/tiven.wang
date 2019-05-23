@@ -21,6 +21,8 @@ references:
 * TOC
 {:toc}
 
+https://blogs.sap.com/2018/03/19/s4-embedded-analytics-the-virtual-data-model/
+
 ## VDM
 The Virtual Data Model (VDM) represents the simplified and harmonized business oriented semantically enriched data model of the suite.
 “Virtual” refers to the fact that the VDM semantical model may deviate from the historically grown persistent model of database tables to make it simpler and easier to understand.
@@ -40,7 +42,13 @@ There are currently two different implementation approaches:
 
 ### View Layering of the CDS based VDM
 
+* View Layering 1
+
 [![VDM Example View Layer](/images/hana/cds/VDM_ExampleViewLayer.jpg)](/images/hana/cds/VDM_ExampleViewLayer.jpg)
+
+* View Layering 2
+
+![Architecture of VDMMetaModel](/images/hana/cds/architecture-of-VDMMetaModel.png)
 
 ### VDM CDS Meta Model Overview  
 The following diagram is a reference of the VDM Meta Model showing the most important specializations of views, fields, associations and parameters, which form the VDM meta model, in effect. It also shows the annotations that are used to define these specializations.
@@ -78,6 +86,4 @@ Explicit Model in Analytical Engine:
 
 [![VDMCDSBOPFBO](/images/hana/cds/VDMCDSBOPFBO.jpg)](/images/hana/cds/VDMCDSBOPFBO.jpg)
 
-## VDM Metadata Check
 
-### Metadata Analysis Report

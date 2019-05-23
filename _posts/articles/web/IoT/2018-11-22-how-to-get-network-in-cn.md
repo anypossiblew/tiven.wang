@@ -52,7 +52,7 @@ https://www.youtube.com/watch?v=4QFrMum4_yE
 
 从 https://www.raspberrypi.org/downloads 网站下载系统镜像，然后使用 Etcher 刷到闪存。
 
-第一次运行 Raspbian 系统需要连接 显示器、键盘、鼠标（如果没有 Desktop 界面可以不用鼠标）、网线（如果使用有线网络）。首次使用最好修改默认用户 pi 的默认密码 raspberry。
+第一次运行 Raspbian 系统需要连接 显示器、键盘、鼠标（如果没有 Desktop 界面可以不用鼠标）、网线（如果使用有线网络）。首次使用最好修改默认用户 `pi` 的默认密码 `raspberry`。
 
 ### 配置系统 SSH
 
@@ -64,7 +64,7 @@ https://www.youtube.com/watch?v=4QFrMum4_yE
 
 ## 安装 RouteryPi
 
-[RouteryPi](https://github.com/Phoenix1747/RouteryPi) is a WiFi access point based on a Raspberry Pi Zero W. 
+[RouteryPi](https://github.com/Phoenix1747/RouteryPi) is a WiFi access point based on a Raspberry Pi Zero W.
 
 在安装 RouteryPi 之前，使用 `sudo apt update && sudo apt full-upgrade` 更新软件库信息，然后重启系统。
 

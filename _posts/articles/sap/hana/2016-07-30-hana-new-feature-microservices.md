@@ -81,6 +81,8 @@ SAP HANA开发平台在HANA内存数据库之上增加了应用层开发能力�
 ### XSA
 //TODO
 
+[SAP HANA Developer Guide for XS Advanced Model](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.04/en-US/1547c14105be409ebfc3a9e9634a7188.html)
+
 ### HDI
 //TODO
 

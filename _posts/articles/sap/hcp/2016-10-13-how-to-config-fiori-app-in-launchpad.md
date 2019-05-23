@@ -27,7 +27,10 @@ references:
 * TOC
 {:toc}
 
-接着上一篇[How to Create a Fiori app Using OData service on the HCP][3]，本篇介绍如何将创建好的Fiori应用配置到Launchpad上去，HANA部分的完整项目代码可以在[Github][2]上下载。
+接着上一篇[How to Create a Fiori app Using OData service on the HCP][3]，本篇介绍如何将创建好的Fiori应用配置到Launchpad上去，HANA 部分的完整项目代码可以在[Github][2]上下载。
+
+> 对于 S4HANA 或者说 ABAP Fiori Launchpad 详细的配置过程也可参考 [Configure Fiori Launchpad for Custom Fiori Application](https://blogs.sap.com/2016/09/07/configure-fiori-launchpad-for-custom-fiori-application/)
+注意需要：[Setting Default Transport Request Information from Back-End](https://help.sap.com/saphelp_uiaddon10/helpdata/en/26/0dcf43deda4986ae1bffdc1fe25fc5/frameset.htm)
 
 ## Series
 
@@ -70,7 +73,6 @@ You assign roles and apps to a catalog. Users belonging to a particular role hav
 
 * _**ABAP**_ 版则比较麻烦
 
-
 ## HCP
 
 ### Create Site in Portal Service
@@ -104,7 +106,6 @@ Webide中的Fiori App代码在配置到Launchpad之前需要部署到HCP。
 * sap.hana.uis.db::SITE\_DESIGNER
 
 * sap.hana.uis.db::SITE\_USER
-
 
 ## ABAP
 

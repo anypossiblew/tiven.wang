@@ -4,7 +4,7 @@ title: SAP Cloud Platform Integration - Overview
 excerpt: " SAP HANA Cloud Integration easily exchange data in real-time with SAP HANA Cloud Platform, integration services SCI(HCI). Integrate processes and data between cloud apps, 3rd party applications and on-premises solutions with this open, flexible, on-demand integration system running as a core service on SAP HANA Cloud Platform."
 modified: 2018-01-16T17:00:00-00:00
 categories: articles
-tags: [SCI, iPaaS, Cloud, Integration]
+tags: [SAP CPI, iPaaS, SAP Cloud]
 image:
   vendor: twitter
   feature: /media/DRBYr3MX0AAsiT8.jpg:large

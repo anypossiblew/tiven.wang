@@ -32,6 +32,7 @@ share: true
 
 * [CI Best Practices Guide – SAPUI5/SAP Fiori on SAP Cloud Platform](https://developers.sap.com/tutorials/ci-best-practices-fiori-sapcp.html)
 
+![](https://blogs.sap.com/wp-content/uploads/2018/07/image1.png)
 
 ABAPGit
 
@@ -54,3 +55,10 @@ Docker — 可攜式、輕量級的執行環境(使用 Docker，統一開發
 AWS Elastic Beanstalk — 雲端平台
 Slack — 團隊溝通、日誌、通知
 ```
+
+## Troublesome
+
+WebIDE: deploy to **sapui5 abap repository**
+> service cannot be reached
+
+Solution: Transaction **SICF** -> F8 -> activate Service `/default_host/sap/bc/adt`

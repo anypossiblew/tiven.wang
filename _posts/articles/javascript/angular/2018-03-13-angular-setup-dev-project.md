@@ -31,10 +31,12 @@ https://angular.io/guide/quickstart
 
 ## Set up the Development Environment
 
-> 环境配置最低要求 **node 6.9.x** and **npm 3.x.x**
+> 本文使用最新版 Angular `v7.2.15`
+>
+> 环境配置最低要求 **Node.js version 8.x or 10.x** and **npm**
 {: .Warning}
 
-[Angular CLI][angular-cli] 是开发测试构建部署 Angular 项目的命令行工具，全局安装它
+[Angular CLI][angular-cli] 是开发测试构建部署 Angular 项目的命令行工具，安装在全局环境
 
 `npm install -g @angular/cli`
 
@@ -44,7 +46,7 @@ https://angular.io/guide/quickstart
 
 > 这个过程需要一段时间，主要是因为需要安装 npm 依赖包。国内网络可能更慢或者失败，请设置代理 [npm proxy](http://tiven.wang/articles/proxy-config-be-used-in-develop-tools/#npm%E7%9A%84%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%8F%8A%E8%AE%BE%E7%BD%AE%E4%BB%A3%E7%90%86)
 
-进入项目目录然后启动服务器
+进入项目目录, 然后启动服务器
 
 ```
 cd railway-app
@@ -62,9 +64,6 @@ Angular 项目代码使用 [TypeScript][typescript] 语言进行开发，
 ## Angular CLI
 
 https://github.com/angular/angular-cli/wiki
-
-
-
 
 ## IDEs
 

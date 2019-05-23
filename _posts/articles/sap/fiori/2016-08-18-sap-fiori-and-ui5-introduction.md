@@ -31,11 +31,25 @@ SAP Fiori是为了给企业级应用带来更好的用户体验的一种设计�
 
 ## SAPUI5
 
-### Viewer
+### Components
 
-### Controller
+#### Viewer
 
-### Databinding
+#### Controller
+
+#### Databinding
+
+### Conventions and Guidelines
+
+[Development Conventions and Guidelines](https://help.sap.com/viewer/468a97775123488ab3345a0c48cadd8f/7.51.8/en-US/753b32617807462d9af483a437874b36.html)
+
+### Extending Apps
+
+[Extending Apps](https://help.sap.com/viewer/468a97775123488ab3345a0c48cadd8f/7.51.8/en-US/a264a9abf98d4caabbf9b027bc1005d8.html)
+
+[View Extension](https://help.sap.com/viewer/468a97775123488ab3345a0c48cadd8f/7.51.8/en-US/403c050da4ae4566b6aafec2bc590389.html)
+
+[Controller Extension](https://help.sap.com/viewer/468a97775123488ab3345a0c48cadd8f/7.51.8/en-US/407feaf830c94e4c9de48ce08adabd1c.html)
 
 ## Fiori
 
@@ -90,6 +104,58 @@ The object page floorplan allows the user to display, create, or edit an object.
 [SAP Fiori: Setup and Configuration](https://help.sap.com/viewer/41806333969841ff93e4b365f4233ce6/FES5.0.00/en-US/270dd0bc79044592ab22545227f2435b.html)
 
 As of SAP NetWeaver 7.40 the major components of SAP Gateway have been integrated into the SAP NetWeaver system as SAP Gateway Foundation (SAP_GWFND). SAP Gateway Foundation has since been an integral part of SAP NetWeaver.
+
+## Performance
+
+https://help.sap.com/viewer/468a97775123488ab3345a0c48cadd8f/7.51.8/en-US/408b40efed3c416681e1bd8cdd8910d4.html
+
+## Angular
+
+Following are the advantages/disadvantages of using angular framework:
+
+* Using Angular, you can develop complex High interactive rich internet web application.
+* Angular application can be easily integrated with third-party library like Kendo UI
+* You can easily manage the state of the UI objects and control over it
+* You can easily perform Unit Testing
+
+Disadvantage:
+* As far I know it is not possible to integrate an Angular application in SAP Fiori Launchpad
+
+You can also refer to this link for more details about SAP UI5 vs Angular framework:
+
+SAPUI5 Advantage:
+
+      - Simple and easy MVC Framework
+
+      - Fiori UX Paradigm that SAP suggest fits for all kind of SAP Projects
+
+      - Development is simpler when we have usual rich internet web application
+
+Demerits:
+
+      - Hard to develop High interactive rich internet web application, because there is no dependency injection, Manage state
+
+      - SAPUI5 can not talk to DOM objects virtually and manage its state as we do in Angular.
+
+Angular Advantage:
+
+Working on Angular is all together different experience, because it has got some unique features.
+
+      - Complex High interactive rich internet web application can be developed very easily
+
+      - Easy to integrate third party library like Kendo UI
+
+      - Dependency Injection
+
+      - Declarative UI
+
+      - Managing the state of the UI objects and control over it
+
+      - Easy to Unit test
+
+Demerits:
+
+      - We can not integrate Angular application in SAP Fiori Launchpad
 
 ## 总结
 
