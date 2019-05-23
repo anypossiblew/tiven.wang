@@ -21,24 +21,24 @@ share: true
 * TOC
 {:toc}
 
-接上一篇 [Getting Started with SAP Cloud SDK TypeScript version](/articles/s4hana-cloud-sdk-js-getting-started/) 创建的 CF Application 程序，本篇介绍如何为我们的云程序加上身份认证的功能。
+接上一篇 [Getting Started with SAP Cloud SDK TypeScript version](/articles/s4hana-cloud-sdk-js-getting-started/) 创建的 CF Application 程序，本篇 [GitLab sourcecode](https://gitlab.com/i.tiven.wang/s4hana-cloud-sdk-demo/tree/authentication) 介绍如何为我们的云程序加上身份认证的功能。
 
 ## API Gateway in Microservices
 
 关于 Microservices 的 API Gateway 概念请参考 [Microservices - API Gateway](/articles/microservices-api-gateway/)
 
 > Usual concerns “once managed” in this level are:
-   — SSL Termination
-   — Logging
-  —Application Metrics
-   — Load Balancing
-   — Authentication & Authorization
-   — Content Negotiation
-   — Caching
-   — Content Compression
-   — Rates Limit
-   — …
-- from [A Node.js API Gateway that you control](https://medium.com/sharenowtech/k-fastify-gateway-a-node-js-api-gateway-that-you-control-e7388c229b21)
+>* SSL Termination
+>* Logging
+>* Application Metrics
+>* Load Balancing
+>* Authentication & Authorization
+>* Content Negotiation
+>* Caching
+>* Content Compression
+>* Rates Limit
+>* …<br>
+>-- from [A Node.js API Gateway that you control](https://medium.com/sharenowtech/k-fastify-gateway-a-node-js-api-gateway-that-you-control-e7388c229b21)
 
 其他的一些 API Gateway 框架
 
