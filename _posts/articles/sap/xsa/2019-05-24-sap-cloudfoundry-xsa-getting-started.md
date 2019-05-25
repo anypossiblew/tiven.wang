@@ -84,12 +84,12 @@ File -> New -> Project from Template -> New Multi-Target Application
 
 on Project -> New -> SAP HANA Database Module
 
-> 记得 Namespace 字段要清空，因为有了 HDI 就不再需要命名空间了， HDI 是最好的命名空间; 注意 HANA Database 版本使用默认，不要更改。
+> 记得 Namespace 和 Schema Name 字段要清空，因为有了 HDI 就不再需要命名空间和 Schema Name 了， HDI 是最好的命名空间; 注意 HANA Database 版本使用默认，不要更改。
 {: .Notes}
 
 ![](/images/cloud/hana/cf-xsa-new-hana-db-module.png)
 
-执行完后你将在你的 Cloud Foundry 平台 Space 的 Service Instances 里看到多了一个 hanatrial 服务的实例，这就是你的 HDI。另外一边在配置文件 *mta.yaml* 将多了 DB 相关的一个 module 和一个 resource
+执行完后你将在你的 Cloud Foundry 平台 Space 的 Service Instances 里看到多了一个 hanatrial 服务的实例（实际上是用来测试用的），这就是你的 HDI。另外一边在配置文件 *mta.yaml* 将多了 DB 相关的一个 module 和一个 resource
 
 ![](/images/cloud/hana/cf-xsa-db-module.png)
 
@@ -326,10 +326,26 @@ context PurchaseOrder {
 0500000001,0000000100,HT-1103,,USD,320.94,269.7,51.24,3,EA,20121204
 ```
 
-再次 **build** db module，数据会被导入数据库表中，由于我们是 Trial 账号，暂时没有 HANA Cockpit 查看数据. 
+再次 **build** db module，数据会被导入数据库表中。
 
 > 由于 SAP Web IDE 是云端的，所以文件内容可能没有保存成功，导致 build 过程中出现 file is empty 类似的错误，重新保存后重新 build 就可以了。
 {: .Notes}
+
+### Check in Data Explorer
+
+要查看 HDI 中的数据库对象和数据，首先需要为 SAP Web IDE 安装插件 SAP HANA Database Explorer 或者 SAP HANA Database Development Tools
+
+![](/images/cloud/hana/cf-xsa-hana-tools.png)
+{: .center.middle}
+
+在左边栏选择 Data Explorer 然后添加一个 HDI 容器
+
+![](/images/cloud/hana/cf-xsa-data-exploer-add-hdi.png)
+
+可以查看此 HDI 容器内所有的数据库对象和数据
+
+![](/images/cloud/hana/cf-xsa-data-explorer.png)
+{: .center.middle}
 
 ## Step 7. Create Node.js Module
 

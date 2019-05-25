@@ -8,7 +8,7 @@ title: "Authentication Checks in Node.js Applications"
 excerpt: "How to programming Authentication Checks in Node.js Applications on SAP CloudFoundry platform"
 modified: 2019-05-22T11:51:25-04:00
 categories: articles
-tags: [S4HANA Cloud SDK, S/4HANA Cloud, S/4HANA, SAP]
+tags: [UAA, S4HANA Cloud SDK, S/4HANA Cloud, S/4HANA, SAP]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/5508.jpg
@@ -21,7 +21,7 @@ share: true
 * TOC
 {:toc}
 
-接上一篇 [Getting Started with SAP Cloud SDK TypeScript version](/articles/s4hana-cloud-sdk-js-getting-started/) 创建的 CF Application 程序，本篇 [GitLab sourcecode](https://gitlab.com/i.tiven.wang/s4hana-cloud-sdk-demo/tree/authentication) 介绍如何为我们的云程序加上身份认证的功能。
+接上一篇 [Getting Started with SAP Cloud SDK TypeScript version](/articles/s4hana-cloud-sdk-js-getting-started/) 创建的 CF Application 程序，本篇（项目源代码可下载自 [GitLab sourcecode](https://gitlab.com/i.tiven.wang/s4hana-cloud-sdk-demo/tree/authentication)）介绍如何为我们的云程序加上身份认证的功能。
 
 ## API Gateway in Microservices
 
@@ -56,12 +56,12 @@ share: true
 
 * Approuter acts as a single end-point to all logically grouped applications/microservices.
 
-## Setup Approuter Application
+## Step 1. Setup Approuter Application
 
 在之前创建好的项目根目录下创建目录 `web`，里面存放所有微服务的前端程序。进入 web 目录初始化为 npm 项目，安装 NPM 组件 `npm install @sap/approuter --save`。项目目录结构如下
 
-```
-cloud-sdk-demo
+```text
+sap-cloud-sdk-demo
 |-- app
 |   |src
 |   |package.json
@@ -110,15 +110,15 @@ cloud-sdk-demo
 }
 ```
 
-## Protect Backend App
+## Step 2. Protect Backend App
 
-为需要被访问和保护的应用程序 app 安装组件，来限制访问身份
+上一步我们配置好了 Approuter 并设置好的路由和 Destination , 接下来就需要对被访问和保护的应用程序 *app* 加入授权限制了。 安装以下依赖
 
 ```powershell
 npm install @sap/xsenv @sap/xssec passport -–save
 ```
 
-修改程序以用 JWT 保护程序访问身份，这里的 uaa 名称要和后面将要创建的一致
+修改程序以用 JWT Token 保护程序访问身份，这里的 uaa 名称要和后面将要创建的 UAA 服务实例名称一致
 
 ```typescript
 const passport = require('passport');
@@ -134,7 +134,7 @@ this.app.use(passport.authenticate('JWT', { session: false }));
 
 Verify the request is authenticated by checking the JWT token in the request by using JWTStrategy provided by the `@sap/xssec` package.
 
-### Create UAA Service
+## Step 3. Create UAA Service
 
 因为上一篇我们已经创建了一个 xsuaa 服务，所以用户可以跳过，此步骤只针对没有创建 uaa 服务的。
 在项目根目录创建文件 `xs-security.json` 并添加内容
@@ -146,7 +146,8 @@ Verify the request is authenticated by checking the JWT token in the request by 
 }
 ```
 
-> Note: If the variable is `"tenant-mode": "shared"` that assumes a multi-tenant application and will require the `TENANT_HOST_PATTERN` variable to be declared. You may also use `"tenant-mode": "dedicated"` if you develop a single-tenant application.
+> If the variable is `"tenant-mode": "shared"` that assumes a multi-tenant application and will require the `TENANT_HOST_PATTERN` variable to be declared. You may also use `"tenant-mode": "dedicated"` if you develop a single-tenant application.
+{: .Notes}
 
 执行下面命令以创建 xsuaa 实例（名称要与程序里一致）
 
@@ -154,9 +155,9 @@ Verify the request is authenticated by checking the JWT token in the request by 
 cf create-service xsuaa application my-xsuaa -c xs-security.json
 ```
 
-## Manifest
+## Step 4. Manifest
 
-最后配置我们的 CF 配置文件如下
+最后配置我们的 CF 配置文件 *manifest.yml* 如下
 
 ```yaml
 applications:
@@ -187,9 +188,9 @@ applications:
 * destinations 配置一个名称和程序里 routes 里一致的，url 代表被保护的 App 访问 url
 * 把 uaa 服务绑定给此程序
 
-## Test
+## Step 5. Test
 
-访问 web-brave-porcupine.cfapps.eu10.hana.ondemand.com ，
+重新 push 应用后，访问你的应用地址，如我的是 web-brave-porcupine.cfapps.eu10.hana.ondemand.com ，
 会被转到 https://ptrial.authentication.eu10.hana.ondemand.com/login ，
 进行登录，然后就会转到需要访问的页面或 url 。
 

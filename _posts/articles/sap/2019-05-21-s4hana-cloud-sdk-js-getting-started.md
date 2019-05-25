@@ -21,29 +21,43 @@ share: true
 * TOC
 {:toc}
 
-你可以直接 clone 此代码库 `https://github.com/SAP/cloud-s4-sdk-examples/tree/scaffolding-ts` 也可以从我 [GitLab](https://gitlab.com/i.tiven.wang/s4hana-cloud-sdk-demo/tree/getting-started) 克隆项目代码。
+本系列文章我们将介绍如何为 SAP S4HANA Cloud 系统开发扩展程序 （Extension App），本篇是开始第一篇，介绍如何 Setup 起来一个 SAP CloudFoundry 平台的 Node.js Application 程序。
+你可以直接从我 GitLab / [s4hana-cloud-sdk-demo](https://gitlab.com/i.tiven.wang/s4hana-cloud-sdk-demo/tree/getting-started) 克隆项目代码进行练习。
+
+对于如何为 SAP S4HANA Cloud 系统开发应用程序，我们推荐使用 SAP Cloud Foundry Platform 开发应用程序。Cloud Foundry 应用开发遵循的理念是微服务 Microservices, 同时这个理念也被应用到了最新的 HANA XSA 开发模式上。所以在介绍 SAP S4HANA Cloud 应用开发时会涉及到 Microservices 的一些概念，读者可以留意。
 
 > 关于 CloudFoundry 的详细教程可以参考我的另一系列文章 [Try Cloud Foundry](/series/try-cloudfoundry/); 关于微服务的概念可以参考另一系列文章 [Microservices](/series/microservices/);
 
-## Setup
+## Setup Project
 
-我们的项目目录如下
+为 SAP S4HANA Cloud 开发应用，少不了使用 SAP 提供的 [SAP Cloud SDK](https://developers.sap.com/topics/cloud-sdk.html) （之前叫 SAP S/4HANA Cloud SDK ） 来提高开发效率。SAP Cloud SDK 提供了 Java 版本的还有 [JavaScript](https://blogs.sap.com/2019/03/28/announcing-the-sap-s4hana-cloud-sdk-for-javascript/) 版本的，而我们推荐 JavaScript 版本里的 TypeScript 版本，因为 [TypeScript](https://www.typescriptlang.org/) 确实是一个好用的 JavaScript 增强版。
 
-```
-cloud-sdk-demo
+![SAP Cloud SDK Architecture](https://developers.sap.com/dam/site/developer/images/cloud-sdk-architecture.jpg)
+{: .center}
+
+> 代码编辑器 IDE 我们推荐 [VS Code](https://code.visualstudio.com/)
+{: .Notes}
+
+我们的项目目录结构将会是如下
+
+```text
+sap-cloud-sdk-demo
 |-- app
-|   |src
+|   -- src
+|   |  | index.ts
 |   |package.json
 |   |tsconfig.json
 |manifest.yml
 |xs-security.json
 ```
 
-> 配置 SAP NPM Registry 库 `npm config set @sap:registry https://npm.sap.com`，这样在安装 `npm install @sap/<node_package>` SAP 的依赖包时就会从此 Registry 拉取。
+> 配置 SAP NPM Registry 库 `npm config set @sap:registry https://npm.sap.com`，这样在安装 `npm install @sap/<node_package>` 这样的 SAP 依赖包时就会从此 Registry 拉取。
 
-进入文件夹 app 里，安装 NPM 依赖包 `npm i` and `npm i --only=dev` 。
+当你下载好项目源代码后，进入文件夹 *app* 里，运行下面命令安装 NPM 依赖包
 
-运行 `npm run watch:local` 监视编译运行项目代码，访问控制台输出的链接 Express server listening on port http://localhost:6001 便可访问项目的主页。
+`npm i`
+
+然后运行 `npm run watch:local` 监视编译运行项目代码，访问控制台输出的链接 Express server listening on port http://localhost:6001 便可访问项目的主页。
 
 修改 `business-partner-route.ts` 中以下部分的 API Key 便可以访问 SAP API Business Hub 提供的 sandbox api 数据
 
@@ -61,7 +75,7 @@ cloud-sdk-demo
 更改 `manifest.yml` 配置中的 Application name ，先删掉文件中的 services 配置，因为后面才会用到。
 在项目根目录执行 `cf push` 进行部署项目
 
-```
+```powershell
 λ cf push
 Pushing from manifest to org Ptrial_trial / space dev as i.tiven.wang@gmail.com...
 Using manifest file c:\Users\tiven.wang\Documents\GitLab\sap-cloud-sdk-demo\manifest.yml
@@ -149,7 +163,7 @@ start command:   node dist/index.js
 #0   running   2019-05-23T02:02:19Z   0.0%   40K of 256M   8K of 1G
 ```
 
-成功后便可访问链接 `https://my-cloud-sdk-demo-baboon.cfapps.eu10.hana.ondemand.com`
+成功后便可访问你的链接 `https://my-cloud-sdk-demo-baboon.cfapps.eu10.hana.ondemand.com`
 
 ## 使用 destination 访问外部系统
 

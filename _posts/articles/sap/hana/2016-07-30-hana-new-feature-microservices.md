@@ -84,6 +84,18 @@ SAP HANA开发平台在HANA内存数据库之上增加了应用层开发能力�
 [SAP HANA Developer Guide for XS Advanced Model](https://help.sap.com/viewer/4505d0bdaf4948449b7f7379d24d0f0d/2.0.04/en-US/1547c14105be409ebfc3a9e9634a7188.html)
 
 ### HDI
+
+SAP HANA deployment infrastructure (HDI) container
+
+> SAP HANA XS advanced (XS advanced) enables you to build and deploy applications on Node.js. XS advanced
+makes no assumption about the frameworks you are using. However, it is recommended to connect to (and
+use) the SAP HANA deployment infrastructure (HDI) container and validate using JSON Web Tokens (JWT).
+Authentication for node applications in XS advanced relies on a special usage of the OAuth 2.0 protocol by the
+User Account and Authentication service (UAA). The UAA vouches for the authenticated user's identity using a
+JSON web token (JWT) as OAuth 2.0 token. This is a signed text-based token in JSON syntax. For more
+information, see the README.md file of the @sap/xssec module in the XS advanced Container Security API,
+for example, for your node.js application.
+
 //TODO
 
 ### Nodejs
