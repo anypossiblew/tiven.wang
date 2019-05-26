@@ -1,6 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
+star: true
 series: 
   url: s4hana-cloud
   title: S/4HANA Cloud

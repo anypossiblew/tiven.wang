@@ -1,6 +1,7 @@
 ---
 layout: post
 theme: UbuntuMono
+star: true
 series:
   url: cloudfoundry-xsa
   title: SAP Cloud Foundry XSA

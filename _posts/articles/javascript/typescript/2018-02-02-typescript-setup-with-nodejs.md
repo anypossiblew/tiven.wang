@@ -21,7 +21,11 @@ references:
 * TOC
 {:toc}
 
+本文介绍如何 Setup 起来一个使用 TypeScript 进行开发的 Node.js Application
+
 ## Setup
+
+使用以下步骤 Setup 起来一个 Node.js with TypeScript Application
 
 * `npm init -y` setup Node.js project `package.json`
 * `npm install typescript --save-dev` install [TypeScript][typescript]
@@ -38,6 +42,7 @@ Now you can use all the built in node modules (e.g. `import fs = require('fs');`
 还可以使用 ES6 style import 语法导入 Node modules `import * as fs from 'fs';`
 
 ### Compile
+
 使用命令 `npx tsc -p ./` 以当前目录为项目根目录（包含配置文件 `tsconfig.json`）执行 TypeScript 编译，`tsconfig.json` 文件中有详细配置可供选择。
 
 参数 `-p` : Compile a project given a valid configuration file. The argument can be a file path to a valid JSON configuration file, or a directory path to a directory containing a tsconfig.json file. See tsconfig.json documentation for more details.
@@ -81,8 +86,9 @@ Now you can use all the built in node modules (e.g. `import fs = require('fs');`
 
 除了使用 `ts-node` 实时编译和运行 TypeScript 程序外还可以使用 Gulp 工具 Build TypeScript 项目包括编译打包等任务。
 
+## with Build Tools
 
-## Gulp
+### Gulp
 
 > [gulp][gulpjs] is a toolkit for automating painful or time-consuming tasks in your development workflow, so you can stop messing around and build something.
 
@@ -90,7 +96,7 @@ Now you can use all the built in node modules (e.g. `import fs = require('fs');`
 
 `npm install -g gulp-cli`
 
-然后安装 gulp 包和 gulp-typescript 包为开发依赖
+然后为项目安装开发依赖包 gulp , gulp-typescript
 
 `npm install --save-dev gulp gulp-typescript`
 
@@ -111,6 +117,67 @@ gulp.task("default", function () {
 运行命令 `gulp` 即可编译 TypeScript 代码到目标目录 dist 下。
 
 参考官方文档 https://www.typescriptlang.org/docs/handbook/gulp.html
+
+### Grunt
+
+[Grunt ](https://gruntjs.com/) is a JavaScript task runner.
+
+首先全局安装 Grunt 命令行工具
+
+`npm install -g grunt-cli`
+
+使用 `grunt -v` 命令可验证安装成功
+
+然后安装 Grunt 到项目
+
+`npm install grunt --save-dev`
+
+Once Grunt is available on your machine and specified in your project, you need to get a TypeScript plugin.
+
+`npm install grunt-ts --save-dev`
+
+新建问价 *Gruntfile.js* 并填写
+
+```javascript
+module.exports = function(grunt) {
+  grunt.initConfig({
+    ts: {
+      default : {
+        tsconfig: './tsconfig.json',
+        src: ["**/*.ts", "!node_modules/**/*.ts"],
+        outDir: "dist"
+      },
+      options: {
+      }
+    }
+  });
+  grunt.loadNpmTasks("grunt-ts");
+  grunt.registerTask("default", ["ts"]);
+  };
+```
+
+The Grunt configuration creates a default task that executes a custom ts task that links to the tsconfig.json file, which is the default TypeScript configuration file.
+
+## Debugging
+
+在 Visual Studio Code 的 Debug 里为项目添加一个新的 node.js configuration，配置改成如下内容
+
+```json
+{
+    "type": "node",
+    "request": "launch",
+    "name": "Launch Program",
+    "runtimeArgs": [
+        "-r",
+        "ts-node/register"
+    ],
+    "args": [
+        "${workspaceFolder}/index.ts"
+    ]
+}
+```
+
+[Debug TypeScript Application using Visual Studio Code](https://github.com/TypeStrong/ts-node#visual-studio-code)
 
 ## Hello world
 
@@ -133,10 +200,6 @@ rl.question('Please type your name:', (username) => {
 ```
 
 如果你正在运行着 `npm start` 命令，每当代码有修改并保持后都会被编译和运行。
-
-
-
-
 
 [typescript]:https://www.npmjs.com/package/typescript
 [nodejs]:http://nodejs.org/
