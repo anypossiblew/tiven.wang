@@ -21,6 +21,17 @@ share: true
 * TOC
 {:toc}
 
+> A multi-target application (MTA) comprises multiple pieces of software called “modules” which all share a common lifecycle for development and deployment. An MTA is described in two descriptor files: the design-time descriptor and the deployment descriptor:
+>
+* **Development** descriptor `mta.yaml`
+* **Deployment** descriptor `mtad.yaml`
+>
+> Multi-target applications collect multiple modules and resource references in a single, deployable archive.
+
+## Where is Properties of Cloud Foundry Manifest
+
+## CF MultiApps Plugin
+
 https://github.com/cloudfoundry-incubator/multiapps-cli-plugin
 
 https://www.sap.com/documents/2016/06/e2f618e4-757c-0010-82c7-eda71af511fa.html

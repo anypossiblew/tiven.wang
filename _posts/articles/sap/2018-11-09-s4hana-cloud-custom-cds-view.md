@@ -94,3 +94,8 @@ https://www.youtube.com/watch?v=2_5kYnQzBO8
 https://blogs.sap.com/2017/12/21/sap-s4hana-extensibility-custom-cds-views-in-sap-s4hana-cloud/
 
 http://sapabapcentral.blogspot.com/2018/09/sample-custom-cds-view-using-predefined.html
+
+## OData for Custom CDS
+
+https://blogs.sap.com/2018/06/02/sap-s4hana-cloud-extensibility-basics-of-creating-finding-and-using-odata-service-in-custom-business-objects-and-custom-cds-views/
+

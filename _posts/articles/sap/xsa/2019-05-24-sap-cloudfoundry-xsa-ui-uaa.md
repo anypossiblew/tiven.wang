@@ -22,7 +22,7 @@ share: true
 * TOC
 {:toc}
 
-本系列文章我们将介绍如何在 SAP Cloud Foundry Platform 上进行 HANA XSA 模式的程序开发。 上一篇我们创建了一个 MTA 项目，并成功创建和访问了 HANA Database 的数据，这一篇我们介绍介绍如何在 MTA 项目中开发 SAPUI5 前端和使用 UAA 服务做权限管理。本篇的项目代码可下载自 [gitlab.com/i.tiven.wang/sap-cf-xsa-demo](https://gitlab.com/i.tiven.wang/sap-cf-xsa-demo/tree/ui-uaa) .
+本系列文章我们将介绍如何在 SAP Cloud Foundry Platform 上进行 HANA XSA 模式的程序开发。 上一篇 [SAP Cloud Foundry XSA - Getting Started](/articles/sap-cloudfoundry-xsa-getting-started/) 我们创建了一个 MTA 项目，并成功创建和访问了 HANA Database 的数据，这一篇我们介绍介绍如何在 MTA 项目中开发 SAPUI5 前端和使用 UAA 服务做权限管理。本篇的项目代码可下载自 [gitlab.com/i.tiven.wang/sap-cf-xsa-demo](https://gitlab.com/i.tiven.wang/sap-cf-xsa-demo/tree/ui-uaa) .
 
 环境：
 
@@ -161,6 +161,10 @@ UI5 App 默认是 Run on Neo 环境的，可以在 Run Configurations 里改成 
 
 2. on The mtar file -> Deploy -> Deploy to SAP Cloud Platform 自动选择 Cloud Foundry space 进行部署
 
+成功后就可以在 SAP Cloud Platform Cockpit 里看到部署的应用们了，每个应用里都可以看到自己的对应的链接
+
+![](/images/cloud/hana/cf-xsa-deploy-app.png)
+
 ### Deploy Errors
 
 我遇到的错误，Deploy 时出错：because of: The container "DB" already exists
@@ -207,7 +211,7 @@ resources:
 
 ```json
 [
-	"src/data/PurchaseOrder.hdbcds"
+  "src/data/PurchaseOrder.hdbcds"
 ]
 ```
 
