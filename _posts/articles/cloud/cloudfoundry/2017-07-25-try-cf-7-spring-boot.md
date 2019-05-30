@@ -34,6 +34,8 @@ references:
 
 ## Setup
 
+要创建 Spring Boot Application 项目结构，可以使用 Spring CLI 进行自动化创建，或者手工编写 Maven 配置 *pom.xml* 来创建。
+
 ### Install Spring CLI
 
 依照文檔 [Installing the Spring Boot CLI](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#getting-started-installing-the-cli) 步驟安裝Sprring CLI 工具：
@@ -46,14 +48,14 @@ references:
 
 ## Building Project
 
-我們這裡不是用Spring CLI生成項目代碼，而是一步步手動添加各個組件，以期讀者對項目結構有深入理解。
+我們這裡不是用 Spring CLI 生成項目代碼，而是一步步手動添加各個組件，以期讀者對項目結構有深入理解。首先创建项目文件夹
 
-`mkdir try-cf-spring-boot`
+`mkdir try-cf-spring-boot`<br/>
 `cd try-cf-spring-boot`
 
 ### Build System
 
-創建文件 *pom.xml*:
+創建 Maven 主配置文件 *pom.xml*:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -78,8 +80,7 @@ references:
 </project>
 ```
 
-这是通过继承 `spring-boot-starter-parent` 来获得默认的配置, 包括 common dependencies, plugins, resource filtering等.
-你也可以不继承它而自己配置这些设置,比如添加 `spring-boot-dependencies` 来引入默认的packages.
+这是通过继承 `spring-boot-starter-parent` 来获得默认的配置, 包括 *common dependencies*, *plugins*, *resource filtering* 等。你也可以不继承它而自己配置这些设置, 比如添加 `spring-boot-dependencies` 来引入默认的packages 如下
 
 ```xml
 <dependencyManagement>
@@ -96,7 +97,7 @@ references:
 </dependencyManagement>
 ```
 
-使用 `mvn dependency:tree` 下載依賴並查看項目依賴結構，目前只有一個 `wang.tiven:try-cf:jar:0.0.1-SNAPSHOT` 。
+使用 `mvn dependency:tree` 查看項目依賴結構（这会先下載依賴包），目前只有一個 `wang.tiven:try-cf:jar:0.0.1-SNAPSHOT` 。
 
 我們要開發 web application 所以添加 `spring-boot-starter-web` module
 
@@ -111,11 +112,11 @@ references:
 
 重新運行 `mvn dependency:tree` 下載相關依賴。
 
-更多内容请参考 [Build systems ](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-build-systems.html) on [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/).
+更多内容请参考 [Build systems](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-build-systems.html) on [Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current/reference/html/).
 
 ### Structuring Code
 
-創建代碼
+創建代碼（根据你的项目目录）在文件夹 *src/main/java/wang/tiven/trycf/web* 首先创建一个简单的 Restful Controller 返回一个 “Hello World!” 字符串
 
 ```java
 package wang.tiven.trycf.web;
@@ -147,7 +148,7 @@ public class HomeController {
 
 ### Package
 
-想要打包成可執行的jar或war文件需要添加插件`spring-boot-maven-plugin`
+想要打包成可執行的 `jar` 或 `war` 文件需要添加插件 `spring-boot-maven-plugin`
 
 ```xml
 <build>
@@ -155,7 +156,6 @@ public class HomeController {
         <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>1.5.4.RELEASE</version>
             <executions>
                 <execution>
                     <goals>
@@ -168,7 +168,7 @@ public class HomeController {
 </build>
 ```
 
-然後執行 `mvn clean package` 可以得到可執行的jar， 可以測試jar可執行性 `java -jar target/try-cf-spring-boot-0.0.1-SNAPSHOT.jar`
+然後執行 `mvn clean package` 可以得到可執行的 jar， 可以測試 jar 可執行性 `java -jar target/try-cf-spring-boot-0.0.1-SNAPSHOT.jar`
 
 ### Push to Pivotal Web Services
 
@@ -187,6 +187,18 @@ applications:
 
 **path** 變量指定 artifact 的位置
 
+添加配置，指定 Tomcat 由服务器提供
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <scope>provided</scope>
+</dependency>
+```
+
+部署应用
+
 `cf api https://api.run.pivotal.io`
 
 `cf login`
@@ -194,6 +206,11 @@ applications:
 `cf push`
 
 成功後可以得到可訪問鏈接 *http://try-cf-spring-boot.cfapps.io*
+
+最新更新，200M 内存已经不够了，会报以下错误，看来要 600M 才够运行起来
+
+> 2019-05-29T14:17:16.263+08:00 [APP/PROC/WEB/0] [ERR] Cannot calculate JVM memory configuration: There is insufficient memory remaining for heap. Memory available for allocation 200M is less than allocated memory 596489K (-XX:ReservedCodeCacheSize=240M, -XX:MaxDirectMemorySize=10M, -XX:MaxMetaspaceSize=84489K, -Xss1M * 250 threads)
+{: .Warning}
 
 ## More
 

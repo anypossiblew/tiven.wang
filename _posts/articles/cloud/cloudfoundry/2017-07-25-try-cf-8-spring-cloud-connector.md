@@ -28,7 +28,10 @@ references:
 
 ## Setup
 
-添加 [Spring Boot][Spring Boot] 的 Cloud connectors starter
+> Spring Cloud Connectors simplifies the process of connecting to services and gaining operating environment awareness in cloud platforms such as Cloud Foundry and Heroku, especially for Spring applications.
+{: .Notes}
+
+添加 [Spring Boot][Spring Boot] 的 Cloud connectors starter 里面包含了几个 Cloud connectors 相关的组件
 
 ```xml
 <dependency>
@@ -128,11 +131,11 @@ public class CloudConfiguration extends AbstractCloudConfig {
 
 * `@ServiceScan` 註解類似Spring中的`@ComponentScan`， 它會掃描綁定在此app上的服務，並為每個服務創建一個bean
 * `@Profile("cloud")` 說明當程序指定激活`cloud`配置时才加载这里的配置, 如在`manifest.yml`中指定
-```yaml
-# ...
-env:
-  SPRING_PROFILES_ACTIVE: cloud
-```
+  ```yaml
+  # ...
+  env:
+      SPRING_PROFILES_ACTIVE: cloud
+  ```
 
 ## Test
 
@@ -144,7 +147,7 @@ env:
 
 然後啟動應用 `mvn spring:run`
 
-訪問鏈接 *http://localhost:8080/hero* 則可以創建查詢 Hero。
+訪問鏈接 *http://localhost:8080/hero* 則可以創建查詢 Hero; Post 请求可以创建 hero
 
 ## Deploy
 
@@ -158,7 +161,7 @@ env:
 
 `cf create-service mlab sandbox try-cf-mongodb`
 
-並綁定到此應用：
+並綁定到此應用（也可以在 *manifest.yml* 指定 *services* 配置）
 
 `cf bind-service try-cf-spring-boot try-cf-mongodb`
 

@@ -1,25 +1,24 @@
 <div class="mdl-card__media mdl-color-text--grey-50"
 {% if post.image %}
-{% if post.image.vendor == "500px"  %}
-     style="background-image: url('https://drscdn.500px.org{{ post.image.feature }}')"
-{% elsif post.image.vendor == "unsplash" %}
-     style="background-image: url('https://images.unsplash.com{{ post.image.feature }}')"
-{% elsif post.image.vendor == "nationalgeographic" %}
-     style="background-image: url('http://www.nationalgeographic.com{{ post.image.feature }}')"
-{% elsif post.image.vendor == "yourshot.nationalgeographic" %}
-     style="background-image: url('http://yourshot.nationalgeographic.com{{ post.image.feature }}')"
-{% elsif post.image.vendor == "instagram" %}
-     style="background-image: url('https://scontent-frt3-1.cdninstagram.com{{ post.image.feature }}')"
-{% elsif post.image.vendor == "twitter" %}
-     style="background-image: url('https://pbs.twimg.com{{ post.image.feature }}')"
-{% elsif post.image.vendor == "dronestagr" %}
-     style="background-image: url('http://www.dronestagr.am{{ post.image.feature }}')"
-{% elsif post.image.vendor == "gstatic" %}
-    style="background-image: url('https://www.gstatic.com{{ post.image.feature }}')"
-
-{% else %}
-     style="background-image: url('{{ post.image.feature }}')"
-{% endif %}
+     {% if post.image.vendor == "500px"  %}
+          style="background-image: url('https://drscdn.500px.org{{ post.image.feature }}')"
+     {% elsif post.image.vendor == "unsplash" %}
+          style="background-image: url('https://images.unsplash.com{{ post.image.feature }}')"
+     {% elsif post.image.vendor == "nationalgeographic" %}
+          style="background-image: url('http://www.nationalgeographic.com{{ post.image.feature }}')"
+     {% elsif post.image.vendor == "yourshot.nationalgeographic" %}
+          style="background-image: url('http://yourshot.nationalgeographic.com{{ post.image.feature }}')"
+     {% elsif post.image.vendor == "instagram" %}
+          style="background-image: url('https://scontent-frt3-1.cdninstagram.com{{ post.image.feature }}')"
+     {% elsif post.image.vendor == "twitter" %}
+          style="background-image: url('https://pbs.twimg.com{{ post.image.feature }}')"
+     {% elsif post.image.vendor == "dronestagr" %}
+          style="background-image: url('http://www.dronestagr.am{{ post.image.feature }}')"
+     {% elsif post.image.vendor == "gstatic" %}
+          style="background-image: url('https://www.gstatic.com{{ post.image.feature }}')"
+     {% else %}
+          style="background-image: url('{{ post.image.feature }}')"
+     {% endif %}
 {% endif %}
 >
 <!-- Article tags -->
