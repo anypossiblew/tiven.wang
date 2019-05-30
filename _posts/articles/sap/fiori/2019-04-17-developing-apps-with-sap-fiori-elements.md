@@ -74,6 +74,14 @@ Thresholds 阈值
 
 > Controls in the `sap.ui.comp` library (smart controls) focus strongly on SAP Fiori elements.
 
+如果要对一个 SmartChart 的 Model 增加额外的 Filter 的话可以在事件 `beforeRebindChart` 的监听函数里
+
+```javascript
+onBeforeRebindChart: function(oEvent) {
+  oEvent.getParameters().bindingParams.filters.push(new sap.ui.model.Filter("SoldToParty", sap.ui.model.FilterOperator.EQ, "100000005"));
+}
+```
+
 ### SmartVariantManagement
 
 ### Personalization Dialog

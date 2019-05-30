@@ -425,3 +425,4 @@ on *core_xsjs* -> Run -> Run as Node.js Application
 
 ## Next Steps
 
+[SAP Cloud Foundry XSA - SAPUI5 and UAA Service](/articles/sap-cloudfoundry-xsa-ui-uaa/)

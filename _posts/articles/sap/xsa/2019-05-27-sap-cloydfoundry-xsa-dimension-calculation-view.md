@@ -131,3 +131,5 @@ Join 节点都添加完成后，我们该把这个 Calculation View 完成了，
 最后别忘了提交代码，养成良好的习惯。
 
 ## Next Steps
+
+[SAP Cloud Foundry XSA - Create Cube Graphical Calculation View](/articles/sap-cloydfoundry-xsa-cube-calculation-view/)

@@ -51,3 +51,6 @@ OK
 Plugin multiapps 2.1.1 successfully installed.
 ```
 
+## Next Steps
+
+[SAP Cloud Foundry XSA - Create Dimension Graphical Calculation View](/articles/sap-cloydfoundry-xsa-dimension-calculation-view/)
