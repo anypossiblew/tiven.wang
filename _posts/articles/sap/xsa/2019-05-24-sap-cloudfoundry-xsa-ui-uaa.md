@@ -3,7 +3,7 @@ layout: post
 theme: UbuntuMono
 star: true
 series:
-  url: cloudfoundry-xsa
+  url: sap-cloudfoundry-xsa
   title: SAP Cloud Foundry XSA
 title: "SAPUI5 and UAA Service"
 excerpt: "How to create UI5 App and consume xsjs service , and authenticate user by UAA service?"

@@ -3,7 +3,7 @@ layout: post
 theme: UbuntuMono
 star: true
 series:
-  url: cloudfoundry-xsa
+  url: sap-cloudfoundry-xsa
   title: SAP Cloud Foundry XSA
 title: "Getting Started"
 excerpt: "Getting Started with XSA Development on SAP CloudFoundry Platform"

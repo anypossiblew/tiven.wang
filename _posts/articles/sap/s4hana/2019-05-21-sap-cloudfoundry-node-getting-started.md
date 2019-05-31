@@ -3,8 +3,8 @@ layout: post
 theme: UbuntuMono
 star: true
 series: 
-  url: s4hana-cloud
-  title: S/4HANA Cloud
+  url: sap-cloudfoundry-node
+  title: SAP Cloud Foundry Node.js
 title: "Getting Started with SAP Cloud SDK TypeScript version"
 excerpt: "Getting started with SAP S4HANA Cloud SDK TypeScript version."
 modified: 2019-05-26T11:51:25-04:00

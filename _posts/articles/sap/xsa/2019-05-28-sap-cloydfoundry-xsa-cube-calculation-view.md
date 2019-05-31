@@ -2,7 +2,7 @@
 layout: post
 theme: UbuntuMono
 series:
-  url: cloudfoundry-xsa
+  url: sap-cloudfoundry-xsa
   title: SAP Cloud Foundry XSA
 title: "Create Cube Graphical Calculation View"
 excerpt: "Create a graphical calculation view with a cube data type."

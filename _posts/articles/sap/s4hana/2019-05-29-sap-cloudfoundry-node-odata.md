@@ -3,9 +3,9 @@ layout: post
 theme: UbuntuMono
 star: true
 series: 
-  url: s4hana-cloud
-  title: S/4HANA Cloud
-title: "OData Service with TypeScript in Node.js Application"
+  url: sap-cloudfoundry-node
+  title: SAP Cloud Foundry Node.js
+title: "OData Service in Node.js Application"
 excerpt: "How to develop OData Service with TypeScript in Node.js Application."
 modified: 2019-05-30T11:51:25-04:00
 categories: articles
@@ -205,7 +205,7 @@ export default class BusinessPartner implements IBP {
 
 创建 Controller 文件 *src/MyODataServer/controllers/BusinessPartnersController.ts*
 
-```TypeScript
+```typescript
 import { odata, ODataController } from 'odata-v4-server';
 import { deleteBusinessPartner, findOneBusinessPartner, findBusinessPartners, insertBusinessPartner, updateBusinessPartner } from '../../BusinessPartner';
 import BusinessPartner from '../models/BusinessPartner';
@@ -251,7 +251,7 @@ export default class BusinessPartnersController extends ODataController {
 
 最后定义一个文件夹或者叫 Module 的默认输出，文件为 *src/MyODataServer/index.ts*
 
-```TypeScript
+```typescript
 import { odata, ODataServer } from 'odata-v4-server';
 import BusinessPartnersController from './controllers/BusinessPartnerController';
 
@@ -264,7 +264,7 @@ export default class MyODataServer extends ODataServer {}
 
 最后把我们的 OData Server 添加到 Express 路由里发布出去
 
-```TypeScript
+```typescript
 ...
 
 import MyODataServer from './MyODataServer';

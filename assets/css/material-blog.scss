@@ -225,6 +225,16 @@ html, body {
            display: inline;
          }
       }
+
+      ol {
+        li {
+          font-size: 1em;
+          p {
+            margin: 0;
+            font-size: 1em;
+          }
+        }
+      }
     }
 
     h2[id] {

@@ -2,7 +2,7 @@
 layout: post
 theme: UbuntuMono
 series:
-  url: cloudfoundry-xsa
+  url: sap-cloudfoundry-xsa
   title: SAP Cloud Foundry XSA
 title: "MultiApps"
 excerpt: "The Multi-Target Application Model"

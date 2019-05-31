@@ -1,8 +1,9 @@
 ---
 layout: post
 theme: UbuntuMono
+star: true
 series:
-  url: cloudfoundry-xsa
+  url: sap-cloudfoundry-xsa
   title: SAP Cloud Foundry XSA
 title: "Create Dimension Graphical Calculation View"
 excerpt: "Import SHINE sample tables and data using SAP Web IDE for SAP HANA. Create a graphical calculation view with a dimension data type."

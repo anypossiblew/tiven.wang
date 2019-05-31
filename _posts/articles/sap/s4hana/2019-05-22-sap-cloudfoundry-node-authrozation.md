@@ -3,8 +3,8 @@ layout: post
 theme: UbuntuMono
 star: true
 series: 
-  url: s4hana-cloud
-  title: S/4HANA Cloud
+  url: sap-cloudfoundry-node
+  title: SAP Cloud Foundry Node.js
 title: "Authentication Checks in Node.js Applications"
 excerpt: "How to programming Authentication Checks in Node.js Applications on SAP CloudFoundry platform"
 modified: 2019-05-22T11:51:25-04:00
