@@ -211,4 +211,4 @@ if(!appEnv.isLocal) {
 
 ## Next Steps
 
-* [Authorization Checks in Node.js Applications](/articles/s4hana-cloud-sdk-js-authorization/)
+* [SAP Cloud Foundry Node.js - HANA DB Service](/articles/sap-cloudfoundry-node-hana-service/)

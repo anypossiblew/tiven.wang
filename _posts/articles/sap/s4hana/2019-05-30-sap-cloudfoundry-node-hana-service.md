@@ -78,7 +78,7 @@ share: true
 
 * 创建一个 hanatrial 服务的 hdi-shared 计划的实例
 ```sh
-$ cf create-service hana hdi-shared <myHDIcontainer>
+$ cf create-service hanatrial hdi-shared <myHDIcontainer>
 ```
 
 * 绑定到应用程序: 用命令行 `cf bind-service <myApplication> <myHDIcontainer>` 或者配置在 *manifest.yml* 文件中
@@ -153,3 +153,5 @@ Waiting for app to start...
 可以在 SAP Cloud Web IDE 的 Data Explorer 插件里查看创建的表 *SALESORDER*。关于 Data Explorer 插件可以参考 [SAP Cloud Foundry XSA - Getting Started # Check in Data Explorer](/articles/sap-cloudfoundry-xsa-getting-started/#check-in-data-explorer)
 
 ## Next Steps
+
+[SAP Cloud Foundry Node.js - Create XSJS and XSOData Service](/articles/sap-cloudfoundry-node-xsjs-xsodata/)

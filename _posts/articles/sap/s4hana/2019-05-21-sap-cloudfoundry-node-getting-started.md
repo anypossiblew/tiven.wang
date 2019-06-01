@@ -315,4 +315,4 @@ Exit status 223
 
 ## Next Steps
 
-* [Authentication Checks in Node.js Applications](/articles/s4hana-cloud-sdk-js-authrozation/)
+* [Authentication Checks in Node.js Applications](/articles/sap-cloudfoundry-node-authentication/)

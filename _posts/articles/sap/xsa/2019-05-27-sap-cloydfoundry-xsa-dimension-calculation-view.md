@@ -51,7 +51,7 @@ on *db* -> Build -> Build
 
 ### Step 1.4. Check in the Database Explorer
 
-可以再 SAP Web IDE 的 Database Explorer 插件里查看导入的表和数据。
+可以在 SAP Web IDE 的 Database Explorer 插件里查看导入的表和数据。
 
 > 如果想要导入整个 Shine 程序玩玩的话，可以参考 [SAP HANA XS Advanced - Clone and run SHINE applications](https://developers.sap.com/tutorials/xsa-ml-e2e-access-shine.html)
 {: .Notes}

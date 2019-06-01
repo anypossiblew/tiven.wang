@@ -77,7 +77,7 @@ resources:
 
 ![](/images/cloud/hana/cf-xsa-xsjs-uaa.png)
 
-然后还要在 xsjs 程序主入口文件 *server.js* 里的 xsjs 配置选项中把 `anonymous : true` 注释掉，就会使用能找到的 xsuaa 服务对权限进行控制
+然后还要在 xsjs 程序主入口文件 *server.js* 里的 xsjs 配置选项中把 `anonymous : true` 注释掉，就会使用能找到的 xsuaa 服务对权限进行控制。并增加配置 `xsApplicationUser: false` 防止 Application Session User 设置给 XS User 带给 HANA DB
 
 ![](/images/cloud/hana/cf-xsa-xsjs-auth.png)
 
