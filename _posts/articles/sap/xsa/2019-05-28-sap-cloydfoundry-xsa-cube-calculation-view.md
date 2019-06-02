@@ -28,6 +28,7 @@ Create a graphical calculation view with a cube data type.
 Create a new calculation view in your *models* folder. Call it *PURCHASE_ORDERS*, choose **CUBE** as a data category and mark the flag for **With Star Join**
 
 ![](/images/cloud/hana/calcview/cube-new.png)
+{: .center.middle}
 
 ## Step 2. Join PO Header and Items
 
