@@ -16,8 +16,8 @@ references:
     url: "https://wiki.scn.sap.com/wiki/display/Fiori/SAP+Fiori+-+SAP+Fiori+launchpad"
   - title: "User Interface Add-On for SAP NetWeaver - SAP Fiori Launchpad"
     url: "http://help.sap.com/saphelp_uiaddon10/helpdata/en/f9/51b50a07ce41deb08ced62711fe8b5/content.htm"
-  - title: "SAP Blogs - How To Setup the SAP Fiori Launchpad"
-    url: "https://blogs.sap.com/2014/05/04/how-to-setup-the-sap-fiori-launchpad/"
+  - title: "SAP Blogs - Fiori app configuration in SAP Fiori Launchpad"
+    url: "https://blogs.sap.com/2017/11/19/sap-fiori-ui5-app-configuration-in-sap-fiori-launchpad/"
   - title: "SAP Blogs - Understanding launchpad object relationship with screenshots"
     url: "https://blogs.sap.com/2014/06/16/understanding-launchpad-object-relationship-with-screenshots/"
   - title: "SAP Community - Unable to load xsappsite"
@@ -107,9 +107,13 @@ Webide中的Fiori App代码在配置到Launchpad之前需要部署到HCP。
 
 * sap.hana.uis.db::SITE\_USER
 
-## ABAP
+## Fiori on ABAP Launchpad
 
-### Deploy to SAPUI5 ABAP Respository
+How to deploy and config Fiori App on ABAP Fiori Launchpad?
+
+### Step 1. Deploy to ABAP Repository
+
+First you need deploy SAPUI5 app to ABAP Repository.
 
 #### Setup Web IDE Connecting Remote Systems
 
@@ -126,26 +130,50 @@ Webide中的Fiori App代码在配置到Launchpad之前需要部署到HCP。
 
 参考[Web IDE - Deploying Applications to the SAPUI5 ABAP Repository][6]
 
-### Create Tiles in FLP
+### Step 2. Create Launchpad Role and Semantic Object
 
 参考[SAP Blogs - How To Setup the SAP Fiori Launchpad][7]
 
-在ABAP系统打开此链接*/sap/bc/ui5_ui5/sap/arsrvc_upb_admn/main.html*维护Catalog Groups等，创建Tile和Target Mappings。
+* Create Semantic Object **/n/UI2/SEMOBJ** Semantic object with which we link ‘Business Tile‘ and ‘Target Mapping‘ within ‘Business Catalog’
+
+* Create Launchpad Role **LPD_CUST** or Use already exist one
+
+* New Application in Customer Launchpad for your Fiori App
+
+* Include Launchpad role in TR
+
+### Step 3. Create Business Catalog
+
+* Login to above ‘SAP Fiori Designer Url’ */sap/bc/ui5_ui5/sap/arsrvc_upb_admn/main.html*
+
+* add a Catalog
+
+* add a ‘Tile’
+
+* Create ‘Target Mapping’ for Tile
 
 <figure class="center">
 	<img src="/images/fiori/flp-create-target-mapping.jpg" alt="Create Target Mapping in FLP">
 	<figcaption>Create Target Mapping in FLP</figcaption>
 </figure>
 
-### Create Role and Semantic Object
+Thus Tile and ‘Target Mapping’ is linked using ‘Semantic Object’ + ‘Action’
 
-参考[SAP Blogs - Understanding launchpad object relationship with screenshots][8]
+### Step 4. Create Business Group
 
-配置Semantic Object并创建Role配置就可。
+* go to ‘Group’ tab
+* Add a group
+* Add tile in the group
 
-### 效果
+### Step 5. Create App’s PFCG Role
 
-Fiori Launchpad在ABAP系统中的链接*/sap/bc/ui5_ui5/ui2/ushell/shells/abap/FioriLaunchpad.html*
+* go to **PFCG**
+
+* Create PFCG Role for SAPUI5 Application
+
+* Add ‘Business Catalog’ and ‘Group’ in Role
+* Adding custom ‘Odata Service’ access
+* Add User
 
 ## Next Steps
 
@@ -157,6 +185,6 @@ Fiori Launchpad在ABAP系统中的链接*/sap/bc/ui5_ui5/ui2/ushell/shells/abap/
 [4]:https://help.hana.ondemand.com/cloud_portal_flp/frameset.htm
 [5]:https://help.hana.ondemand.com/webide/frameset.htm?5c3debce758a470e8342161457fd6f70.html
 [6]:https://help.hana.ondemand.com/webide/frameset.htm?1170ef65b7b3490687021c3132387829.html
-[7]:https://blogs.sap.com/2014/05/04/how-to-setup-the-sap-fiori-launchpad/
+[7]:https://blogs.sap.com/2017/11/19/sap-fiori-ui5-app-configuration-in-sap-fiori-launchpad/
 [8]:https://blogs.sap.com/2014/06/16/understanding-launchpad-object-relationship-with-screenshots/
 [9]:/articles/how-to-use-http-dest-in-hana-and-hcp/

@@ -167,7 +167,10 @@ applications:
 
 ## Step 5. Enable UAA
 
-* 把 *xsjs/server.js* 中的 `anonymous : true` 注释掉，并增加配置 `xsApplicationUser: false` 防止 Application Session User 设置给 XS User 带给 HANA DB Connect
+* 把 *xsjs/server.js* 中的 `anonymous : true` 注释掉，并增加配置 `xsApplicationUser: false` 防止 Application Session User 设置给 XS User 带给 HANA DB Connect，否则会报下面这个错误
+
+> Error: the predefined session variable cannot be set via SET command: XS_APPLICATIONUSER
+{: .Warning}
 
 ```javascript
 var options = {
