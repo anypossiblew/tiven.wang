@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 11 - Autoscaler
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Autoscaler
 excerpt: "Autoscaler"
 modified: 2017-09-05T17:00:00-00:00
 categories: articles

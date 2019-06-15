@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 4 - Custom Routes and Domains
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Custom Routes and Domains
 excerpt: "This topic try how routes and domains work in Cloud Foundry, and how developers and administrators configure routes and domains for their applications using the Cloud Foundry Command Line Interface (cf CLI)."
 modified: 2017-05-24T17:00:00-00:00
 categories: articles

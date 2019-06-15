@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 8 - Spring Cloud Connector
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Spring Cloud Connector
 excerpt: "Spring Cloud Connectors simplifies the process of connecting to services and gaining operating environment awareness in cloud platforms such as Cloud Foundry and Heroku, especially for Spring applications. It is designed for extensibility: you can use one of the provided cloud connectors or write one for your cloud platform, and you can use the built-in support for commonly-used services (relational databases, MongoDB, Redis, RabbitMQ) or extend Spring Cloud Connectors to work with your own services."
 modified: 2017-07-25T17:00:00-00:00
 categories: articles

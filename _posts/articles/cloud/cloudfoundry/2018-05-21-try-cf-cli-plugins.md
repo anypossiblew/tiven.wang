@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try Cloud Foundry - CF CLI Plugins"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: "CF CLI Plugins"
 excerpt: "Cloud Foundry command line plugins"
 modified: 2018-05-21T11:51:25-04:00
 categories: articles

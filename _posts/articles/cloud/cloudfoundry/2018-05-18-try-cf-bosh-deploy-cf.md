@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try Cloud Foundry - BOSH: Deploying Cloud Foundry"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: "BOSH: Deploying Cloud Foundry"
 excerpt: "Deploying Cloud Foundry with BOSH Lite v2 on AWS"
 modified: 2018-05-18T11:51:25-04:00
 categories: articles

@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try Cloud Foundry - BOSH"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: BOSH
 excerpt: ""
 modified: 2018-05-10T11:51:25-04:00
 categories: articles

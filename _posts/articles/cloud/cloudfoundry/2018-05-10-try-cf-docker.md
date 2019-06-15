@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try Cloud Foundry - Docker"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Docker
 excerpt: "How Docker works in Cloud Foundry."
 modified: 2018-05-10T11:51:25-04:00
 categories: articles

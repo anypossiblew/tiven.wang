@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 3 - Components UAA
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Components UAA
 excerpt: "Cloud Foundry Components UAA"
 modified: 2017-02-24T17:00:00-00:00
 categories: articles

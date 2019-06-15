@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 6 - Multi Tenancy
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Multi Tenancy
 excerpt: "Multitenancy is an approach in which an instance of an application is used by different customers and thus dropping software development and deployment costs when compared to a single-tenant solution where multiple parts would need to be touched in order to provision new clients or update existing tenants. Cloud Foundry supports Multi Tenancy using Identity Zone Management APIs of UAA"
 modified: 2017-09-19T17:00:00-00:00
 categories: articles

@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 1 - Pivotal Web Services
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Pivotal Web Services
 excerpt: "Try Pivotal Cloud Foundry Web Services"
 modified: 2017-02-23T17:00:00-00:00
 categories: articles

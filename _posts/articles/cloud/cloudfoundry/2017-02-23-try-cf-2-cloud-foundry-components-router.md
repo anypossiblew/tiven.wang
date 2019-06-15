@@ -1,7 +1,11 @@
 ---
 layout: post
-title: Try Cloud Foundry 2 - Components Router
-excerpt: "Cloud Foundry Components Router"
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Components Router
+excerpt: "How Cloud Foundry Components Router works?"
 modified: 2017-02-23T17:00:00-00:00
 categories: articles
 tags: [Cloud Foundry, Pivotal]

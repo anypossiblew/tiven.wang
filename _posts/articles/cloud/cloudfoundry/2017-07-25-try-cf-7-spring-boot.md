@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 7 - Spring Boot
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Spring Boot
 excerpt: "Spring Boot - Takes an opinionated view of building production-ready Spring applications. Spring Boot favors convention over configuration and is designed to get you up and running as quickly as possible."
 modified: 2017-07-25T17:00:00-00:00
 categories: articles

@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 10 - Service Discovery
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Service Discovery
 excerpt: "Service Registry for Pivotal Cloud Foundry (PCF) provides your applications with an implementation of the Service Discovery pattern, one of the key tenets of a microservice-based architecture. Trying to hand-configure each client of a service or adopt some form of access convention can be difficult and prove to be brittle in production. Instead, your applications can use the Service Registry to dynamically discover and call registered services."
 modified: 2017-08-08T17:00:00-00:00
 categories: articles

@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try Cloud Foundry - BOSH: Installation"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: "BOSH: Installation"
 excerpt: "How to install BOSH Lite on AWS"
 modified: 2018-05-14T11:51:25-04:00
 categories: articles

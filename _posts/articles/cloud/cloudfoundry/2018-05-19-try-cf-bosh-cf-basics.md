@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try Cloud Foundry - BOSH: CF Basics"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: "BOSH: CF Basics"
 excerpt: "CF Basics with BOSH Lite v2 on AWS"
 modified: 2018-05-19T11:51:25-04:00
 categories: articles

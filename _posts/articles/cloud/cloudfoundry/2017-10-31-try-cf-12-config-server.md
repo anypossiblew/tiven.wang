@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 12 - Config Server
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: Config Server
 excerpt: "Config Server for Pivotal Cloud Foundry (PCF) is an externalized application configuration service, which gives you a central place to manage an application’s external properties across all environments."
 modified: 2017-10-31T17:00:00-00:00
 categories: articles

@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "BOSH - Installation on VMs using VirtualBox"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: "BOSH: Installation on VMs using VirtualBox"
 excerpt: "Installing BOSH on VMs using VirtualBox"
 modified: 2018-06-28T11:51:25-04:00
 categories: articles

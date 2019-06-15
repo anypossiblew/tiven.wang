@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "BOSH - Installation on Google Cloud Platform"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: "BOSH: Installation on Google Cloud Platform"
 excerpt: "Installing BOSH on Google Cloud Platform"
 modified: 2018-06-28T11:51:25-04:00
 categories: articles

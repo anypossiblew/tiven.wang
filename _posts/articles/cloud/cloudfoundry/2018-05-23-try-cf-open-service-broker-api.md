@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Try Cloud Foundry - Open Source Broker API"
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: "Open Source Broker API"
 excerpt: "Open Source Broker API"
 modified: 2018-05-16T11:51:25-04:00
 categories: articles

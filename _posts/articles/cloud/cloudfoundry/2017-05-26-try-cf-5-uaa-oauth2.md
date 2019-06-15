@@ -1,6 +1,10 @@
 ---
 layout: post
-title: Try Cloud Foundry 5 - UAA OAuth2
+theme: UbuntuMono
+series:
+  url: try-cloudfoundry
+  title: Try Cloud Foundry
+title: UAA OAuth2
 excerpt: "This article explains how to use Cloud Foundry APIs from a user application using the built in identity management solution in the User Account and Authentication Service (UAA). The UAA acts (amongst other things) as an OAuth 2.0 Authorization Server, granting access tokens to Client applications for them to use when accessing Resource Servers in the platform, such as the Cloud Controller. This article describes the responsibilities of a Client application and the mechanics of setting one up."
 modified: 2017-06-02T17:00:00-00:00
 categories: articles
