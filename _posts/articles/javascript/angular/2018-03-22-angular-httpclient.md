@@ -1,7 +1,10 @@
 ---
 layout: post
-theme: 细秀体
-title: Angular - HttpClient
+theme: XiXiuTi
+series: 
+  url: angular
+  title: Angular
+title: HttpClient
 excerpt: ""
 modified: 2018-03-22T18:00:00-00:00
 categories: articles

@@ -95,7 +95,7 @@ Configure report:
 * C_* Consumption View: The view consumed by application (Tech name: C_*). e.g. Journal Entry Analyzer (C_GLLINEITEMSQ0001). It is created from Interface View in general.
 * I_* interface view: The view as the foundation (Tech name: I_*).. The view as the general foundation for Consumption view. Interface View for business entities in S/4HANA is called Basic View, e.g. GL Account Line Item (I_GLAccountLineItem), Profit Center (I_ProfitCenter). Interface view created from Basic View is called Composite View, e.g. G/L Account Balance Cube (I_GLAcctBalanceCube).
 * P_* Private View: The view used as a part to create Interface View or Consumption View (Tech name: P_*). It is not mandatory to create.
-* E_* Extend View: Extend View is used to add fields to predefined VDM without changing predefined VDM itself. It is possible to associate the view and add it in the source view, and it is also possible to use the association for foreign key association on the added field. It is like APPEND for table in ABAP Dictionary. 
+* E_* Extend View: Extend View is used to add fields to predefined VDM without changing predefined VDM itself. It is possible to associate the view and add it in the source view, and it is also possible to use the association for foreign key association on the added field. It is like APPEND for table in ABAP Dictionary.
 
 In BW context, Consumption View is like BW Query and Interface View is like InfoProvider or InfoObject.
 

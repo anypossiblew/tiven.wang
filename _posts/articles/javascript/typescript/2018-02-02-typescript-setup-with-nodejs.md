@@ -1,8 +1,11 @@
 ---
 layout: post
 theme: Josefin-Sans
-title: TypeScript - Setup with Node.js
-excerpt: ""
+series: 
+  url: typescript
+  title: TypeScript
+title: Setup with Node.js
+excerpt: "How to setup a Node.js Application with TypeScript language?"
 modified: 2018-02-02T17:00:00-00:00
 categories: articles
 tags: [TypeScript, Webpack, JavaScript]

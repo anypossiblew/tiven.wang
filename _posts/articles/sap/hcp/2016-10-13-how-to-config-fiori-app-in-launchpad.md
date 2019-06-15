@@ -144,6 +144,8 @@ First you need deploy SAPUI5 app to ABAP Repository.
 
 ### Step 3. Create Business Catalog
 
+Before you may need assign Transport Request to Fiori Launchpad configurations. - [How to transport SAP FIORI KPI Tiles from development system to quality system](https://answers.sap.com/questions/11955100/how-to-transport-sap-fiori-kpi-tiles-from-developm.html)
+
 * Login to above ‘SAP Fiori Designer Url’ */sap/bc/ui5_ui5/sap/arsrvc_upb_admn/main.html*
 
 * add a Catalog

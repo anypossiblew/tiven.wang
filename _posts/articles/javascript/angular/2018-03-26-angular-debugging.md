@@ -1,7 +1,10 @@
 ---
 layout: post
-theme: Josefin-Sans
-title: Angular - Debugging
+theme: XiXiuTi
+series: 
+  url: angular
+  title: Angular
+title: Debugging
 excerpt: ""
 modified: 2018-03-22T18:00:00-00:00
 categories: articles

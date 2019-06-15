@@ -1,7 +1,10 @@
 ---
 layout: post
-theme: 细秀体
-title: Angular - Reactive Forms
+theme: XiXiuTi
+series: 
+  url: angular
+  title: Angular
+title: Reactive Forms
 excerpt: ""
 modified: 2018-03-26T18:00:00-00:00
 categories: articles

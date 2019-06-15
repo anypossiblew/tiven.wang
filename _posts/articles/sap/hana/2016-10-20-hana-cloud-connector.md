@@ -107,6 +107,8 @@ You can check the SAPCC connector that has been created in pre-steps on your SAP
 
 How to create a destination of on-premise abap system for SAP WebIDE on cloud?
 
+[Consume the API Proxy in SAP Web IDE](https://developers.sap.com/tutorials/hcp-apim-webide-int.html)
+
 ### Step 1. Create destination for ABAP System in Cloud Cockpit
 
 Add a new destination in SAP Cloud Platform Cockpit (Neo) -> Connectivity -> Destinations

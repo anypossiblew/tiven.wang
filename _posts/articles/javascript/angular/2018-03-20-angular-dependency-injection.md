@@ -1,7 +1,11 @@
 ---
 layout: post
-theme: 细秀体
-title: Angular - Dependency Injection
+theme: XiXiuTi
+star: true
+series: 
+  url: angular
+  title: Angular
+title: Dependency Injection
 excerpt: ""
 modified: 2018-03-20T17:00:00-00:00
 categories: articles
@@ -61,11 +65,12 @@ export class AccountService {
 
 为了验证更改效果，运行单元测试 `ng test`
 
-```
+```text
 Error: StaticInjectorError(DynamicTestModule)[AccountService -> LoggerService]:
   StaticInjectorError(Platform: core)[AccountService -> LoggerService]:
     NullInjectorError: No provider for LoggerService!
 ```
+
 可以看到此错误信息，说明 `AccountService` 是需要注入依赖 `LoggerService` 类的，但我们还没有在依赖注入容器里配置 LoggerService provider 。修改单元测试文件 *account.service.spec.ts* ， 在 providers 里添加 `LoggerService`
 
 ```typescript
@@ -87,6 +92,7 @@ describe('AccountService', () => {
   }));
 });
 ```
+
 结果就可以了，依赖注入容器帮我们创建了 `LoggerService` 的实例并赋给了 `AccountService` 的构造函数。这是在单元测试里如何配置 providers，那么在运行时代码里呐，接下来看如何注册 service provider 。
 
 ## Register a service provider
@@ -122,14 +128,15 @@ export class AppComponent {
 ```
 
 ### @NgModule providers
+
 同样的 `@NgModule` 有可以配置 [providers](https://angular.io/guide/providers) 属性，那么他就会使用这些依赖为其管辖的类创建依赖注入实例。
 
 那么同样都可以配置 providers 他们两者之间有什么区别呢？ 这就涉及到依赖注入容器 Injector 的[继承层级](https://angular.io/guide/hierarchical-dependency-injection)和生命周期的概念。很明显在一个 Module 内 `@NgModule` 的 Injector 在根节点，而起下属的 Components Injector 按照关联关系依次挂在根节点下面。所以 NgModule 和 Components 的 Injector 所拥有的范围（Scope）不同，NgModule Injector 的范围是整个 Injector tree 的全局，而 Component Injector 只能是本节点及以下的范围。而 Dependency Object 在同一个 Scope 内又是单例（[Singleton](https://angular.io/guide/singleton-services)）的 ，所以不同的范围就代表不同的依赖实例。
 
 另外一点是 Injector 的生命周期是伴随其所属的组件的，Component 在销毁时其所拥有的 Injector 也会被销毁，Injector 内的依赖实例同样也会被销毁。而 NgModule 的 Injector 则是从开始到结束。所以如果你想让整个模块内的依赖使用同一个实例，那么就把他放在 `@NgModule` 的 providers 里吧。
 
-
 ## DI Advantage
+
 那么依赖注入方式在实际应用中到底有什么好处？接下来我们看看如何方便地替换一个依赖。
 
 加入我们实现了另外一个 `BetterLogger`  类，他继承自 `Logger` 类，用 [angular-cli][cli.angular.io] 创建<br>
@@ -152,15 +159,12 @@ export class BetterLoggerService extends LoggerService {
 ```
 
 然后只需要在 providers 里改为
+
 ```typescript
 providers: [{provide: LoggerService, useClass: BetterLoggerService}]
 ```
 
 这是书写 providers 的另外一种形式，他表示用子类对象去提供父类类型的依赖。
-
-
-
-
 
 [Dependency_injection]:https://en.wikipedia.org/wiki/Dependency_injection
 [Inversion_of_control]:https://en.wikipedia.org/wiki/Inversion_of_control
