@@ -22,9 +22,8 @@ references:
 ## 基于地理空间的大数据分析
 
 ![Esri HANA Image](/images/hana-spatial/esri-hana.jpg)
-{: .pull-right}
-
 得益于GPS卫星、手机信号塔和物联网的发展，我们很容易能够精确跟踪到人或物体的位置信息，在日常生活中我们每天都会产生和收集大量这样的地理位置数据。但这些地理空间数据是非常庞大的，要分析起来谈何容易。<br>地理空间信息的大数据分析分为三个过程：存储、分析和展示。
+{: .pull-right}
 
 * 对于“存储”SAP HANA提供原生功能[Spatial](http://help.sap.com/hana_options_spatial)对地理空间数据进行存储和计算。
 

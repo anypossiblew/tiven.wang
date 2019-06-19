@@ -12,9 +12,9 @@ categories: articles
 tags: [Dashboard, Angular, UI5]
 image:
   vendor: gstatic
-  feature: /prettyearth/assets/full/1771.jpg
+  feature: /prettyearth/assets/full/1949.jpg
   credit: Google Earth
-  creditlink: https://earthview.withgoogle.com/webster-county-united-states-1771
+  creditlink: https://earthview.withgoogle.com/kimbolton-australia-1949
 comments: true
 share: true
 references:

@@ -34,3 +34,8 @@ https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/
 
 React.js Top 10 Open Source Projects (v.Mar 2018)
 https://medium.mybridge.co/react-js-top-10-open-source-projects-v-mar-2018-7eff0c0d3a2a
+
+## With RXJS
+
+https://medium.com/@jasbirshergill23/lets-react-with-rxjs-82d9794d76f4
+https://jasonwatmore.com/post/2019/02/13/react-rxjs-communicating-between-components-with-observable-subject
