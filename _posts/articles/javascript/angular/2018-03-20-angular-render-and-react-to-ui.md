@@ -1,7 +1,11 @@
 ---
 layout: post
-theme: 细秀体
-title: Angular - Rendering and React to UI
+theme: XiXiuTi
+star: true
+series: 
+  url: angular
+  title: Angular
+title: Rendering and React to UI
 excerpt: ""
 modified: 2018-03-20T18:00:00-00:00
 categories: articles

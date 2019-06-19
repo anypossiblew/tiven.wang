@@ -41,24 +41,25 @@ https://code.visualstudio.com/docs/languages/typescript
 `"outFiles": ["${workspaceRoot}/lib/**/*.js"]`
 https://stackoverflow.com/questions/31169259/how-to-debug-typescript-files-in-visual-studio-code
 
-
 ## Debugging TypeScript Angular application
 
 Before you begin, make sure you have latest version of VS code. You can verify latest version – Help > Check For Updates or About.
 
-1. Install extension called 'Debugger for Chrome'. Once install complete, restart VS code.
+1. Install extension called '**Debugger for Chrome**'. Once install complete, restart VS code.
 2. Go to Debug window, open launch.json using Chrome.
 3. In *Launch.json* configuration section, use below config
+
 ```json
 {
     "name": "Launch localhost with sourcemaps",
     "type": "chrome",
     "request": "launch",
-    "url": "http://localhost:3000/Welcome",
+    "url": "http://localhost:4200/",
     "sourceMaps": true,
     "webRoot": "${workspaceRoot}"
 }
 ```
+
 4. In *__tsconfig.json__*, make sure you have `"sourceMap": true`
 
 This completes your debug environment settings. Now, before you start debugging, make sure all your existing *Chrome.exe* instances are closed. Verify from Task Manager OR Use DOS command `killall chrome`
@@ -69,5 +70,8 @@ This completes your debug environment settings. Now, before you start debugging,
 8. Again, go to debug window in VS code, and hit Run. Your tab/instance connected to debugger will looks like below.
 [[2.](#reference-2)]
 
+https://scotch.io/tutorials/debugging-angular-cli-applications-in-visual-studio-code
 
 https://code.visualstudio.com/docs/nodejs/angular-tutorial#_configure-the-chrome-debugger
+
+https://medium.com/front-end-weekly/a-guide-to-debugging-angular-applications-5a36bd88b4cf

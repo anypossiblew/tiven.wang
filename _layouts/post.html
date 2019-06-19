@@ -167,7 +167,7 @@
                               <li class="mdl-list__item mdl-list__item--three-line">
                                 <span class="mdl-list__item-primary-content">
                                   <span><a href="{{ post.url }}">
-                                    {% if post.series %}
+                                    {% if post.series and post.series.title %}
                                       {{ post.series.title }} - 
                                     {% endif %}
                                     {{ post.title }}</a></span>

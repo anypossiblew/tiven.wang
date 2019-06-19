@@ -31,12 +31,15 @@ references:
 ## SRS - Spatial Reference System
 
 ### SRS Type
+
 对于地图来说，每一种地图都是一种空间实体，都会对应一个空间参考系统标识（Spatial Reference Identifier (SRID)），每一个SRID对应的空间参考系统（Spatial Reference System (SRS)）都是基于两种椭球映射：平面地球和圆形地球。
 
 * 圆形地球映射
+
 ![Round Earth Mapping](/images/hana-spatial/round-earth-mapping.png)
 
 * 平面地球映射
+
 ![Flat Earth Mapping](/images/hana-spatial/flat-earth-mapping.jpg)
 
 ### SRID

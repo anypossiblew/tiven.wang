@@ -9,7 +9,7 @@ title: Consume OData Services
 excerpt: "How to consume odata service in Angular Application?"
 modified: 2019-06-14T18:00:00-00:00
 categories: articles
-tags: [OData, Angular, TypeScript]
+tags: [OData, Angular, UI5]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/1771.jpg
@@ -26,7 +26,7 @@ references:
 * TOC
 {:toc}
 
-本篇代码 [Github](https://github.com/tiven-wang/angular-tutorial/tree/odata)
+上一篇 [Angular - UI5 Web Components](/articles/angular-ui5-web-components/) 我们讲到在 Angular Application 上应用 SAP Web Components 来绘制页面，用到 SAP UI5 做 SAP 产品的应用就不得不面对 OData Service. 本篇介绍如何在 Angular 应用中调用 SAP OData Service. 本篇代码 [Github](https://github.com/tiven-wang/angular-tutorial/tree/odata).
 
 ## Step 1. Install
 
@@ -199,3 +199,125 @@ getProducts(){
   }
 ```
 
+## Step 5. Service
+
+本节代码 [Github](https://github.com/tiven-wang/angular-tutorial/tree/odata-service).
+
+上面步骤我们演示了如何在 Component 消费 SAP OData Serrvice, 调用代码都是些在 Component 里的, 这并不符合 Angular 给的原则, 除了 View 相关的其他的功能应该从 Component 里剥离出来, 如做成 Service. 关于 Service 和 Dependency Injection 可以参考另一篇 [Angular - Dependency Injection](/articles/angular-dependency-injection/)
+
+> Angular distinguishes components from services to increase modularity and reusability. By separating a component's view-related functionality from other kinds of processing, you can make your component classes lean and efficient.
+-- [https://angular.io/guide/architecture-services](https://angular.io/guide/architecture-services)
+{: .Notes}
+
+新建一个负责 Product 的 Service
+
+`ng generate service products/product`
+
+并将读取 OData Service 相关的逻辑迁入到此类里
+
+```typescript
+import { Injectable } from '@angular/core';
+import { ODataServiceFactory, ODataService } from "angular-odata-es5";
+
+@Injectable()
+export class ProductService {
+
+  private odata: ODataService<Product>;
+  constructor(private odataFactory: ODataServiceFactory) {
+    this.odata = this.odataFactory.CreateService<Product>("SEPMRA_C_ALP_Product");
+  }
+
+  getOneProduct(id: string) {
+    this.odata.Get(id).Select("Product,ProductName,Price").Exec()
+      .subscribe(
+          product => {
+            console.info(product);
+          },
+          error => {
+            console.error(error);
+          }
+      );
+  }
+
+  getProducts(){
+    return this.odata
+            .Query()                    //Creates a query object
+            .Top(10)
+            .Skip(0)
+            .OrderBy('Product desc')
+            // .Filter('')
+            .Select("Product,ProductName,Price")
+            .Exec()                     //Fires the request
+
+  }
+}
+
+export interface Product {
+  Product: string,
+  ProductName: string,
+  ProductDescription?: string,
+  Price: number
+}
+```
+
+这里我们把 Product 的类型定义放在了此 Service 类里, 其他地方将引用这里的类型. 然后 product-list component 便可以简化为从此 Service 里读取数据
+
+```typescript
+// Dependency Injection: ProductService
+constructor(private productService: ProductService) {
+}
+
+ngOnInit() {
+  this.productService.getProducts()
+    .subscribe(                 //Subscribes to Observable<Array<T>>
+      products => {
+        this.products.push(...products);
+      },
+      error => {
+        console.error(error);   //Local error handler
+      });
+}
+```
+
+还需要在 `@NgModule` 的配置 `providers` 添加 `ProductService`
+
+```typescript
+providers: [
+  { provide: ODataConfiguration, useClass: MyODataConfig },
+  ODataServiceFactory,
+  ProductService
+]
+```
+
+到这里就把 Product Service 抽离完成了. 顺便再把 OData Config 也抽出来.
+
+`ng generate service odata/ODataConfig`
+
+*odata/odata-config.service.ts*
+
+```typescript
+import { Injectable } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+import { ODataConfiguration, ODataServiceFactory, IODataResponseModel } from "angular-odata-es5";
+import { environment } from '../../environments/environment';
+
+interface MyIODataResponseModel<T> extends IODataResponseModel<T> {
+  d: MyIODataResults<T>;
+}
+
+interface MyIODataResults<T> {
+  results: T[];
+}
+
+@Injectable()
+export class MyODataConfig extends ODataConfiguration {
+  baseUrl=environment.oDataBaseUrl+"/sap/opu/odata/sap/SEPMRA_SO_ANA/"
+  
+  extractQueryResultData<T>(res: HttpResponse<MyIODataResponseModel<T>>): T[] {
+    if (res.status < 200 || res.status >= 300) {
+        throw new Error('Bad response status: ' + res.status);
+    }
+    return (res && res.body && res.body.d.results);
+  }
+}
+```

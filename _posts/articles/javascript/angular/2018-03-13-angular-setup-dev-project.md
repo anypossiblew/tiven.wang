@@ -106,6 +106,9 @@ ng serve --open
 
 * **Components** define areas of responsibility in your UI that let you reuse these sets of UI functionality.
 * **NgModules** are containers for a cohesive block of code dedicated to an application domain, a workflow, or a closely related set of capabilities. They can contain components, service providers, and other code files whose scope is defined by the containing NgModule. They can import functionality that is exported from other NgModules, and export selected functionality for use by other NgModules.
+* **Service**
+* **Provider**
+* **Pip**
 
 ### Step 2. Generate Component
 
