@@ -39,8 +39,6 @@ references:
 > * [Angular CLI][angular-cli] 是开发测试构建部署 Angular 项目的命令行工具，安装在全局环境
 {: .Warning}
 
-### Step 1. Create Project by Angular CLI
-
 I'd strongly recommend you to use `angular-cli` for developing an Angular8 app. Not only for simplicity, but because in a community we need to have a basic starter which gives us the ability to have similar structured repo. So we can understand easily the structure of an other project.
 
 Plus, [angular-cli][angular-cli] handles Typescript compilation for you and you don't have to deal with it in command line or from your IDE.
@@ -48,9 +46,13 @@ Plus, [angular-cli][angular-cli] handles Typescript compilation for you and you 
 `npm i -g typescript`
 (no need for `typings` anymore since Typescript 2.0 !)
 
+### Step 1. Install Angular CLI
+
 本机开发 Angular 项目的话，首先安装 Angular CLI 工具
 
 `npm install -g @angular/cli`
+
+### Step 2. Create Project by Angular CLI
 
 用下面的命令创建一个新的 Angular 项目并生成项目骨架，`angular-tutorial` 是我们的项目名称你可以自定义。
 
@@ -65,19 +67,7 @@ cd angular-tutorial
 ng serve --open
 ```
 
-`ng serve` 命令可以启动服务器，监控项目文件，如果你有修改自动重新构建项目。`--open`或者`-o`选项会自动在浏览器中打开项目主页。
-
-```text
-npm i -g angular-cli
-ng new my-super-project --style=scss
-cd my-super-project
-```
-
-Then just run
-
-* `ng serve` And access to your app at : http://localhost:4200
-
-Angular-cli compiles your Typescript and even your (sccs\|sass\|less) files.
+`ng serve` 命令可以启动服务器，监控项目文件，如果你有修改自动重新构建项目。`--open`或者`-o`选项会自动在浏览器中打开项目主页。 Angular-cli compiles your Typescript and even your (sccs\|sass\|less) files.
 
 When you want to deploy your app :
 
@@ -110,7 +100,7 @@ ng serve --open
 * **Provider**
 * **Pip**
 
-### Step 2. Generate Component
+### Step 3. Generate Component
 
 用 Angular CLI 生成一个新的 Component *product-list*
 
@@ -122,6 +112,9 @@ ng serve --open
 
 > 关于 [@Directive v/s @Component in Angular](https://stackoverflow.com/questions/32680244/directive-v-s-component-in-angular)
 {: .Warning}
+
+### Step 4. Generate Service
+
 
 ## 推荐书籍
 

@@ -26,8 +26,7 @@ share: true
 5. `git remote -v`
 6. `git fetch upstream`
   Take the latest code from to forked repository.
-7. `git rebase upstream/master`
-  Placed code to upstream/master
+7. `git rebase upstream/master` Placed code to upstream/master
 8. `git push` This push changes to *https://\<github\>/\<original-account\>/\<original-repository\>.git*
 
 ### Commits
@@ -42,7 +41,7 @@ You can do it without the `--` (as suggested by nimrodm), but if the `<filename>
 
 You can also check out a particular version of a file:
 
-```
+```sh
 git checkout v1.2.3 -- <filename>         # tag v1.2.3
 git checkout stable -- <filename>         # stable branch
 git checkout origin/master -- <filename>  # upstream master
@@ -69,7 +68,7 @@ Here's a probable use-case, from the top:
 
 You're going to pull some changes, but oops, you're not up to date:
 
-```
+```sh
 git fetch origin
 git pull origin master
 
@@ -81,7 +80,7 @@ error: Entry 'filename.c' not uptodate. Cannot merge.
 
 So you get up-to-date and try again, but have a conflict:
 
-```
+```sh
 git add filename.c
 git commit -m "made some wild and crazy changes" // you must commit the content which will be merged with remote commit.
 git pull origin master
@@ -99,7 +98,7 @@ So you decide to take a look at the changes:
 
 Oh me, oh my, upstream changed some things, but just to use my changes...no...their changes...
 
-```
+```sh
 git checkout --ours filename.c
 git checkout --theirs filename.c
 git add filename.c
@@ -108,7 +107,7 @@ git commit -m "using theirs"
 
 And then we try a final time
 
-```
+```sh
 git pull origin master
 
 From ssh://gitosis@example.com:22/projectname
@@ -139,6 +138,7 @@ Another way to look at it: `git stash pop` is `git stash apply` && `git stash dr
 [Difference between git stash pop and git stash apply](http://stackoverflow.com/questions/15286075/difference-between-git-stash-pop-and-git-stash-apply)
 
 #### How to undo last commit(s) in Git?
+
 Undo a commit and redo
 
 ```
@@ -165,7 +165,6 @@ You can also view the diff using the same syntax:
 `git diff origin/master..HEAD`
 
 [Viewing Unpushed Git Commits](http://stackoverflow.com/questions/2016901/viewing-unpushed-git-commits)
-
 
 #### Viewing Uncommitted Changes
 
@@ -201,19 +200,26 @@ Here are some of the options it expose which you can use
 
 ### Adding an existing project to Git Remote Repository using the command line
 
-`git init`
+#### Add local to remote empty repository
 
-`git add .`
-
-`git commit -m "First commit"`
-
-`git remote add origin [remote repository URL]`
-
-`git remote -v`
-
-`git push origin master`
+* `git init`
+* `git add .`
+* `git commit -m "First commit"`
+* `git remote add origin [remote repository URL]`
+* `git remote -v`
+* `git push origin master`
 
 [GitHub Help - Adding an existing project to GitHub using the command line](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/)
+
+#### Rebase local to remote codebase
+
+`git pull --rebase` before pushing to rebase your local changes on the newest codebase.
+
+```sh
+To push the history leading to the current (detached HEAD) state now, use
+
+    git push origin HEAD:<name-of-remote-branch>
+```
 
 ### Which remote URL should I use
 

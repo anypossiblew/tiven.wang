@@ -2,13 +2,13 @@
 layout: post
 theme: UbuntuMono
 series: 
-  url: s/4hana-cloud
-  title: S/4HANA Cloud
+  url: fiori
+  title: SAP Fiori
 title: "Fiori development CI/CD"
 excerpt: "CI/CD for Fiori development "
 modified: 2018-11-16T11:51:25-04:00
 categories: articles
-tags: [Fiori, Web IDE, CI/CD, SAP Cloud Platform, S/4HANA, SAP]
+tags: [Fiori, Web IDE, CI/CD, SAP Cloud Platform, SAP]
 image:
   vendor: gstatic
   feature: /prettyearth/assets/full/2083.jpg

@@ -2,8 +2,8 @@
 layout: post
 theme: UbuntuMono
 series: 
-  url: s/4hana-cloud
-  title: S/4HANA Cloud
+  url: fiori
+  title: SAP Fiori
 title: "Developing Apps with SAP Fiori Elements"
 excerpt: "How to do developing Fiori Apps with SAP Fiori Elements"
 modified: 2019-04-18T11:51:25-04:00

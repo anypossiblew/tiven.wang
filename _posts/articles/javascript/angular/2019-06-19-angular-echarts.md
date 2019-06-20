@@ -69,6 +69,15 @@ ng g component product-chart
 在新建的 Component 页面文件中添加如下代码
 
 ```html
+<select id="theme-select" [(ngModel)]="theme">
+    <option value="">--Please choose an theme--</option>
+    <option value="vintage">vintage</option>
+    <option value="dark">dark</option>
+    <option value="macarons">macarons</option>
+    <option value="infographic">infographic</option>
+    <option value="shine">shine</option>
+    <option value="roma">roma</option>
+</select>
 <button (click)="more($event)">Add</button>
 <div echarts [options]="options" [initOpts]="initOpts" [theme]="theme" (chartInit)="onChartInit($event)" class="demo-chart"></div>
 ```
