@@ -70,7 +70,7 @@ Proxy Server on 3000
 
 ## Step 3. Config OData
 
-接下来首先要在 Angular Application 里配置 OData 的设置, 引入 `angular-odata-es5` 里的一些类
+接下来首先要在 Angular Application 里配置 OData 的设置, 编辑 *app.module.ts* 引入 `angular-odata-es5` 里的一些类
 
 ```typescript
 import { ODataConfiguration, ODataServiceFactory, IODataResponseModel } from "angular-odata-es5";

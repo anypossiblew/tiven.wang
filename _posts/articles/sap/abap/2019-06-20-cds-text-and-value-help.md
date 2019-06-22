@@ -2,7 +2,10 @@
 layout: post
 theme: UbuntuMono
 star: true
-title: ABAP CDS Text and Value Help
+series:
+  url: abap-cds
+  title: ABAP CDS
+title: Text and Value Help
 excerpt: "How to determine and provide texts and value help for a CDS view element in ABAP?"
 modified: 2019-06-20T11:51:25-04:00
 categories: articles

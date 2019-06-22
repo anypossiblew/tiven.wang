@@ -1,5 +1,9 @@
 ---
 layout: post
+theme: UbuntuMono
+series:
+  url: abap-cds
+  title: ABAP CDS
 title: Introduction to CDS on HANA and ABAP part 1
 excerpt: "“Core data services (CDS) is an infrastructure for defining and consuming semantically rich data models in SAP HANA.” 它诞生于SAP HANA数据库的出现，后来又被应用到ABAP Dictionary上。"
 modified: 2016-10-21T17:00:00-00:00

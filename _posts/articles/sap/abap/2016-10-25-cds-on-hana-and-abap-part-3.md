@@ -1,5 +1,9 @@
 ---
 layout: post
+theme: UbuntuMono
+series:
+  url: abap-cds
+  title: ABAP CDS
 title: Introduction to CDS on HANA and ABAP Part 3 - Unit Test
 excerpt: "“Core data services (CDS) is an infrastructure for defining and consuming semantically rich data models in SAP HANA.” 单元测试(Unit Test)在ABAP程序开发中已经非常重要，通常的ABAP Unit Test我们并不陌生。但是在代码重心下移至数据库层的模式下我们该如何对ABAP CDS Entities单元测试？本文简要介绍在ABAP中如何使用CDS Test Double Framework进行CDS Entities单元测试的"
 modified: 2016-10-24T17:00:00-00:00

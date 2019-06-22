@@ -1,5 +1,9 @@
 ---
 layout: post
+theme: UbuntuMono
+series:
+  url: abap-cds
+  title: ABAP CDS
 title: Introduction to CDS on HANA and ABAP Part 2 - Authorization Check
 excerpt: "“Core data services (CDS) is an infrastructure for defining and consuming semantically rich data models in SAP HANA.” 相较于ABAP的authorization check，CDS Views增加了隐式的数据级别的权限定义：Data Control Language (DCL)。本文简要介绍如何使用DCL控制用户从CDS View中访问限定数据"
 modified: 2016-10-24T17:00:00-00:00

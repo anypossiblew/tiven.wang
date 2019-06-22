@@ -26,7 +26,7 @@ references:
 * TOC
 {:toc}
 
-接上一篇 [Angular - Consume OData Services](/articles/angular-odata/) 从 SAP OData Service 取数后, 我们打算使用 [ECharts](https://echarts.apache.org/) 对数据进行展示.
+接上一篇 [Angular - Consume OData Services](/articles/angular-odata/) 从 SAP OData Service 取数后, 我们打算使用 [ECharts](https://echarts.apache.org/) 对数据进行展示. 本篇代码 [Github](https://github.com/tiven-wang/angular-tutorial/tree/echarts).
 
 ## Step 1. Install Dependencies
 

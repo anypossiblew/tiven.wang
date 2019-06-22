@@ -70,6 +70,8 @@ Thresholds 阈值
 
 ## Smart Controls
 
+[Defining CDS Annotations for Metadata-Driven UIs](https://help.sap.com/viewer/cc0c305d2fab47bd808adcad3ca7ee9d/7.52.4/en-US/79d27f9b1c8440098acad66173409322.html)
+
 ### SmartChart setup
 
 > Controls in the `sap.ui.comp` library (smart controls) focus strongly on SAP Fiori elements.

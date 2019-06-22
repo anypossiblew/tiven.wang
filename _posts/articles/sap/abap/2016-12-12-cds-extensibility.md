@@ -1,5 +1,9 @@
 ---
 layout: post
+theme: UbuntuMono
+series:
+  url: abap-cds
+  title: ABAP CDS
 title: CDS and OData Extensibility
 excerpt: "CDS and OData Extensibility"
 modified: 2016-12-08T17:00:00-00:00

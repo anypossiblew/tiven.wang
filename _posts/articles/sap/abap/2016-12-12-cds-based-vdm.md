@@ -1,5 +1,9 @@
 ---
 layout: post
+theme: UbuntuMono
+series:
+  url: abap-cds
+  title: ABAP CDS
 title: CDS based Virtual Data Model (VDM)
 excerpt: "The concept of the Virtual Data Model (VDM) has been introduced with HANA Live two years ago. Meanwhile CDS (Core Data Services) offers the ability to define database views independent of the application platform. ABAP CDS views are currently managed via ABAP. In future they will also support native-HANA access. As such CDS models contribute to the massive simplification of the suite stack towards the envisioned two-tier architecture.
 VDM views defined with the ABAP CDS technology are not restricted to read-only analytical use-cases, but will be used e.g. within search and transactional applications, too.

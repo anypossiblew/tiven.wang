@@ -1,7 +1,11 @@
 ---
 layout: post
 redirect_from: "/articles/sap-cds"
+theme: UbuntuMono
 star: true
+series:
+  url: abap-cds
+  title: ABAP CDS
 title: SAP ABAP CDS
 excerpt: "ABAP CDS View"
 modified: 2018-10-08T17:00:00-00:00
