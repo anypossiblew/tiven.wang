@@ -88,5 +88,8 @@ onBeforeRebindChart: function(oEvent) {
 
 ### Personalization Dialog
 
-
 https://sapui5.hana.ondemand.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd.html
+
+[Doing Component Reuse in Fiori Elements](https://blogs.sap.com/2019/06/06/doing-component-reuse-in-fiori-elements/)
+
+[Implement Fuzzy Search Help with UI5 Annotation for Fiori Application](https://blogs.sap.com/2019/06/03/implement-fuzzy-search-help-with-ui5-annotation-for-fiori-application-without-front-end-coding/)

@@ -1,7 +1,10 @@
 ---
 layout: post
-theme: Josefin-Sans
-title: RxJS Patterns - Implementing Async Lock
+theme: XiXiuTi
+series: 
+  url: rxjs
+  title: RxJS
+title: "Patterns: Implementing Async Lock"
 excerpt: "RxJS 中通过 Observable 和 Subject 实现异步锁的机制"
 modified: 2018-03-13T17:00:00-00:00
 categories: articles

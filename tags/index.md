@@ -39,7 +39,7 @@ search_omit: true
   <h3 id="{{ this_word }}">{{ this_word }}</h3>
   <ul class="post-list mdl-list">
   {% for post in site.tags[this_word] %}{% if post.title != null %}
-    <li><a href="{{ post.url }}">{{ post.title }}</a><span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span></li>
+    <li><a href="{{ post.url }}">{% if post.series and post.series.title %}{{ post.series.title }} - {% endif %}{{ post.title }}</a><span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time></span></li>
   {% endif %}{% endfor %}
   </ul>
 {% endunless %}{% endfor %}

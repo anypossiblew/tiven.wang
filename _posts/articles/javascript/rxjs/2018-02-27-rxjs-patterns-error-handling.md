@@ -1,7 +1,10 @@
 ---
 layout: post
-theme: Josefin-Sans
-title: RxJS - Error Handling Patterns in High Speed Railway Client
+theme: XiXiuTi
+series: 
+  url: rxjs
+  title: RxJS
+title: "Patterns: Error Handling Patterns in High Speed Railway Client"
 excerpt: "RxJS 多种模式在高铁客户端中的应用"
 modified: 2018-03-13T17:00:00-00:00
 categories: articles
