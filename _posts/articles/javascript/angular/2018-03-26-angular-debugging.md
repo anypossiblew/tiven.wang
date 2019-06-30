@@ -28,7 +28,6 @@ references:
 * TOC
 {:toc}
 
-
 ## Debugging TypeScript Language in Visual Studio Code
 
 Visual Sudio Code debugging:
@@ -69,6 +68,8 @@ This completes your debug environment settings. Now, before you start debugging,
 7. Now, place breakpoints wherever you want in your typescript files.
 8. Again, go to debug window in VS code, and hit Run. Your tab/instance connected to debugger will looks like below.
 [[2.](#reference-2)]
+
+[Debugging Libraries](https://developers.de/2018/09/05/angluar-library-debugging/)
 
 https://scotch.io/tutorials/debugging-angular-cli-applications-in-visual-studio-code
 

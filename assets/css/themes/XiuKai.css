@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i&display=swap');
+@font-face {
+  font-family: '秀楷';
+  src:
+    url('/assets/fonts/XiuKai.TTF') format('truetype');
+}
+
+.mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content
+{
+  font-family: '秀楷', 'IBM Plex Mono', sans-serif, "Arial" !important;
+}
+
+h2, h3, h4, h5, #markdown-toc, .android-link
+{
+  font-family: '秀楷', 'IBM Plex Mono', sans-serif, "Arial" !important;
+  font-style: italic;
+}
+
+.demo-blog .blog__post .mdl-card__supporting-text blockquote {
+  font-family: '秀楷', 'IBM Plex Mono', sans-serif, "Arial";
+  font-size: 14px !important;
+}
+
+.demo-blog .mdl-card__media h3 {
+  font-style: italic;
+}

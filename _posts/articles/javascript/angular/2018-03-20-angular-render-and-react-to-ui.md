@@ -6,7 +6,7 @@ series:
   url: angular
   title: Angular
 title: Rendering and React to UI
-excerpt: ""
+excerpt: "How Angular to Render, React UI and Change Detection?"
 modified: 2018-03-20T18:00:00-00:00
 categories: articles
 tags: [Data Binding, Angular, TypeScript, JavaScript]
@@ -51,6 +51,7 @@ references:
 在 [Angular - Setup Dev Project](/articles/angular-setup-dev-project/) 一篇我们看到过一个 Component 类使用 templateUrl 或者 template 属性与 HTML Template 关联在一起。本质上就是需要把 Class 的 property 表示的 Data 与 HTML 表示的 UI 绑定起来，以做到 Data 的变化能反应到 UI 组件上，UI 组件的变化能反映到 Data 上，这就是 Data Binding 。在 Angular 的文档里弱化了原来 [Angularjs Data Binding](https://docs.angularjs.org/guide/databinding) 的技术名词说法，只是在 [Template Syntax][template-syntax] 提到了。这也反映了这种 Data Binding 重要性的降低，或许我们有其他方式?实现 Template Syntax 。Template Syntax 无非是两个问题：Rendering UI 和 React to UI。本篇我们就要讲讲一个 Component class 是如何控制 HTML 的显示（Rendering UI）和响应 HTML 用户操作事件（React to UI）的。
 
 ## Rendering UI
+
 最简单的方式是把变量值插入 HTML Template 内即 Interpolation 。使用双大括号包括的变量或者表达式，在运行时会被取值。
 
 ```html
@@ -58,15 +59,17 @@ references:
 ```
 
 或者控制 HTML 标签的属性值，使用 `[属性名]="表达式"`
+
 ```html
 <span [hidden]="isUnchanged">changed</span>
 ```
 
 另外就是控制型的内置指令 `Directive` 如 `*ngFor`，`ngIf` 等
 
-
 ## React to UI
+
 响应 HTML UI 事件使用 `(事件类型)="表达式"`
+
 ```html
 <button (click)="onSave()">Save</button>
 ```
@@ -76,7 +79,9 @@ references:
 Angular [Template Syntax][template-syntax] 还有其他各种变化的形式，但我们这里只讲抽象层面的主要形式。
 
 ## Change Detect
+
 ### How
+
 通过之前的学习我们知道一个 HTML template 对应一个 Angular Component class，一个 HTML application 是一个 HTML elements 的树，那么一个 Angular application 就是一个 Components 树。
 
 其实 Component 只负责数据模型的逻辑，Angular 底层有一个类 View 负责具体展现的逻辑，真正和 HTML UI element 绑定一起的是 View，所以就是 一个 Component 对应一个 View 对应一个 HTML element，一个 Component 树也就对应一个 View 树。而 change detection 逻辑是在每个 View 里做的。
@@ -88,7 +93,6 @@ Properties of elements in a View can change, but the structure (number and order
 > It’s important to note here that all articles on the web and answers on StackOverflow regarding change detection refer to the View I’m describing here as Change Detector Object or ChangeDetectorRef. In reality, there’s no separate object for change detection and View is what change detection runs on. [[4.](#reference-4)]
 {: .Quotes}
 
-
 因为 View 的类 [`ViewRef`][ViewRef] 继承了类 [`ChangeDetectorRef`][ChangeDetectorRef]，所以你可以使用 `ChangeDetectorRef` 类型把 View 注入到 Component 的构造函数中
 
 ```typescript
@@ -97,6 +101,7 @@ constructor(cd: ChangeDetectorRef) {
 ```
 
 每个 View 都有一个状态  [`ViewState`](https://github.com/angular/angular/blob/5.2x/packages/core/src/view/types.ts#L372-L392) 属性
+
 ```typescript
 /**
  * Bitmask of states
@@ -110,7 +115,6 @@ export const enum ViewState {
 }
 ```
 
-
 当一个 View 要执行 Change detection 操作时他会递归调用函数 [checkAndUpdateView](https://github.com/angular/angular/blob/5.2x/packages/core/src/view/view.ts) 应用在他本身节点即以他为根节点的子孙节点上。
 
 * 在执行过程中生命周期钩子函数 `onChanges` 会被调用，即使 changed detection 被跳过；
@@ -118,7 +122,8 @@ export const enum ViewState {
 * 在 change detection 过程中 component view 的状态 State 可能会被更改，是指 Views 的初始状态默认为  `ChecksEnabled`，如果其使用了 `OnPush` strategy 的 change detection 的话，那么在第一次检查后就被改为 `ChecksEnabled=false` 了；
 
 假如有组件 `A -> B -> C`，那么最终顺序是这样的
-```
+
+```text
 A: AfterContentInit
 A: AfterContentChecked
 A: Update bindings
@@ -148,6 +153,7 @@ export abstract class ChangeDetectorRef {
 ```
 
 然后在 Component 的构造函数里注入他，便可使用控制 View change detection
+
 ```typescript
 constructor(private cd: ChangeDetectorRef, private logger: LoggerService) {
   setTimeout(() => {
@@ -187,6 +193,7 @@ Patterns:
 Smarter Change Detection [[2.](#reference-2)]
 
 ### When
+
 当 Angular Application 初始化 Rendering 完成后，假设整个 Angular 程序处在静止状态，那么 Angular 怎么知道某个变量发生了变化需要重新更新 UI ?
 
 让我们来想象一下什么样的情况会导致程序状态发生变化。最基本是当用户点击了 UI 上的按钮 Events，或者是程序发送了一个远程服务请求 XHR，还有程序设置的定时器。
@@ -199,9 +206,7 @@ Smarter Change Detection [[2.](#reference-2)]
 
 > The short version is, that somewhere in Angular’s source code, there’s this thing called [`ApplicationRef`][ApplicationRef], which listens to `NgZones` `onTurnDone` event. Whenever this event is fired, it executes a `tick()` function which essentially performs change detection. [[2.](#reference-2)]
 
-
-
-
+https://blog.angularindepth.com/the-difference-between-ngdocheck-and-asyncpipe-in-onpush-components-4918ec4b29d4
 
 [template-syntax]:https://angular.io/guide/template-syntax
 [ApplicationRef]:https://angular.io/api/core/ApplicationRef
