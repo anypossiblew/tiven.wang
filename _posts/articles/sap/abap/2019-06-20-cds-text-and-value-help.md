@@ -12,9 +12,9 @@ categories: articles
 tags: [CDS, ABAP, SAP]
 image:
   vendor: gstatic
-  feature: /prettyearth/assets/full/2083.jpg
+  feature: /prettyearth/assets/full/1840.jpg
   credit: Google Earth
-  creditlink: https://earthview.withgoogle.com/yellowstone-national-park-united-states-2083
+  creditlink: https://earthview.withgoogle.com/paris-france-1840
 comments: true
 share: true
 references:
@@ -26,6 +26,39 @@ references:
 {:toc}
 
 怎么给 ABAP CDS 的值字段添加描述字段和帮助字段? 本文以 NW 7.52 上的 `S_ODATA_EPMRA_SO_ANA` 包里的 CDS 为例做讲解.
+
+## Field Labels and Descriptions
+
+ABAP CDS 暴露出来字段的标签和描述是来自其对应的 ABAP Dictionary data elements 标签和描述， 但有时想要重新定义或者本身没有定义 data elements 的字段，则他们的 Labels 和 Descriptions 就需要 Annotations 进行定义了。使用注解 `@EndUserText.label` 定义字段的 label text 和用 `@EndUserText.quickInfo` 定义详细的解释，用于辅助功能提示或者 tooltip 这样的显示内容里。
+
+```typescript
+...
+  @EndUserText.label: 'List with Sales Orders'  -- Annotation at the view level
+  DEFINE VIEW SalesOrderHeader as ... {
+  ...
+  -- Annotation at the field level
+  @EndUserText: { label:  'Sales Order Header', quickinfo: 'Sales Order Header that provides data relevant for all items' }
+  SalesOrder as Header;
+  ...
+```
+
+既然是文本型的就需要支持多语言功能, `@EndUserText` 支持在 **SE63** 传统的 ABAP 系统功能中进行翻译
+
+* 打开 **SE63** 选择 **Short Texts** -> **A5 User Interface Texts** -> **DDLS CDS Views**
+* 输入 **CDS name** 和 **Source** and **Target** Language 点击编辑进行翻译
+
+> Unfortunately, translations are not added to TR automatically and need to be added manually.
+
+* 执行 **SLXT**, 如下图说明
+
+![SLXT](/images/abap/cds/slxt-translate.png)
+
+执行后便将翻译保存到了 TR 里
+
+参考阅读
+
+* [CDS Part 14. ABAP Annotations for Translatable Texts in CDS Views](https://sapyard.com/cds-part-14-abap-annotations-for-translatable-texts-in-cds-views/)
+* [Adding Field Labels and Descriptions](https://help.sap.com/viewer/cc0c305d2fab47bd808adcad3ca7ee9d/7.5.15/en-US/9764d0c757be4a5083d0c3b7eaccddd7.html?q=EndUserText)
 
 ## Text
 

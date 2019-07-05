@@ -1,6 +1,7 @@
 ---
 layout: post
 theme: XiXiuTi
+star: true
 series: 
   url: rxjs
   title: RxJS
@@ -512,14 +513,14 @@ Observable.range(0, maxRetries)
 // 0,1,4,9
 ```
 
-
 ## RxJS Study Tools
 
 [RxJS Marbles](http://rxmarbles.com)
 [Rx Visualizer](https://rxviz.com/)
 
+https://blog.angular-university.io/rxjs-error-handling/
 
-
+https://rxjs-dev.firebaseapp.com/api/operators/catchError
 
 
 [rxjs]:https://github.com/ReactiveX/rxjs

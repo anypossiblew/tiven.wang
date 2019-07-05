@@ -12,9 +12,9 @@ categories: articles
 tags: [CSS, Angular]
 image:
   vendor: gstatic
-  feature: /prettyearth/assets/full/1808.jpg
+  feature: /prettyearth/assets/full/1356.jpg
   credit: Google Earth
-  creditlink: https://earthview.withgoogle.com/maricopa-united-states-1808
+  creditlink: https://earthview.withgoogle.com/nizip-turkey-1356
 comments: true
 share: true
 references:
@@ -69,7 +69,7 @@ references:
 }
 ```
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="border-image" src="//codepen.io/tiven_wang/embed/NZyjwg/?height=265&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="265" style="width: 100%;" scrolling="no" title="border-image" src="//codepen.io/tiven_wang/embed/NZyjwg/?height=265&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/tiven_wang/pen/NZyjwg/'>border-image</a> by tiven.wang
   (<a href='https://codepen.io/tiven_wang'>@tiven_wang</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -89,7 +89,7 @@ references:
 }
 ```
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="box-shadow" src="//codepen.io/tiven_wang/embed/JQpNeg/?height=265&theme-id=light&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="265" style="width: 100%;" scrolling="no" title="box-shadow" src="//codepen.io/tiven_wang/embed/JQpNeg/?height=265&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/tiven_wang/pen/JQpNeg/'>box-shadow</a> by tiven.wang
   (<a href='https://codepen.io/tiven_wang'>@tiven_wang</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -104,7 +104,7 @@ references:
 }
 ```
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="opacity" src="//codepen.io/tiven_wang/embed/mZXmZR/?height=265&theme-id=light&default-tab=css,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="265" style="width: 100%;" scrolling="no" title="opacity" src="//codepen.io/tiven_wang/embed/mZXmZR/?height=265&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/tiven_wang/pen/mZXmZR/'>opacity</a> by tiven.wang
   (<a href='https://codepen.io/tiven_wang'>@tiven_wang</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -122,7 +122,7 @@ body {
 }
 ```
 
-<iframe height="265" style="width: 100%;" scrolling="no" title="border-image" src="//codepen.io/tiven_wang/embed/BgYWaM/?height=265&theme-id=light&default-tab=html,result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+<iframe height="265" style="width: 100%;" scrolling="no" title="border-image" src="//codepen.io/tiven_wang/embed/BgYWaM/?height=265&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
   See the Pen <a href='https://codepen.io/tiven_wang/pen/BgYWaM/'>border-image</a> by tiven.wang
   (<a href='https://codepen.io/tiven_wang'>@tiven_wang</a>) on <a href='https://codepen.io'>CodePen</a>.
 </iframe>
@@ -133,4 +133,18 @@ body {
 
 除了静态的效果外, 很多元素在变化时还需要动画效果才更炫.
 
+> CSS animations make it possible to animate transitions from one CSS style configuration to another. Animations consist of two components, a style describing the CSS animation and a set of keyframes that indicate the start and end states of the animation’s style, as well as possible intermediate waypoints.
 
+<iframe height="265" style="width: 100%;" scrolling="no" title="animation" src="//codepen.io/tiven_wang/embed/wLmKdy/?height=265&theme-id=dark&default-tab=result" frameborder="no" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href='https://codepen.io/tiven_wang/pen/wLmKdy/'>animation</a> by tiven.wang
+  (<a href='https://codepen.io/tiven_wang'>@tiven_wang</a>) on <a href='https://codepen.io'>CodePen</a>.
+</iframe>
+
+## 扩展
+
+### 背景
+
+页面或者组件背景除了使用图形来修饰外, 如果是文艺点的还可以用 CSS 本身的 `background-image` 的渐变颜色函数 `linear-gradient` `radial-gradient` 来装饰.
+
+
+https://sugar.baidubce.com/dashboard/5e81f0ec04f74164a1d0bae94cd386dc

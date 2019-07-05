@@ -1,19 +1,59 @@
-@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,400i&display=swap');
 @font-face {
   font-family: '秀楷';
   src:
     url('/assets/fonts/XiuKai.TTF') format('truetype');
 }
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url("/assets/fonts/IBMPlexMono-Regular.ttf") format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url("/assets/fonts/IBMPlexMono-Italic.ttf") format('truetype');
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url("/assets/fonts/IBMPlexMono-Light.ttf") format('truetype');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url("/assets/fonts/IBMPlexMono-LightItalic.ttf") format('truetype');
+  font-style: italic;
+  font-weight: 200;
+}
+
+
+:root {
+  --link-color: #efbb35;
+  --text-color: #F9FFEE;
+  --background-color: #28313e;
+  --font-family: '秀楷', 'IBM Plex Mono', sans-serif, "Arial";
+}
+
+.blog__post.demo-blog__posts {
+  color: var(--text-color) !important;
+}
 
 .mdl-card__supporting-text.blog__post-body, .demo-references .mdl-list__item-primary-content
 {
-  font-family: '秀楷', 'IBM Plex Mono', sans-serif, "Arial" !important;
+  font-family: var(--font-family) !important;
 }
 
-h2, h3, h4, h5, #markdown-toc, .android-link
+h2, h3, h4, h5, #markdown-toc, .demo-blog .mdl-card__media h3
 {
-  font-family: '秀楷', 'IBM Plex Mono', sans-serif, "Arial" !important;
+  font-family: var(--font-family) !important;
   font-style: italic;
+  font-weight: lighter;
+  color: var(--link-color) !important;
+}
+
+.android-link {
+  font-family: var(--font-family) !important;
+  color: var(--link-color) !important;
 }
 
 .demo-blog .blog__post .mdl-card__supporting-text blockquote {
@@ -21,6 +61,64 @@ h2, h3, h4, h5, #markdown-toc, .android-link
   font-size: 14px !important;
 }
 
+.demo-blog .mdl-card .mdl-card__title-text {
+  color: var(--link-color) !important;
+}
+
+.demo-blog .blog__post code.highlighter-rouge {
+  background-color: black;
+}
+
+#markdown-toc a, .demo-blog .mdl-color-text--grey-700, .demo-blog .mdl-list__item, .demo-blog .mdl-list__item-text-body {
+  color: var(--text-color) !important;
+}
+
+#markdown-toc li {
+  border-bottom: initial !important;
+}
+
+#markdown-toc li:first-child {
+  border-top: initial !important;
+}
+
+#markdown-toc a:hover, #markdown-toc a:focus {
+  color: var(--background-color) !important;
+}
+
+.demo-blog .mdl-color-text--grey-900 {
+  background-color: var(--background-color) !important;
+  color: var(--text-color) !important;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+}
+
 .demo-blog .mdl-card__media h3 {
-  font-style: italic;
+  background: #28313e80;
+}
+
+.demo-blog .mdl-card, .mdl-card__media, .mdl-mini-footer, .android-header {
+  background-color: var(--background-color) !important;
+}
+
+#markdown-toc {
+  position: fixed;
+  top: 100px;
+  right: 100px;
+  width: initial;
+}
+
+/** disqus comments */
+#layout, #layout .discovery-post-header, #layout .top-comment, #layout .user {
+  color: antiquewhite !important;
+}
+
+.tab-conversation.active>a {
+  color: antiquewhite !important;
+}
+
+.comments>.mdl-color-text--primary-contrast.mdl-card__supporting-text {
+  background: #fff !important;
+}
+
+.demo-blog .blog__post .mdl-card.comments {
+  border: 3px dashed var(--link-color);
 }

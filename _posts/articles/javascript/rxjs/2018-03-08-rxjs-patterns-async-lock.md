@@ -1,6 +1,7 @@
 ---
 layout: post
 theme: XiXiuTi
+star: true
 series: 
   url: rxjs
   title: RxJS

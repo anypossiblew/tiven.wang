@@ -91,7 +91,7 @@ ob.subscribe(x=>console.log(x));
 
 如果遇到编译错误：
 
-```
+```text
 ../../node_modules/rxjs/scheduler/VirtualTimeScheduler.d.ts(22,22): error TS2415: Class 'VirtualAction<T>' incorrectly extends base class 'AsyncAction<T>'.
   Types of property 'work' are incompatible.
     Type '(this: VirtualAction<T>, state?: T | undefined) => void' is not assignable to type '(this: AsyncAction<T>, state?: T | undefined) => void'.
@@ -102,14 +102,14 @@ ob.subscribe(x=>console.log(x));
 
 可以设置 `"skipLibCheck": true` 在 `tsconfig.json` 文件里。参考 https://github.com/ReactiveX/rxjs/issues/3031
 
-
 关于更多 TypeScript 知识，可以参考另外一个系列 [TypeScript - Setup with Node.js](/articles/typescript-setup-with-nodejs/)
-
 
 > 为了突出主题不引入过多额外学习成本，本系列 RxJS 教程使用 `@reactivex/rxjs@5.5.6` 和 ES5 做代码演示。
 {: .Notes}
 
+## RxJS 6
 
+[Fix your RxJS 6 Imports & Operators - What's New in RxJS 6?](https://www.academind.com/learn/javascript/rxjs-6-what-changed/)
 
 ## Related Productions
 
