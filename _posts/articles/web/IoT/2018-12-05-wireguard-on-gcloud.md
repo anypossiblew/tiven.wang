@@ -20,6 +20,9 @@ references:
   - id: 2
     title: ""
     url: "https://technofaq.org/posts/2017/10/how-to-setup-wireguard-vpn-on-your-debian-gnulinux-server-with-ipv6-support/"
+    title: "Wireguard VPN: Typical Setup"
+    url: "https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/"
+    
 ---
 
 * TOC
@@ -32,7 +35,7 @@ Google Compute Engine (called SERVER 1)
 * Zone: us-east1-b (use whichever you'd like)
 * g1-small (1 vCPU, 1.7GB Memory)
 * Static external IP set
-* IP Forwarding turned ON
+* Allow udp/`<51840>` ingress in Firewall rules
 
 ### Create gCloud VM
 
@@ -208,30 +211,10 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.se
 ## IP forwarding in server
 
 ```sh
-PostUp =
-iptables -A FORWARD -i wg0 -j ACCEPT; 
-iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE; 
-ip6tables -A FORWARD -i wg0 -j ACCEPT; 
-ip6tables -t nat -A POSTROUTING -o ens4 -j MASQUERADE; 
-iptables -A FORWARD -i ens4 -j ACCEPT; 
-iptables -t nat -A POSTROUTING -o wg0 -j MASQUERADE; 
-ip6tables -A FORWARD -i ens4 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o wg0 -j MASQUERADE
-PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o ens4 -j MASQUERADE; iptables -D FORWARD -i ens4 -j ACCEPT; iptables -t nat -D POSTROUTING -o wg0 -j MASQUERADE; ip6tables -D FORWARD -i ens4 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o wg0 -j MASQUERADE
-SaveConfig = true
-```
-
 PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
-
-PostUp   = 
-iptables -A FORWARD -i %i -j ACCEPT; 
-iptables -A FORWARD -o %i -j ACCEPT; 
-iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
-
-PostDown = 
-iptables -D FORWARD -i %i -j ACCEPT; 
-iptables -D FORWARD -o %i -j ACCEPT; 
-iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
+SaveConfig = true
+```
 
 https://www.stavros.io/posts/how-to-configure-wireguard/
 
@@ -244,17 +227,6 @@ net.ipv6.conf.all.forwarding = 1
 保存设置 `sudo sysctl -p`，使用 `echo 1 > /proc/sys/net/ipv4/ip_forward` 设置一下现在的配置就不用重启系统了。
 
 请使用最新版的 Ubuntu 系统，我的版本是 Ubuntu 18.04.1 LTS (GNU/Linux 4.15.0-1025-gcp x86_64)。旧版本如 16.04 在网络上可能会有问题。
-
-sudo iptables -t nat -L -v -n
-
-ip route list
-ip route show
-
-iptables 和 ip route 区别？
-
-ip route get 180.110.176.73 | sed '/ via [0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}/{s/^\(.* via [0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\).*/\1/}' | head -n 1
-
-还是上不了网，只能做到双方相互通信。
 
 https://www.reddit.com/r/China/comments/68lk5n/wireguard_in_china/
 
@@ -271,6 +243,103 @@ https://www.ericlight.com/wireguard-part-one-installation.html
 http://dnsleak.com
 
 https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/
+
+安装 unbound DNS (亲测成功@20190705)
+
+```sh
+sudo apt-get install unbound unbound-host
+sudo curl -o /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
+sudo nano /etc/unbound/unbound.conf
+```
+
+填入如下内容，`10.0.0.0` 是你设置的 wireguard 地址范围
+
+```yaml
+server:
+
+  num-threads: 4
+
+  #Enable logs
+  verbosity: 1
+
+  #list of Root DNS Server
+  root-hints: "/var/lib/unbound/root.hints"
+
+  #Use the root servers key for DNSSEC
+  auto-trust-anchor-file: "/var/lib/unbound/root.key"
+
+  #Respond to DNS requests on all interfaces
+  interface: 0.0.0.0
+  max-udp-size: 3072
+
+  #Authorized IPs to access the DNS Server
+  access-control: 0.0.0.0/0                 refuse
+  access-control: 127.0.0.1                 allow
+  access-control: 10.0.0.0/24         allow
+
+  #not allowed to be returned for public internet  names
+  private-address: 10.0.0.0/24
+
+  # Hide DNS Server info
+  hide-identity: yes
+  hide-version: yes
+
+  #Limit DNS Fraud and use DNSSEC
+  harden-glue: yes
+  harden-dnssec-stripped: yes
+  harden-referral-path: yes
+
+  #Add an unwanted reply threshold to clean the cache and avoid when possible a DNS Poisoning
+  unwanted-reply-threshold: 10000000
+
+  #Have the validator print validation failures to the log.
+  val-log-level: 1
+
+  #Minimum lifetime of cache entries in seconds
+  cache-min-ttl: 1800
+
+  #Maximum lifetime of cached entries
+  cache-max-ttl: 14400
+  prefetch: yes
+  prefetch-key: yes
+```
+
+```sh
+sudo chown -R unbound:unbound /var/lib/unbound
+sudo systemctl enable unbound
+sudo systemctl status unbound
+```
+
+> The problem with Ubuntu 18.04 is the systemd-resolved service which is listening on port 53 and therefore conflicts with unbound. Below in the solution which has also been added to the readme.
+>
+> If there is another service listening on port 53, you will have issues with getting DNS resolution working.
+It is therefore advisable to either disable or change the port of any service already using port 53.
+An example of this is the systemd-resolved service on Ubuntu 18.04. You should switch off binding to port 53 by editing the file /etc/systemd/resolved.conf as follows:
+  ```yaml
+  DNSStubListener=no
+  ```
+>Reboot the VPN server and DNS resolution will work as expected.
+
+在 gcloud vm 里测试一下 DNS 服务怎么样
+
+```sh
+nslookup www.google.com. 10.0.0.1
+Server:         10.0.0.1
+Address:        10.0.0.1#53
+Non-authoritative answer:
+Name:   www.google.com
+Address: 172.217.14.100
+Name:   www.google.com
+Address: 2607:f8b0:4007:80e::2004
+
+#Testing DNSSEC
+sudo unbound-host -C /etc/unbound/unbound.conf -v ietf.org
+[1562334351] libunbound[1951:0] notice: init module 0: validator
+[1562334351] libunbound[1951:0] notice: init module 1: iterator
+ietf.org has address 4.31.198.44 (secure)
+ietf.org has IPv6 address 2001:1900:3001:11::2c (secure)
+ietf.org mail is handled by 0 mail.ietf.org. (secure)
+```
 
 ### Tor
 

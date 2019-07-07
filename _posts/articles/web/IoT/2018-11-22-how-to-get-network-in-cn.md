@@ -163,7 +163,7 @@ net.ipv4.ip_forward = 0
 
 开启 __IP Forwarding__ 功能
 
-`sysctl -w net.ipv4.ip_forward=1` 
+`sysctl -w net.ipv4.ip_forward=1`
 
 或者
 
@@ -172,7 +172,7 @@ net.ipv4.ip_forward = 0
 这样只是一次性的，在系统重启后就会消失。
 想要持久会更改此设置，在文件 `/etc/sysctl.conf` 中添加一行
 
-```
+```text
 net.ipv4.ip_forward = 1
 ```
 
@@ -263,6 +263,7 @@ https://blog.chih.me/global-proxy-within-redsocks-and-shadowsocks.html
 ### Securing DNS Traffic in China
 
 #### DNS 污染
+
 DNS 污染是什么，如何查看 DNS 污染
 
 1. 点“开始”-“运行”-输入 CMD，再输入 `ipconfig /all` ，在下 DNS SERVER 里找到你使用的 DNS 服务器地址。
@@ -284,15 +285,15 @@ DNS 防污染(DNScrypt)，国内 IP 白名单(DNSmasq)
 
 `sudo apt-get install dnscrypt-proxy`
 
-
 /etc/default/dnscrypt-proxy:
-```
+
+```text
 DNSCRYPT_PROXY_LOCAL_ADDRESS=127.0.0.1:5353
 ```
 
 更改配置文件 /etc/dnscrypt-proxy/dnscrypt-proxy.conf
 
-```
+```text
 ResolverName dnscrypt.eu-dk
 Daemonize no
 
@@ -300,6 +301,7 @@ Daemonize no
 # change the dnscrypt-proxy.socket file.
 LocalAddress 127.0.0.1
 ```
+
 参考 https://github.com/dyne/dnscrypt-proxy/blob/master/dnscrypt-proxy.conf
 
 https://github.com/dyne/dnscrypt-proxy/blob/master/dnscrypt-resolvers.csv
@@ -330,15 +332,18 @@ https://www.opendns.com/
 systemctl status dnsmasq
 
 如果发现服务启动失败是因为 53 端口号被占用，可以用命令 `sudo netstat -anlp | grep -w LISTEN` 查看系统正在监听的端口号
-```
+
+```text
 tcp        0      0 127.0.2.1:53            0.0.0.0:*               LISTEN      1/init
 tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      864/sshd
 tcp        0      0 127.0.0.1:12345         0.0.0.0:*               LISTEN      1747/redsocks
 tcp6       0      0 :::22                   :::*                    LISTEN      864/sshd
 tcp6       0      0 :::1080                 :::*                    LISTEN      1320/docker-proxy
 ```
+
 可以看到监听 127.0.2.1:53 的是程序 /init ,这不是系统程序吗，然后用系统命令 `systemctl list-sockets` 查看详情
-```
+
+```text
 LISTEN                          UNIT                            ACTIVATES
 /dev/rfkill                     systemd-rfkill.socket           systemd-rfkill.service
 /run/systemd/fsck.progress      systemd-fsckd.socket            systemd-fsckd.service
@@ -355,6 +360,7 @@ LISTEN                          UNIT                            ACTIVATES
 127.0.2.1:53                    dnscrypt-proxy.socket           dnscrypt-proxy.service
 kobject-uevent 1                systemd-udevd-kernel.socket     systemd-udevd.service
 ```
+
 可以看到 127.0.2.1:53 是被 dnscrypt-proxy.socket 这个程序监听使用的。
 
 可以修改 /etc/dnsmasq.conf 配置文件中的 ports 为 5353，这样就不冲突了，然后
@@ -369,7 +375,6 @@ curl -x socks5h://127.0.0.1:1080 https://www.youtube.com/
 netstat  -anp | grep 端口号
 
 [redsocks]:https://github.com/darkk/redsocks
-
 
 ## WireGuard
 
