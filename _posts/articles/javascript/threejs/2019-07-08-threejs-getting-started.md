@@ -30,6 +30,8 @@ share: true
 
 WebGL API 是比较 low-level 的, 对于普通开发者来说太过复杂. 所以就有一些 high-level 的 JavaScript 库对 WebGL API 进行了封装, 如  A-Frame (VR), BabylonJS, PlayCanvas, [three.js][threejs], OSG.JS and CopperLicht, X3D.
 
+[图解WebGL&Three.js工作原理](https://www.cnblogs.com/wanbo/p/6754066.html)
+
 本系列我们就来学习一下 [Three.js][threejs] 如何编写程序.
 
 ## Setup Three.js in Angular Application
@@ -143,6 +145,21 @@ export class AppComponent {
   }
 }
 ```
+
+## 基本概念
+
+* World 世界坐标系
+* Screen 屏幕坐标系
+* Local 局部坐标系
+
+* Camera: 起到虚拟三维空间在一定视角上的投影作用, 同一个三维场景在不同的相机上呈现出来的投影不同(这应该很好理解)
+* Scene: 场景, 它是一个把所有三维物体包括起来的容器
+* Mesh: 
+* Geometry: 三维几何对象, 就是物体
+* Material: 材质, 就是物体表面看起来又不同质感的皮肤
+* Renderer: 展现函数, 最终在这里进行计算展现结果
+
+https://zhuanlan.zhihu.com/p/25595069
 
 [threejs]:https://threejs.org/
 [npmjs-three]:https://www.npmjs.com/package/three
