@@ -102,10 +102,10 @@ h2, h3, h4, h5, #markdown-toc, .demo-blog .mdl-card__media h3
 }
 
 #markdown-toc {
-  position: fixed;
-  top: 100px;
-  right: 100px;
-  width: initial;
+  position: var(--markdown-toc-position);
+  top: var(--markdown-toc-top);
+  right: var(--markdown-toc-right);
+  max-width: var(--markdown-toc-max-width);
 }
 
 /** disqus comments */

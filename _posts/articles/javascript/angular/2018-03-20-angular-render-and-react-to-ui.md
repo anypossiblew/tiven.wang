@@ -187,6 +187,7 @@ Angular 新增了 [Change Detection Strategy OnPush][ChangeDetectionStrategy] �
 ##### Immutables and Observables
 
 Patterns:
+
 * **OnPush** + **Immutables**
 * **OnPush** + **Observables** + **markForCheck**
 
@@ -205,6 +206,8 @@ Smarter Change Detection [[2.](#reference-2)]
 那么 Angular 怎么知道这些事情发生了呢？这就是 [Zone.js][zone.js] 框架要做的，它相当于会创建一台虚拟机，把运行在里面的 JavaScript 程序的 `setTimeout` `setInterval` 等函数都做了封装，所以他会知道什么时候发生了什么事情。只不过 Angular 对 Zone.js 又进行了一层封装，他会监听 `onTurnDone` 事件，如果发生了则说明该进行 change detection 了。
 
 > The short version is, that somewhere in Angular’s source code, there’s this thing called [`ApplicationRef`][ApplicationRef], which listens to `NgZones` `onTurnDone` event. Whenever this event is fired, it executes a `tick()` function which essentially performs change detection. [[2.](#reference-2)]
+
+https://alligator.io/angular/change-detection-strategy/
 
 https://blog.angularindepth.com/the-difference-between-ngdocheck-and-asyncpipe-in-onpush-components-4918ec4b29d4
 

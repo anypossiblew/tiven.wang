@@ -12,9 +12,9 @@ categories: articles
 tags: [Angular]
 image:
   vendor: gstatic
-  feature: /prettyearth/assets/full/1808.jpg
+  feature: /prettyearth/assets/full/1056.jpg
   credit: Google Earth
-  creditlink: https://earthview.withgoogle.com/maricopa-united-states-1808
+  creditlink: https://earthview.withgoogle.com/tooele-county-united-states-1056
 comments: true
 share: true
 ---
@@ -106,7 +106,11 @@ export class ProductDetailsComponent implements OnInit {
 
 * `private route: ActivatedRoute` 代表当前的路由信息
 
+## transition animations
 
+### Step 1: Enabling the animations module
+
+### Step 2: Importing animation functions into component files
 
 [angular-spa]:https://blog.angular-university.io/why-a-single-page-application-what-are-the-benefits-what-is-a-spa/
 

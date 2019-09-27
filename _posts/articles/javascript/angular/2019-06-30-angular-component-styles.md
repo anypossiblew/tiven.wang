@@ -1,7 +1,6 @@
 ---
 layout: post
 theme: XiXiuTi
-star: true
 series: 
   url: angular
   title: Angular
@@ -58,3 +57,9 @@ styling modularity feature
 * Native
 * Emulated
 * None
+
+
+
+
+
+https://angular.io/guide/styleguide

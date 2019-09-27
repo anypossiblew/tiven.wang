@@ -19,11 +19,99 @@ html, body {
   font-family: 'Roboto', 'Source Sans Pro',"Helvetica","Arial",sans-serif;
 }
 
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  
+}
+  
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+  :root {
+    --markdown-toc-position: relative;
+    --markdown-toc-top: initial;
+    --markdown-toc-right: initial;
+    --markdown-toc-max-width: initial;
+
+    --h2-font-size: 1.5em;
+    --h2-line-height: initial;
+    --h3-font-size: 1.3em;
+    --h4-font-size: 1.2em;
+    --h5-font-size: 1em;
+  }
+}
+  
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+  
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+@media (min-width: 1025px) and (max-width: 1280px) {
+  :root {
+    --markdown-toc-position: fixed;
+    --markdown-toc-top: 100px;
+    --markdown-toc-right: 50px;
+    --markdown-toc-max-width: 250px;
+
+    --h2-font-size: 2em;
+    --h2-line-height: ;
+    --h3-font-size: 1.7em;
+    --h4-font-size: 1.5em;
+    --h5-font-size: 1em;
+  }
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+@media (min-width: 1281px) {
+  :root {
+    --markdown-toc-position: fixed;
+    --markdown-toc-top: 100px;
+    --markdown-toc-right: 100px;
+    --markdown-toc-max-width: 250px;
+
+    --h2-font-size: 2em;
+    --h2-line-height: ;
+    --h3-font-size: 1.7em;
+    --h4-font-size: 1.5em;
+    --h5-font-size: 1em;
+  }
+}
+
 /* ----------- Non-Retina Screens ----------- */
 @media screen 
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 1) { 
+
+    
 }
 
 /* ----------- Retina Screens ----------- */
@@ -31,14 +119,16 @@ html, body {
   and (min-device-width: 1200px) 
   and (max-device-width: 1600px) 
   and (-webkit-min-device-pixel-ratio: 2)
-  and (min-resolution: 192dpi) { 
+  and (min-resolution: 192dpi) {
 
 }
 
 /* ----------- Big Screens ----------- */
 @media screen 
   and (min-device-width: 1600px) 
-  and (max-device-width: 2000px) { 
+  and (max-device-width: 2000px) {
+    
+
     .demo-blog {
       .demo-blog__posts {
         max-width: 1200px;
@@ -271,7 +361,8 @@ html, body {
     }
 
     h2[id] {
-      font-size: 2em;
+      font-size: var(--h2-font-size);
+      line-height: var(--h2-line-height);
       margin: 15px 0 0 0;
     }
 
@@ -282,7 +373,7 @@ html, body {
     }
 
     h3[id] {
-      font-size: 1.7em;
+      font-size: var(--h3-font-size);
       margin: 15px 0 0 0;
     }
 
@@ -293,7 +384,7 @@ html, body {
     }
 
     h4 {
-      font-size: 1.5em;
+      font-size: var(--h4-font-size);
     }
 
     h4::after {
@@ -303,7 +394,7 @@ html, body {
     }
 
     h5 {
-      font-size: 1.3em;
+      font-size: var(--h5-font-size);
     }
     h5::after {
       content: '####';
@@ -382,7 +473,8 @@ html, body {
 	padding-left: 0;
 	border-top: 2px solid $border-color;
 	border-bottom: 2px solid $border-color;
-	border-radius: $border-radius;
+  border-radius: $border-radius;
+  z-index: 500;
   ul {
   	list-style-type: none;
   	padding-left: 0;

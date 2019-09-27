@@ -65,5 +65,15 @@ export class AppModule { }
 * 而 JavaScript 源文件目录层级就像 Java 的 package，用于区分不同包
 * 而 Angular NgModule 才可以表示更抽象层面的模块含义，包含不同功能的类，就像 Java 的 jar 包
 
+## Feature Modules
+
+## Projects
+
+在代码层次 Angular 是通过 ngModules 组织代码的, 在项目级别 Angular 以 Project 的形式来划分代码结构. 一些可重复使用的代码可以被组织在一个 ngModule 里然后以独立的 Project 形式进行开发部署.
+
+Angular project 是通过 Angular CLI 创建, 使用命令 `ng generate library xxx` 可以生成一个类型为 library 的 project, 类型 library 的项目是被 Angular Application 引用的可重复使用的代码组织.
+
+Angular version numbers have three parts: `major.minor.patch`
+
 [NgModule]:https://angular.io/api/core/NgModule
 [angular-cli]:https://github.com/angular/angular-cli

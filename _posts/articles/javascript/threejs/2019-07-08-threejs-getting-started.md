@@ -1,7 +1,6 @@
 ---
 layout: post
 theme: XiuKai
-star: true
 series: 
   url: threejs
   title: Three.js
@@ -160,6 +159,9 @@ export class AppComponent {
 * Renderer: 展现函数, 最终在这里进行计算展现结果
 
 https://zhuanlan.zhihu.com/p/25595069
+
+
+https://zhuanlan.zhihu.com/p/35120118
 
 [threejs]:https://threejs.org/
 [npmjs-three]:https://www.npmjs.com/package/three
