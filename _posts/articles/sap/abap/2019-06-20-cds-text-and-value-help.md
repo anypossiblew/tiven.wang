@@ -324,4 +324,8 @@ association [0..1] to ZDEMO_I_BP_ValueHelp as _BusinessPartnerValueHelp
 }
 ```
 
+### SAP Value List
+
+standard or fixed-values
+
 [ObjectModel]:https://help.sap.com/viewer/cc0c305d2fab47bd808adcad3ca7ee9d/7.52.4/en-US/896496ecfe4f4f8b857c6d93d4489841.html

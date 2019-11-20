@@ -22,15 +22,20 @@ share: true
 {:toc}
 
 > App developers can use SAP Fiori elements to create SAP Fiori applications based on **OData services** and **annotations** that _**don't need JavaScript UI coding**_ . The resulting app uses predefined views and controllers that are provided centrally. This means no application-specific view instances are required. The SAPUI5 runtime interprets metadata and annotations of the underlying OData service and uses the corresponding views for the SAP Fiori app at startup.
-
+>
 > 本文所使用的 SAP UI5 Version 是 `1.52`
-
+>
 > 本文中的 Annotations 的 namespace `UI` 皆为缩写，在 Fiori App 的 Annotation 文件中配置别名如下
+
 ```xml
 <edmx:Reference Uri="/sap/bc/ui5_ui5/ui2/ushell/resources/sap/ushell/components/factsheet/vocabularies/UI.xml">
   <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
 </edmx:Reference>
 ```
+
+## Fields
+
+[ABAP CDS Annotations](https://help.sap.com/viewer/cc0c305d2fab47bd808adcad3ca7ee9d/7.5.15/en-US/630ce9b386b84e80bfade96779fbaeec.html)
 
 ## Filter Field Selection
 
@@ -93,3 +98,7 @@ https://sapui5.hana.ondemand.com/#/topic/03265b0408e2432c9571d6b3feb6b1fd.html
 [Doing Component Reuse in Fiori Elements](https://blogs.sap.com/2019/06/06/doing-component-reuse-in-fiori-elements/)
 
 [Implement Fuzzy Search Help with UI5 Annotation for Fiori Application](https://blogs.sap.com/2019/06/03/implement-fuzzy-search-help-with-ui5-annotation-for-fiori-application-without-front-end-coding/)
+
+https://help.sap.com/doc/saphelp_nw75/7.5.5/en-US/8a/8415c033d441b2b079a53aff129463/frameset.htm
+
+https://wiki.scn.sap.com/wiki/display/Fiori/Fiori+elements

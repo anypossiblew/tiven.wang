@@ -28,9 +28,11 @@ references:
 * TOC
 {:toc}
 
+本文介绍如何在 gCloud 虚拟机上配置 wireguard 服务。
+
 ## gCloud VM Server
 
-Google Compute Engine (called SERVER 1)
+环境：Google Compute Engine (called SERVER 1)
 
 * Zone: us-east1-b (use whichever you'd like)
 * g1-small (1 vCPU, 1.7GB Memory)
@@ -39,13 +41,19 @@ Google Compute Engine (called SERVER 1)
 
 ### Create gCloud VM
 
-创建一个 google Cloud Compute Engine VM instance, 我选择的区域是 `us-west2` 洛杉矶，操作系统是 `Ubuntu 18.04 LTS`
+创建一个 google Cloud / Compute Engine / VM instance, 我选择的区域是 `us-west2` 洛杉矶，操作系统是 `Ubuntu 18.04 LTS`。
+
+确保 VM 有 External IP。 用 SSH 方式连接 VM Linux 系统。
+
+记得开启 udp/`<51840>` ingress in Firewall rules， `51840` 是你的 Wireguard 服务所在端口号。
 
 ## WireGuard Server
 
+Setup WireGuard Server
+
 ### Step 1. Install the required packages
 
-首先添加 wireguard 的库 `sudo add-apt-repository ppa:wireguard/wireguard`
+* Step 1.1 首先添加 wireguard 的库 `sudo add-apt-repository ppa:wireguard/wireguard`
 
 ```sh
 tiven@instance-1:~$ sudo add-apt-repository ppa:wireguard/wireguard
@@ -71,7 +79,7 @@ gpg:               imported: 1  (RSA: 1)
 OK
 ```
 
-然后更新软件信息 `sudo apt-get update`
+* Step 1.2 然后更新软件信息 `sudo apt-get update`
 
 ```sh
 tiven@instance-1:~$ sudo apt-get update
@@ -80,7 +88,7 @@ Fetched 1,943 kB in 2s (865 kB/s)
 Reading package lists... Done
 ```
 
-安装 wireguard `sudo apt-get install wireguard`
+* Step 1.3 安装 wireguard `sudo apt-get install wireguard`
 
 ```sh
 tiven@instance-1:~$ sudo apt-get install wireguard
@@ -114,7 +122,7 @@ Processing triggers for libc-bin (2.23-0ubuntu10) ...
 
 ### Step 2. Create a private key
 
-We need to generate a private key on this server
+要使用 Wireguard 服务首先需要在服务端创建一个 **Private Key**:
 
 ```sh
 tiven@instance-1:~$ (umask 077 && printf "[Interface]\nPrivateKey = " | sudo tee /etc/wireguard/wg0.conf > /dev/null)
@@ -122,7 +130,7 @@ tiven@instance-1:~$ wg genkey | sudo tee -a /etc/wireguard/wg0.conf | wg pubkey 
 28CNION3/w0iHlTy/f22ltd+4OLdDwrofK2KOSyGjDg=
 ```
 
-这里输出的是客户端需要的 public key, 也可以通过下面命令获得
+这里输出的是客户端需要的 **Public Key**, 也可以通过下面命令获得
 
 ```sh
 tiven@instance-1:~$ cat /etc/wireguard/publickey
@@ -131,7 +139,9 @@ tiven@instance-1:~$ cat /etc/wireguard/publickey
 
 ### Step 3. Create the configuration file
 
-编辑配置文件 `sudo nano /etc/wireguard/wg0.conf`
+需要再为服务端配置端口号和私有域的 IP 范围
+
+* Step 3.1 编辑配置文件 `sudo nano /etc/wireguard/wg0.conf`
 
 ```sh
 [Interface]
@@ -141,15 +151,15 @@ SaveConfig = true
 Address = 10.0.0.1/24
 ```
 
-然后启动 wg 服务 `sudo systemctl start wg-quick@wg0`
+* Step 3.2 然后启动 wg 服务 `sudo systemctl start wg-quick@wg0`
 
 ## Client
 
-客户端可以选用开源的 TunSafe, 手机上使用 WireGuard 客户端比较好
+再来配置需要访问 Wireguard 服务的客户端，可以选用开源的 TunSafe, 手机上使用 WireGuard 客户端比较好。
 
 ### 配置
 
-使用 TunSafe 可以生成 Key Pair, 其中 `private key` 配在客户端, `public key` 配在服务端. 客户端配置文件
+使用 TunSafe 可以生成 Key Pair, 其中 `Private Key` 配在客户端, `Public Key` 配在服务端. 客户端配置文件
 
 ```text
 [Interface]
@@ -163,10 +173,16 @@ Endpoint = 35.198.219.20:51840
 AllowedIPs = 0.0.0.0/0
 ```
 
-在 gCloud VM 上使用命令 `sudo wg set wg0 peer 439nCgce2+BRJVIvn8UoTt2w8oS842VFJVntCIXXUCI= allowed-ips 10.0.0.2/32` 把客户端的 `public key` 更新到服务端上. 然后重启查看服务信息
+`[Interface]`代表客户端的信息，`[Peer]`是上面创建的服务端信息。
+
+### 更新服务端
+
+在 gCloud VM 上使用命令 `sudo wg set wg0 peer 439nCgce2+BRJVIvn8UoTt2w8oS842VFJVntCIXXUCI= allowed-ips 10.0.0.2/32` 把客户端的 `public key` 更新到服务端上.
+
+然后重启查看服务信息 `sudo systemctl restart wg-quick@wg0`
 
 ```sh
-tiven@instance-1:~$ sudo systemctl start wg-quick@wg0
+tiven@instance-1:~$ sudo systemctl restart wg-quick@wg0
 tiven@instance-1:~$ ip addr show wg0
 8: wg0: <POINTOPOINT,NOARP,UP,LOWER_UP> mtu 1380 qdisc noqueue state UNKNOWN group default qlen 1000
     link/none
@@ -199,7 +215,7 @@ interface: wg0
   listening port: 51840
 ```
 
-创建为系统服务,当系统启动时自动启动服务
+创建为系统服务,当系统启动时自动启动服务 `sudo systemctl enable wg-quick@wg0`
 
 ```sh
 tiven@instance-1:~$ sudo systemctl enable wg-quick@wg0
@@ -210,16 +226,19 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/wg-quick@wg0.se
 
 ## IP forwarding in server
 
+On the server’s config file, at the end of the the [Interface] section, add these two lines:
+编辑配置文件 `sudo nano /etc/wireguard/wg0.conf`
+
 ```sh
 PostUp   = iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o ens4 -j MASQUERADE
 PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -D FORWARD -o %i -j ACCEPT; iptables -t nat -D POSTROUTING -o ens4 -j MASQUERADE
-SaveConfig = true
 ```
 
 https://www.stavros.io/posts/how-to-configure-wireguard/
 
 启用 IP 转发功能 `sudo nano /etc/sysctl.conf`
-```
+
+```sh
 net.ipv4.ip_forward = 1
 net.ipv6.conf.all.forwarding = 1
 ```
@@ -240,11 +259,15 @@ https://www.ericlight.com/wireguard-part-one-installation.html
 
 ### DNS Leak
 
+还有一层需要 VPN 访问的独立通道是 DNS 查询请求。正常的 DNS 解析服务可能会被人为污染，所以有必要对 DNS 开通单独的服务。
+
 http://dnsleak.com
 
 https://www.ckn.io/blog/2017/11/14/wireguard-vpn-typical-setup/
 
-安装 unbound DNS (亲测成功@20190705)
+安装 unbound DNS (亲测成功@20190705)。
+
+在上面创建的 gCloud VM 上执行下面命令
 
 ```sh
 sudo apt-get install unbound unbound-host
@@ -252,7 +275,7 @@ sudo curl -o /var/lib/unbound/root.hints https://www.internic.net/domain/named.c
 sudo nano /etc/unbound/unbound.conf
 ```
 
-填入如下内容，`10.0.0.0` 是你设置的 wireguard 地址范围
+填入如下内容（把原来内容删掉），`10.0.0.0` 是你设置的 wireguard 地址范围
 
 ```yaml
 server:
@@ -304,21 +327,13 @@ server:
   prefetch-key: yes
 ```
 
+启动 unbound 服务
+
 ```sh
 sudo chown -R unbound:unbound /var/lib/unbound
 sudo systemctl enable unbound
 sudo systemctl status unbound
 ```
-
-> The problem with Ubuntu 18.04 is the systemd-resolved service which is listening on port 53 and therefore conflicts with unbound. Below in the solution which has also been added to the readme.
->
-> If there is another service listening on port 53, you will have issues with getting DNS resolution working.
-It is therefore advisable to either disable or change the port of any service already using port 53.
-An example of this is the systemd-resolved service on Ubuntu 18.04. You should switch off binding to port 53 by editing the file /etc/systemd/resolved.conf as follows:
-  ```yaml
-  DNSStubListener=no
-  ```
->Reboot the VPN server and DNS resolution will work as expected.
 
 在 gcloud vm 里测试一下 DNS 服务怎么样
 
@@ -340,6 +355,18 @@ ietf.org has address 4.31.198.44 (secure)
 ietf.org has IPv6 address 2001:1900:3001:11::2c (secure)
 ietf.org mail is handled by 0 mail.ietf.org. (secure)
 ```
+
+如果 nslookup 不成功请参考
+
+> The problem with Ubuntu 18.04 is the systemd-resolved service which is listening on port 53 and therefore conflicts with unbound. Below in the solution which has also been added to the readme.
+>
+> If there is another service listening on port 53, you will have issues with getting DNS resolution working.
+It is therefore advisable to either disable or change the port of any service already using port 53.
+An example of this is the systemd-resolved service on Ubuntu 18.04. You should switch off binding to port 53 by editing the file /etc/systemd/resolved.conf as follows:
+  ```yaml
+  DNSStubListener=no
+  ```
+> Reboot the VPN server and DNS resolution will work as expected.
 
 ### Tor
 

@@ -80,17 +80,17 @@ Angular [Template Syntax][template-syntax] 还有其他各种变化的形式，�
 
 ## Change Detect
 
-### How
-
 通过之前的学习我们知道一个 HTML template 对应一个 Angular Component class，一个 HTML application 是一个 HTML elements 的树，那么一个 Angular application 就是一个 Components 树。
 
 其实 Component 只负责数据模型的逻辑，Angular 底层有一个类 View 负责具体展现的逻辑，真正和 HTML UI element 绑定一起的是 View，所以就是 一个 Component 对应一个 View 对应一个 HTML element，一个 Component 树也就对应一个 View 树。而 change detection 逻辑是在每个 View 里做的。
 
-> A View is a fundamental building block of the application UI. It is the smallest grouping of Elements which are created and destroyed together.
-Properties of elements in a View can change, but the structure (number and order) of elements in a View cannot. Changing the structure of Elements can only be done by inserting, moving or removing nested Views via a ViewContainerRef. Each View can contain many View Containers. [[4.](#reference-4)]
+> It’s important to note here that all articles on the web and answers on StackOverflow regarding change detection refer to the View I’m describing here as Change Detector Object or ChangeDetectorRef. In reality, there’s no separate object for change detection and View is what change detection runs on. [[4.](#reference-4)]
 {: .Quotes}
 
-> It’s important to note here that all articles on the web and answers on StackOverflow regarding change detection refer to the View I’m describing here as Change Detector Object or ChangeDetectorRef. In reality, there’s no separate object for change detection and View is what change detection runs on. [[4.](#reference-4)]
+### How
+
+> A View is a fundamental building block of the application UI. It is the smallest grouping of Elements which are created and destroyed together.
+Properties of elements in a View can change, but the structure (number and order) of elements in a View cannot. Changing the structure of Elements can only be done by inserting, moving or removing nested Views via a ViewContainerRef. Each View can contain many View Containers. [[4.](#reference-4)]
 {: .Quotes}
 
 因为 View 的类 [`ViewRef`][ViewRef] 继承了类 [`ChangeDetectorRef`][ChangeDetectorRef]，所以你可以使用 `ChangeDetectorRef` 类型把 View 注入到 Component 的构造函数中
@@ -142,6 +142,7 @@ A: AfterViewChecked
 ```
 
 了解了 change detection 的基本流程，那么我们怎么控制它呢？ Angular 提供了 [`ChangeDetectorRef`][ChangeDetectorRef] 公共接口供程序使用
+
 ```typescript
 export abstract class ChangeDetectorRef {
   abstract markForCheck(): void;
@@ -179,19 +180,24 @@ constructor(private cd: ChangeDetectorRef, private logger: LoggerService) {
 
 #### Change Detection Strategy
 
-> Angular performs change detection on all components (from top to bottom) every time something changes in your app from something like a user event or data received from a network request. Change detection is very performant, but as an app gets more complex and the amount of components grows, change detection will have to perform more and more work. There’s a way to circumvent that however and set the change detection strategy to OnPush on specific components. Doing this will instruct Angular to run change detection on these components and their sub-tree only when new references are passed to them versus when data is simply mutated. [[6.](#reference-6)]
+> Angular performs change detection on all components (from top to bottom) every time something changes in your app from something like a user event or data received from a network request. Change detection is very performant, but as an app gets more complex and the amount of components grows, change detection will have to perform more and more work. There’s a way to circumvent that however and set the change detection strategy to `OnPush` on specific components. Doing this will instruct Angular to run change detection on these components and their sub-tree only when **new references** are passed to them versus when data is simply mutated. [[6.](#reference-6)]
 {: .Quotes}
 
-Angular 新增了 [Change Detection Strategy OnPush][ChangeDetectionStrategy] 来标识某个 Component 只有在输入属性的值的引用发生变化时才进行 change detection 。在实际应用中 `OnPush` 可能有一些坑需要注意[[5.](#reference-5)]
+Angular 新增了 [Change Detection Strategy OnPush][ChangeDetectionStrategy] 来标识某个 Component 只有在输入属性的引用发生变化时才进行 change detection 。在实际应用中 `OnPush` 可能有一些坑需要注意[[5.](#reference-5)]
 
-##### Immutables and Observables
+##### OnPush 的 Immutables 和 Observables 模式
 
-Patterns:
+使用 OnPush 策略优化 Change Detection 效率时有两种模式 (Patterns):
 
-* **OnPush** + **Immutables**
-* **OnPush** + **Observables** + **markForCheck**
+* **OnPush** + **Immutables**: 如果想要组件更新必须为 Input 属性传入新的引用；
+* **OnPush** + **Observables** + **markForCheck**: Input 属性为 Observable 对象, 每次订阅事件发生时再标记此组件为 `markForCheck`, 这样在下次 root change detection 运行就会直接知道此组件需要更新, 但如果用 `markForCheck` 标记后没有立即有新的 change detection 运行， 则可以执行 `detectChanges` 手动触发检查；
+* **OnPush** + **Observables** + **async**: Input 属性为 Observable 对象, 在 Html Template 里使用 Angular 提供的 async Pipe 可以做到自动监听事件值以更新 Template；
 
-Smarter Change Detection [[2.](#reference-2)]
+<iframe height="265" style="width: 100%;" src="https://stackblitz.com/edit/angular-b9tlvc?embed=1&file=src/app/app.component.ts"></iframe>
+
+详细参考 Smarter Change Detection [[2.](#reference-2)]
+
+* You can add logging to the `ngOnChanges()` method of your components to see if they render as expected.
 
 ### When
 
@@ -210,6 +216,14 @@ Smarter Change Detection [[2.](#reference-2)]
 https://alligator.io/angular/change-detection-strategy/
 
 https://blog.angularindepth.com/the-difference-between-ngdocheck-and-asyncpipe-in-onpush-components-4918ec4b29d4
+
+https://stackoverflow.com/questions/34326745/whats-the-difference-between-viewchild-and-contentchild#targetText=As%20the%20name%20suggests%2C%20%40ContentChild,on%20your%20view%20template%20directly.
+
+https://blog.angular-university.io/angular-viewchild/
+
+## Expression has changed after it was checked
+
+https://blog.angular-university.io/angular-debugging/
 
 [template-syntax]:https://angular.io/guide/template-syntax
 [ApplicationRef]:https://angular.io/api/core/ApplicationRef

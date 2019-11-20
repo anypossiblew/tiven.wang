@@ -1,7 +1,6 @@
 ---
 layout: post
 theme: XiXiuTi
-star: true
 series: 
   url: angular
   title: Angular

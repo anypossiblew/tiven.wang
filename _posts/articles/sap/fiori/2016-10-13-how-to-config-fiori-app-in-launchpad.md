@@ -169,12 +169,23 @@ Thus Tile and ‘Target Mapping’ is linked using ‘Semantic Object’ + ‘Ac
 
 ### Step 5. Create App’s PFCG Role
 
+访问 FIORI 有一些共用的权限可能需要添加如
+
+* R3TR IWSG ZINTEROP_0001
+* R3TR IWSG ZPAGE_BUILDER_PERS_0001
+* R3TR IWSG ZTRANSPORT_0001
+* R3TR IWSG ZESH_SEARCH_SRV_0001
+* R3TR IWSV /UI2/INTEROP 0001
+* R3TR IWSV /UI2/LAUNCHPAD 0001
+* R3TR IWSV /UI2/PAGE_BUILDER_PERS 0001
+
+然后创建 App 单独的 Role
+
 * go to **PFCG**
-
 * Create PFCG Role for SAPUI5 Application
-
 * Add ‘Business Catalog’ and ‘Group’ in Role
 * Adding custom ‘Odata Service’ access
+  * 添加 **Authorization Default**, 选择 **TADIR Service** 和 **IWSG SAP Gateway: Service Groups Metadata**, 然后在表格里选择相应的 OData Services 进行添加. 如果用到了 Annotation Service 还要添加服务 **/IWFND/SG_MED_CATALOG_0002**;
 * Add User
 
 ## Next Steps

@@ -139,6 +139,14 @@ key Document.SalesOrder,
 <Property Name="Set_to_paid_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
 ```
 
+和 Function Import
+
+```xml
+<FunctionImport Name="ZDEMO_C_SalesOrder_TXSet_to_paid" ReturnType="ZDEMO_C_SALESORDER_TX_CDS.ZDEMO_C_SalesOrder_TXType" EntitySet="ZDEMO_C_SalesOrder_TX" m:HttpMethod="POST" sap:action-for="ZDEMO_C_SALESORDER_TX_CDS.ZDEMO_C_SalesOrder_TXType" sap:applicable-path="Set_to_paid_ac">
+  <Parameter Name="SalesOrder" Type="Edm.String" Mode="In" MaxLength="10"/>
+</FunctionImport>
+```
+
 并且在 OData Annotations UI.LineItem 里多一个
 
 ```xml

@@ -3,9 +3,9 @@ layout: post
 theme: Josefin-Sans
 title: React - Setup Development Project
 excerpt: ""
-modified: 2018-03-13T17:00:00-00:00
+modified: 2019-10-18T17:00:00-00:00
 categories: articles
-tags: [React, TypeScript, JavaScript]
+tags: [React, JavaScript]
 image:
   vendor: twitter
   feature: /media/DXDn7NoW0AAH5K7.jpg:large
@@ -20,15 +20,19 @@ share: true
 
 https://reactjs.org/tutorial/tutorial.html
 
-> Node >= 6
+React 可以直接引入 HTML 页面里然后使用, 也可以使用 React CLI 创建一个全新的 React 项目. 本文讲解使用 an integrated toolchain for the best user and developer experience.
 
-```
+> Node >= 6 我的是 v10.15.3
+
+```sh
 npm install -g create-react-app
 create-react-app my-app
 
 cd my-app
-npm start
+yarn start
 ```
+
+至此创建 React 成功.
 
 https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md
 
