@@ -1,6 +1,6 @@
 ---
 layout: post
-theme: Josefin-Sans
+theme: XiXiuTi
 title: Angular vs React vs Vue
 excerpt: "比较 Angular React Vue 框架的异同"
 modified: 2018-03-13T17:00:00-00:00

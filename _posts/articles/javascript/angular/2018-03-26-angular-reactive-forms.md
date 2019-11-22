@@ -50,3 +50,5 @@ export class AppModule { }
 ```
 
 // TODO
+
+https://netbasal.com/angular-reactive-forms-tips-and-tricks-bb0c85400b58

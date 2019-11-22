@@ -150,6 +150,11 @@ export class AppComponent {
 
 另外一点是 Injector 的生命周期是伴随其所属的组件的，Component 在销毁时其所拥有的 Injector 也会被销毁，Injector 内的依赖实例同样也会被销毁。而 NgModule 的 Injector 则是从开始到结束。所以如果你想让整个模块内的依赖使用同一个实例，那么就把他放在 `@NgModule` 的 providers 里吧。
 
+## Dependency Providers
+
+https://angular.io/guide/dependency-injection-providers
+
+
 ## DI Advantage
 
 那么依赖注入方式在实际应用中到底有什么好处？接下来我们看看如何方便地替换一个依赖。
