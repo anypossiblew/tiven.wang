@@ -18,7 +18,11 @@ share: true
 * TOC
 {:toc}
 
-[DLNA][DLNA] 是什么？DLNA 全称是 Digital Living Network Alliance ，是一种适用于各种设备上的多媒体共享协议。在同一 WIFI 网络环境下，使用 DLNA 直连可将图片、音乐、视频等投射到大屏显示器，例如将智能手机中视频，推送到智能电视中播放，从而增强观众的体验。
+本文介绍组件一个家庭影院所需要的技术知识。
+
+## DLNA
+
+[DLNA][DLNA] 是什么？DLNA 全称是 Digital Living Network Alliance ，是一种适用于各种设备上的**多媒体共享协议**。在同一 WIFI 网络环境下，使用 DLNA 直连可将图片、音乐、视频等投射到大屏显示器，例如将智能手机中视频，推送到智能电视中播放，从而增强观众的体验。
 
 UPNP
 
@@ -44,8 +48,6 @@ Merlin 固件
 
 ## 技术概念
 
-HDMI
-
 蓝牙能支持 5.1 声道传输吗
 
 HDR 10 解码
@@ -55,6 +57,30 @@ HDR 10 解码
 http://bbs.xiaomi.cn/t-7914787-1-o0
 
 https://exp.newsmth.net/topic/e8e459a490de6d36f99b149ba22d3e85
+
+### 音频技术
+
+在观看HDTV时想要获得和DVD一样的多声道影院效果，最好的方案肯定是将音频用 SPDIF（Sony-Philips Digital Interface Format，索尼-飞利浦数字界面格式）输出到功放，然后由功放来解码播放。从理论上来说，这样的效果肯定比从声卡上接出模拟信号到功放上的要好，事实也的确如此。
+
+目前的HDTV影片中，音频部分基本上都是采用 AC3, DTS, AAC 这三种格式进行编码，这三种格式都可以提供多声道的影院效果。在开始搭建HTPC家庭影院之前，先简单了解一下什么是什么是 AC3, DTS 和 AAC ：
+
+1. AC3, 全称为Audio Coding version 3，是Dolby实验室所发展的有损音频编码格式。AC3最被广泛应用于5.1声道，是Dolby Pro Logic的继承者，不同的地方在于AC3提供6个独立的声道而Pro Logic混合其环绕声道。AC3普及度很高，以384-448 kbps的码率应用于LaserDisc和DVD，也经常以640 kbps的码率广泛用在电影院。
+2. DTS, 全称为Digital Theater Systems(数字影院系统)，是一种有损多声道家庭影院音频格式，但它用了很高的码率进行编码，通常为768-1536kbps，能够营造出比AC3更好的影院效果。
+
+3. AAC, 全称为 Advanced Audio Coding (高级音频解码)，是一种由 MPEG-4 标准定义的有损音频压缩格式，由 Fraunhofer 发展，Dolby, Sony 和 AT&T 是主要的贡献者。在使用 MP4 作为各种内容的容器格式的新多媒体MPEG-4标准中，它是MPEG Layer III( MP3)的天然后继者。AAC 能够在一条音轨中包括48条全带宽（直到 96khz）音频声道，加上15条低频增强（LFE，限制到120Hz）声道，直到 15条数据流并且更多。
+
+#### Dolby Atmos
+
+杜比全景声（Dolby Atmos/X-DMAX）是由杜比实验室研发，于 2012 年 4 月 24 日发布的全新影院音频平台。它突破了传统意义上 5.1、7.1 声道的概念，能够结合影片内容，呈现出动态的声音效果；更真实的营造出由远及近的音效；配合顶棚加设音箱，实现声场包围，展现更多声音细节，提升观众的观影感受。
+
+
+### TrueHD
+
+### HDMI
+
+HDMI 是音视频合一的单线数字接口。
+
+HDMI 也支持非压缩的 8 声道数字音频发送（采样率192kHz，数据长度24bits/sample），以及任何压缩音频流如 Dolby Digital 或 DTS ，亦支持 SACD 所使用的 8 声道的 1bit DSD 信号。在 HDMI 1.3 规格中，又追加超高数据量的非压缩音频流如 Dolby TrueHD 与 DTS-HD 的支持。
 
 ### 电影文件名词解释
 
@@ -80,6 +106,12 @@ H265 解码
 现代家庭影音系统完全有必要需要一个千兆网络，那么怎么为自己组建一个家庭千兆网络呐？
 
 首先看我们需要光猫、路由器、交换机、网线等都必须达到千兆级。
+
+### 路由器
+
+我选择的是 [TP-LINK 双千兆路由器 TL-WDR8690](https://www.tp-link.com.cn/product_1340.html), 2020年2月价格￥299.00 。
+
+[2020年初比较靠谱的路由器选购攻略以及型号推荐](https://www.bilibili.com/video/av81460027?t=656)
 
 ### 网线
 
