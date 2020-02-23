@@ -33,3 +33,9 @@ NPM 5.7.0 引入了一种新的安装依赖的方式：
 * 它将会安装 Node.js 项目所有的依赖项;
 * 如果使用 `^` 或 `~` 来匹配依赖项的版本时，则 npm 可能无法安装确切版本;
 * 利用 `npm install` 安装新依赖项时，会更新 *package-lock.json*;
+
+## compiler
+
+### Just in Time (JIT)
+
+### Ahead of Time (AoT)

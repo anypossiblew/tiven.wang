@@ -24,7 +24,7 @@ references:
 
 时区是指地球上使用同一个时间定义的区域。以前，人们通过观察太阳的位置（时角）决定时间，这就使得不同经度地方的时间有所不同（地方时）。1863年，首次使用时区的概念。时区通过设立一个区域的标准时间，部分地解决了这个问题。
 
-![Standard World TimeZones](https://upload.wikimedia.org/wikipedia/commons/e/e8/Standard_World_Time_Zones.png)
+![Standard World TimeZones](https://upload.wikimedia.org/wikipedia/commons/8/88/World_Time_Zones_Map.png)
 
 作为一个国际性公司，当其在使用SAP软件时也会遇到不同时区的用户使用统一系统时间数据所带来的差异性问题。例如存储在SAP系统数据库中的业务数据时间是0时区时间，记一笔业务发生的时间是2016/09/26 20：00：00， 如果东8区的中国用户在查看系统时选择的时间范围是UTC+8 2016/09/27到2016/09/28，转换为0时区的时间应该是UTC+0 2016/09/26 16:00:00到2016/09/28 15：59：59，则这笔业务会被统计在UTC+8 2016/09/27这一天内。而如果是0时区英国用户查看则这笔会统计在2016/09/26。
 
@@ -107,9 +107,10 @@ CONVERT TIME STAMP lv_ts_dummy TIME ZONE lv_timezone INTO DATE lv_date_dummy.
 ## HANA
 
 ### Table
-加入HANA数据库有下面这个结构的数据表, 时间字段类型是`TIMESTAMPL`， 要根据之前的选择日期进行统计每天销售总量。
 
-#### Sales_Order
+假如 HANA 数据库有下面这个结构的数据表, 时间字段类型是 `TIMESTAMPL`， 要根据之前的选择日期进行统计每天销售总量。
+
+* Sales_Order
 
 | ID | TIMESTAMP 	         | SALES  |
 | -- | --------------------- | ------ |

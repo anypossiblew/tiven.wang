@@ -35,6 +35,15 @@ CDS 分为 ABAP 和 SAP HANA 两个版本。ABAP CDS 可以被 ABAP 程序通过
 
 [CDS Views: Tools and Tables](https://wiki.scn.sap.com/wiki/display/BI/CDS+Views%3A+Tools+and+Tables)
 
+### Joins
+
+各种 Join 和 各种 Association 的情况
+
+* A join between two data sources using `INNER JOIN` or just `JOIN` selects all entries of the data sources whose fields meet the `ON` condition. 只取双方符合 `ON` 条件的记录，记录个数是乘积关系。
+* A join between two data sources using `LEFT OUTER JOIN` selects all entries on the left side. A join between two data sources using `RIGHT OUTER JOIN` selects all entries on the right side. Entries that meet the `ON` condition have the same content as in the **inner join**. In entries that do not meet the `ON` condition, the elements on the right or left side have the null value that is set to a type-friendly initial value when the CDS view is used in Open SQL. 在 `INNER JOIN` 基础上再加没有符合 `ON` 条件的 `LEFT` 或者 `RIGHT` 端的记录。
+
+https://blogs.sap.com/2017/09/16/abap-core-data-services-part-2types-of-cds-views/
+
 ## Annotations
 
 * Convey 传达 某种信息

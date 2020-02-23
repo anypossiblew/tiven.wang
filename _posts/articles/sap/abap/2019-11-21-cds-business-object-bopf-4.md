@@ -1,11 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-star: true
 series:
   url: abap-cds
   title: ABAP CDS
-title: Developing New Transactional Apps using CDS part 3 - Adding Field and Action Control
+title: Developing New Transactional Apps using CDS part 4 - Adding Field and Action Control
 excerpt: "Adding Field and Action Control for Business Object using CDS Annotations."
 modified: 2019-11-21T12:00:00-00:00
 categories: articles

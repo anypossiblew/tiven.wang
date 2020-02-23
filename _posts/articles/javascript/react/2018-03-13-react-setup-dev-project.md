@@ -34,6 +34,12 @@ yarn start
 
 至此创建 React 成功.
 
+## 添加第三方组件库
+
+`npm install @hi-ui/hiui --save`
+
+
+
 https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md
 
 React.js Top 10 Open Source Projects (v.Mar 2018)
@@ -43,3 +49,9 @@ https://medium.mybridge.co/react-js-top-10-open-source-projects-v-mar-2018-7eff0
 
 https://medium.com/@jasbirshergill23/lets-react-with-rxjs-82d9794d76f4
 https://jasonwatmore.com/post/2019/02/13/react-rxjs-communicating-between-components-with-observable-subject
+
+## 优秀的 React Libraries
+
+https://hackernoon.com/23-best-react-ui-component-libraries-and-frameworks-250a81b2ac42
+
+https://github.com/brillout/awesome-react-components

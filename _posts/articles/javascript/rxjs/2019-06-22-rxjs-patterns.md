@@ -73,3 +73,7 @@ catchError(err => {
 
 理解了 `catchError` 的作用后我们来一下在多层嵌套异步链中该如何组织异常的捕获和处理。
 
+## Waiting for All
+
+https://scotch.io/tutorials/rxjs-operators-for-dummies-forkjoin-zip-combinelatest-withlatestfrom
+

@@ -1,0 +1,1 @@
+https://blogs.sap.com/2018/10/18/predefined-virtual-data-model-as-example/

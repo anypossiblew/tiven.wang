@@ -34,4 +34,14 @@ references:
 
 `npm install hammerjs`
 
+然后在 *main.ts* 文件里引入它 hammerjs
 
+```typescript
+...
+
+import 'hammerjs';
+
+if (environment.production) {
+  enableProdMode();
+}
+```
