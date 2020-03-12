@@ -71,14 +71,22 @@ UPNP
 
 ### 音频技术
 
-在观看HDTV时想要获得和DVD一样的多声道影院效果，最好的方案肯定是将音频用 SPDIF（Sony-Philips Digital Interface Format，索尼-飞利浦数字界面格式）输出到功放，然后由功放来解码播放。从理论上来说，这样的效果肯定比从声卡上接出模拟信号到功放上的要好，事实也的确如此。
+在观看 HDTV 时想要获得和 DVD 一样的多声道影院效果，最好的方案肯定是将音频用 S/PDIF（Sony-Philips Digital Interface Format，索尼-飞利浦数字界面格式）输出到功放，然后由功放来解码播放。从理论上来说，这样的效果肯定比从声卡上接出模拟信号到功放上的要好，事实也的确如此。
 
-目前的HDTV影片中，音频部分基本上都是采用 AC3, DTS, AAC 这三种格式进行编码，这三种格式都可以提供多声道的影院效果。在开始搭建HTPC家庭影院之前，先简单了解一下什么是什么是 AC3, DTS 和 AAC ：
+目前的 HDTV 影片中，音频部分基本上都是采用 AC3, DTS, AAC 这三种格式进行编码，这三种格式都可以提供多声道的影院效果。在开始搭建HTPC家庭影院之前，先简单了解一下什么是什么是 AC3, DTS 和 AAC ：
 
 1. AC3, 全称为Audio Coding version 3，是Dolby实验室所发展的有损音频编码格式。AC3最被广泛应用于5.1声道，是Dolby Pro Logic的继承者，不同的地方在于AC3提供6个独立的声道而Pro Logic混合其环绕声道。AC3普及度很高，以384-448 kbps的码率应用于LaserDisc和DVD，也经常以640 kbps的码率广泛用在电影院。
 2. DTS, 全称为Digital Theater Systems(数字影院系统)，是一种有损多声道家庭影院音频格式，但它用了很高的码率进行编码，通常为768-1536kbps，能够营造出比AC3更好的影院效果。
 
 3. AAC, 全称为 Advanced Audio Coding (高级音频解码)，是一种由 MPEG-4 标准定义的有损音频压缩格式，由 Fraunhofer 发展，Dolby, Sony 和 AT&T 是主要的贡献者。在使用 MP4 作为各种内容的容器格式的新多媒体MPEG-4标准中，它是MPEG Layer III( MP3)的天然后继者。AAC 能够在一条音轨中包括48条全带宽（直到 96khz）音频声道，加上15条低频增强（LFE，限制到120Hz）声道，直到 15条数据流并且更多。
+
+#### S/PDIF
+
+S/PDIF（Sony/Philips Digital Interface Format）是一种数字传输接口，可使用光纤或同轴电缆输出，把音频输出至解码器上，能保持高保真度的输出结果。广泛应用在 DTS 和杜比数字上。
+
+SPDIF 如果用作传输 PCM 数据的话只能支持到 2 声道，如果想要支持多声道的话，需要将数据进行压缩，当前工业界的实际压缩算法有两种：Dolby Digital(AC-3, 5.1) 或者 DTS Audio。 所以想通过 SPDIF 传输 5.1 声道音频的话，首先音源得是经过压缩的，其次后段要有解码设备。
+
+另外，Dolby Digital 和 DTS Audio 都只支持 5.1 声道音频，Dolby Digital+ (EAC-3)才能支持7.1声道音频，但是 SPDIF不支持传输 EAC-3 数据，只有 HDMI 1.3 以后才支持做 EAC-3 pass through。所以若要在 SPDIF 上传输 7.1 声道音频的EAC​​-3 数据的话，需要以前端的播放设备（硬件或者软件）将EAC-3先转成AC-3，也就是说变成 5.1 声道音频才能进行。
 
 #### Dolby Atmos
 
@@ -90,7 +98,7 @@ UPNP
 
 HDMI 是音视频合一的单线数字接口。
 
-HDMI 也支持非压缩的 8 声道数字音频发送（采样率192kHz，数据长度24bits/sample），以及任何压缩音频流如 Dolby Digital 或 DTS ，亦支持 SACD 所使用的 8 声道的 1bit DSD 信号。在 HDMI 1.3 规格中，又追加超高数据量的非压缩音频流如 Dolby TrueHD 与 DTS-HD 的支持。
+HDMI 也支持非压缩的 8 声道数字音频发送（采样率 192kHz，数据长度 24bits/sample），以及任何压缩音频流如 Dolby Digital 或 DTS ，亦支持 SACD 所使用的 8 声道的 1bit DSD 信号。在 HDMI 1.3 规格中，又追加超高数据量的非压缩音频流如 Dolby TrueHD 与 DTS-HD 的支持。
 
 ### 电影文件名词解释
 

@@ -24,7 +24,9 @@ share: true
 
 ## Annotations
 
-[ABAP CDS - ABAP Annotations](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/index.htm?file=abencds_annotations_abap.htm)
+这里所讲的 ABAP Annotations 是指会被 ABAP 代码用到的 Annotations , 例如 `@Semantics` 类的 Annotations 有些是用在 OData 和 UI 的, 有些则是被 ABAP 代码用到的.
+
+官方文档 [ABAP CDS - ABAP Annotations](https://help.sap.com/doc/abapdocu_752_index_htm/7.52/en-US/index.htm?file=abencds_annotations_abap.htm)
 
 ### AbapCatalog Annotations
 
@@ -203,6 +205,10 @@ SoldToPartyCountry,
 }
 _SoldToPartyCountry._Text[1: Language = $session.system_language].CountryName      as SoldToPartyCountryName,
 ```
+
+### cond_expr
+
+[ABAP CDS - cond_expr](https://help.sap.com/doc/abapdocu_751_index_htm/7.51/en-us/abencds_f1_conditional_expression.htm)
 
 ## Access Control
 

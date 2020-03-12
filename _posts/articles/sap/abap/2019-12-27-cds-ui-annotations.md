@@ -126,3 +126,7 @@ If you are using `CriticalityCalculation`, following are the cases depending on 
 
 Annotations belonging to `UI.selectionField` allow filtering a list of data. `UI.selectionField` annotations are usually used in an initial page floorplan as **filter bar**.
 
+```typescript
+@UI.selectionField.position: 30
+
+```
