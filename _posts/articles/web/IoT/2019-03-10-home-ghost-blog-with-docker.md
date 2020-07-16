@@ -33,7 +33,8 @@ https://blog.alexellis.io/your-ghost-blog/
 Ghost 容器默认使用内置的 SQLite 一种小型的嵌入式数据库。为了数据的安全性建议为 Ghost 提供另外单独的数据库。
 
 ## Add Database with Docker Compose
-如果我们要为 Ghost 添加一个 Mysql 数据库的话，那么就要再创建一个 Mysql 的 Docker 容器，这样 Docker 容器就会越来越多。这样就可以使用 Docker compose 这个工具，[docker-compose](https://docs.docker.com/compose/) is a tool for defining containers and running them. It’s a great choice when you have multiple interdependent containers but you don’t need a full-blown container cluster like [Kubernetes](https://kubernetes.io/).
+
+如果我们要为 Ghost 添加一个 Mysql 数据库的话，那么就要再创建一个 Mysql 的 Docker 容器，这样 Docker 容器就会越来越多。所以就可以使用 Docker compose 这个工具，[docker-compose](https://docs.docker.com/compose/) is a tool for defining containers and running them. It’s a great choice when you have multiple interdependent containers but you don’t need a full-blown container cluster like [Kubernetes](https://kubernetes.io/).
 
 下面就是一个 Docker compose 配置文件，里面配置有 Ghost 服务和 Mysql 服务。
 
@@ -66,6 +67,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: example
 ```
+
 使用命令 `docker-compose up` 就可以运行起来两个容器了。
 
 至此，一个简单完整的 Ghost 博客网站就搭建好了。接下来我们要怎么样这个网站就行完善呐？设想你的家庭 NAS 系统不止有博客网站还有家庭智能系统（如 Hassio），那么要想用同一个端口号（80 或者 443）访问两个网站，就需要一个前置反向代理器。接下来我们为 Ghost 添加一个 Nginx 服务。
@@ -101,6 +103,7 @@ services:
 ```
 
 除了 Docker 容器的配置，还需要为 Ghost 服务创建一个 Nginx 配置文件。在 `docker-compose.yml` 所在目录下创建 `data/nginx` 目录，它是作为 Nginx 的配置文件目录被挂载到 Nginx 容器里，在此目录下创建配置文件 `app.conf`
+
 ```conf
 server {
     listen 80;
@@ -110,12 +113,15 @@ server {
     }
 }
 ```
+
 这里就配置了 Nginx 监听的端口号 80 和地址映射 `/` 会转到地址 `http://ghost:2368`. 这里 `ghost` 是 Ghost 容器的 hostname 用它可以访问到 ghost 服务。
 
-## Enable HTTPS 
+## Enable HTTPS
+
 [Nginx][Nginx] 还可以提供 HTTPS 功能，参考 [Nginx and Let’s Encrypt with Docker in Less Than 5 Minutes](https://medium.com/@pentacent/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71)
 
 修改 docker-compose 配置文件，添加 certbot 服务并修改 nginx 服务的配置
+
 ```yml
 version: '3.1'
 
@@ -150,6 +156,7 @@ services:
 ```
 
 `data/nginx/app.conf`
+
 ```conf
 server {
     listen 80;
@@ -187,8 +194,10 @@ server {
 ```
 
 ### 请求证书
+
 失败信息
-```
+
+```text
 ### Requesting Let's Encrypt certificate for blog.tiven.wang ...
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator webroot, Installer None
@@ -217,7 +226,8 @@ IMPORTANT NOTES:
 ```
 
 成功信息
-```
+
+```text
 ### Requesting Let's Encrypt certificate for blog.tiven.wang ...
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator webroot, Installer None

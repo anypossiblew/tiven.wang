@@ -6,7 +6,7 @@ series:
   title: TensorFlow
 title: "Up and Running"
 excerpt: "Start our journey with TensorFlow"
-modified: 2018-07-02T11:51:25-04:00
+modified: 2020-03-18T11:51:25-04:00
 categories: articles
 tags: [TensorFlow, Deep Learning, Python]
 image:
@@ -22,18 +22,25 @@ mathjax: true
 * TOC
 {:toc}
 
+本系列将一步步讲解和演示 TensorFlow 的使用， 本篇主要介绍如何跑起来一个开发 TensorFlow 的环境。
+
 ## Installation
+
+对于初学者来说从 Docker Container 启动 TensorFlow 学习环境是个不错(不费力)的选择。
 
 ### use Docker
 
-对于初学者来说从 Docker Container 启动 TensorFlow 学习环境是个不错(不费力)的选择。镜像为 [tensorflow][docker/tensorflow]
+所使用的 Docker 容器镜像为 [tensorflow][docker/tensorflow] [TensorFlow Docker](https://www.tensorflow.org/install/docker)
 
-如果直接运行，容器会建立一个 [Jupyter][jupyter] notebook 服务来帮助你学习 python 语言
+> 在使用 Docker 之前可以添加一些 Docker 的国内镜像 [Docker Hub 镜像](https://juejin.im/post/5cd2cf01f265da0374189441), 使下载镜像速度加快。
 
-`docker run --name=my-tensorflow -it -p 8888:8888 tensorflow/tensorflow`
+如果直接运行如下命令，容器会建立一个 [Jupyter][jupyter] notebook 服务来帮助你学习 python 语言
+
+`docker run --name=my-tensorflow -it -p 8888:8888 tensorflow/tensorflow:2.2.0rc0-py3-jupyter`
 
 还可以运行 bash 命令行工具，然后运行 python 命令行环境
-```
+
+```sh
 $ docker run --name=my-tensorflow -it tensorflow/tensorflow bash
 root@06a6c03e3e74:/notebooks# python
 Python 2.7.12 (default, Dec  4 2017, 14:50:18)
@@ -45,18 +52,21 @@ Type "help", "copyright", "credits" or "license" for more information.
 ### on Windows
 
 TensorFlow supports Python 3.5.x and 3.6.x on Windows. Note that Python 3 comes with the pip3 package manager, which is the program you'll use to install TensorFlow.
-```
+
+```sh
 > python --version
 Python 3.6.6
 ```
 
 Install CPU-only version of TensorFlow
-```
+
+```sh
 > pip3 install --upgrade tensorflow
 ```
 
 To install the GPU version of TensorFlow
-```
+
+```sh
 > pip3 install --upgrade tensorflow-gpu
 ```
 
@@ -70,6 +80,7 @@ To install the GPU version of TensorFlow
 {: .center.middle}
 
 TensorFlow 代码如下
+
 ```python
 import tensorflow as tf
 import numpy as np
@@ -82,12 +93,12 @@ d = tf.multiply(a,b)
 e = tf.add(c,b)
 f = tf.subtract(d,e)
 
-with tf.Session() as sess:
-    outs = sess.run(f)
+print(f)
 
-print("outs = {}".format(outs))
+print("outs = {}".format(f))
 
 # Outputs:
+tf.Tensor(5, shape=(), dtype=int32)
 outs = 5
 ```
 
@@ -101,6 +112,7 @@ pip3 install --upgrade matplotlib
 张量（英语：[Tensor][wiki/Tensor]）是一个可用来表示在一些矢量、标量和其他张量之间的线性关系的多线性函数, 这些线性关系的基本例子有内积、外积、线性映射以及笛卡儿积.
 
 These are our Tensors
+
 ```python
 print(tf.constant(1).shape)
 print(tf.constant([1,2]).shape)
@@ -122,7 +134,7 @@ print(tf.constant(np.array([
 
 ## Regression model
 
-本章节我们用 TensorFlow Graph 构建一个线性回归模型。假设我们有这样一个数学模型，其实他是一个多元线性回归函数
+本章节我们用 TensorFlow Graph 构建一个线性回归模型 (Linear Regression)。假设我们有这样一个数学模型，其实他是一个多元线性回归函数
 
 $$f(x_i) = w^Tx_i + b$$
 
@@ -132,6 +144,7 @@ $$f(x_i) = w^Tx_i + b$$
 {: .center.middle}
 
 对应的 TensorFlow 代码如下
+
 ```python
 x = tf.placeholder(tf.float32,shape=[None,3])
 w = tf.Variable([[0,0,0]],dtype=tf.float32,name='weights')
@@ -139,6 +152,7 @@ b = tf.Variable(0,dtype=tf.float32,name='bias')
 
 y_pred = tf.matmul(w,tf.transpose(x)) + b
 ```
+
 这里的 `w` 和 `b` 是模型的变量，我们的目标就是找到合适的 `w` 和 `b` 以使结果值 `y_pred` 和目标值差异最小化。
 
 ### Loss Function
@@ -146,6 +160,7 @@ y_pred = tf.matmul(w,tf.transpose(x)) + b
 损失函数是指在计算过程某一步的结果与目标结果的差异，最常用的损失函数有均方误差 (Mean squared error)。 这里我们就使用 TensorFlow 的均方误差函数来计算损失差异。
 
 `y_true` 是我们要达到的某个目标值，后面我们会创造这个样例数据
+
 ```python
 loss = tf.reduce_mean(tf.square(y_true-y_pred))
 ```
@@ -168,6 +183,7 @@ train = optimizer.minimize(loss)
 $$y_i = f(x_i) + \varepsilon_i$$
 
 下面使用 [numpy][numpy] 库创造一些 2000 个的样例数据，`w` 设为 `[0.3,0.5,0.1]` `b` 设为 `-0.2`，用随机函数生成噪音数据
+
 ```python
 import numpy as np
 # === Create data and simulate results =====
@@ -180,11 +196,13 @@ y_data = np.matmul(w_real,x_data.T) + b_real + noise
 ```
 
 ### Train
+
 最后完整流程为
 
 **模型函数 + 损失函数 + 优化器 =\> 最优值**
 
 完整代码如下
+
 ```python
 import tensorflow as tf
 import numpy as np
@@ -201,8 +219,10 @@ NUM_STEPS = 10
 g = tf.Graph()
 wb_ = []
 with g.as_default():
-    x = tf.placeholder(tf.float32,shape=[None,3])
-    y_true = tf.placeholder(tf.float32,shape=None)
+    #x = tf.placeholder(tf.float32,shape=[None,3])
+    x = tf.Variable(tf.ones(shape=[1,3]), name="x")
+    #y_true = tf.placeholder(tf.float32,shape=None)
+    y_true = tf.Variable(tf.ones([1]), name="y")
 
     with tf.name_scope('inference') as scope:
         w = tf.Variable([[0,0,0]],dtype=tf.float32,name='weights')
@@ -214,13 +234,13 @@ with g.as_default():
 
     with tf.name_scope('train') as scope:
         learning_rate = 0.5
-        optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+        optimizer = tf.keras.optimizers.SGD(learning_rate)
         train = optimizer.minimize(loss)
 
     # Before starting, initialize the variables.  We will 'run' this first.
     init = tf.global_variables_initializer()
     with tf.Session() as sess:
-        sess.run(init)      
+        sess.run(init)
         for step in range(NUM_STEPS):
             sess.run(train,{x: x_data, y_true: y_data})
             if (step % 5 == 0):
@@ -229,8 +249,19 @@ with g.as_default():
         print(10, sess.run([w,b]))
 ```
 
+## TensorFlow 2.2.0
+
+```python
+from __future__ import absolute_import, division, print_function, unicode_literals
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras as ks
+from tensorflow.estimator import LinearRegressor
 
 
+```
+
+[Tensorflow 2.0 Learning Notebook](https://xiuchuanz.com/2020/02/tensorflow2-learning-notebook/)
 
 [docker/tensorflow]:https://hub.docker.com/r/tensorflow/tensorflow/
 

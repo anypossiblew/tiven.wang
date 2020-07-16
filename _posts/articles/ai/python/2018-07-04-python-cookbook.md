@@ -141,13 +141,13 @@ https://github.com/PAIR-code/facets
 
 ## 语法
 
+> Everyting is an object in a Python script. Even simple numbers qualify, with values (e.g. 99), and supported operations (addition, subtraction, and so on).
+
 ### Lambdas
 
 http://book.pythontips.com/en/latest/lambdas.html
 
 https://medium.com/@happymishra66/lambda-map-and-filter-in-python-4935f248593
-
-
 
 [matplotlib]:https://matplotlib.org
 [ipython]:https://ipython.org/

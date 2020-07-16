@@ -77,3 +77,25 @@ catchError(err => {
 
 https://scotch.io/tutorials/rxjs-operators-for-dummies-forkjoin-zip-combinelatest-withlatestfrom
 
+## Pipe an Observable with a Subject
+
+* How to subscribe a existing Subject to an Observable?
+
+Since Subject is already an observer with methods `next()`, `error()` and `complete()` you can just subscribe it to any Observable:
+
+```typescript
+const fooSubject = new BehaviorSubject(null);
+
+const barSubject = new Subject();
+barSubject.subscribe(fooSubject);
+
+barSubject.next('bar');
+```
+
+> It may not be clear for some, that to subscribe a Subject to an Observable it's `Observable.subscribe(Subject)`, not `Subject.subscribe(Observable)`
+
+[stackoverflow - Pipe RxJS observable to existing subject](https://stackoverflow.com/questions/48880671/pipe-rxjs-observable-to-existing-subject)
+
+## extend assign or merge objects
+
+[Lodash - difference between .extend() / .assign() and .merge()](https://stackoverflow.com/questions/19965844/lodash-difference-between-extend-assign-and-merge)

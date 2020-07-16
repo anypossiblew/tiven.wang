@@ -28,6 +28,8 @@ references:
 
 [RxJS][rxjs] 是当前 web 开发中最热门的库之一。它提供强大的功能性方法来处理事件，并将集成点集中到越来越多的框架、库和实用程序中，这一切使得学习 Rx 变得前所未有的吸引人。并且它还有能力利用你之前所掌握的语言知识，因为它几乎涵盖了所有语言。如果熟练掌握响应式编程 (reactive programming) 的话，那它所提供的一切似乎都可以变得很容易。
 
+> Reactive programming is an asynchronous programming paradigm concerned with data streams and the propagation of change ([Wikipedia](https://en.wikipedia.org/wiki/Reactive_programming)). RxJS (Reactive Extensions for JavaScript) is a library for reactive programming using observables that makes it easier to compose asynchronous or callback-based code. See ([RxJS Docs](https://rxjs.dev/guide/overview)).
+
 ## Setup with Node.js
 
 在 Node.js 项目中安装 RxJS 模块。
@@ -114,9 +116,6 @@ ob.subscribe(x=>console.log(x));
 ## Related Productions
 
 https://github.com/redux-observable/redux-observable
-
-
-
 
 [rxjs]:https://github.com/ReactiveX/rxjs
 [esm]:https://nodejs.org/docs/latest-v9.x/api/esm.html

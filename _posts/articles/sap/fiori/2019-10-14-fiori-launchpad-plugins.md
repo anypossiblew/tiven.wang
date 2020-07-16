@@ -23,3 +23,4 @@ share: true
 
 Plug-ins have to be implemented as standard SAPUI5 components, similar to SAPUI5 applications hosted inside the SAP Fiori launchpad. All guidelines for SAPUI5 components are also applicable to plug-in implementations. Plug-ins shall also provide a descriptor (*manifest.json*) file. For more information, see Structuring: Components and Descriptor.
 
+https://blogs.sap.com/2017/07/06/customization-of-sap-fiori-logon-page/

@@ -187,6 +187,11 @@ providers: [{provide: LoggerService, useClass: BetterLoggerService}]
 
 这是书写 providers 的另外一种形式，他表示用子类对象去提供父类类型的依赖。
 
+## 常见问题
+
+[Difference between @Self and @Host Angular Dependency Injection Decorators](https://stackoverflow.com/questions/43728007/difference-between-self-and-host-angular-2-dependency-injection-decorators)
+
+
 [Dependency_injection]:https://en.wikipedia.org/wiki/Dependency_injection
 [Inversion_of_control]:https://en.wikipedia.org/wiki/Inversion_of_control
 [cli.angular.io]:https://cli.angular.io/

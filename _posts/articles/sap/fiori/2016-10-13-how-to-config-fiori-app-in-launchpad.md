@@ -188,6 +188,10 @@ Thus Tile and ‘Target Mapping’ is linked using ‘Semantic Object’ + ‘Ac
   * 添加 **Authorization Default**, 选择 **TADIR Service** 和 **IWSG SAP Gateway: Service Groups Metadata**, 然后在表格里选择相应的 OData Services 进行添加. 如果用到了 Annotation Service 还要添加服务 **/IWFND/SG_MED_CATALOG_0002**;
 * Add User
 
+### Step 6. Translate
+
+https://blogs.sap.com/2015/04/02/translate-on-premised-fiori-launchpad-tiles-in-different-languages-on-the-abap-stack/
+
 ## Next Steps
 
 * [How to use HTTP Destination in HANA and HANA Cloud][9]
