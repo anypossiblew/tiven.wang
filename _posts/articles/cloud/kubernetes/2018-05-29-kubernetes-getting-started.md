@@ -13,12 +13,19 @@ image:
   creditlink: https://twitter.com/NatGeoPhotos/status/998956854687485954
 comments: true
 share: true
+showYourTerms: true
 references:
   - title: "Kubernetes Documentation"
     url: https://kubernetes.io/docs
   - title: "Hello Minikube"
     url: https://kubernetes.io/docs/tutorials/hello-minikube
 ---
+
+<style>
+.showyourterms .type:before {
+  content: "$ "
+}
+</style>
 
 * TOC
 {:toc}
@@ -295,7 +302,7 @@ docker-for-desktop   Ready     master    20m       v1.10.11
 
 部署 Kubernetes Dashboard
 
-<div class='showyourterms kube-tiven' data-title="Powershell on Laptop">
+<div class='showyourterms' data-title="MINGW64">
   <div class='showyourterms-container'>
     <div class='type green' data-action='command' data-delay='400'>kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</div>
     <div class='lines' data-delay='400'>

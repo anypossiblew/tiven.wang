@@ -699,6 +699,15 @@ blockquote {
     width: 100%;
     overflow-x: auto;
     overflow-y: visible;
+    &::-webkit-scrollbar {
+      width: .5rem;
+      height: .5rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #101426;
+      cursor: pointer;
+      border-radius: .15rem;
+    }
   }
   .type:before {
     color: #fff;
