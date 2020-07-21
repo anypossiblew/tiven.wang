@@ -36,7 +36,7 @@ mathjax: true
 
 如果直接运行如下命令，容器会建立一个 [Jupyter][jupyter] notebook 服务来帮助你学习 python 语言
 
-`docker run --name=my-tensorflow -it -p 8888:8888 tensorflow/tensorflow:2.2.0rc0-py3-jupyter`
+`docker run --name=my-tensorflow -it -p 8888:8888 tensorflow/tensorflow:latest-py3-jupyter`
 
 还可以运行 bash 命令行工具，然后运行 python 命令行环境
 
@@ -49,7 +49,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-### on Windows
+### On Windows (Optional)
 
 TensorFlow supports Python 3.5.x and 3.6.x on Windows. Note that Python 3 comes with the pip3 package manager, which is the program you'll use to install TensorFlow.
 
@@ -98,8 +98,8 @@ print(f)
 print("outs = {}".format(f))
 
 # Outputs:
-tf.Tensor(5, shape=(), dtype=int32)
-outs = 5
+# tf.Tensor(5, shape=(), dtype=int32)
+# outs = 5
 ```
 
 如果你使用的环境没有 [Matplotlib][matplotlib] 可以通过下面命令安装
@@ -125,11 +125,11 @@ print(tf.constant(np.array([
     [[5,6],
      [7,8]]])).get_shape())
 # Outputs:
-()
-(2,)
-(2, 1)
-(1, 2)
-(2, 2, 2)
+# ()
+# (2,)
+# (2, 1)
+# (1, 2)
+# (2, 2, 2)
 ```
 
 ## Regression model

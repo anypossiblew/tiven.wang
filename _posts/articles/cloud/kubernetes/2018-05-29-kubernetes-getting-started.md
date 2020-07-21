@@ -3,9 +3,9 @@ layout: post
 theme: UbuntuMono
 title: "Getting Started with Kubernetes"
 excerpt: ""
-modified: 2018-05-25T11:51:25-04:00
+modified: 2020-07-21T11:51:25-04:00
 categories: articles
-tags: [Minikube, Kubernetes, Cloud]
+tags: [Docker, Minikube, Kubernetes, Cloud]
 image:
   vendor: twitter
   feature: /media/Dd0B9t9UQAAJuXN.jpg:large
@@ -29,9 +29,20 @@ references:
 
 很显然 Katacoda 这种学习工具是要以盈利为目的的，所以在免费使用上有所限制。如果你需要更加灵活更加有控制权的学习 Kubernetes 的话，那么还可以在本机安装 [Minikube][minikube] 来创建 Local Kubernetes cluster 。
 
+> 在所有开发工作之前首先要解决国内镜像问题: see [让 K8S 在 GFW 内愉快的航行](https://developer.aliyun.com/article/759310)
+
 ## Install Kubernetes Locally
-### Minikube
+
+### kubectl
 首先安装 Kubernetes 客户端命令行工具 [kubectl][kubectl]，根据官方文档 [Install and Set Up kubectl][install-kubectl] 安装并检验 kubectl 命令行工具。
+
+```s
+$ kubectl version --client
+Client Version: version.Info{Major:"1", Minor:"16+", GitVersion:"v1.16.6-beta.0", GitCommit:"e7f962ba86f4ce7033828210ca3556393c377bcc", GitTreeState:"clean", BuildDate:"2020-01-15T08:26:26Z", GoVersion:"go1.13.5", Compiler:"gc", Platform:"windows/amd64"}
+```
+
+### Minikube
+
 ```
 λ kubectl cluster-info
 Kubernetes master is running at http://localhost:8080
@@ -267,8 +278,8 @@ docker run -d --net=container:k8s gcr.io/google_containers/hyperkube:v1.7.11 /sc
 
 > 但在用 Docker container 跑 kubelet 容器时又遇到了没解决的问题，kubelet 需要一个容器管理器，我尝试了 Windows 平台从 kubelet 的 Docker container 去连接主机的 Docker daemon，或者用 Docker-in-Docker 的方式去连接一个 Docker container 中的 Docker daemon 都没有试验成功。
 
-### Kubernetes in Docker for Windows CE Edge
-我又发现 [Docker for Windows 18.02 CE Edge](https://docs.docker.com/docker-for-windows/kubernetes/) 支持了 [Kubernetes](https://www.docker.com/kubernetes) 。
+### Kubernetes in Docker
+我又发现 [Docker for Windows](https://docs.docker.com/docker-for-windows/kubernetes/) 支持了 [Kubernetes](https://www.docker.com/kubernetes) 。
 但并没有成功启动它。 把 Docker 软件 *Reset to factory defaults...* 后重新 *Enable Kubernetes* 成功了。
 
 安装成功后使用命令 `kubectl get nodes` 可以看到有一个节点已经就绪
@@ -280,25 +291,39 @@ docker-for-desktop   Ready     master    20m       v1.10.11
 
 [Deploy on Kubernetes](https://docs.docker.com/docker-for-windows/kubernetes/)
 
-#### Setting up Kubernetes Dashboard
+## Setting up Kubernetes Dashboard
 
 部署 Kubernetes Dashboard
-```
-$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
-secret "kubernetes-dashboard-certs" created
-serviceaccount "kubernetes-dashboard" created
-role.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
-rolebinding.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
-deployment.apps "kubernetes-dashboard" created
-service "kubernetes-dashboard" created
-```
+
+<div class='showyourterms kube-tiven' data-title="Powershell on Laptop">
+  <div class='showyourterms-container'>
+    <div class='type green' data-action='command' data-delay='400'>kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml</div>
+    <div class='lines' data-delay='400'>
+namespace/kubernetes-dashboard created
+serviceaccount/kubernetes-dashboard created
+service/kubernetes-dashboard created
+secret/kubernetes-dashboard-certs created
+secret/kubernetes-dashboard-csrf created
+secret/kubernetes-dashboard-key-holder created
+configmap/kubernetes-dashboard-settings created
+role.rbac.authorization.k8s.io/kubernetes-dashboard created
+clusterrole.rbac.authorization.k8s.io/kubernetes-dashboard created
+rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+deployment.apps/kubernetes-dashboard created
+service/dashboard-metrics-scraper created
+deployment.apps/dashboard-metrics-scraper created
+    </div>
+  </div>
+</div>
+👌
 
 运行 `kubectl proxy`
 
 访问链接 [http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/](http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/) 可以看到让选择登录配置，在 Windows Powershell 里执行
+
 ```powershell
-PS C:\Users\tiven.wang> $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1
-]
+PS C:\Users\tiven.wang> $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
 PS C:\Users\tiven.wang> kubectl config set-credentials docker-for-desktop --token="${TOKEN}"
 User "docker-for-desktop" set.
 ```
@@ -307,9 +332,8 @@ User "docker-for-desktop" set.
 
 [5 Minutes to Kubernetes Dashboard running on Docker Desktop for Windows 2.0.0.3](http://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/)
 
-
 ## First Application
-Minikube 版的 Kubernetes 已经安装好了，现在就来部署我们的第一个应用吧。
+Kubernetes 已经安装好了，现在就来部署我们的第一个应用吧。
 
 我们来部署一个微博客服务 [Ghost][ghost]，因为它有现成的 Docker Image
 ```
@@ -326,7 +350,7 @@ CONTAINER ID        IMAGE                        COMMAND                  CREATE
 
 继续暴露此部署成服务
 ```
-> kubectl expose deployments ghost --port=2368 --type=NodePort
+> kubectl expose deployments ghost --port=2368 --type=LoadBalancer --name=ghost
 service "ghost" exposed
 > kubectl get pods
 NAME                     READY     STATUS    RESTARTS   AGE
@@ -334,13 +358,14 @@ ghost-69f785b66c-bxh6f   1/1       Running   0          13m
 > minikube service ghost
 Opening kubernetes service default/ghost in default browser...
 ```
-`minikube service ghost` 命令会在浏览器中打开指定服务的地址。这里可能需要等待 Docker container 创建完成，也用 `kubectl get pods` 可以查看 pods 的运行状态，当为 `Running` 时说明启动完成。
+
+这里可能需要等待 Docker container 创建完成，也用 `kubectl get pods` 可以查看 pods 的运行状态，当为 `Running` 时说明启动完成。
 
 或者使用下面命令查看服务暴露的端口
 ```
 λ kubectl get services
 NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
-ghost        NodePort    10.103.126.172   <none>        2368:31522/TCP   23m
+ghost        NodePort    10.103.126.172   localhost     2368:31522/TCP   23m
 kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP          54m
 ```
 

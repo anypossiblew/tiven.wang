@@ -28,3 +28,6 @@ https://kubernetes.io/
 https://github.com/kubernetes/kube-ui
 
 https://github.com/kubernetes/minikube
+
+[让 K8S 在 GFW 内愉快的航行](https://developer.aliyun.com/article/759310)
+
