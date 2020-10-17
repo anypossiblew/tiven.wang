@@ -1,6 +1,9 @@
 ---
 layout: post
 theme: UbuntuMono
+series:
+  url: kubernetes
+  title: Kubernetes
 title: "Kubernetes - Create cluster using kubeadm"
 excerpt: "Learn how to create a kubernetes cluster using kubeadm tool"
 modified: 2018-06-08T11:51:25-04:00

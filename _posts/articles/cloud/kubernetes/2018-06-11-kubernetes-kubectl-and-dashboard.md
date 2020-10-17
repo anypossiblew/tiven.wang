@@ -1,6 +1,9 @@
 ---
 layout: post
 theme: UbuntuMono
+series:
+  url: kubernetes
+  title: Kubernetes
 title: "Kubernetes - Kubectl and Dashboard"
 excerpt: "Learn how to operate cluster outside master system, and how to deploy Dashboard for Kubernetes on Kubernetes cluster."
 modified: 2018-06-11T11:51:25-04:00

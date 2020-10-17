@@ -32,7 +32,7 @@ references:
 
 ## UI5
 
-如果要在SAP UI5界面做基于日期/月/年这种数据分析，我们可以使用类似下面的Analysis Table和Date Bar。
+如果要在 SAP UI5 界面做基于日期/月/年这种数据分析，我们可以使用类似下面的Analysis Table和Date Bar。
 
 ![Analysis by Dates Image](/images/fiori/Analysis-by-Dates.png)
 
@@ -81,6 +81,19 @@ function getUserTimezone() {
 UI5通过OData Model与后台交互，在OData请求参数里添加两个参数Timezone和Timestamp。
 
 (Filter/Timezone eq 'UTC+8') and (Filter/Timestamp ge datetime'2016-09-16T16:00:00' and Filter/Timestamp le datetime'2016-09-23T15:59:59')
+
+### 事务型 OData
+
+如果要调用 OData 接口保存一个 DateTime 日期时间字段时要注意时区, 调用 OData 传过去的是时间戳, OData 不会考虑时区而直接存储在数据库中.
+
+这样需要注意 SAPUI5 的 DatePicker 组件或者其他 JavaScript 选择或者创建的日期变量的时间戳是什么样的. 例如我们遇到 SAPUI5 DatePicker 组件默认选择的日期 Date 是
+
+`Fri Oct 16 2020 00:00:00 GMT+0800 (中国标准时间)`
+
+那么此时间看起来是 `20201016` 但是在传到后端时是时间戳, 时间戳是相对于 0 时区时间, 那么它存在数据库中会是 `20201015`, 所以再次读取出来后就是 `20201015` 了. 这其中的一个问题是存储时只考虑了日期而舍弃了时间, 造成了时间误差.
+
+解决办法是修改 SAPUI5 DatePicker 组件属性 `UTC: true` 则组件选中日期则是以UTC+0的日期.
+
 
 ## OData ABAP
 

@@ -1,6 +1,9 @@
 ---
 layout: post
 theme: UbuntuMono
+series:
+  url: kubernetes
+  title: Kubernetes
 title: "Kubernetes - Cluster on Raspberry Pi"
 excerpt: "Learn how to deploy a Kubernetes cluster on Raspberry Pis."
 modified: 2018-06-11T11:51:25-04:00

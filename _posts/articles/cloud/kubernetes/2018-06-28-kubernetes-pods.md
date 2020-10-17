@@ -1,7 +1,10 @@
 ---
 layout: post
 theme: UbuntuMono
-title: "Kubernetes - Pods"
+series:
+  url: kubernetes
+  title: Kubernetes
+title: "Pods"
 excerpt: "Kubernetes Pods."
 modified: 2018-06-28T11:51:25-04:00
 categories: articles

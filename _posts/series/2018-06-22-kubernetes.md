@@ -70,4 +70,13 @@ series:
       credit: NATIONAL GEOGRAPHIC TRAVEL
       creditlink: https://www.nationalgeographic.com/travel/features/photography/wildlife-landscapes-worth-trip/
 
+  - title: Pods
+    url: /articles/kubernetes-pods/
+    excerpt: ""
+    tags: [Kubernetes, Cloud]
+    image:
+      vendor: gstatic
+      feature: /prettyearth/assets/full/2022.jpg
+      credit: Google Earth
+      creditlink: https://earthview.withgoogle.com/amherst-united-states-2022
 ---

@@ -1,6 +1,9 @@
 ---
 layout: post
 theme: UbuntuMono
+series:
+  url: kubernetes
+  title: Kubernetes
 title: "Kubernetes - Running First App on Kubernetes"
 excerpt: "Learn how to develop and deploy your first application on Kubernetes cluster."
 modified: 2018-06-15T11:51:25-04:00

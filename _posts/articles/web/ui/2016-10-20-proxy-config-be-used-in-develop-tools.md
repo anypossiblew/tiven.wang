@@ -41,6 +41,7 @@ Edit your **_.bowerrc_** file ( should be next to your bower.json file ) and add
 ```
 
 ### gradle proxy config
+
 in file **_gradle.properties_**
 
 ```
@@ -49,6 +50,8 @@ systemProp.https.proxyPort=port
 systemProp.http.proxyUser=username
 systemProp.http.proxyPassword=xxx
 ```
+
+> 如果经常有需要用到 gradle 的在下载 gradle 过程中网络错误， 可以手动下载 gradle 并放到 *%HOME%/.gradle* 里
 
 ### JVM Proxy
 

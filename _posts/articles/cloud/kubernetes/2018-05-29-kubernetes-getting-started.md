@@ -1,6 +1,9 @@
 ---
 layout: post
 theme: UbuntuMono
+series:
+  url: kubernetes
+  title: Kubernetes
 title: "Getting Started with Kubernetes"
 excerpt: ""
 modified: 2020-07-21T11:51:25-04:00
@@ -300,7 +303,7 @@ docker-for-desktop   Ready     master    20m       v1.10.11
 
 ## Setting up Kubernetes Dashboard
 
-部署 Kubernetes Dashboard
+部署 [Kubernetes Dashboard](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)
 
 <div class='showyourterms' data-title="MINGW64">
   <div class='showyourterms-container'>
@@ -327,7 +330,9 @@ deployment.apps/dashboard-metrics-scraper created
 
 运行 `kubectl proxy`
 
-访问链接 [http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/](http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/) 可以看到让选择登录配置，在 Windows Powershell 里执行
+访问链接 [http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/](http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/) 可以看到让选择登录配置
+
+### 创建登录配置文件, 在 Windows Powershell 里执行
 
 ```powershell
 PS C:\Users\tiven.wang> $TOKEN=((kubectl -n kube-system describe secret default | Select-String "token:") -split " +")[1]
@@ -335,9 +340,13 @@ PS C:\Users\tiven.wang> kubectl config set-credentials docker-for-desktop --toke
 User "docker-for-desktop" set.
 ```
 
-然后选择 Kubeconfig 并选择配置文件 `C:\Users<Username>\.kube\config` 就可以登录了。
+然后就可以选择 Kubeconfig 并选择配置文件 `C:\Users<Username>\.kube\config` 就可以登录了。
 
 [5 Minutes to Kubernetes Dashboard running on Docker Desktop for Windows 2.0.0.3](http://collabnix.com/kubernetes-dashboard-on-docker-desktop-for-windows-2-0-0-3-in-2-minutes/)
+
+### Creating sample user for Dashboard
+
+参照文档 [Creating sample user](https://github.com/kubernetes/dashboard/blob/master/docs/user/access-control/creating-sample-user.md) 创建用户并获取 token 来登录 dashboard ui
 
 ## First Application
 Kubernetes 已经安装好了，现在就来部署我们的第一个应用吧。
