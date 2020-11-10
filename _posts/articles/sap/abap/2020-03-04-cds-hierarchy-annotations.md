@@ -30,7 +30,8 @@ https://wiki.scn.sap.com/wiki/display/BI/Using+Hierarchy+in+CDS
 
 ## ODATA Query: Hierarchy Handling
 
-https://wiki.scn.sap.com/wiki/display/BI/ODATA+Query%3A+Hierarchy+Handling
+* [ODATA Query: Hierarchy Handling](https://wiki.scn.sap.com/wiki/display/BI/ODATA+Query%3A+Hierarchy+Handling): BW Query 中的 Hierarchy 在生成的 OData Service 的体现形式
+
 
 Hierarchies in CDS views
 
