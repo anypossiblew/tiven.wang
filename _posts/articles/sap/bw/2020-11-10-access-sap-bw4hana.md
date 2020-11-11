@@ -5,15 +5,11 @@ series:
   url: sap-bw
   title: SAP Business Warehouse
 title: "Access SAP BW/4HANA"
-excerpt: ""
-modified: 2019-06-13T11:51:25-04:00
+excerpt: "如何访问 BW4HANA 系统的 OLAP 数据"
+modified: 2020-11-11T11:51:25-04:00
 categories: articles
 tags: [BW, CDS, HANA]
 image:
-  vendor: gstatic
-  feature: /prettyearth/assets/full/5620.jpg
-  credit: Google Earth
-  creditlink: https://earthview.withgoogle.com/barcelona-spain-5620
 comments: true
 share: true
 ---
@@ -21,7 +17,7 @@ share: true
 * TOC
 {:toc}
 
-## Open Analysis Interfaces
+## [Open Analysis Interfaces](https://help.sap.com/doc/PRODUCTION/saphelp_nw74/7.4.16/en-US/d9/ed8c3c59021315e10000000a114084/content.htm?no_cache=true)
 
 SAP NetWeaver Business Intelligence provides an open architecture in many areas: You can extract data from various systems into a BW system and evaluate this data for your reporting using various front-end tools.
 
@@ -36,13 +32,11 @@ The following interfaces are available to connect third-party front-end tools to
 * OData
 * OData Query
 
-https://help.sap.com/doc/PRODUCTION/saphelp_nw74/7.4.16/en-US/d9/ed8c3c59021315e10000000a114084/content.htm?no_cache=true
 
 All these interfaces are based on **MDX** (Multi-Dimensional Expressions).
 
-![MDX result](images/s4hana/bw4hana/h-00100010000_image001.gif)
-
-![OLE OLAP](images/s4hana/bw4hana/olap - overview of the various interfaces.png)
+![OLE OLAP](/images/s4hana/bw4hana/olap - overview of the various interfaces.png)
+{: .center.middle}
 
 Third-party front-end tools can send query requests to the MDX processor in the BW system via the available interfaces. This processor sends on the request to the OLAP processor. The OLAP processor accesses InfoProviders. These InfoProviders either contain the data objects themselves (InfoProvider with type data target, such as InfoCube, ODS object and InfoObject), or reporting-relevant views of data objects (MultiProvider, RemoteCube, InfoSet).
 
@@ -57,7 +51,8 @@ The syntax of multi-dimensional expressions is defined in the Microsoft specific
 > Microsoft? [**OLE DB for Online Analytical Processing (OLAP)**](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms714903(v=vs.85)) is a set of objects and interfaces that extends the ability of **OLE DB** to provide access to multidimensional data stores. OLAP applications typically handle huge volumes of complexly interrelated data, and OLE DB for OLAP enables users to perform sophisticated data analysis through fast, consistent, interactive access to a variety of possible views of the underlying information. [SalesData Example](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms722730(v=vs.85))
 
 The following example of a MDX request contains the above elements:
-```SQL
+
+```sql
 SELECT
   { [Measures].[CKF_SI_PROFIT],
     [Measures].[0D_DOCUMENT],
@@ -71,8 +66,11 @@ WHERE
   ( [0CALMONTH].[200101],
     [0D_COUNTRY].[US] )
 ```
+
 The following graphic shows this example and the result:
-![MDX result](images/s4hana/bw4hana/h-00100010000_image002.gif)
+
+![MDX result](/images/s4hana/bw4hana/h-00100010000_image002.gif)
+{: .center.middle}
 
 ## OLAP BAPI
 
