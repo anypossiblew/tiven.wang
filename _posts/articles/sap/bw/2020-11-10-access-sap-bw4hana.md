@@ -10,6 +10,10 @@ modified: 2020-11-11T11:51:25-04:00
 categories: articles
 tags: [BW, CDS, HANA]
 image:
+  vendor: gstatic
+  feature: /prettyearth/assets/full/5620.jpg
+  credit: Google Earth
+  creditlink: https://earthview.withgoogle.com/barcelona-spain-5620
 comments: true
 share: true
 ---
@@ -93,3 +97,5 @@ OLAP BAPI | Features |
 BEx Queries gives us three different ways to expose our data to the reporting tools. In the Remote Access screen area of the General tab, you can view and configure the settings for remote access.
 
 1. By OLE DB for OLAP  
+
+https://visualbi.com/blogs/sap/sap-bw-hana/sap-bw4hana/remote-access-bex-query-b4hana/

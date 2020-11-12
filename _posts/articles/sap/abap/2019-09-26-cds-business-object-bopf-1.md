@@ -29,7 +29,7 @@ In this chapter, we will develop - step by step - quite a simple sales order app
 
 ## Persistency and Data Model
 
-As with any other business application, a set of database tables and other Dictionary objects defines the persistence model of a transaction application. As a data source for a business object to be generated, a database table needs to be provided for each so-called business object CDS view (also referred to as business object views). Generally, business object views are normalized CDS views that define the hierarchy of entities by using associations and @ObjectModel annotations. A business object view is defined on top of the underlying database table or the CDS view and exposes all elements that are defined in the SELECT list, including the key elements that correspond to the primary keys of the underlying database table. In the transactional scenario of the programming model for SAP Fiori, the business object view is required for business object generation on the basis of the BOPF framework.
+As with any other business application, a set of database tables and other Dictionary objects defines the persistence model of a transaction application. As a data source for a business object to be generated, a database table needs to be provided for each so-called business object CDS view (also referred to as business object views). Generally, business object views are normalized CDS views that define the hierarchy of entities by using associations and `@ObjectModel` annotations. A business object view is defined on top of the underlying database table or the CDS view and exposes all elements that are defined in the `SELECT` list, including the key elements that correspond to the primary keys of the underlying database table. In the transactional scenario of the programming model for SAP Fiori, the business object view is required for business object generation on the basis of the **BOPF** framework.
 
 A consumption CDS view (also referred to as consumption view) allows the consumption of a business object view in a different manner by different OData services. Each service-specific view is defined on top of a business object view and exposes its fields. A consumption view enhances the data model with metadata, additional associations, or even with transient fields that fit to a given consumption use case. In particular, the consumption views are used to enhance the data model with UI-specific annotations for later consumption in Fiori UIs.
 
@@ -79,7 +79,7 @@ define table ztab_so {
 
 This step demonstrates how you can implement a **Business Object view** to provide a normalized data model for a simple Sales Order application.
 
-传统的方式创建 BOPF 是直接创建 BOPF 对象然后自动生成相应的物理表. 这里 CDS 的方式有所不同, 先是创建物理表, 然后再在物理表之上创建相应 Business Object view , 然后为此 view 添加 annotations 来生成对应的 BOPF business object.
+> 传统的方式创建 BOPF 是直接创建 BOPF 对象然后自动生成相应的物理表. 这里 CDS 的方式有所不同, 先是创建物理表, 然后再在物理表之上创建相应 Business Object view , 然后为此 view 添加 annotations 来生成对应的 BOPF business object.
 
 The annotations (required) for each **root entity** are:
 
@@ -289,3 +289,4 @@ define view ZDEMO_C_SalesOrder_TX
 接着就可以使用创建按钮或者删除按钮对数据进行 CRUD 操作了.
 
 ![](/images/abap/cds/cds-bopf-fiori-new-row.png)
+{: .center}
