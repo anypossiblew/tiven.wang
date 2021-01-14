@@ -40,9 +40,9 @@ https://help.sap.com/doc/PRODUCTION/saphelp_nw74/7.4.16/en-US/d9/ed8c3c59021315e
 
 All these interfaces are based on **MDX** (Multi-Dimensional Expressions).
 
-![MDX result](images/s4hana/bw4hana/h-00100010000_image001.gif)
+![MDX result](/images/s4hana/bw4hana/h-00100010000_image001.gif)
 
-![OLE OLAP](images/s4hana/bw4hana/olap - overview of the various interfaces.png)
+![OLE OLAP](/images/s4hana/bw4hana/olap - overview of the various interfaces.png)
 
 Third-party front-end tools can send query requests to the MDX processor in the BW system via the available interfaces. This processor sends on the request to the OLAP processor. The OLAP processor accesses InfoProviders. These InfoProviders either contain the data objects themselves (InfoProvider with type data target, such as InfoCube, ODS object and InfoObject), or reporting-relevant views of data objects (MultiProvider, RemoteCube, InfoSet).
 
@@ -57,6 +57,7 @@ The syntax of multi-dimensional expressions is defined in the Microsoft specific
 > Microsoft? [**OLE DB for Online Analytical Processing (OLAP)**](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms714903(v=vs.85)) is a set of objects and interfaces that extends the ability of **OLE DB** to provide access to multidimensional data stores. OLAP applications typically handle huge volumes of complexly interrelated data, and OLE DB for OLAP enables users to perform sophisticated data analysis through fast, consistent, interactive access to a variety of possible views of the underlying information. [SalesData Example](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms722730(v=vs.85))
 
 The following example of a MDX request contains the above elements:
+
 ```SQL
 SELECT
   { [Measures].[CKF_SI_PROFIT],
@@ -71,8 +72,9 @@ WHERE
   ( [0CALMONTH].[200101],
     [0D_COUNTRY].[US] )
 ```
+
 The following graphic shows this example and the result:
-![MDX result](images/s4hana/bw4hana/h-00100010000_image002.gif)
+![MDX result](/images/s4hana/bw4hana/h-00100010000_image002.gif)
 
 ## OLAP BAPI
 

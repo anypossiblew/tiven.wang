@@ -2,8 +2,10 @@
 
 [My website](http://tiven.wang)
 
-## Build
+## Build & Startup
 
 `bundle update`
+
+`bundle exec jekyll serve`
 
 Using docker to startup `docker-compose up`
